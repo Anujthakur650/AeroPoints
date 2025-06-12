@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2pzrWEf7FyT11RiBM6nRigPndtE",
+    "airline": "turkish",
+    "flightNumber": "tu100",
+    "origin": "IST",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "55000",
+    "cash": 0.0,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 15:57:48",
+    "layovers": []
+  },
+  {
+    "id": "2iaBubl15CsaEccmyygMaTv7tJ9",
+    "airline": "United Airlines",
+    "flightNumber": "Un101",
+    "origin": "IST",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "44000",
+    "cash": 49.81,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 15:57:48",
+    "layovers": []
+  },
+  {
+    "id": "2heZKVFqkw0EkTbNwjBKErDgRGo",
+    "airline": "Air Canada",
+    "flightNumber": "Ai102",
+    "origin": "IST",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "55000",
+    "cash": 139.69,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 15:57:48",
+    "layovers": []
+  }
+]

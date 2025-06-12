@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2g8Mb0Hpn7qHhphcvSsvcnnSuxb",
+    "airline": "Emirates",
+    "flightNumber": "Em100",
+    "origin": "BOM",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "20000",
+    "cash": 6125.0,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-04 16:31:08",
+    "layovers": []
+  },
+  {
+    "id": "2ggdrMOm3hs0P43DjxTpyV25zLR",
+    "airline": "Air Canada",
+    "flightNumber": "Ai101",
+    "origin": "BOM",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "12500",
+    "cash": 65.69,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-04 16:31:08",
+    "layovers": []
+  }
+]

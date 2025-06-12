@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2hhpRObw3b4RBYniZoj6Ch5DT4a",
+    "airline": "Air Canada",
+    "flightNumber": "Ai100",
+    "origin": "DFW",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "68900",
+    "cash": 50.54,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-17 18:17:18",
+    "layovers": []
+  },
+  {
+    "id": "2hvRkgOkEBA4fJRQxi0eTN9BrxQ",
+    "airline": "qantas",
+    "flightNumber": "qa101",
+    "origin": "DFW",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "56000",
+    "cash": 471.7,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-17 18:17:18",
+    "layovers": []
+  }
+]

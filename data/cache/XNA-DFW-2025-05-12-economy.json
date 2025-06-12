@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2j9D782OBuOBNmoFiTSzjboSq04",
+    "airline": "American Airlines",
+    "flightNumber": "Am100",
+    "origin": "XNA",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "16000",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-21 12:37:09",
+    "layovers": []
+  },
+  {
+    "id": "2mM59TYiCtu9cRO8yie6b20xFmd",
+    "airline": "United Airlines",
+    "flightNumber": "Un101",
+    "origin": "XNA",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "21200",
+    "cash": 5.6,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-21 12:37:09",
+    "layovers": []
+  }
+]

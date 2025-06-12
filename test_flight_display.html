@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Time Display Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: white; }
+        .test-container { max-width: 800px; margin: 0 auto; }
+        .flight-card { background: #2a2a2a; border-radius: 8px; padding: 20px; margin: 10px 0; }
+        .time-display { font-size: 1.2em; font-weight: bold; color: #4CAF50; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background: #1b5e20; }
+        .error { background: #b71c1c; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Flight Time Display Test</h1>
+        <p>This page tests the flight time formatting to ensure "Invalid Date" issue is resolved.</p>
+        
+        <h2>Live API Test</h2>
+        <button onclick="testLiveAPI()">Test Live Flight Data</button>
+        <div id="liveResults"></div>
+        
+        <h2>Format Function Tests</h2>
+        <div id="formatTests"></div>
+        
+        <h2>Backend API Response</h2>
+        <button onclick="fetchFlightData()">Fetch Flight Data</button>
+        <div id="apiResponse"></div>
+    </div>
+
+    <script>
+        // Test the formatTime function directly
+        function formatTime(timeString) {
+            if (!timeString) return 'N/A';
+            
+            // If time is already in AM/PM format, return as is
+            if (timeString.includes('AM') || timeString.includes('PM')) {
+                return timeString;
+            }
+            
+            // Handle HH:MM format (24-hour)
+            if (timeString.includes(':')) {
+                const [hours, minutes] = timeString.split(':').map(num => parseInt(num, 10));
+                
+                if (!isNaN(hours) && !isNaN(minutes)) {
+                    const period = hours >= 12 ? 'PM' : 'AM';
+                    const displayHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                    const displayMinutes = minutes.toString().padStart(2, '0');
+                    return `${displayHour}:${displayMinutes} ${period}`;
+                }
+            }
+            
+            // If we can't parse it, return the original time
+            return timeString;
+        }
+
+        // Test the format function with various inputs
+        function runFormatTests() {
+            const testCases = [
+                { input: '16:00', expected: '4:00 PM' },
+                { input: '09:30', expected: '9:30 AM' },
+                { input: '23:00', expected: '11:00 PM' },
+                { input: '02:12', expected: '2:12 AM' },
+                { input: '12:00', expected: '12:00 PM' },
+                { input: '00:00', expected: '12:00 AM' },
+                { input: '8:00 AM', expected: '8:00 AM' },
+                { input: 'Invalid', expected: 'Invalid' }
+            ];
+            
+            const resultsDiv = document.getElementById('formatTests');
+            resultsDiv.innerHTML = '';
+            
+            testCases.forEach(testCase => {
+                const result = formatTime(testCase.input);
+                const isSuccess = result === testCase.expected;
+                const resultDiv = document.createElement('div');
+                resultDiv.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+                resultDiv.innerHTML = `
+                    Input: "${testCase.input}" → Output: "${result}" 
+                    (Expected: "${testCase.expected}") 
+                    ${isSuccess ? '✅' : '❌'}
+                `;
+                resultsDiv.appendChild(resultDiv);
+            });
+        }
+
+        // Fetch live flight data from API
+        async function fetchFlightData() {
+            const responseDiv = document.getElementById('apiResponse');
+            responseDiv.innerHTML = 'Loading...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/search-awards?origin=DFW&destination=LAX&date=2025-08-27&cabin_class=economy&passengers=1');
+                const data = await response.json();
+                
+                if (data.flights && data.flights.length > 0) {
+                    const flight = data.flights[0];
+                    responseDiv.innerHTML = `
+                        <div class="flight-card">
+                            <h3>${flight.airline} - ${flight.flightNumber}</h3>
+                            <p><strong>Raw departure time:</strong> "${flight.departureTime}"</p>
+                            <p><strong>Raw arrival time:</strong> "${flight.arrivalTime}"</p>
+                            <p><strong>Formatted departure:</strong> <span class="time-display">${formatTime(flight.departureTime)}</span></p>
+                            <p><strong>Formatted arrival:</strong> <span class="time-display">${formatTime(flight.arrivalTime)}</span></p>
+                            <p><strong>Duration:</strong> ${flight.duration}</p>
+                            <p><strong>Points:</strong> ${flight.points}</p>
+                            <p><strong>Cash:</strong> $${flight.cash}</p>
+                        </div>
+                    `;
+                } else {
+                    responseDiv.innerHTML = '<p class="error">No flights found in API response</p>';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<p class="error">Error fetching data: ${error.message}</p>`;
+            }
+        }
+
+        // Test with live API and compare with frontend formatting
+        async function testLiveAPI() {
+            const resultsDiv = document.getElementById('liveResults');
+            resultsDiv.innerHTML = 'Testing live API...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/search-awards?origin=DFW&destination=LAX&date=2025-08-27&cabin_class=economy&passengers=1');
+                const data = await response.json();
+                
+                if (data.flights && data.flights.length > 0) {
+                    const flights = data.flights.slice(0, 3); // Test first 3 flights
+                    let resultsHTML = '<h3>Live Flight Time Tests:</h3>';
+                    
+                    flights.forEach((flight, index) => {
+                        const formattedDep = formatTime(flight.departureTime);
+                        const formattedArr = formatTime(flight.arrivalTime);
+                        const hasInvalidDate = formattedDep.includes('Invalid') || formattedArr.includes('Invalid');
+                        
+                        resultsHTML += `
+                            <div class="flight-card test-result ${hasInvalidDate ? 'error' : 'success'}">
+                                <h4>Flight ${index + 1}: ${flight.airline}</h4>
+                                <p>Raw: ${flight.departureTime} → ${flight.arrivalTime}</p>
+                                <p>Formatted: ${formattedDep} → ${formattedArr}</p>
+                                <p>Duration: ${flight.duration}</p>
+                                <p>Status: ${hasInvalidDate ? '❌ Invalid Date Found' : '✅ Times Formatted Correctly'}</p>
+                            </div>
+                        `;
+                    });
+                    
+                    resultsDiv.innerHTML = resultsHTML;
+                } else {
+                    resultsDiv.innerHTML = '<p class="error">No flights found</p>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Run tests on page load
+        window.onload = function() {
+            runFormatTests();
+        };
+    </script>
+</body>
+</html> 

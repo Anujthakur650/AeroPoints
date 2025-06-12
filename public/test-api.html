@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    
+    <div>
+        <h2>Test Airport Search</h2>
+        <button onclick="testAirportSearch()">Test NYC Airport Search</button>
+        <div id="airport-results"></div>
+    </div>
+    
+    <div>
+        <h2>Test Flight Search</h2>
+        <button onclick="testFlightSearch()">Test LAX to JFK Flight Search</button>
+        <div id="flight-results"></div>
+    </div>
+
+    <script>
+        async function testAirportSearch() {
+            try {
+                const response = await fetch('http://localhost:8000/api/airports/search?q=NYC&limit=5');
+                const data = await response.json();
+                document.getElementById('airport-results').innerHTML = 
+                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('airport-results').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        async function testFlightSearch() {
+            try {
+                const response = await fetch('http://localhost:8000/api/search-awards?origin=LAX&destination=JFK&date=2025-07-15&cabin_class=economy&passengers=1');
+                const data = await response.json();
+                document.getElementById('flight-results').innerHTML = 
+                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('flight-results').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html> 

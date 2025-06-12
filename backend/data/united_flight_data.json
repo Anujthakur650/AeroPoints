@@ -1,0 +1,3266 @@
+[
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 15000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "15K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 7000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "7000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 7000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "7000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 22000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "22K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 22000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "22K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 25000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "25K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 25000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "25K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 8000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "8000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 8000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "8000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 9000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "9000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 6000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "6000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 30000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "30K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 30000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "30K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 80000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "80K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 8000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "8000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 8000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "8000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 60000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "60K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 60000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "60K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 20000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "20K miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  },
+  {
+    "airline": "United Airlines",
+    "flightNumber": null,
+    "aircraft": "Boeing 737",
+    "fareClass": "Economy",
+    "departure": {
+      "airport": "SFO",
+      "city": "San Francisco",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "arrival": {
+      "airport": "JFK",
+      "city": "New York",
+      "time": null,
+      "date": "2025-05-15"
+    },
+    "price": {
+      "amount": 5000,
+      "currency": "miles",
+      "type": "miles",
+      "formatted": "5000 miles",
+      "taxes": {
+        "amount": 5.6,
+        "currency": "USD",
+        "formatted": "$5.60"
+      }
+    },
+    "duration": "3h 00m",
+    "stops": 0,
+    "connectingAirport": null
+  }
+]

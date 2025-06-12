@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add IconifyIcons -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <title>HeroUI Chat - App</title>
+    <style>
+      #error-display {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        padding: 10px;
+        font-family: monospace;
+        max-height: 30vh;
+        overflow: auto;
+        z-index: 9999;
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="h-full min-h-screen">
+    <div id="root"></div>
+    <div id="error-display"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Create an array to store multiple errors
+      let errorBuffer = [];
+      const originalConsoleError = console.error;
+
+      function formatError(error) {
+        if (error instanceof Error) {
+          return {
+            type: "Error",
+            message: error.message,
+            stack: error.stack,
+            name: error.name,
+          };
+        }
+        if (typeof error === "object") {
+          return JSON.stringify(error);
+        }
+        return error;
+      }
+
+      console.error = function (...args) {
+        // Format the error message
+        const formattedError = args.map(formatError);
+        // Add to error buffer
+        errorBuffer.push(formattedError);
+        
+        // Display errors on page for debugging
+        const errorDisplay = document.getElementById('error-display');
+        if (errorDisplay) {
+          errorDisplay.style.display = 'block';
+          errorDisplay.innerHTML = '<h4>Console Errors:</h4>';
+          errorBuffer.forEach(errors => {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.borderBottom = '1px solid #fff';
+            errorDiv.style.marginBottom = '5px';
+            errorDiv.style.paddingBottom = '5px';
+            errorDiv.textContent = errors.map(err => 
+              typeof err === 'object' ? JSON.stringify(err) : err
+            ).join(' ');
+            errorDisplay.appendChild(errorDiv);
+          });
+        }
+        
+        // Send all accumulated errors to parent
+        window.parent.postMessage(
+          {
+            type: "CONSOLE_ERROR",
+            message: errorBuffer.map((errors) =>
+              errors.map((err) => (typeof err === "object" ? JSON.stringify(err) : err)),
+            ),
+          },
+          "*",
+        );
+        originalConsoleError.apply(console, args);
+      };
+
+      // Also capture unhandled errors and rejections
+      window.addEventListener("error", function (event) {
+        console.error(formatError(event.error));
+        window.parent.postMessage(
+          {
+            type: "UNHANDLED_ERROR",
+            message: formatError(event.error),
+          },
+          "*",
+        );
+      });
+
+      window.addEventListener("unhandledrejection", function (event) {
+        console.error(formatError(event.reason));
+        window.parent.postMessage(
+          {
+            type: "UNHANDLED_REJECTION",
+            message: formatError(event.reason),
+          },
+          "*",
+        );
+      });
+
+      // Debounce the mutation observer callback
+      let debounceTimeout;
+      const observer = new MutationObserver((mutations) => {
+        if (debounceTimeout) clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          const root = document.getElementById("root");
+          const isMounted = root && root.children.length > 0;
+          window.parent.postMessage(
+            {
+              type: "ROOT_MOUNT_STATUS",
+              isMounted,
+              content: root ? root.innerHTML : null,
+            },
+            "*",
+          );
+        }, 300);
+      });
+
+      observer.observe(document.getElementById("root"), {
+        childList: true,
+        subtree: true,
+      });
+
+      // Add message event listener for history navigation
+      window.addEventListener("message", (event) => {
+        try {
+          switch (event.data.type) {
+            case "HISTORY_BACK":
+              if (window.history.length > 1) {
+                window.history.back();
+              }
+              break;
+            case "HISTORY_FORWARD":
+              if (window.history.length > 1) {
+                window.history.forward();
+              }
+              break;
+          }
+        } catch (error) {
+          console.error("Navigation error:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

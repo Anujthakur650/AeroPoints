@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2hogpwpmxwnSwgLatxOnVt7xKqA",
+    "airline": "azul",
+    "flightNumber": "az100",
+    "origin": "DFW",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "215000",
+    "cash": 202.05,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-17 18:17:09",
+    "layovers": []
+  },
+  {
+    "id": "2gOj9X5oks3p35f2owS25QRlD0O",
+    "airline": "Air Canada",
+    "flightNumber": "Ai101",
+    "origin": "DFW",
+    "destination": "DXB",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "68400",
+    "cash": 51.04,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-17 18:17:09",
+    "layovers": []
+  }
+]

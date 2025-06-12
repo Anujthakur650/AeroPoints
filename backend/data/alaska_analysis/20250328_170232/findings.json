@@ -1,0 +1,124 @@
+{
+  "search_flow": [
+    {
+      "step": 1,
+      "name": "homepage",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:02:38"
+    },
+    {
+      "step": 2,
+      "name": "search_form",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:02:40"
+    },
+    {
+      "step": 3,
+      "name": "before_search_submission",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:02:43"
+    },
+    {
+      "step": 4,
+      "name": "after_search_submission",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:03:15"
+    },
+    {
+      "step": 5,
+      "name": "results_page",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:03:22"
+    },
+    {
+      "step": 6,
+      "name": "anti_bot_analysis",
+      "url": "https://www.alaskaair.com/",
+      "title": "Alaska Airlines - Flight Deals and Cheap Airline Tickets - Book Today",
+      "timestamp": "2025-03-28 17:03:24"
+    }
+  ],
+  "anti_bot_measures": [],
+  "selectors": {
+    "search_button": "button[type='submit']",
+    "flight_card": "[class*='flight']",
+    "miles": "label."
+  },
+  "recommended_approach": "Standard enhanced stealth should work, but be cautious",
+  "miles_mentions": [
+    {
+      "text": "Benefits, perks, and milestones",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Earn and use miles",
+      "tag": "h4",
+      "class": [
+        "menu-h4"
+      ]
+    },
+    {
+      "text": "Earn miles",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Use miles",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Buy and share miles",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Award charts",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Book award travel",
+      "tag": "a",
+      "class": [
+        "menu-item-a"
+      ]
+    },
+    {
+      "text": "Award charts",
+      "tag": "a",
+      "class": [
+        "menu-mobile-child"
+      ]
+    },
+    {
+      "text": "Book award travel",
+      "tag": "a",
+      "class": [
+        "menu-mobile-child"
+      ]
+    },
+    {
+      "text": "Not be a Partner Award issued by an Alaska Airlines reservation call center or Alaska\n                            ticket counter.",
+      "tag": "li",
+      "class": ""
+    }
+  ],
+  "error_indicator": "not available"
+}

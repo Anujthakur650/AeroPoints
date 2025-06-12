@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2pzrATilNqc2Iz1CuIF26N0fG1v",
+    "airline": "turkish",
+    "flightNumber": "tu100",
+    "origin": "IST",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "55000",
+    "cash": 0.0,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 15:58:19",
+    "layovers": []
+  },
+  {
+    "id": "2hvyo8SBpV6JC7tCa7hs61Z5tho",
+    "airline": "United Airlines",
+    "flightNumber": "Un101",
+    "origin": "IST",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "70000",
+    "cash": 49.81,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 15:58:19",
+    "layovers": []
+  }
+]
