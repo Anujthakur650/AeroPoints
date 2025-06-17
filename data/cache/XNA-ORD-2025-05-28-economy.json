@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2j99G5GuQKgcDAusmBn0pNtdqnM",
+    "airline": "American Airlines",
+    "flightNumber": "Am100",
+    "origin": "XNA",
+    "destination": "ORD",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "7500",
+    "cash": 11.2,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 14:03:28",
+    "layovers": []
+  },
+  {
+    "id": "2iZmFFJcvJn7jj8z0IQtdpAt5DK",
+    "airline": "qantas",
+    "flightNumber": "qa101",
+    "origin": "XNA",
+    "destination": "ORD",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "11900",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 14:03:28",
+    "layovers": []
+  },
+  {
+    "id": "2ijJodSI9BaFnqY08kUtX4g7e4N",
+    "airline": "United Airlines",
+    "flightNumber": "Un102",
+    "origin": "XNA",
+    "destination": "ORD",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "15000",
+    "cash": 5.6,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-24 14:03:28",
+    "layovers": []
+  }
+]

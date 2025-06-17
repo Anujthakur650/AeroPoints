@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Context Simulation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .status { margin: 20px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .button { 
+            margin: 5px; 
+            padding: 10px 15px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .google-button { 
+            background: #db4437; 
+            display: none; /* Start hidden like in React */
+        }
+        .google-button.visible { 
+            display: inline-block; 
+        }
+    </style>
+</head>
+<body>
+    <h1>AuthContext Simulation Test</h1>
+    <p>This simulates what the React AuthContext should be doing.</p>
+    
+    <div id="status-display">
+        <div class="info">Initializing auth context...</div>
+    </div>
+    
+    <div id="login-form">
+        <h3>Login Form (Simulated)</h3>
+        <input type="email" placeholder="Email" style="margin: 5px; padding: 5px;" />
+        <input type="password" placeholder="Password" style="margin: 5px; padding: 5px;" />
+        <button class="button">Regular Login</button>
+        <br>
+        <button id="google-button" class="button google-button">
+            🔍 Continue with Google
+        </button>
+        <div id="google-status" class="info">Google button hidden (isGoogleAuthAvailable: false)</div>
+    </div>
+    
+    <div id="results"></div>
+
+    <script>
+        let isGoogleAuthAvailable = false;
+
+        function displayMessage(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            document.getElementById('results').appendChild(div);
+        }
+
+        function updateGoogleButtonVisibility() {
+            const googleButton = document.getElementById('google-button');
+            const googleStatus = document.getElementById('google-status');
+            
+            if (isGoogleAuthAvailable) {
+                googleButton.classList.add('visible');
+                googleStatus.innerHTML = '✅ Google button visible (isGoogleAuthAvailable: true)';
+                googleStatus.className = 'success';
+            } else {
+                googleButton.classList.remove('visible');
+                googleStatus.innerHTML = '❌ Google button hidden (isGoogleAuthAvailable: false)';
+                googleStatus.className = 'error';
+            }
+        }
+
+        async function simulateAuthContextMount() {
+            displayMessage('🚀 AuthContext mounting...', 'info');
+            
+            // Simulate the useEffect that checks Google auth status
+            displayMessage('📡 Checking Google OAuth availability (like useEffect)...', 'info');
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/auth/google/status', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                displayMessage(`✅ API Response: ${JSON.stringify(data)}`, 'success');
+                
+                // Update the state (like setIsGoogleAuthAvailable)
+                isGoogleAuthAvailable = data.available;
+                displayMessage(`🔄 State updated: isGoogleAuthAvailable = ${isGoogleAuthAvailable}`, 'info');
+                
+                // Update UI (like React re-render)
+                updateGoogleButtonVisibility();
+                
+                if (isGoogleAuthAvailable) {
+                    displayMessage('🎉 SUCCESS: Google OAuth is available, button should be visible!', 'success');
+                } else {
+                    displayMessage('⚠️ Google OAuth is not available, button remains hidden', 'error');
+                }
+                
+            } catch (error) {
+                displayMessage(`❌ Error checking Google auth: ${error.message}`, 'error');
+                isGoogleAuthAvailable = false;
+                updateGoogleButtonVisibility();
+            }
+        }
+
+        // Add click handler to Google button
+        document.getElementById('google-button').addEventListener('click', function() {
+            displayMessage('🔍 Google button clicked! This would trigger loginWithGoogle()', 'success');
+        });
+
+        // Auto-run the simulation
+        window.onload = function() {
+            updateGoogleButtonVisibility(); // Initial state
+            setTimeout(simulateAuthContextMount, 1000); // Simulate component mount delay
+        };
+    </script>
+</body>
+</html> 

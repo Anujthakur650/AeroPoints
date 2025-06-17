@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2jD3rm3hedl9Sz7fjHE0xc721SZ",
+    "airline": "Alaska Airlines",
+    "flightNumber": "Al100",
+    "origin": "FAT",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "cabin-economy-0",
+    "points": "7500",
+    "cash": 18.1,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-05-22 16:48:21",
+    "layovers": []
+  },
+  {
+    "id": "2j4dbItJHz9HknKPr2A763a2AWJ",
+    "airline": "American Airlines",
+    "flightNumber": "Am101",
+    "origin": "FAT",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "cabin-economy-0",
+    "points": "9000",
+    "cash": 5.6,
+    "seatsAvailable": 3,
+    "realTimeData": true,
+    "lastUpdated": "2025-05-22 16:48:21",
+    "layovers": []
+  },
+  {
+    "id": "2kCFgJ61kTWcnmzZAmq8DdcNvAk",
+    "airline": "qantas",
+    "flightNumber": "qa102",
+    "origin": "FAT",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "cabin-economy-0",
+    "points": "17100",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-05-22 16:48:21",
+    "layovers": []
+  }
+]

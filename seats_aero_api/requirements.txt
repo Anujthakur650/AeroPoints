@@ -1,0 +1,12 @@
+# Core dependencies for both FastAPI and Flask implementations
+python-dotenv>=1.0.0
+requests>=2.28.2
+
+# FastAPI specific dependencies
+fastapi>=0.95.0
+uvicorn>=0.22.0
+pydantic>=1.10.7
+
+# Flask specific dependencies
+Flask>=2.2.3
+Flask-CORS>=3.0.10 

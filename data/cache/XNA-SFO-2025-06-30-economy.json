@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2xNYplQfqgYc1bxT32DXVN0AOl2",
+    "airline": "United Airlines",
+    "flightNumber": "Un100",
+    "origin": "XNA",
+    "destination": "SFO",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "15000",
+    "cash": 5.6,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-17 11:13:34",
+    "layovers": []
+  },
+  {
+    "id": "2xNZ2JMEnuHCVWjPcEFRRfElqQa",
+    "airline": "Air Canada",
+    "flightNumber": "Ai101",
+    "origin": "XNA",
+    "destination": "SFO",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "15000",
+    "cash": 54.2,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-17 11:13:34",
+    "layovers": []
+  }
+]

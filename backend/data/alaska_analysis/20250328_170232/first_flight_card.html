@@ -1,0 +1,202 @@
+
+            <!-- Nav tabs -->
+            <div class="secondaryTabpanelContainer">
+                <div class="secondaryTabsContainer">
+                    <ul id="secondaryTab" class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="selected active" role="presentation"><a id="tab-flights" href="#flights" role="tab" aria-controls="flights" aria-selected="true">Flights</a></li>
+                        <li role="presentation"><a id="tab-hotels" href="#hotels" role="tab" aria-controls="hotels" tabindex="-1" aria-selected="false">Hotels</a></li>
+                        <li role="presentation"><a id="tab-cars" href="#cars" role="tab" aria-controls="cars" tabindex="-1" aria-selected="false">Cars</a></li>
+                    </ul>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane flight-search clearfix active" id="flights" aria-hidden="false" style="display: block;">
+                        <form id="advanced-search-form" class="IsRoundTrip" role="form" name="bookingForm" action="/Shopping/Flights/Shop" method="post" novalidate="">
+                            <input type="hidden" name="flightType" value="1" style="">
+                            <input type="hidden" name="AwardOption" value="MilesOnly" style="">
+                            <input type="hidden" name="DirtyForm" value="false" style="">
+                            <input type="hidden" name="IsRoundTrip" value="true" style="">
+                            <input type="hidden" name="IsMultiCity" value="false" style="">
+                            <input type="hidden" name="RequiresUmnrService" value="" style="">
+                            <input type="hidden" name="ShowOnlyContractFares" value="false" style="">
+                            <input type="hidden" name="ShowContractAndAllFares" value="false" style="">
+                            <input type="hidden" name="ShopAwardCalendar" value="false" style="">
+                            <input type="hidden" name="ShopLowFareCalendar" value="false" style="">
+                            <input type="hidden" name="ContractFaresOption" value="" style="">
+                            <div class="row">
+                                <div class="col-xs-12 error error-container"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="oneWay" name="IsOneWay" value="false" style="">
+                                            One-way
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="awardReservation" name="IsAwardReservation" value="true" style="">
+                                            Use miles
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6 left-xs left-sm left-md left-lg">
+                                    <label for="fromCity1" class="cityLabel">
+                                        From
+                                    </label>
+                                    <span id="preferredOrigin" class="cityPrefs"></span>
+                                    <input type="text" class="form-control fromCity" id="fromCity1" name="DepartureCity1" aria-required="true" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="60" style="">
+                                </div>
+                                <div class="form-group col-xs-6 right-xs right-sm right-md right-lg">
+                                    <label for="toCity1" class="cityLabel">
+                                        To
+                                    </label>
+                                    <span id="preferredDestinations" class="cityPrefs"></span>
+                                    <input type="text" class="form-control toCity" id="toCity1" name="ArrivalCity1" aria-required="true" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="60" style="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6 left-xs left-sm left-md left-lg">
+                                    <label for="departureDate1">Departure date</label>
+                                    <span class="as-datepicker-wrapper"><input type="text" class="form-control as-datepicker" next-id="returnDate" id="departureDate1" aria-required="true" name="DepartureDate1" data-wrapped="true" style=""><div class="icon-calendar" tabindex="0" aria-label="Open datepicker" role="button" alt="Open datepicker"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m 439 123 c -6 -5 -12 -8 -19 -8 l -26 0 l 0 -19 c 0 -9 -3 -17 -10 -24 c -6 -6 -14 -9 -23 -9 l -13 0 c -9 0 -16 3 -23 9 c -6 7 -9 15 -9 24 l 0 19 l -79 0 l 0 -19 c 0 -9 -3 -17 -9 -24 c -7 -6 -14 -9 -23 -9 l -13 0 c -9 0 -17 3 -23 9 c -7 7 -10 15 -10 24 l 0 19 l -26 0 c -7 0 -13 3 -18 8 c -6 5 -8 11 -8 18 l 0 261 c 0 8 2 14 8 19 c 5 5 11 8 18 8 l 287 0 c 7 0 13 -3 19 -8 c 5 -5 7 -11 7 -19 l 0 -261 c 0 -7 -2 -13 -7 -18 Z m -247 279 l -59 0 l 0 -58 l 59 0 Z m 0 -71 l -59 0 l 0 -66 l 59 0 Z m 0 -79 l -59 0 l 0 -58 l 59 0 Z m -5 -93 c -1 -1 -2 -3 -2 -5 l 0 -58 c 0 -2 1 -4 2 -5 c 1 -1 3 -2 5 -2 l 13 0 c 1 0 3 1 4 2 c 2 1 2 3 2 5 l 0 58 c 0 2 0 4 -2 5 c -1 1 -3 2 -4 2 l -13 0 c -2 0 -4 -1 -5 -2 Z m 83 243 l -65 0 l 0 -58 l 65 0 Z m 0 -71 l -65 0 l 0 -66 l 65 0 Z m 0 -79 l -65 0 l 0 -58 l 65 0 Z m 78 150 l -65 0 l 0 -58 l 65 0 Z m 0 -71 l -65 0 l 0 -66 l 65 0 Z m 0 -79 l -65 0 l 0 -58 l 65 0 Z m -4 -93 c -2 -1 -2 -3 -2 -5 l 0 -58 c 0 -2 0 -4 2 -5 c 1 -1 3 -2 4 -2 l 13 0 c 2 0 4 1 5 2 c 1 1 2 3 2 5 l 0 58 c 0 2 -1 4 -2 5 c -1 1 -3 2 -5 2 l -13 0 c -1 0 -3 -1 -4 -2 Z m 76 243 l -59 0 l 0 -58 l 59 0 Z m 0 -71 l -59 0 l 0 -66 l 59 0 Z m 0 -79 l -59 0 l 0 -58 l 59 0 Z"></path></svg></div></span>
+                                </div>
+                                <div class="form-group col-xs-6 right-xs right-sm right-md right-lg oneway-hidden">
+                                    <label for="returnDate">Return date</label>
+                                    <span class="as-datepicker-wrapper"><input type="text" class="form-control as-datepicker" id="returnDate" aria-required="true" name="ReturnDate" data-wrapped="true" style=""><div class="icon-calendar" tabindex="0" aria-label="Open datepicker" role="button" alt="Open datepicker"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m 439 123 c -6 -5 -12 -8 -19 -8 l -26 0 l 0 -19 c 0 -9 -3 -17 -10 -24 c -6 -6 -14 -9 -23 -9 l -13 0 c -9 0 -16 3 -23 9 c -6 7 -9 15 -9 24 l 0 19 l -79 0 l 0 -19 c 0 -9 -3 -17 -9 -24 c -7 -6 -14 -9 -23 -9 l -13 0 c -9 0 -17 3 -23 9 c -7 7 -10 15 -10 24 l 0 19 l -26 0 c -7 0 -13 3 -18 8 c -6 5 -8 11 -8 18 l 0 261 c 0 8 2 14 8 19 c 5 5 11 8 18 8 l 287 0 c 7 0 13 -3 19 -8 c 5 -5 7 -11 7 -19 l 0 -261 c 0 -7 -2 -13 -7 -18 Z m -247 279 l -59 0 l 0 -58 l 59 0 Z m 0 -71 l -59 0 l 0 -66 l 59 0 Z m 0 -79 l -59 0 l 0 -58 l 59 0 Z m -5 -93 c -1 -1 -2 -3 -2 -5 l 0 -58 c 0 -2 1 -4 2 -5 c 1 -1 3 -2 5 -2 l 13 0 c 1 0 3 1 4 2 c 2 1 2 3 2 5 l 0 58 c 0 2 0 4 -2 5 c -1 1 -3 2 -4 2 l -13 0 c -2 0 -4 -1 -5 -2 Z m 83 243 l -65 0 l 0 -58 l 65 0 Z m 0 -71 l -65 0 l 0 -66 l 65 0 Z m 0 -79 l -65 0 l 0 -58 l 65 0 Z m 78 150 l -65 0 l 0 -58 l 65 0 Z m 0 -71 l -65 0 l 0 -66 l 65 0 Z m 0 -79 l -65 0 l 0 -58 l 65 0 Z m -4 -93 c -2 -1 -2 -3 -2 -5 l 0 -58 c 0 -2 0 -4 2 -5 c 1 -1 3 -2 4 -2 l 13 0 c 2 0 4 1 5 2 c 1 1 2 3 2 5 l 0 58 c 0 2 -1 4 -2 5 c -1 1 -3 2 -5 2 l -13 0 c -1 0 -3 -1 -4 -2 Z m 76 243 l -59 0 l 0 -58 l 59 0 Z m 0 -71 l -59 0 l 0 -66 l 59 0 Z m 0 -79 l -59 0 l 0 -58 l 59 0 Z"></path></svg></div></span>
+                                </div>
+                            </div>
+                            <div class="row dropdowns">
+                                <div class="col-xs-6 form-group left-xs left-sm left-md left-lg">
+                                    <label for="adultCount">Adults</label>
+                                    <select class="form-control" id="adultCount" name="AdultCount">
+                                        <option>0 adults</option>
+                                        <option selected="selected">1 adult</option>
+                                        <option>2 adults</option>
+                                        <option>3 adults</option>
+                                        <option>4 adults</option>
+                                        <option>5 adults</option>
+                                        <option>6 adults</option>
+                                        <option>7 adults</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-6 form-group right-xs right-sm right-md right-lg">
+                                        <div class="dropdown children-control">
+                                            <style type="text/css">
+    .slideout-hidden {display:none}
+</style>
+
+<label class="normal" for="childrenCountDropDown">Children <a class="q side-drawer-link ssr-learn-more" href="javascript:;" onclick="ShowAboutInfantCT();"><span class="sr-only">About Children</span></a></label>
+<div id="childrenCountDropDown" class="dropdown childrenDropDown-toggle">
+    <div class="form-control dropdown-toggle childrenDropDown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+        <span id="numChildren">0 children</span>
+    </div>
+    <ul class="dropdown-menu">
+        <li class="children-infant">
+            <input type="tel" id="childrenCount" name="ChildrenCount" class="form-control children-input" value="0" tabindex="0" onchange="UpdateButtonState($(this).val(), $(this).parent().find('.decrement-count'));" style="">
+            <label for="childrenCount" style="vertical-align:text-top">Ages 2-17</label>
+            <div class="symbol children-dropdown-icon-wrapper">
+                <svg id="childrenMinus" class="children-dropdown-icon icon-minus-circle decrement-count" viewBox="0 0 512 512">
+                    <path d="m384 274l0-36c0-5-2-10-5-13c-4-4-8-6-13-6l-220 0c-5 0-9 2-13 6c-3 3-5 8-5 13l0 36c0 5 2 10 5 13c4 4 8 6 13 6l220 0c5 0 9-2 13-6c3-3 5-8 5-13z m91-18c0 40-9 77-29 110c-20 34-46 60-80 80c-33 20-70 29-110 29c-40 0-77-9-110-29c-34-20-60-46-80-80c-20-33-29-70-29-110c0-40 9-77 29-110c20-34 46-60 80-80c33-20 70-29 110-29c40 0 77 9 110 29c34 20 60 46 80 80c20 33 29 70 29 110z"></path>
+                </svg>
+                <svg class="children-dropdown-icon icon-plus-circle increment-count" viewBox="0 0 512 512">
+                    <path d="m384 274l0-36c0-5-2-10-5-13c-4-4-8-6-13-6l-73 0l0-73c0-5-2-9-6-13c-3-3-8-5-13-5l-36 0c-5 0-10 2-13 5c-4 4-6 8-6 13l0 73l-73 0c-5 0-9 2-13 6c-3 3-5 8-5 13l0 36c0 5 2 10 5 13c4 4 8 6 13 6l73 0l0 73c0 5 2 9 6 13c3 3 8 5 13 5l36 0c5 0 10-2 13-5c4-4 6-8 6-13l0-73l73 0c5 0 9-2 13-6c3-3 5-8 5-13z m91-18c0 40-9 77-29 110c-20 34-46 60-80 80c-33 20-70 29-110 29c-40 0-77-9-110-29c-34-20-60-46-80-80c-20-33-29-70-29-110c0-40 9-77 29-110c20-34 46-60 80-80c33-20 70-29 110-29c40 0 77 9 110 29c34 20 60 46 80 80c20 33 29 70 29 110z"></path>
+                </svg>
+            </div>
+        </li>
+        <li class="children-infant">
+            <input type="tel" class="form-control children-input" name="InfantCount" id="infantCount" value="0" tabindex="0" onchange="UpdateButtonState($(this).val(), $(this).parent().find('.decrement-count'));" style="">
+            <label for="infantCount" style="vertical-align:text-top">Under 2 (on lap)</label>
+            <div class="symbol children-dropdown-icon-wrapper">
+                <svg id="infantMinus" class="children-dropdown-icon icon-minus-circle decrement-count" viewBox="0 0 512 512">
+                    <path d="m384 274l0-36c0-5-2-10-5-13c-4-4-8-6-13-6l-220 0c-5 0-9 2-13 6c-3 3-5 8-5 13l0 36c0 5 2 10 5 13c4 4 8 6 13 6l220 0c5 0 9-2 13-6c3-3 5-8 5-13z m91-18c0 40-9 77-29 110c-20 34-46 60-80 80c-33 20-70 29-110 29c-40 0-77-9-110-29c-34-20-60-46-80-80c-20-33-29-70-29-110c0-40 9-77 29-110c20-34 46-60 80-80c33-20 70-29 110-29c40 0 77 9 110 29c34 20 60 46 80 80c20 33 29 70 29 110z"></path>
+                </svg>
+                <svg id="infantPlus" class="children-dropdown-icon icon-plus-circle increment-count" viewBox="0 0 512 512">
+                    <path d="m384 274l0-36c0-5-2-10-5-13c-4-4-8-6-13-6l-73 0l0-73c0-5-2-9-6-13c-3-3-8-5-13-5l-36 0c-5 0-10 2-13 5c-4 4-6 8-6 13l0 73l-73 0c-5 0-9 2-13 6c-3 3-5 8-5 13l0 36c0 5 2 10 5 13c4 4 8 6 13 6l73 0l0 73c0 5 2 9 6 13c3 3 8 5 13 5l36 0c5 0 10-2 13-5c4-4 6-8 6-13l0-73l73 0c5 0 9-2 13-6c3-3 5-8 5-13z m91-18c0 40-9 77-29 110c-20 34-46 60-80 80c-33 20-70 29-110 29c-40 0-77-9-110-29c-34-20-60-46-80-80c-20-33-29-70-29-110c0-40 9-77 29-110c20-34 46-60 80-80c33-20 70-29 110-29c40 0 77 9 110 29c34 20 60 46 80 80c20 33 29 70 29 110z"></path>
+                </svg>
+            </div>
+        </li>
+    </ul>
+</div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row cta-row">
+                                <div class="form-group col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="https://www.alaskaair.com/search?lid=form:all-search-options" class="homelet-link link-to-advanced">All search options</a>
+                                        </div>
+                                        <div class="col-sm-12"><a href="https://www.alaskaair.com/search?lid=form:use-discount-code" class="homelet-link link-to-advanced">Use discount or <br class="hidden-xs"> companion fare code</a></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6 right-sm right-md right-lg">
+                                    <auro-button id="findFlights" type="submit" fluid="true" form="advanced-search-form" data-omniture-tag="home-page:formlet::findFlights" condensed="true" disabled="disabled">Find Flights</auro-button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="UMNRModal" class="hidden">
+    <div id="divUMNR">
+        <div id="divChildrenQ" class="spacer">
+            Is your child traveling alone?
+        </div>
+        <div id="_travelAloneYesNoGroup" role="radiogroup" aria-labelledby="divChildrenQ">
+            <div class="spacer">
+                <label id="umnrYesLabel">
+                    <input type="radio" id="umnrYes" name="umnrOption" value="Yes" aria-labelledby="divChildrenQ umnrYesLabel" style="">
+                    Yes
+                </label>
+            </div>
+            <div class="spacer">
+                <div class="left">
+                    <label id="umnrNoLabel">
+                        <input type="radio" id="umnrNo" name="umnrOption" value="No" aria-labelledby="divChildrenQ umnrNoLabel" style="">
+                        No
+                    </label>
+                </div>
+                <div class="left">
+                    <div id="divUmnrNote" class="divUmnrNote hidden col-sm-12 margBottom10">
+                        Children under the age of 13 on Alaska Airlines flights must be linked to an adult reservation.&nbsp;&nbsp;Please book the adult reservation first and have the confirmation code available to enter on the passenger information page.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right spacer">
+            <input id="submitUMNRRequest" type="submit" value="CONTINUE" class="continue-btn btn btn-green pull-right margRight10 margTop10 margBottom10" aria-disabled="true" href="#" style="">
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+                        <div id="InfantModal" class="hidden">
+    <div id="divInfant">
+        <div id="divInfantInfo" class="spacer">
+            Each infant <a target="_blank" rel="noopener noreferrer" href="https://www.alaskaair.com/content/travel-info/policies/traveling-with-lap-infants">must have their own ticket</a> when traveling with our international partners. We've added your infant as an adult passenger; you'll be able to enter their correct birthdate later, on the Passenger Information page.
+        </div>
+        <div class="right spacer">
+            <input id="submitLapInfantRequest" type="submit" value="CONTINUE" class="continue-btn btn btn-green pull-right margRight10 margTop10 margBottom10" aria-disabled="false" href="#" style="">
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+
+
+                    </div>
+                    <div id="hotels" class="tab-pane hotel-search clearfix" aria-hidden="true" style="display: none;">
+                        <div class="hotel mediumgradient" id="hotel">
+                        </div><!-- hotel container end -->
+                    </div>
+                    <div id="cars" class="tab-pane car-search clearfix" aria-hidden="true" style="display: none;">
+                        <div class="car mediumgradient" id="car">
+                        </div><!-- car container end -->
+                    </div>
+                    <div id="vacations" class="tab-pane vacation-search clearfix" aria-hidden="true" style="display: none;">
+                        <div class="vacation mediumgradient" id="vacation">
+
+                        </div><!-- vacation container end -->
+                    </div>
+                </div>
+                <!-- End Tab panes -->
+            </div>
+            <!-- End Booking Forms -->
+        

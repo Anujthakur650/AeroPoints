@@ -1,0 +1,36 @@
+[2025-03-28 16:21:11] INFO: Successfully imported base UnitedFlightCrawler
+[2025-03-28 16:21:11] INFO: Loaded 10 proxies from cache, last refreshed 3.3 minutes ago
+[2025-03-28 16:21:11] INFO: Enhanced Crawler Service initialized with settings:
+[2025-03-28 16:21:11] INFO: - Residential Proxies: True
+[2025-03-28 16:21:11] INFO: - CAPTCHA Solver: True
+[2025-03-28 16:21:11] INFO: - Browser Profiles: True
+[2025-03-28 16:21:11] INFO: - Headless Mode: False
+[2025-03-28 16:21:11] INFO: Starting crawler in a separate thread for session da223682-2504-4b7f-afa0-a96374f5bfbb...
+[2025-03-28 16:21:11] INFO: Starting enhanced crawler for SFO-JFK on 2025-05-15 (session: da223682-2504-4b7f-afa0-a96374f5bfbb)
+[2025-03-28 16:21:11] WARNING: CAPTCHA solving enabled but no ANTICAPTCHA_KEY found in environment
+[2025-03-28 16:21:11] INFO: Setting up browser profile for SFO-JFK
+[2025-03-28 16:21:11] INFO: Using existing profile for SFO-JFK
+[2025-03-28 16:21:11] INFO: Providing 5 proxies
+[2025-03-28 16:21:11] INFO: Loaded 10 authenticated proxies
+[2025-03-28 16:21:12] INFO: Enhanced crawler initialized with session ID: 6a285e81-07ef-42ae-b1ba-9e92bcaf41d7
+[2025-03-28 16:21:12] INFO: Loaded 5 residential proxies
+[2025-03-28 16:21:12] INFO: Starting enhanced crawl for SFO to JFK on 2025-05-15
+[2025-03-28 16:21:12] INFO: Using proxy: geo-de.residential.provider.com:9000
+[2025-03-28 16:21:12] INFO: Launching browser with persistent profile at /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_SFO_JFK
+[2025-03-28 16:21:13] ERROR: Error loading cookies: Page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://www.united.com/
+Call log:
+  - navigating to "https://www.united.com/", waiting until "domcontentloaded"
+
+[2025-03-28 16:21:13] INFO: Navigating to United Airlines homepage
+[2025-03-28 16:21:13] ERROR: Error during enhanced crawl: Page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://www.united.com/en/us
+Call log:
+  - navigating to "https://www.united.com/en/us", waiting until "domcontentloaded"
+
+[2025-03-28 16:21:13] INFO: Main crawl found no results, trying direct API method (session: da223682-2504-4b7f-afa0-a96374f5bfbb)
+[2025-03-28 16:21:13] INFO: Trying direct API access to United endpoints
+[2025-03-28 16:21:13] INFO: Using proxy: residential.provider.com:9000
+[2025-03-28 16:21:13] ERROR: Error during direct API access: Cannot connect to host residential.provider.com:9000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:21:13] ERROR: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7f9c40667eb0>
+[2025-03-28 16:21:13] ERROR: Crawl failed for SFO-JFK on 2025-05-15: No results found after 1.7 seconds (session: da223682-2504-4b7f-afa0-a96374f5bfbb)
+[2025-03-28 16:21:13] WARNING: No output file found for session da223682-2504-4b7f-afa0-a96374f5bfbb

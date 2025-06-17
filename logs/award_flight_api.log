@@ -1,0 +1,296 @@
+[2025-04-04 13:29:17,637] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-04-04 13:29:17,638] INFO: Checking for united_flight_data.json: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/united_flight_data.json
+[2025-04-04 13:29:17,638] INFO: Loading airport data...
+[2025-04-04 13:29:17,714] INFO: Loaded 7908 airports with IATA codes
+[2025-04-04 13:29:17,714] INFO: Loaded 28258 airports with ICAO codes
+[2025-04-04 13:29:17,715] INFO: Example airports:
+[2025-04-04 13:29:17,716] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-04-04 13:29:17,716] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-04-04 13:29:17,716] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-04-04 13:30:23,497] INFO: Health check endpoint accessed
+[2025-04-04 13:30:23,506] INFO: Health check endpoint accessed
+[2025-04-04 13:30:25,747] INFO: Health check endpoint accessed
+[2025-04-04 13:30:25,757] INFO: Health check endpoint accessed
+[2025-04-04 13:30:26,332] INFO: Health check endpoint accessed
+[2025-04-04 13:30:26,340] INFO: Health check endpoint accessed
+[2025-04-04 13:30:26,848] INFO: Health check endpoint accessed
+[2025-04-04 13:30:26,859] INFO: Health check endpoint accessed
+[2025-04-04 13:32:34,664] INFO: Health check endpoint accessed
+[2025-04-04 13:32:34,675] INFO: Health check endpoint accessed
+[2025-04-04 13:32:34,678] INFO: Serving flights: SFO to LAX on 2025-04-30
+[2025-04-04 13:32:34,678] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 13:32:34,678] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 13:32:34,679] INFO: Generating fresh real-time data for SFO-LAX-2025-04-30-economy
+[2025-04-04 13:32:34,679] INFO: Using United crawler for real-time flight data
+[2025-04-04 13:32:34,679] INFO: Using UnitedFlightCrawler for real-time flight data
+[2025-04-04 13:32:34,679] INFO: Checking for United crawler at: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-04-04 13:32:34,679] INFO: Loading United crawler from: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-04-04 13:32:35,600] ERROR: Failed to import United crawler module: No module named 'playwright'
+[2025-04-04 13:32:35,600] ERROR: Traceback (most recent call last):
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/award_flight_api.py", line 247, in _fetch_from_united_crawler
+    spec.loader.exec_module(united_crawler)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py", line 18, in <module>
+    from playwright.async_api import async_playwright
+ModuleNotFoundError: No module named 'playwright'
+
+[2025-04-04 13:32:35,600] INFO: Returning 0 flights
+[2025-04-04 13:32:35,600] WARNING: No flights found for this route and date
+[2025-04-04 13:42:16,293] INFO: Health check endpoint accessed
+[2025-04-04 13:42:16,302] INFO: Health check endpoint accessed
+[2025-04-04 13:46:03,566] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-04-04 13:46:03,566] INFO: Checking for united_flight_data.json: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/united_flight_data.json
+[2025-04-04 13:46:03,566] INFO: Loading airport data...
+[2025-04-04 13:46:03,701] INFO: Loaded 7908 airports with IATA codes
+[2025-04-04 13:46:03,701] INFO: Loaded 28258 airports with ICAO codes
+[2025-04-04 13:46:03,702] INFO: Example airports:
+[2025-04-04 13:46:03,703] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-04-04 13:46:03,703] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-04-04 13:46:03,703] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-04-04 13:46:53,821] INFO: Health check endpoint accessed
+[2025-04-04 13:46:53,834] INFO: Health check endpoint accessed
+[2025-04-04 13:46:53,837] INFO: Serving flights: SFO to LAX on 2025-04-30
+[2025-04-04 13:46:53,837] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 13:46:53,837] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 13:46:53,837] INFO: Generating fresh real-time data for SFO-LAX-2025-04-30-economy
+[2025-04-04 13:46:53,837] INFO: Using United crawler for real-time flight data
+[2025-04-04 13:46:53,837] INFO: Using UnitedFlightCrawler for real-time flight data
+[2025-04-04 13:46:53,837] INFO: Checking for United crawler at: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-04-04 13:46:53,837] INFO: Loading United crawler from: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-04-04 13:46:53,903] ERROR: Failed to import United crawler module: No module named 'playwright'
+[2025-04-04 13:46:53,904] ERROR: Traceback (most recent call last):
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/award_flight_api.py", line 247, in _fetch_from_united_crawler
+    spec.loader.exec_module(united_crawler)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py", line 18, in <module>
+    from playwright.async_api import async_playwright
+ModuleNotFoundError: No module named 'playwright'
+
+[2025-04-04 13:46:53,904] INFO: No flights from award_flight_api, trying direct seats.aero API
+[2025-04-04 13:46:53,904] INFO: Requesting flights from seats.aero: SFO to LAX on 2025-04-30
+[2025-04-04 13:46:53,904] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 13:46:53,904] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 13:46:53,904] INFO: API Request - Params: {"origin_airport": "SFO", "destination_airport": "LAX", "start_date": "2025-04-30", "end_date": "2025-04-30", "cabin": "economy"}
+[2025-04-04 13:46:54,184] INFO: HTTP Request: GET https://seats.aero/partnerapi/search?origin_airport=SFO&destination_airport=LAX&start_date=2025-04-30&end_date=2025-04-30&cabin=economy "HTTP/1.1 200 OK"
+[2025-04-04 13:46:54,184] INFO: API Response - Status: 200
+[2025-04-04 13:46:54,184] INFO: Found 11 flights in seats.aero API response
+[2025-04-04 13:46:54,184] INFO: Successfully mapped 11 flights from seats.aero API
+[2025-04-04 13:46:54,184] INFO: Returning 11 flights
+[2025-04-04 13:46:54,185] INFO: Sample flight: {'id': '2hWgecOZkADJV3Vu62vuDege8t3', 'airline': 'Virgin Atlantic', 'flightNumber': 'Vi100', 'origin': 'SFO', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7500', 'cash': 5.6, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-04-04 13:46:54', 'layovers': []}
+[2025-04-04 13:46:54,185] INFO: Real-time data flag: True
+[2025-04-04 13:53:19,778] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-04-04 13:53:19,779] INFO: Loading airport data...
+[2025-04-04 13:53:19,857] INFO: Loaded 7908 airports with IATA codes
+[2025-04-04 13:53:19,857] INFO: Loaded 28258 airports with ICAO codes
+[2025-04-04 13:53:19,858] INFO: Example airports:
+[2025-04-04 13:53:19,859] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-04-04 13:53:19,859] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-04-04 13:53:19,859] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-04-04 13:53:23,700] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-04-04 13:53:23,700] INFO: Loading airport data...
+[2025-04-04 13:53:23,774] INFO: Loaded 7908 airports with IATA codes
+[2025-04-04 13:53:23,774] INFO: Loaded 28258 airports with ICAO codes
+[2025-04-04 13:53:23,775] INFO: Example airports:
+[2025-04-04 13:53:23,775] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-04-04 13:53:23,775] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-04-04 13:53:23,775] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-04-04 13:54:15,823] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-04-04 13:54:15,823] INFO: Loading airport data...
+[2025-04-04 13:54:15,897] INFO: Loaded 7908 airports with IATA codes
+[2025-04-04 13:54:15,897] INFO: Loaded 28258 airports with ICAO codes
+[2025-04-04 13:54:15,898] INFO: Example airports:
+[2025-04-04 13:54:15,898] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-04-04 13:54:15,898] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-04-04 13:54:15,898] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-04-04 14:08:49,891] INFO: Health check endpoint accessed
+[2025-04-04 14:08:56,521] INFO: Serving flights: SFO to LAX on 2025-04-30
+[2025-04-04 14:08:56,521] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:08:56,521] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:08:56,521] INFO: Generating fresh real-time data for SFO-LAX-2025-04-30-economy
+[2025-04-04 14:08:56,521] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:08:56,521] INFO: Requesting flights from seats.aero: SFO to LAX on 2025-04-30
+[2025-04-04 14:08:56,521] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:08:56,521] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:08:56,521] INFO: API Request - Params: {"origin_airport": "SFO", "destination_airport": "LAX", "start_date": "2025-04-30", "end_date": "2025-04-30", "cabin": "economy"}
+[2025-04-04 14:08:56,741] INFO: API Response - Status: 200
+[2025-04-04 14:08:56,741] INFO: Found 11 flights in seats.aero API response
+[2025-04-04 14:08:56,742] INFO: Caching 11 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/SFO-LAX-2025-04-30-economy.json
+[2025-04-04 14:08:56,742] INFO: Successfully mapped 11 flights from seats.aero API
+[2025-04-04 14:08:56,742] INFO: Returning 11 flights
+[2025-04-04 14:08:56,742] INFO: Sample flight: {'id': '2hWgecOZkADJV3Vu62vuDege8t3', 'airline': 'Virgin Atlantic', 'flightNumber': 'Vi100', 'origin': 'SFO', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7500', 'cash': 5.6, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:08:56', 'layovers': []}
+[2025-04-04 14:08:56,742] INFO: Real-time data flag: True
+[2025-04-04 14:39:05,989] INFO: Health check endpoint accessed
+[2025-04-04 14:39:06,003] INFO: Health check endpoint accessed
+[2025-04-04 14:39:06,006] INFO: Serving flights: SFO to LAX on 2025-04-30
+[2025-04-04 14:39:06,006] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:39:06,006] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:39:06,006] INFO: Generating fresh real-time data for SFO-LAX-2025-04-30-economy
+[2025-04-04 14:39:06,006] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:39:06,007] INFO: Requesting flights from seats.aero: SFO to LAX on 2025-04-30
+[2025-04-04 14:39:06,007] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:39:06,007] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:39:06,007] INFO: API Request - Params: {"origin_airport": "SFO", "destination_airport": "LAX", "start_date": "2025-04-30", "end_date": "2025-04-30", "cabin": "economy"}
+[2025-04-04 14:39:06,501] INFO: API Response - Status: 200
+[2025-04-04 14:39:06,501] INFO: Found 11 flights in seats.aero API response
+[2025-04-04 14:39:06,501] INFO: Caching 11 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/SFO-LAX-2025-04-30-economy.json
+[2025-04-04 14:39:06,502] INFO: Successfully mapped 11 flights from seats.aero API
+[2025-04-04 14:39:06,502] INFO: Returning 11 flights
+[2025-04-04 14:39:06,502] INFO: Sample flight: {'id': '2hWgecOZkADJV3Vu62vuDege8t3', 'airline': 'Virgin Atlantic', 'flightNumber': 'Vi100', 'origin': 'SFO', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7500', 'cash': 5.6, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:39:06', 'layovers': []}
+[2025-04-04 14:39:06,502] INFO: Real-time data flag: True
+[2025-04-04 14:43:27,468] INFO: Airport search: query='LAX', limit=5
+[2025-04-04 14:43:27,478] INFO: Found 1 airports matching 'LAX'
+[2025-04-04 14:43:27,478] INFO: First result: {'iata': 'LAX', 'icao': 'KLAX', 'name': 'Los Angeles International Airport', 'city': 'Los Angeles', 'country': 'US', 'latitude': 33.9425, 'longitude': -118.40805}
+[2025-04-04 14:44:23,523] INFO: Airport search: query='SF', limit=5
+[2025-04-04 14:44:23,534] INFO: Found 5 airports matching 'SF'
+[2025-04-04 14:44:23,534] INFO: First result: {'iata': 'SFJ', 'icao': 'BGSF', 'name': 'Kangerlussuaq Airport', 'city': 'Kangerlussuaq', 'country': 'GL', 'latitude': 67.01222, 'longitude': -50.7116}
+[2025-04-04 14:44:28,428] INFO: Airport search: query='SFO', limit=5
+[2025-04-04 14:44:28,437] INFO: Found 3 airports matching 'SFO'
+[2025-04-04 14:44:28,437] INFO: First result: {'iata': 'SFO', 'icao': 'KSFO', 'name': 'San Francisco International Airport', 'city': 'San Francisco', 'country': 'US', 'latitude': 37.61881, 'longitude': -122.37542}
+[2025-04-04 14:44:42,358] INFO: Health check endpoint accessed
+[2025-04-04 14:46:09,122] INFO: Airport search: query='am', limit=10
+[2025-04-04 14:46:09,132] INFO: Found 10 airports matching 'am'
+[2025-04-04 14:46:09,133] INFO: First result: {'iata': 'AMU', 'icao': 'AYAM', 'name': 'Amanab Airport', 'city': 'Amanab', 'country': 'PG', 'latitude': -3.586, 'longitude': 141.21433}
+[2025-04-04 14:46:09,966] INFO: Airport search: query='ams', limit=10
+[2025-04-04 14:46:09,987] INFO: Found 10 airports matching 'ams'
+[2025-04-04 14:46:09,987] INFO: First result: {'iata': 'AMS', 'icao': 'EHAM', 'name': 'Amsterdam Airport Schiphol', 'city': 'Amsterdam', 'country': 'NL', 'latitude': 52.3086, 'longitude': 4.76389}
+[2025-04-04 14:46:17,415] INFO: Airport search: query='dfw', limit=10
+[2025-04-04 14:46:17,428] INFO: Found 1 airports matching 'dfw'
+[2025-04-04 14:46:17,428] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-04-04 14:46:20,438] INFO: Airport search: query='aus', limit=10
+[2025-04-04 14:46:20,446] INFO: Found 10 airports matching 'aus'
+[2025-04-04 14:46:20,446] INFO: First result: {'iata': 'AUS', 'icao': 'KAUS', 'name': 'Austin-Bergstrom International Airport', 'city': 'Austin', 'country': 'US', 'latitude': 30.19453, 'longitude': -97.66988}
+[2025-04-04 14:46:29,725] INFO: Health check endpoint accessed
+[2025-04-04 14:46:29,738] INFO: Health check endpoint accessed
+[2025-04-04 14:46:29,741] INFO: Serving flights: AMS to AUS on 2025-04-04
+[2025-04-04 14:46:29,741] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:46:29,741] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:46:29,742] INFO: Generating fresh real-time data for AMS-AUS-2025-04-04-economy
+[2025-04-04 14:46:29,742] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:46:29,742] INFO: Requesting flights from seats.aero: AMS to AUS on 2025-04-04
+[2025-04-04 14:46:29,742] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:46:29,742] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:46:29,742] INFO: API Request - Params: {"origin_airport": "AMS", "destination_airport": "AUS", "start_date": "2025-04-04", "end_date": "2025-04-04", "cabin": "economy"}
+[2025-04-04 14:46:29,966] INFO: API Response - Status: 200
+[2025-04-04 14:46:29,966] INFO: Found 3 flights in seats.aero API response
+[2025-04-04 14:46:29,967] INFO: Caching 3 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/AMS-AUS-2025-04-04-economy.json
+[2025-04-04 14:46:29,967] INFO: Successfully mapped 3 flights from seats.aero API
+[2025-04-04 14:46:29,967] INFO: Returning 3 flights
+[2025-04-04 14:46:29,967] INFO: Sample flight: {'id': '2fCHH78jbN2adQntBj3Vb5VZgvO', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'AMS', 'destination': 'AUS', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '55800', 'cash': 250.79, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:46:29', 'layovers': []}
+[2025-04-04 14:46:29,967] INFO: Real-time data flag: True
+[2025-04-04 14:51:23,720] INFO: Airport search: query='ams', limit=10
+[2025-04-04 14:51:23,720] INFO: Found 10 airports matching 'ams'
+[2025-04-04 14:51:23,720] INFO: First result: {'iata': 'AMS', 'icao': 'EHAM', 'name': 'Amsterdam Airport Schiphol', 'city': 'Amsterdam', 'country': 'NL', 'latitude': 52.3086, 'longitude': 4.76389}
+[2025-04-04 14:51:23,721] INFO: Airport search: query='aus', limit=10
+[2025-04-04 14:51:23,721] INFO: Found 10 airports matching 'aus'
+[2025-04-04 14:51:23,721] INFO: First result: {'iata': 'AUS', 'icao': 'KAUS', 'name': 'Austin-Bergstrom International Airport', 'city': 'Austin', 'country': 'US', 'latitude': 30.19453, 'longitude': -97.66988}
+[2025-04-04 14:53:43,801] INFO: Airport search: query='sf', limit=10
+[2025-04-04 14:53:43,824] INFO: Found 10 airports matching 'sf'
+[2025-04-04 14:53:43,824] INFO: First result: {'iata': 'SFJ', 'icao': 'BGSF', 'name': 'Kangerlussuaq Airport', 'city': 'Kangerlussuaq', 'country': 'GL', 'latitude': 67.01222, 'longitude': -50.7116}
+[2025-04-04 14:53:44,262] INFO: Airport search: query='sfo', limit=10
+[2025-04-04 14:53:44,273] INFO: Found 3 airports matching 'sfo'
+[2025-04-04 14:53:44,274] INFO: First result: {'iata': 'SFO', 'icao': 'KSFO', 'name': 'San Francisco International Airport', 'city': 'San Francisco', 'country': 'US', 'latitude': 37.61881, 'longitude': -122.37542}
+[2025-04-04 14:53:47,761] INFO: Health check endpoint accessed
+[2025-04-04 14:53:47,778] INFO: Health check endpoint accessed
+[2025-04-04 14:53:47,783] INFO: Serving flights: SFO to AUS on 2025-04-04
+[2025-04-04 14:53:47,783] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:53:47,783] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:53:47,783] INFO: Generating fresh real-time data for SFO-AUS-2025-04-04-economy
+[2025-04-04 14:53:47,783] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:53:47,784] INFO: Requesting flights from seats.aero: SFO to AUS on 2025-04-04
+[2025-04-04 14:53:47,784] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:53:47,784] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:53:47,784] INFO: API Request - Params: {"origin_airport": "SFO", "destination_airport": "AUS", "start_date": "2025-04-04", "end_date": "2025-04-04", "cabin": "economy"}
+[2025-04-04 14:53:47,943] INFO: API Response - Status: 200
+[2025-04-04 14:53:47,943] INFO: Found 6 flights in seats.aero API response
+[2025-04-04 14:53:47,943] INFO: Caching 6 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/SFO-AUS-2025-04-04-economy.json
+[2025-04-04 14:53:47,943] INFO: Successfully mapped 6 flights from seats.aero API
+[2025-04-04 14:53:47,943] INFO: Returning 6 flights
+[2025-04-04 14:53:47,943] INFO: Sample flight: {'id': '2fUz3kOu0Q641lA4Ctu3DE0qlc5', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'SFO', 'destination': 'AUS', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '15000', 'cash': 18.1, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:53:47', 'layovers': []}
+[2025-04-04 14:53:47,943] INFO: Real-time data flag: True
+[2025-04-04 14:54:00,076] INFO: Health check endpoint accessed
+[2025-04-04 14:54:00,088] INFO: Health check endpoint accessed
+[2025-04-04 14:54:00,091] INFO: Serving flights: SFO to LAX on 2025-04-04
+[2025-04-04 14:54:00,091] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:54:00,091] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:54:00,091] INFO: Generating fresh real-time data for SFO-LAX-2025-04-04-economy
+[2025-04-04 14:54:00,091] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:54:00,091] INFO: Requesting flights from seats.aero: SFO to LAX on 2025-04-04
+[2025-04-04 14:54:00,091] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:54:00,092] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:54:00,092] INFO: API Request - Params: {"origin_airport": "SFO", "destination_airport": "LAX", "start_date": "2025-04-04", "end_date": "2025-04-04", "cabin": "economy"}
+[2025-04-04 14:54:00,251] INFO: API Response - Status: 200
+[2025-04-04 14:54:00,252] INFO: Found 7 flights in seats.aero API response
+[2025-04-04 14:54:00,252] INFO: Caching 7 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/SFO-LAX-2025-04-04-economy.json
+[2025-04-04 14:54:00,252] INFO: Successfully mapped 7 flights from seats.aero API
+[2025-04-04 14:54:00,252] INFO: Returning 7 flights
+[2025-04-04 14:54:00,253] INFO: Sample flight: {'id': '2hinKvofn5Rt8MndLb17kqkrdrC', 'airline': 'Delta Air Lines', 'flightNumber': 'De100', 'origin': 'SFO', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '13000', 'cash': 5.6, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:54:00', 'layovers': []}
+[2025-04-04 14:54:00,253] INFO: Real-time data flag: True
+[2025-04-04 14:54:18,266] INFO: Airport search: query='xn', limit=10
+[2025-04-04 14:54:18,281] INFO: Found 10 airports matching 'xn'
+[2025-04-04 14:54:18,282] INFO: First result: {'iata': 'YXN', 'icao': 'CYXN', 'name': 'Whale Cove Airport', 'city': 'Whale Cove', 'country': 'CA', 'latitude': 62.24, 'longitude': -92.5981}
+[2025-04-04 14:54:18,618] INFO: Airport search: query='xna', limit=10
+[2025-04-04 14:54:18,628] INFO: Found 3 airports matching 'xna'
+[2025-04-04 14:54:18,628] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-04-04 14:54:23,697] INFO: Airport search: query='dfw', limit=10
+[2025-04-04 14:54:23,698] INFO: Found 1 airports matching 'dfw'
+[2025-04-04 14:54:23,698] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-04-04 14:54:32,259] INFO: Health check endpoint accessed
+[2025-04-04 14:54:32,273] INFO: Health check endpoint accessed
+[2025-04-04 14:54:32,278] INFO: Serving flights: XNA to DFW on 2025-04-23
+[2025-04-04 14:54:32,278] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:54:32,278] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:54:32,278] INFO: Generating fresh real-time data for XNA-DFW-2025-04-23-economy
+[2025-04-04 14:54:32,278] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:54:32,278] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-04-23
+[2025-04-04 14:54:32,278] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:54:32,278] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:54:32,278] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-04-23", "end_date": "2025-04-23", "cabin": "economy"}
+[2025-04-04 14:54:32,450] INFO: API Response - Status: 200
+[2025-04-04 14:54:32,451] INFO: Found 3 flights in seats.aero API response
+[2025-04-04 14:54:32,451] INFO: Caching 3 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-04-23-economy.json
+[2025-04-04 14:54:32,451] INFO: Successfully mapped 3 flights from seats.aero API
+[2025-04-04 14:54:32,451] INFO: Returning 3 flights
+[2025-04-04 14:54:32,451] INFO: Sample flight: {'id': '2g7qLzvJSutzmCGa5pzPLwOattb', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '17900', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:54:32', 'layovers': []}
+[2025-04-04 14:54:32,451] INFO: Real-time data flag: True
+[2025-04-04 14:54:47,212] INFO: Airport search: query='lax', limit=10
+[2025-04-04 14:54:47,220] INFO: Found 1 airports matching 'lax'
+[2025-04-04 14:54:47,220] INFO: First result: {'iata': 'LAX', 'icao': 'KLAX', 'name': 'Los Angeles International Airport', 'city': 'Los Angeles', 'country': 'US', 'latitude': 33.9425, 'longitude': -118.40805}
+[2025-04-04 14:54:52,124] INFO: Health check endpoint accessed
+[2025-04-04 14:54:52,138] INFO: Health check endpoint accessed
+[2025-04-04 14:54:52,142] INFO: Serving flights: LAX to DFW on 2025-04-23
+[2025-04-04 14:54:52,142] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 14:54:52,142] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 14:54:52,142] INFO: Generating fresh real-time data for LAX-DFW-2025-04-23-economy
+[2025-04-04 14:54:52,142] INFO: Using seats.aero API for real-time flight data
+[2025-04-04 14:54:52,142] INFO: Requesting flights from seats.aero: LAX to DFW on 2025-04-23
+[2025-04-04 14:54:52,142] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-04-04 14:54:52,142] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-04-04 14:54:52,142] INFO: API Request - Params: {"origin_airport": "LAX", "destination_airport": "DFW", "start_date": "2025-04-23", "end_date": "2025-04-23", "cabin": "economy"}
+[2025-04-04 14:54:52,319] INFO: API Response - Status: 200
+[2025-04-04 14:54:52,319] INFO: Found 8 flights in seats.aero API response
+[2025-04-04 14:54:52,320] INFO: Caching 8 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/LAX-DFW-2025-04-23-economy.json
+[2025-04-04 14:54:52,321] INFO: Successfully mapped 8 flights from seats.aero API
+[2025-04-04 14:54:52,321] INFO: Returning 8 flights
+[2025-04-04 14:54:52,322] INFO: Sample flight: {'id': '2g0Kho0rQ64AI273izzSznvw8Mv', 'airline': 'Etihad Airways', 'flightNumber': 'Et100', 'origin': 'LAX', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '15000', 'cash': 25.43, 'seatsAvailable': 7, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:54:52', 'layovers': []}
+[2025-04-04 14:54:52,322] INFO: Real-time data flag: True
+[2025-04-04 15:00:56,871] INFO: Airport search: query='am', limit=10
+[2025-04-04 15:00:56,872] INFO: Found 10 airports matching 'am'
+[2025-04-04 15:00:56,872] INFO: First result: {'iata': 'AMU', 'icao': 'AYAM', 'name': 'Amanab Airport', 'city': 'Amanab', 'country': 'PG', 'latitude': -3.586, 'longitude': 141.21433}
+[2025-04-04 15:00:57,192] INFO: Airport search: query='ams', limit=10
+[2025-04-04 15:00:57,192] INFO: Found 10 airports matching 'ams'
+[2025-04-04 15:00:57,192] INFO: First result: {'iata': 'AMS', 'icao': 'EHAM', 'name': 'Amsterdam Airport Schiphol', 'city': 'Amsterdam', 'country': 'NL', 'latitude': 52.3086, 'longitude': 4.76389}
+[2025-04-04 15:01:08,116] INFO: Airport search: query='xna', limit=10
+[2025-04-04 15:01:08,116] INFO: Found 3 airports matching 'xna'
+[2025-04-04 15:01:08,117] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-04-04 15:01:48,347] INFO: Health check endpoint accessed
+[2025-04-04 15:01:48,359] INFO: Health check endpoint accessed
+[2025-04-04 15:01:48,363] INFO: Serving flights: XNA to DFW on 2025-04-23
+[2025-04-04 15:01:48,363] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-04-04 15:01:48,363] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-04-04 15:01:48,364] INFO: Found cached data for XNA-DFW-2025-04-23-economy, file age: 435.9 seconds
+[2025-04-04 15:01:48,364] INFO: Using cached real-time data with 3 flights
+[2025-04-04 15:01:48,364] INFO: Returning 3 flights
+[2025-04-04 15:01:48,364] INFO: Sample flight: {'id': '2g7qLzvJSutzmCGa5pzPLwOattb', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '17900', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:54:32', 'layovers': []}
+[2025-04-04 15:01:48,364] INFO: Real-time data flag: True

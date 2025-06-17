@@ -1,0 +1,521 @@
+2025-03-28 17:57:52 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: award_flight_scrapy)
+2025-03-28 17:57:52 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.8.1, w3lib 1.21.0, Twisted 22.2.0, Python 3.9.12 (main, Apr  5 2022, 01:53:17) - [Clang 12.0.0 ], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.2, Platform macOS-10.16-x86_64-i386-64bit
+2025-03-28 17:57:52 [__main__] INFO: Starting alaska crawler for SEA to JFK on 2025-04-23
+2025-03-28 17:57:52 [award_flight_scrapy.solvers] WARNING: No 2captcha API key provided. CAPTCHA solving will be disabled.
+2025-03-28 17:57:52 [award_flight_scrapy.spiders.alaska] INFO: Initialized Alaska spider for SEA-JFK on 2025-04-23
+2025-03-28 17:57:52 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-03-28 17:57:52 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-03-28 17:57:52 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'BOT_NAME': 'award_flight_scrapy',
+ 'CONCURRENT_REQUESTS': 1,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'CONCURRENT_REQUESTS_PER_IP': 1,
+ 'DOWNLOAD_DELAY': 5,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [400,
+                                 403,
+                                 404,
+                                 408,
+                                 429,
+                                 500,
+                                 501,
+                                 502,
+                                 503,
+                                 504],
+ 'LOG_FILE': 'logs/scrapy_crawler.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'award_flight_scrapy.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429, 403],
+ 'RETRY_TIMES': 3,
+ 'SPIDER_MODULES': ['award_flight_scrapy.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2025-03-28 17:57:52 [scrapy_fake_useragent.middleware] INFO: Error loading User-Agent provider: scrapy_fake_useragent.providers.FakeUserAgentProvider
+2025-03-28 17:57:52 [scrapy_fake_useragent.middleware] INFO: Unable to load any of the User-Agent providers
+2025-03-28 17:57:52 [scrapy_fake_useragent.middleware] INFO: Using '<class 'scrapy_fake_useragent.providers.FixedUserAgentProvider'>' as the User-Agent provider
+2025-03-28 17:57:52 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapyDownloaderMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-03-28 17:57:52 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapySpiderMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-03-28 17:57:52 [scrapy.middleware] INFO: Enabled item pipelines:
+['award_flight_scrapy.pipelines.AwardFlightScrapyPipeline']
+2025-03-28 17:57:52 [scrapy.core.engine] INFO: Spider opened
+2025-03-28 17:57:53 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-03-28 17:57:53 [alaska] INFO: Spider opened: alaska
+2025-03-28 17:57:53 [alaska] INFO: Spider opened: alaska
+2025-03-28 17:57:53 [scrapy-playwright] INFO: Starting download handler
+2025-03-28 17:57:53 [scrapy-playwright] INFO: Starting download handler
+2025-03-28 17:57:58 [award_flight_scrapy.spiders.alaska] INFO: Starting search for SEA-JFK on 2025-04-23
+2025-03-28 17:58:00 [scrapy-playwright] INFO: Launching browser chromium
+2025-03-28 17:58:03 [scrapy-playwright] INFO: Browser chromium launched
+2025-03-28 17:58:04 [scrapy-playwright] WARNING: Ignoring {'method': 'evaluateHandle', 'args': ["\n                    async () => {\n                        // Randomize scrolling patterns\n                        const scrollDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n                        const randomScroll = async () => {\n                            const scrollAmount = Math.floor(Math.random() * 100) + 50;\n                            window.scrollBy(0, scrollAmount);\n                            await scrollDelay(Math.random() * 1000 + 500);\n                        };\n                        \n                        // Execute random scrolls\n                        const scrollCount = Math.floor(Math.random() * 5) + 2;\n                        for (let i = 0; i < scrollCount; i++) {\n                            await randomScroll();\n                        }\n                        \n                        // Add mouse movement simulation\n                        const moveCount = Math.floor(Math.random() * 10) + 5;\n                        for (let i = 0; i < moveCount; i++) {\n                            // Simulate cursor presence but don't need actual movement\n                            await scrollDelay(Math.random() * 500 + 200);\n                        }\n                        \n                        return true;\n                    }\n                    "]}: expected PageMethod, got <class 'dict'>
+2025-03-28 17:58:05 [scrapy.core.spidermw] WARNING: Async iterable passed to AwardFlightScrapySpiderMiddleware.process_spider_output was downgraded to a non-async one
+2025-03-28 17:58:05 [award_flight_scrapy.spiders.alaska] INFO: Filling out search form
+2025-03-28 17:58:05 [award_flight_scrapy.spiders.alaska] INFO: Not on booking page, navigating to https://www.alaskaair.com/book
+2025-03-28 17:58:10 [award_flight_scrapy.spiders.alaska] ERROR: Error filling search form: Error: Element is not an <input>, <textarea> or [contenteditable] element
+2025-03-28 17:58:10 [award_flight_scrapy.spiders.alaska] INFO: Retrying search (attempt 1/3)
+2025-03-28 17:58:10 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-28 17:58:10 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-28 17:58:14 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-28 17:58:14 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-28 17:58:14 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-28 17:58:18 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-28 17:58:19 [award_flight_scrapy.middlewares] ERROR: Unhandled exception in downloader middleware: Target page, context or browser has been closed
+2025-03-28 17:58:19 [scrapy.core.scraper] ERROR: Error downloading <GET https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results>
+Traceback (most recent call last):
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1656, in _inlineCallbacks
+    result = current_context.run(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/python/failure.py", line 489, in throwExceptionIntoGenerator
+    return g.throw(self.type, self.value, self.tb)
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy/core/downloader/middleware.py", line 54, in process_request
+    return (yield download_func(request=request, spider=spider))
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1030, in adapt
+    extracted = result.result()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy_playwright/handler.py", line 305, in _download_request
+    await page.unroute("**")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/async_api/_generated.py", line 9125, in unroute
+    await self._impl_obj.unroute(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 621, in unroute
+    await self._unroute_internal(removed, remaining, "default")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 630, in _unroute_internal
+    await self._update_interception_patterns()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 680, in _update_interception_patterns
+    await self._channel.send(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 509, in wrap_api_call
+    return await cb()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 97, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+2025-03-28 17:58:20 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-03-28 17:58:20 [award_flight_scrapy.pipelines] INFO: Spider alaska closed, processed 0 items
+2025-03-28 17:58:20 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/playwright._impl._errors.TargetClosedError': 1,
+ 'downloader/request_bytes': 1452,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 2492,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 26.799135,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 3, 28, 22, 58, 20, 71335, tzinfo=datetime.timezone.utc),
+ 'log_count/ERROR': 3,
+ 'log_count/INFO': 28,
+ 'log_count/WARNING': 2,
+ 'memusage/max': 91619328,
+ 'memusage/startup': 91619328,
+ 'playwright/context_count': 1,
+ 'playwright/context_count/max_concurrent': 1,
+ 'playwright/context_count/persistent/False': 1,
+ 'playwright/context_count/remote/False': 1,
+ 'playwright/page_count': 1,
+ 'playwright/page_count/max_concurrent': 1,
+ 'playwright/request_count': 534,
+ 'playwright/request_count/method/GET': 458,
+ 'playwright/request_count/method/HEAD': 1,
+ 'playwright/request_count/method/POST': 75,
+ 'playwright/request_count/navigation': 44,
+ 'playwright/request_count/resource_type/document': 44,
+ 'playwright/request_count/resource_type/fetch': 94,
+ 'playwright/request_count/resource_type/font': 11,
+ 'playwright/request_count/resource_type/image': 64,
+ 'playwright/request_count/resource_type/ping': 26,
+ 'playwright/request_count/resource_type/script': 209,
+ 'playwright/request_count/resource_type/stylesheet': 40,
+ 'playwright/request_count/resource_type/xhr': 46,
+ 'playwright/response_count': 518,
+ 'playwright/response_count/method/GET': 458,
+ 'playwright/response_count/method/HEAD': 1,
+ 'playwright/response_count/method/POST': 59,
+ 'playwright/response_count/resource_type/document': 44,
+ 'playwright/response_count/resource_type/fetch': 91,
+ 'playwright/response_count/resource_type/font': 11,
+ 'playwright/response_count/resource_type/image': 64,
+ 'playwright/response_count/resource_type/ping': 16,
+ 'playwright/response_count/resource_type/script': 209,
+ 'playwright/response_count/resource_type/stylesheet': 40,
+ 'playwright/response_count/resource_type/xhr': 43,
+ 'request_depth_max': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2025, 3, 28, 22, 57, 53, 272200, tzinfo=datetime.timezone.utc)}
+2025-03-28 17:58:20 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-03-28 17:58:20 [scrapy-playwright] INFO: Closing download handler
+2025-03-28 17:58:20 [scrapy-playwright] INFO: Closing download handler
+2025-03-28 17:58:20 [scrapy-playwright] INFO: Closing browser
+2025-03-28 17:58:20 [__main__] INFO: Crawler finished
+2025-03-30 00:47:38 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: award_flight_scrapy)
+2025-03-30 00:47:38 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.8.1, w3lib 1.21.0, Twisted 22.2.0, Python 3.9.12 (main, Apr  5 2022, 01:53:17) - [Clang 12.0.0 ], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.2, Platform macOS-10.16-x86_64-i386-64bit
+2025-03-30 00:47:38 [__main__] INFO: Starting alaska crawler for SEA to JFK on 2025-04-23
+2025-03-30 00:47:38 [award_flight_scrapy.solvers] WARNING: No 2captcha API key provided. CAPTCHA solving will be disabled.
+2025-03-30 00:47:38 [award_flight_scrapy.spiders.alaska] INFO: Initialized Alaska spider for SEA-JFK on 2025-04-23
+2025-03-30 00:47:38 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-03-30 00:47:38 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-03-30 00:47:38 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'BOT_NAME': 'award_flight_scrapy',
+ 'CONCURRENT_REQUESTS': 1,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'CONCURRENT_REQUESTS_PER_IP': 1,
+ 'DOWNLOAD_DELAY': 5,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [400,
+                                 403,
+                                 404,
+                                 408,
+                                 429,
+                                 500,
+                                 501,
+                                 502,
+                                 503,
+                                 504],
+ 'LOG_FILE': 'logs/scrapy_crawler.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'award_flight_scrapy.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429, 403],
+ 'RETRY_TIMES': 3,
+ 'SPIDER_MODULES': ['award_flight_scrapy.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2025-03-30 00:47:38 [scrapy_fake_useragent.middleware] INFO: Error loading User-Agent provider: scrapy_fake_useragent.providers.FakeUserAgentProvider
+2025-03-30 00:47:38 [scrapy_fake_useragent.middleware] INFO: Unable to load any of the User-Agent providers
+2025-03-30 00:47:38 [scrapy_fake_useragent.middleware] INFO: Using '<class 'scrapy_fake_useragent.providers.FixedUserAgentProvider'>' as the User-Agent provider
+2025-03-30 00:47:38 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapyDownloaderMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-03-30 00:47:38 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapySpiderMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-03-30 00:47:38 [scrapy.middleware] INFO: Enabled item pipelines:
+['award_flight_scrapy.pipelines.AwardFlightScrapyPipeline']
+2025-03-30 00:47:38 [scrapy.core.engine] INFO: Spider opened
+2025-03-30 00:47:38 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-03-30 00:47:38 [alaska] INFO: Spider opened: alaska
+2025-03-30 00:47:38 [alaska] INFO: Spider opened: alaska
+2025-03-30 00:47:38 [scrapy-playwright] INFO: Starting download handler
+2025-03-30 00:47:38 [scrapy-playwright] INFO: Starting download handler
+2025-03-30 00:47:43 [award_flight_scrapy.spiders.alaska] INFO: Starting search for SEA-JFK on 2025-04-23
+2025-03-30 00:47:46 [scrapy-playwright] INFO: Launching browser chromium
+2025-03-30 00:47:46 [scrapy-playwright] INFO: Browser chromium launched
+2025-03-30 00:47:48 [scrapy-playwright] WARNING: Ignoring {'method': 'evaluateHandle', 'args': ["\n                    async () => {\n                        // Randomize scrolling patterns\n                        const scrollDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n                        const randomScroll = async () => {\n                            const scrollAmount = Math.floor(Math.random() * 100) + 50;\n                            window.scrollBy(0, scrollAmount);\n                            await scrollDelay(Math.random() * 1000 + 500);\n                        };\n                        \n                        // Execute random scrolls\n                        const scrollCount = Math.floor(Math.random() * 5) + 2;\n                        for (let i = 0; i < scrollCount; i++) {\n                            await randomScroll();\n                        }\n                        \n                        // Add mouse movement simulation\n                        const moveCount = Math.floor(Math.random() * 10) + 5;\n                        for (let i = 0; i < moveCount; i++) {\n                            // Simulate cursor presence but don't need actual movement\n                            await scrollDelay(Math.random() * 500 + 200);\n                        }\n                        \n                        return true;\n                    }\n                    "]}: expected PageMethod, got <class 'dict'>
+2025-03-30 00:47:48 [scrapy.core.spidermw] WARNING: Async iterable passed to AwardFlightScrapySpiderMiddleware.process_spider_output was downgraded to a non-async one
+2025-03-30 00:47:48 [award_flight_scrapy.spiders.alaska] INFO: Filling out search form
+2025-03-30 00:47:48 [award_flight_scrapy.spiders.alaska] INFO: Not on booking page, navigating to https://www.alaskaair.com/book
+2025-03-30 00:47:53 [award_flight_scrapy.spiders.alaska] ERROR: Error filling search form: Error: Element is not an <input>, <textarea> or [contenteditable] element
+2025-03-30 00:47:53 [award_flight_scrapy.spiders.alaska] INFO: Retrying search (attempt 1/3)
+2025-03-30 00:47:53 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-30 00:47:53 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-30 00:47:57 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-30 00:47:57 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-30 00:47:57 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-30 00:48:05 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-30 00:48:07 [award_flight_scrapy.middlewares] ERROR: Unhandled exception in downloader middleware: Target page, context or browser has been closed
+2025-03-30 00:48:07 [scrapy.core.scraper] ERROR: Error downloading <GET https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results>
+Traceback (most recent call last):
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1656, in _inlineCallbacks
+    result = current_context.run(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/python/failure.py", line 489, in throwExceptionIntoGenerator
+    return g.throw(self.type, self.value, self.tb)
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy/core/downloader/middleware.py", line 54, in process_request
+    return (yield download_func(request=request, spider=spider))
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1030, in adapt
+    extracted = result.result()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy_playwright/handler.py", line 305, in _download_request
+    await page.unroute("**")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/async_api/_generated.py", line 9125, in unroute
+    await self._impl_obj.unroute(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 621, in unroute
+    await self._unroute_internal(removed, remaining, "default")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 630, in _unroute_internal
+    await self._update_interception_patterns()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 680, in _update_interception_patterns
+    await self._channel.send(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 509, in wrap_api_call
+    return await cb()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 97, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+2025-03-30 00:48:07 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-03-30 00:48:07 [award_flight_scrapy.pipelines] INFO: Spider alaska closed, processed 0 items
+2025-03-30 00:48:07 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/playwright._impl._errors.TargetClosedError': 1,
+ 'downloader/request_bytes': 1452,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 2492,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 28.695184,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 3, 30, 5, 48, 7, 244718, tzinfo=datetime.timezone.utc),
+ 'log_count/ERROR': 3,
+ 'log_count/INFO': 28,
+ 'log_count/WARNING': 2,
+ 'memusage/max': 90738688,
+ 'memusage/startup': 90734592,
+ 'playwright/context_count': 1,
+ 'playwright/context_count/max_concurrent': 1,
+ 'playwright/context_count/persistent/False': 1,
+ 'playwright/context_count/remote/False': 1,
+ 'playwright/page_count': 1,
+ 'playwright/page_count/max_concurrent': 1,
+ 'playwright/request_count': 562,
+ 'playwright/request_count/method/GET': 467,
+ 'playwright/request_count/method/POST': 95,
+ 'playwright/request_count/navigation': 48,
+ 'playwright/request_count/resource_type/document': 48,
+ 'playwright/request_count/resource_type/fetch': 98,
+ 'playwright/request_count/resource_type/font': 11,
+ 'playwright/request_count/resource_type/image': 64,
+ 'playwright/request_count/resource_type/ping': 38,
+ 'playwright/request_count/resource_type/script': 213,
+ 'playwright/request_count/resource_type/stylesheet': 41,
+ 'playwright/request_count/resource_type/xhr': 49,
+ 'playwright/response_count': 548,
+ 'playwright/response_count/method/GET': 467,
+ 'playwright/response_count/method/POST': 81,
+ 'playwright/response_count/resource_type/document': 48,
+ 'playwright/response_count/resource_type/fetch': 95,
+ 'playwright/response_count/resource_type/font': 11,
+ 'playwright/response_count/resource_type/image': 64,
+ 'playwright/response_count/resource_type/ping': 28,
+ 'playwright/response_count/resource_type/script': 213,
+ 'playwright/response_count/resource_type/stylesheet': 41,
+ 'playwright/response_count/resource_type/xhr': 48,
+ 'request_depth_max': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2025, 3, 30, 5, 47, 38, 549534, tzinfo=datetime.timezone.utc)}
+2025-03-30 00:48:07 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-03-30 00:48:07 [scrapy-playwright] INFO: Closing download handler
+2025-03-30 00:48:07 [scrapy-playwright] INFO: Closing download handler
+2025-03-30 00:48:07 [scrapy-playwright] INFO: Closing browser
+2025-03-30 00:48:07 [__main__] INFO: Crawler finished
+2025-03-30 00:51:01 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: award_flight_scrapy)
+2025-03-30 00:51:01 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.8.1, w3lib 1.21.0, Twisted 22.2.0, Python 3.9.12 (main, Apr  5 2022, 01:53:17) - [Clang 12.0.0 ], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.2, Platform macOS-10.16-x86_64-i386-64bit
+2025-03-30 00:51:01 [__main__] INFO: Starting alaska crawler for SEA to JFK on 2025-04-23
+2025-03-30 00:51:01 [award_flight_scrapy.solvers] WARNING: No 2captcha API key provided. CAPTCHA solving will be disabled.
+2025-03-30 00:51:01 [award_flight_scrapy.spiders.alaska] INFO: Initialized Alaska spider for SEA-JFK on 2025-04-23
+2025-03-30 00:51:01 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-03-30 00:51:01 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-03-30 00:51:01 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'BOT_NAME': 'award_flight_scrapy',
+ 'CONCURRENT_REQUESTS': 1,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'CONCURRENT_REQUESTS_PER_IP': 1,
+ 'DOWNLOAD_DELAY': 5,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [400,
+                                 403,
+                                 404,
+                                 408,
+                                 429,
+                                 500,
+                                 501,
+                                 502,
+                                 503,
+                                 504],
+ 'LOG_FILE': 'logs/scrapy_crawler.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'award_flight_scrapy.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429, 403],
+ 'RETRY_TIMES': 3,
+ 'SPIDER_MODULES': ['award_flight_scrapy.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2025-03-30 00:51:01 [scrapy_fake_useragent.middleware] INFO: Error loading User-Agent provider: scrapy_fake_useragent.providers.FakeUserAgentProvider
+2025-03-30 00:51:01 [scrapy_fake_useragent.middleware] INFO: Unable to load any of the User-Agent providers
+2025-03-30 00:51:01 [scrapy_fake_useragent.middleware] INFO: Using '<class 'scrapy_fake_useragent.providers.FixedUserAgentProvider'>' as the User-Agent provider
+2025-03-30 00:51:01 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapyDownloaderMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-03-30 00:51:01 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'award_flight_scrapy.middlewares.AwardFlightScrapySpiderMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-03-30 00:51:01 [scrapy.middleware] INFO: Enabled item pipelines:
+['award_flight_scrapy.pipelines.AwardFlightScrapyPipeline']
+2025-03-30 00:51:01 [scrapy.core.engine] INFO: Spider opened
+2025-03-30 00:51:01 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-03-30 00:51:01 [alaska] INFO: Spider opened: alaska
+2025-03-30 00:51:01 [alaska] INFO: Spider opened: alaska
+2025-03-30 00:51:01 [scrapy-playwright] INFO: Starting download handler
+2025-03-30 00:51:01 [scrapy-playwright] INFO: Starting download handler
+2025-03-30 00:51:06 [award_flight_scrapy.spiders.alaska] INFO: Starting search for SEA-JFK on 2025-04-23
+2025-03-30 00:51:08 [scrapy-playwright] INFO: Launching browser chromium
+2025-03-30 00:51:08 [scrapy-playwright] INFO: Browser chromium launched
+2025-03-30 00:51:10 [scrapy-playwright] WARNING: Ignoring {'method': 'evaluateHandle', 'args': ["\n                    async () => {\n                        // Randomize scrolling patterns\n                        const scrollDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n                        const randomScroll = async () => {\n                            const scrollAmount = Math.floor(Math.random() * 100) + 50;\n                            window.scrollBy(0, scrollAmount);\n                            await scrollDelay(Math.random() * 1000 + 500);\n                        };\n                        \n                        // Execute random scrolls\n                        const scrollCount = Math.floor(Math.random() * 5) + 2;\n                        for (let i = 0; i < scrollCount; i++) {\n                            await randomScroll();\n                        }\n                        \n                        // Add mouse movement simulation\n                        const moveCount = Math.floor(Math.random() * 10) + 5;\n                        for (let i = 0; i < moveCount; i++) {\n                            // Simulate cursor presence but don't need actual movement\n                            await scrollDelay(Math.random() * 500 + 200);\n                        }\n                        \n                        return true;\n                    }\n                    "]}: expected PageMethod, got <class 'dict'>
+2025-03-30 00:51:10 [scrapy.core.spidermw] WARNING: Async iterable passed to AwardFlightScrapySpiderMiddleware.process_spider_output was downgraded to a non-async one
+2025-03-30 00:51:10 [award_flight_scrapy.spiders.alaska] INFO: Filling out search form
+2025-03-30 00:51:10 [award_flight_scrapy.spiders.alaska] INFO: Not on booking page, navigating to https://www.alaskaair.com/book
+2025-03-30 00:51:16 [award_flight_scrapy.spiders.alaska] ERROR: Error filling search form: Error: Element is not an <input>, <textarea> or [contenteditable] element
+2025-03-30 00:51:16 [award_flight_scrapy.spiders.alaska] INFO: Retrying search (attempt 1/3)
+2025-03-30 00:51:16 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-30 00:51:16 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-30 00:51:20 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-30 00:51:20 [award_flight_scrapy.spiders.alaska] INFO: Trying direct URL navigation approach
+2025-03-30 00:51:20 [award_flight_scrapy.spiders.alaska] INFO: Trying URL format #1: https://www.alaskaair.com/shopping/select/results?adultCount=1&departureDate=04/23/2025&flightType=oneWay&fromCity=SEA&toCity=JFK&useAwards=true&awardOption=mileagePlan
+2025-03-30 00:51:28 [award_flight_scrapy.spiders.alaska] INFO: Successfully navigated to results page: https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results
+2025-03-30 00:51:31 [award_flight_scrapy.middlewares] ERROR: Unhandled exception in downloader middleware: Target page, context or browser has been closed
+2025-03-30 00:51:31 [scrapy.core.scraper] ERROR: Error downloading <GET https://www.alaskaair.com/content/page-not-found?aspxerrorpath=/shopping/select/results>
+Traceback (most recent call last):
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1656, in _inlineCallbacks
+    result = current_context.run(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/python/failure.py", line 489, in throwExceptionIntoGenerator
+    return g.throw(self.type, self.value, self.tb)
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy/core/downloader/middleware.py", line 54, in process_request
+    return (yield download_func(request=request, spider=spider))
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/twisted/internet/defer.py", line 1030, in adapt
+    extracted = result.result()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/scrapy_playwright/handler.py", line 305, in _download_request
+    await page.unroute("**")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/async_api/_generated.py", line 9125, in unroute
+    await self._impl_obj.unroute(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 621, in unroute
+    await self._unroute_internal(removed, remaining, "default")
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 630, in _unroute_internal
+    await self._update_interception_patterns()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_page.py", line 680, in _update_interception_patterns
+    await self._channel.send(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 509, in wrap_api_call
+    return await cb()
+  File "/Users/anujsingh/opt/anaconda3/lib/python3.9/site-packages/playwright/_impl/_connection.py", line 97, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+2025-03-30 00:51:31 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-03-30 00:51:31 [award_flight_scrapy.pipelines] INFO: Spider alaska closed, processed 0 items
+2025-03-30 00:51:31 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/playwright._impl._errors.TargetClosedError': 1,
+ 'downloader/request_bytes': 1452,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 2492,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 30.088069,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 3, 30, 5, 51, 31, 804452, tzinfo=datetime.timezone.utc),
+ 'log_count/ERROR': 3,
+ 'log_count/INFO': 28,
+ 'log_count/WARNING': 2,
+ 'memusage/max': 91418624,
+ 'memusage/startup': 91418624,
+ 'playwright/context_count': 1,
+ 'playwright/context_count/max_concurrent': 1,
+ 'playwright/context_count/persistent/False': 1,
+ 'playwright/context_count/remote/False': 1,
+ 'playwright/page_count': 1,
+ 'playwright/page_count/max_concurrent': 1,
+ 'playwright/request_count': 650,
+ 'playwright/request_count/method/GET': 559,
+ 'playwright/request_count/method/POST': 91,
+ 'playwright/request_count/navigation': 46,
+ 'playwright/request_count/resource_type/document': 46,
+ 'playwright/request_count/resource_type/fetch': 129,
+ 'playwright/request_count/resource_type/font': 13,
+ 'playwright/request_count/resource_type/image': 75,
+ 'playwright/request_count/resource_type/ping': 31,
+ 'playwright/request_count/resource_type/script': 257,
+ 'playwright/request_count/resource_type/stylesheet': 44,
+ 'playwright/request_count/resource_type/xhr': 55,
+ 'playwright/response_count': 623,
+ 'playwright/response_count/method/GET': 549,
+ 'playwright/response_count/method/POST': 74,
+ 'playwright/response_count/resource_type/document': 46,
+ 'playwright/response_count/resource_type/fetch': 116,
+ 'playwright/response_count/resource_type/font': 13,
+ 'playwright/response_count/resource_type/image': 75,
+ 'playwright/response_count/resource_type/ping': 19,
+ 'playwright/response_count/resource_type/script': 255,
+ 'playwright/response_count/resource_type/stylesheet': 44,
+ 'playwright/response_count/resource_type/xhr': 55,
+ 'request_depth_max': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2025, 3, 30, 5, 51, 1, 716383, tzinfo=datetime.timezone.utc)}
+2025-03-30 00:51:31 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-03-30 00:51:31 [scrapy-playwright] INFO: Closing download handler
+2025-03-30 00:51:31 [scrapy-playwright] INFO: Closing download handler
+2025-03-30 00:51:31 [scrapy-playwright] INFO: Closing browser
+2025-03-30 00:51:31 [__main__] INFO: Crawler finished

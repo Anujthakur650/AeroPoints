@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2fCHH78jbN2adQntBj3Vb5VZgvO",
+    "airline": "qantas",
+    "flightNumber": "qa100",
+    "origin": "AMS",
+    "destination": "AUS",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "55800",
+    "cash": 250.79,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-04 14:46:29",
+    "layovers": []
+  },
+  {
+    "id": "2gU2Zap61mnaSlViNwncBsk1auC",
+    "airline": "aeromexico",
+    "flightNumber": "ae101",
+    "origin": "AMS",
+    "destination": "AUS",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "75000",
+    "cash": 4079.0,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-04 14:46:29",
+    "layovers": []
+  },
+  {
+    "id": "2gZKdKEBm5uFpQ6twHjoWE0MjvM",
+    "airline": "smiles",
+    "flightNumber": "sm102",
+    "origin": "AMS",
+    "destination": "AUS",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "102000",
+    "cash": 303.5,
+    "seatsAvailable": 5,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-04 14:46:29",
+    "layovers": []
+  }
+]

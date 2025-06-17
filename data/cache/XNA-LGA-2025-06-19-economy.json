@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2kbHcflUpCb5q0SUWPKTjiZjkqs",
+    "airline": "American Airlines",
+    "flightNumber": "Am100",
+    "origin": "XNA",
+    "destination": "LGA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "14500",
+    "cash": 5.6,
+    "seatsAvailable": 3,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-17 11:39:16",
+    "layovers": []
+  },
+  {
+    "id": "2js9g0TmVUhev4fqJWm77eI7Vfl",
+    "airline": "qantas",
+    "flightNumber": "qa101",
+    "origin": "XNA",
+    "destination": "LGA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "17900",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-17 11:39:16",
+    "layovers": []
+  }
+]

@@ -1,0 +1,180 @@
+[2025-03-28 16:16:56] INFO: Successfully imported base UnitedFlightCrawler
+[2025-03-28 16:16:56] INFO: No proxy cache found, will fetch new proxies
+[2025-03-28 16:16:56] INFO: Setting up browser profile for SFO-JFK
+[2025-03-28 16:16:56] INFO: Creating new profile for SFO-JFK
+[2025-03-28 16:16:56] INFO: Creating new browser profile: united_SFO_JFK
+[2025-03-28 16:16:56] INFO: Downloading extension: random-user-agent
+[2025-03-28 16:16:56] INFO: Successfully downloaded and extracted extension: random-user-agent
+[2025-03-28 16:16:56] INFO: Downloading extension: canvas-fingerprint-defender
+[2025-03-28 16:16:57] ERROR: Failed to download extension canvas-fingerprint-defender: HTTP 404
+[2025-03-28 16:16:57] INFO: Downloading extension: webrtc-control
+[2025-03-28 16:16:57] INFO: Successfully downloaded and extracted extension: webrtc-control
+[2025-03-28 16:16:57] INFO: Installed 2 privacy extensions
+[2025-03-28 16:16:59] INFO: Visiting https://www.wikipedia.org to initialize profile
+[2025-03-28 16:17:05] INFO: Visiting https://www.weather.gov to initialize profile
+[2025-03-28 16:17:12] INFO: Visiting https://www.cnn.com to initialize profile
+[2025-03-28 16:17:29] INFO: Visiting https://www.nytimes.com to initialize profile
+[2025-03-28 16:17:35] INFO: Visiting United Airlines to establish history
+[2025-03-28 16:17:53] INFO: Successfully created and initialized profile: united_SFO_JFK
+[2025-03-28 16:17:53] INFO: Refreshing residential proxies
+[2025-03-28 16:17:53] INFO: Refreshing proxy list
+[2025-03-28 16:17:53] WARNING: No proxy API key provided, using sample proxies
+[2025-03-28 16:17:53] INFO: Using 10 sample residential proxies
+[2025-03-28 16:17:53] INFO: Validating 10 proxies (max 5 concurrent)
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: us.residential.proxy.provider.com:10000 - Cannot connect to host us.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: jp.residential.proxy.provider.com:10000 - Cannot connect to host jp.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: fr.residential.proxy.provider.com:10000 - Cannot connect to host fr.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: uk.residential.proxy.provider.com:10000 - Cannot connect to host uk.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: de.residential.proxy.provider.com:10000 - Cannot connect to host de.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: br.residential.proxy.provider.com:10000 - Cannot connect to host br.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: ca.residential.proxy.provider.com:10000 - Cannot connect to host ca.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: sg.residential.proxy.provider.com:10000 - Cannot connect to host sg.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: au.residential.proxy.provider.com:10000 - Cannot connect to host au.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] WARNING: Proxy test failed with error: in.residential.proxy.provider.com:10000 - Cannot connect to host in.residential.proxy.provider.com:10000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:54] INFO: Validation complete: 0/10 proxies are valid
+[2025-03-28 16:17:54] INFO: Saved 10 proxies to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/residential_proxies.json
+[2025-03-28 16:17:54] INFO: Proxy refresh complete: 0/10 valid proxies
+[2025-03-28 16:17:54] INFO: Providing 10 proxies
+[2025-03-28 16:17:54] INFO: Loaded 10 authenticated proxies
+[2025-03-28 16:17:54] INFO: Enhanced crawler initialized with session ID: 44dade85-595d-4599-832c-136d80b8d336
+[2025-03-28 16:17:54] INFO: Loaded 5 residential proxies
+[2025-03-28 16:17:54] INFO: Starting enhanced crawl...
+[2025-03-28 16:17:54] INFO: Starting enhanced crawl for SFO to JFK on 2025-05-15
+[2025-03-28 16:17:54] INFO: Using proxy: geo-uk.residential.provider.com:9000
+[2025-03-28 16:17:54] INFO: Launching browser with persistent profile at /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_SFO_JFK
+[2025-03-28 16:17:55] INFO: Navigating to United Airlines homepage
+[2025-03-28 16:17:56] ERROR: Error during enhanced crawl: Page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://www.united.com/en/us
+Call log:
+  - navigating to "https://www.united.com/en/us", waiting until "domcontentloaded"
+
+[2025-03-28 16:17:56] INFO: Trying direct API access to United endpoints
+[2025-03-28 16:17:56] INFO: Using proxy: geo-uk.residential.provider.com:9000
+[2025-03-28 16:17:56] ERROR: Error during direct API access: Cannot connect to host geo-uk.residential.provider.com:9000 ssl:False [nodename nor servname provided, or not known]
+[2025-03-28 16:17:56] ERROR: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7ff0a0c2d370>
+[2025-03-28 16:18:15] INFO: Successfully imported base UnitedFlightCrawler
+[2025-03-28 16:18:15] INFO: Loaded 10 proxies from cache, last refreshed 0.3 minutes ago
+[2025-03-28 16:18:15] INFO: Setting up browser profile for SFO-JFK
+[2025-03-28 16:18:15] INFO: Using existing profile for SFO-JFK
+[2025-03-28 16:18:15] INFO: Loaded 10 authenticated proxies
+[2025-03-28 16:18:15] INFO: Enhanced crawler initialized with session ID: 573276e7-ae84-4ed2-a9e7-9cf2696545ec
+[2025-03-28 16:18:15] INFO: Starting enhanced crawl...
+[2025-03-28 16:18:15] INFO: Starting enhanced crawl for SFO to JFK on 2025-05-15
+[2025-03-28 16:18:15] INFO: Using proxy: 173.211.0.148:6641
+[2025-03-28 16:18:15] INFO: Launching browser with persistent profile at /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_SFO_JFK
+[2025-03-28 16:18:16] INFO: Navigating to United Airlines homepage
+[2025-03-28 16:18:20] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:24] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:27] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:29] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:29] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:29] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:29] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:29] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:35] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:53] INFO: Performed 12 human-like interactions on the page
+[2025-03-28 16:18:53] INFO: Navigating to flight search page: https://www.united.com/en/us/fsr/choose-flights?f=SFO&t=JFK&d=2025-05-15&tt=1&sc=7&px=1&taxng=1&newHP=True&clm=7&st=bestmatches&tqp=A&at=1
+[2025-03-28 16:18:56] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:57] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:57] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:18:58] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:00] INFO: Saved screenshot to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/enhanced_screenshot_20250328_161815.png
+[2025-03-28 16:19:00] INFO: Waiting for flight results with selector: .app-components-Shopping-Results-styles__flightRow--2HuQV
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:02] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:03] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:03] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:03] INFO: Found authorization token: DAAAAP+Gsx...
+[2025-03-28 16:19:30] INFO: Waiting for flight results with selector: .app-components-Shopping-FlightRow-styles__flightRow--C8XQA
+[2025-03-28 16:20:00] INFO: Waiting for flight results with selector: .flightRow
+[2025-03-28 16:20:30] INFO: Waiting for flight results with selector: [data-test='flight-row']
+[2025-03-28 16:21:00] INFO: Waiting for flight results with selector: [class*='flightRow']
+[2025-03-28 16:21:00] INFO: Found flight results with selector: [class*='flightRow']
+[2025-03-28 16:21:00] INFO: Saved 450 cookies to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_cookies_SFO_JFK.json
+[2025-03-28 16:21:00] INFO: Parsing HTML for flight information...
+[2025-03-28 16:21:00] INFO: Found 36 flight rows with selector: [class*='flightRow']
+[2025-03-28 16:21:00] INFO: Found 36 unique flight rows
+[2025-03-28 16:21:01] WARNING: Could not extract price for flight UA9000
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9001 | 10:50 PMDeparting at 10:50 PM - Departing at 10:50 PM | 5H, 30MDuration 5 hours and 30 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9002 | 4:20 PMDeparting at 4:20 PM - Departing at 4:20 PM | 5H, 38MDuration 5 hours and 38 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9003 | 6:00 AMDeparting at 6:00 AM - Departing at 6:00 AM | 5H, 37MDuration 5 hours and 37 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9004 | 3:15 PMDeparting at 3:15 PM - Departing at 3:15 PM | 5H, 38MDuration 5 hours and 38 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9005 | 11:40 PMDeparting at 11:40 PM - Departing at 11:40 PM | 5H, 38MDuration 5 hours and 38 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9006 | 1:15 PMDeparting at 1:15 PM - Departing at 1:15 PM | 5H, 29MDuration 5 hours and 29 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9007 | 11:35 AMDeparting at 11:35 AM - Departing at 11:35 AM | 5H, 30MDuration 5 hours and 30 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9008 | 9:15 PMDeparting at 9:15 PM - Departing at 9:15 PM | 5H, 30MDuration 5 hours and 30 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9009 | 7:00 AMDeparting at 7:00 AM - Departing at 7:00 AM | 5H, 37MDuration 5 hours and 37 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9010 | 9:20 AMDeparting at 9:20 AM - Departing at 9:20 AM | 5H, 38MDuration 5 hours and 38 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9011 | 10:40 AMDeparting at 10:40 AM - Departing at 10:40 AM | 5H, 50MDuration 5 hours and 50 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9012 | 9:30 PMDeparting at 9:30 PM - Departing at 9:30 PM | 7H, 4MDuration 7 hours and 4 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9013 | 9:10 PMDeparting at 9:10 PM - Departing at 9:10 PM | 9H, 49MDuration 9 hours and 49 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9014 | 9:10 PMDeparting at 9:10 PM - Departing at 9:10 PM | 10H, 35MDuration 10 hours and 35 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9015 | 9:10 PMDeparting at 9:10 PM - Departing at 9:10 PM | 11H, 30MDuration 11 hours and 30 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9016 | 10:50 PMDeparting at 10:50 PM - Departing at 10:50 PM | 7H, 24MDuration 7 hours and 24 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9017 | 1:30 PMDeparting at 1:30 PM - Departing at 1:30 PM | 8H, 27MDuration 8 hours and 27 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9018 | 10:50 PMDeparting at 10:50 PM - Departing at 10:50 PM | 7H, 21MDuration 7 hours and 21 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9019 | 10:50 PMDeparting at 10:50 PM - Departing at 10:50 PM | 8H, 36MDuration 8 hours and 36 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9020 | 10:50 PMDeparting at 10:50 PM - Departing at 10:50 PM | 8H, 21MDuration 8 hours and 21 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9021 | 9:30 PMDeparting at 9:30 PM - Departing at 9:30 PM | 8H, 19MDuration 8 hours and 19 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9022 | 1:05 PMDeparting at 1:05 PM - Departing at 1:05 PM | 7H, 41MDuration 7 hours and 41 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9023 | 10:35 AMDeparting at 10:35 AM - Departing at 10:35 AM | 8H, 5MDuration 8 hours and 5 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9024 | 9:10 PMDeparting at 9:10 PM - Departing at 9:10 PM | 8H, 24MDuration 8 hours and 24 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9025 | 1:05 PMDeparting at 1:05 PM - Departing at 1:05 PM | 7H, 25MDuration 7 hours and 25 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9026 | 6:45 AMDeparting at 6:45 AM - Departing at 6:45 AM | 8H, 30MDuration 8 hours and 30 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9027 | 9:00 AMDeparting at 9:00 AM - Departing at 9:00 AM | 7H, 58MDuration 7 hours and 58 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9028 | 5:04 AMDeparting at 5:04 AM - Departing at 5:04 AM | 8H, 9MDuration 8 hours and 9 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9029 | 9:25 PMDeparting at 9:25 PM - Departing at 9:25 PM | 8H, 34MDuration 8 hours and 34 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:01] INFO: Extracted flight: UA9030 | 6:00 AMDeparting at 6:00 AM - Departing at 6:00 AM | 7H, 45MDuration 7 hours and 45 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Extracted flight: UA9031 | 5:55 PMDeparting at 5:55 PM - Departing at 5:55 PM | 8H, 6MDuration 8 hours and 6 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Extracted flight: UA9032 | 5:04 AMDeparting at 5:04 AM - Departing at 5:04 AM | 8H, 31MDuration 8 hours and 31 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Extracted flight: UA9033 | 6:45 PMDeparting at 6:45 PM - Departing at 6:45 PM | 7H, 58MDuration 7 hours and 58 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Extracted flight: UA9034 | 7:05 PMDeparting at 7:05 PM - Departing at 7:05 PM | 7H, 36MDuration 7 hours and 36 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Extracted flight: UA9035 | 5:55 PMDeparting at 5:55 PM - Departing at 5:55 PM | 8H, 46MDuration 8 hours and 46 minutes | 0 stops | 0K miles
+[2025-03-28 16:21:02] INFO: Successfully parsed 35 flights from HTML
+[2025-03-28 16:21:02] INFO: Successfully extracted 35 flights
+[2025-03-28 16:21:02] INFO: Saved flight data to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/united_flight_data_SFO_JFK_2025-05-15_20250328_161815.json and /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/united_flight_data.json
+[2025-03-28 16:21:59] INFO: Successfully imported base UnitedFlightCrawler
+[2025-03-28 16:21:59] INFO: Loaded 10 proxies from cache, last refreshed 4.1 minutes ago
+[2025-03-28 16:21:59] INFO: Setting up browser profile for SFO-JFK
+[2025-03-28 16:21:59] INFO: Using existing profile for SFO-JFK
+[2025-03-28 16:21:59] INFO: Loaded 10 authenticated proxies
+[2025-03-28 16:21:59] INFO: Enhanced crawler initialized with session ID: 54ac00ad-44f9-4c46-aa63-645129a26ea8
+[2025-03-28 16:21:59] INFO: Starting enhanced crawl...
+[2025-03-28 16:21:59] INFO: Starting enhanced crawl for SFO to JFK on 2025-05-15
+[2025-03-28 16:21:59] INFO: Using proxy: 166.88.58.10:5735
+[2025-03-28 16:22:00] INFO: Launching browser with persistent profile at /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_SFO_JFK
+[2025-03-28 16:22:01] ERROR: Error loading cookies: Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://www.united.com/
+Call log:
+  - navigating to "https://www.united.com/", waiting until "domcontentloaded"
+
+[2025-03-28 16:22:01] INFO: Navigating to United Airlines homepage
+[2025-03-28 16:22:02] ERROR: Error during enhanced crawl: Page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at https://www.united.com/en/us
+Call log:
+  - navigating to "https://www.united.com/en/us", waiting until "domcontentloaded"
+
+[2025-03-28 16:22:02] INFO: Trying direct API access to United endpoints
+[2025-03-28 16:22:02] INFO: Using proxy: 86.38.234.176:6630
+[2025-03-28 16:22:02] INFO: Trying endpoint: https://www.united.com/api/flight/FetchFlights
+[2025-03-28 16:22:03] WARNING: API request failed with status 428
+[2025-03-28 16:22:03] INFO: Trying endpoint: https://www.united.com/api/flight/search
+[2025-03-28 16:22:03] WARNING: API request failed with status 404
+[2025-03-28 16:22:03] INFO: Trying endpoint: https://www.united.com/api/flight/shop/flight
+[2025-03-28 16:22:04] WARNING: API request failed with status 404
+[2025-03-28 16:22:04] ERROR: All API endpoint attempts failed

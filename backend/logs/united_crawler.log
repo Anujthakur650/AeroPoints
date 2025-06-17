@@ -1,0 +1,177 @@
+[2025-03-26 15:20:52,060] INFO: Starting United crawler test script
+[2025-03-26 15:20:52,060] DEBUG: Using selector: KqueueSelector
+[2025-03-26 15:20:52,061] INFO: Starting United crawler for SFO to JFK on 2025-05-15
+[2025-03-26 15:20:52,061] INFO: Using crawler at: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-03-26 15:20:52,061] INFO: Loading module dynamically...
+[2025-03-26 15:20:52,545] INFO: Module loaded successfully
+[2025-03-26 15:20:52,545] INFO: Creating crawler instance for SFO to JFK...
+[2025-03-26 15:20:52,545] INFO: Loaded 10 authenticated proxies
+[2025-03-26 15:20:52,581] INFO: Starting crawler execution...
+[2025-03-26 15:20:52,581] INFO: Starting flight search crawl for SFO to JFK on 2025-05-15
+[2025-03-26 15:20:52,581] INFO: Award Travel: Yes
+[2025-03-26 15:20:52,581] INFO: Attempting specialized award data extraction
+[2025-03-26 15:20:52,581] INFO: Attempting advanced extraction for award flight data...
+[2025-03-26 15:20:55,259] INFO: Navigating to award search page: https://www.united.com/en/us/fsr/choose-flights?f=SFO&t=JFK&d=2025-05-15&tt=1&sc=7&px=1&taxng=1&newHP=True&clm=7&st=bestmatches&tqp=A&at=1
+[2025-03-26 15:21:04,139] INFO: Advanced extraction found 102 miles entries
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,139] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 15K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 7000 miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 7000 miles
+[2025-03-26 15:21:04,140] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 22K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 22K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 25K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 25K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 8000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 8000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 9000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 6000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 30K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 30K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 80K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 8000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 8000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 60K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 60K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 20K miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,141] INFO: Miles extraction found flight: None | None - None | 5000 miles
+[2025-03-26 15:21:04,310] INFO: Successfully extracted award data using advanced techniques
+[2025-03-26 15:21:04,314] INFO: Saved 102 flights to JSON files
+[2025-03-26 15:21:04,315] INFO: Crawler execution completed
+[2025-03-26 15:21:04,315] ERROR: No flight data file generated at data/united_flight_data.json
+[2025-03-26 15:21:04,315] INFO: Script execution completed
+[2025-03-26 18:45:21,191] INFO: Starting United crawler test script
+[2025-03-26 18:45:21,193] DEBUG: Using selector: KqueueSelector
+[2025-03-26 18:45:21,193] INFO: Starting United crawler for SFO to JFK on 2025-05-15
+[2025-03-26 18:45:21,193] INFO: Using crawler at: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py
+[2025-03-26 18:45:21,193] INFO: Loading module dynamically...
+[2025-03-26 18:45:21,496] INFO: Module loaded successfully
+[2025-03-26 18:45:21,497] INFO: Creating crawler instance for SFO to JFK...
+[2025-03-26 18:45:21,497] INFO: Loaded 10 authenticated proxies
+[2025-03-26 18:45:21,529] INFO: Starting crawler execution...
+[2025-03-26 18:45:21,529] INFO: Starting crawl for SFO to JFK on 2025-05-15
+[2025-03-26 18:45:21,529] INFO: Attempting advanced extraction for award flight data...
+[2025-03-26 18:45:21,529] ERROR: Error during advanced extraction: 'UnitedFlightCrawler' object has no attribute 'initialize_browser'
+[2025-03-26 18:45:21,530] ERROR: Traceback (most recent call last):
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/backend/united_crawler.py", line 2516, in try_advanced_extraction
+    self.browser = await self.initialize_browser()
+AttributeError: 'UnitedFlightCrawler' object has no attribute 'initialize_browser'
+
+[2025-03-26 18:45:21,530] WARNING: Advanced extraction failed, trying other methods...
+[2025-03-26 18:45:21,530] ERROR: All crawling methods failed to extract flight data.
+[2025-03-26 18:45:21,530] INFO: Crawler execution completed
+[2025-03-26 18:45:21,530] INFO: Reading results from data/united_flight_data.json...
+[2025-03-26 18:45:21,531] INFO: Flight data found: 102 flights
+[2025-03-26 18:45:21,531] INFO: Example flight: {
+  "airline": "United Airlines",
+  "flightNumber": null,
+  "aircraft": "Boeing 737",
+  "fareClass": "Economy",
+  "departure": {
+    "airport": "SFO",
+    "city": "San Francisco",
+    "time": null,
+    "date": "2025-05-15"
+  },
+  "arrival": {
+    "airport": "JFK",
+    "city": "New York",
+    "time": null,
+    "date": "2025-05-15"
+  },
+  "price": {
+    "amount": 9000,
+    "currency": "miles",
+    "type": "miles",
+    "formatted": "9000 miles",
+    "taxes": {
+      "amount": 5.6,
+      "currency": "USD",
+      "formatted": "$5.60"
+    }
+  },
+  "duration": "3h 00m",
+  "stops": 0,
+  "connectingAirport": null
+}
+[2025-03-26 18:45:21,533] INFO: Script execution completed

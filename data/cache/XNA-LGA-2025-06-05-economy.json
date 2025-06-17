@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2j97IKfPy8ujQP1xbl1wb9A9560",
+    "airline": "American Airlines",
+    "flightNumber": "Am100",
+    "origin": "XNA",
+    "destination": "LGA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "23000",
+    "cash": 11.2,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-16 13:44:43",
+    "layovers": []
+  },
+  {
+    "id": "2jATD0nBNkV4a0zWvgQH22APmdn",
+    "airline": "Delta Air Lines",
+    "flightNumber": "De101",
+    "origin": "XNA",
+    "destination": "LGA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "16500",
+    "cash": 5.6,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-16 13:44:43",
+    "layovers": []
+  },
+  {
+    "id": "2kDTIAdULCCmwuYzvFOdFeeyEug",
+    "airline": "Virgin Atlantic",
+    "flightNumber": "Vi102",
+    "origin": "XNA",
+    "destination": "LGA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "16500",
+    "cash": 5.6,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-04-16 13:44:43",
+    "layovers": []
+  }
+]

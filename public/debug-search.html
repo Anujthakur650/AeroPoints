@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Flight Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .error { color: red; }
+        .success { color: green; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Debug Flight Search</h1>
+    
+    <div>
+        <h2>Test Direct API Call</h2>
+        <button onclick="testDirectAPI()">Test Backend API Direct</button>
+        <div id="direct-results"></div>
+    </div>
+    
+    <div>
+        <h2>Test Frontend Service</h2>
+        <button onclick="testFrontendService()">Test Frontend API Service</button>
+        <div id="frontend-results"></div>
+    </div>
+
+    <script>
+        async function testDirectAPI() {
+            try {
+                console.log('Testing direct API call...');
+                const response = await fetch('http://localhost:8000/api/search-awards?origin=LAX&destination=JFK&date=2025-07-15&cabin_class=economy&passengers=1');
+                const data = await response.json();
+                console.log('Direct API response:', data);
+                
+                document.getElementById('direct-results').innerHTML = 
+                    '<div class="success"><h3>Success!</h3>' +
+                    '<p>Status: ' + data.status + '</p>' +
+                    '<p>Count: ' + data.count + '</p>' +
+                    '<p>First flight: ' + (data.data[0] ? data.data[0].ID : 'None') + '</p>' +
+                    '</div>';
+            } catch (error) {
+                console.error('Direct API error:', error);
+                document.getElementById('direct-results').innerHTML = 
+                    '<div class="error">Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Simulated frontend API service test
+        async function testFrontendService() {
+            try {
+                console.log('Testing frontend service...');
+                
+                // Simulate the API service call
+                const response = await fetch('http://localhost:8000/api/search-awards', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                const url = new URL(response.url);
+                url.searchParams.set('origin', 'LAX');
+                url.searchParams.set('destination', 'JFK');
+                url.searchParams.set('date', '2025-07-15');
+                url.searchParams.set('cabin_class', 'economy');
+                url.searchParams.set('passengers', '1');
+                
+                const fullResponse = await fetch(url.toString());
+                const data = await fullResponse.json();
+                
+                console.log('Frontend service response:', data);
+                
+                // Simulate the mapping logic
+                if (data.status === "error") {
+                    throw new Error(data.message || "Flight search failed");
+                }
+                
+                const flights = data.data || [];
+                console.log(`Found ${flights.length} flights from API`);
+                
+                // Test mapping of first flight
+                if (flights.length > 0) {
+                    const firstFlight = flights[0];
+                    const mappedFlight = {
+                        id: firstFlight.ID,
+                        airline: firstFlight.Route?.Source || 'unknown',
+                        points: parseInt(firstFlight.YMileageCost) || 0,
+                        cash: Math.round((firstFlight.YTotalTaxes || 0) / 100),
+                        available: firstFlight.YAvailable
+                    };
+                    
+                    console.log('Mapped flight:', mappedFlight);
+                    
+                    document.getElementById('frontend-results').innerHTML = 
+                        '<div class="success"><h3>Frontend Service Success!</h3>' +
+                        '<p>Flights found: ' + flights.length + '</p>' +
+                        '<p>Sample mapping: ' + JSON.stringify(mappedFlight, null, 2) + '</p>' +
+                        '</div>';
+                } else {
+                    document.getElementById('frontend-results').innerHTML = 
+                        '<div class="error">No flights returned from API</div>';
+                }
+                
+            } catch (error) {
+                console.error('Frontend service error:', error);
+                document.getElementById('frontend-results').innerHTML = 
+                    '<div class="error">Error: ' + error.message + '</div>';
+            }
+        }
+    </script>
+</body>
+</html> 

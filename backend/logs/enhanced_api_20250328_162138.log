@@ -1,0 +1,37 @@
+[2025-03-28 16:21:39] INFO: Successfully imported base UnitedFlightCrawler
+[2025-03-28 16:21:39] INFO: Loaded 10 proxies from cache, last refreshed 3.7 minutes ago
+[2025-03-28 16:21:39] INFO: Enhanced Crawler Service initialized with settings:
+[2025-03-28 16:21:39] INFO: - Residential Proxies: False
+[2025-03-28 16:21:39] INFO: - CAPTCHA Solver: False
+[2025-03-28 16:21:39] INFO: - Browser Profiles: True
+[2025-03-28 16:21:39] INFO: - Headless Mode: False
+[2025-03-28 16:21:39] INFO: Starting crawler in a separate thread for session 20eaa627-9765-4210-9688-fb890b8b1592...
+[2025-03-28 16:21:39] INFO: Starting enhanced crawler for SFO-JFK on 2025-05-15 (session: 20eaa627-9765-4210-9688-fb890b8b1592)
+[2025-03-28 16:21:39] INFO: Setting up browser profile for SFO-JFK
+[2025-03-28 16:21:39] INFO: Using existing profile for SFO-JFK
+[2025-03-28 16:21:39] INFO: Loaded 10 authenticated proxies
+[2025-03-28 16:21:39] INFO: Enhanced crawler initialized with session ID: a3de8450-a049-48e1-9403-7ce49e44209c
+[2025-03-28 16:21:39] INFO: Starting enhanced crawl for SFO to JFK on 2025-05-15
+[2025-03-28 16:21:39] INFO: Using proxy: 216.10.27.159:6837
+[2025-03-28 16:21:39] INFO: Launching browser with persistent profile at /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/browser_profiles/united_SFO_JFK
+[2025-03-28 16:21:42] ERROR: Error loading cookies: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.united.com/
+Call log:
+  - navigating to "https://www.united.com/", waiting until "domcontentloaded"
+
+[2025-03-28 16:21:42] INFO: Navigating to United Airlines homepage
+[2025-03-28 16:21:42] ERROR: Error during enhanced crawl: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.united.com/en/us
+Call log:
+  - navigating to "https://www.united.com/en/us", waiting until "domcontentloaded"
+
+[2025-03-28 16:21:42] INFO: Main crawl found no results, trying direct API method (session: 20eaa627-9765-4210-9688-fb890b8b1592)
+[2025-03-28 16:21:42] INFO: Trying direct API access to United endpoints
+[2025-03-28 16:21:42] INFO: Using proxy: 86.38.234.176:6630
+[2025-03-28 16:21:43] INFO: Trying endpoint: https://www.united.com/api/flight/FetchFlights
+[2025-03-28 16:21:44] WARNING: API request failed with status 428
+[2025-03-28 16:21:44] INFO: Trying endpoint: https://www.united.com/api/flight/search
+[2025-03-28 16:21:44] WARNING: API request failed with status 404
+[2025-03-28 16:21:44] INFO: Trying endpoint: https://www.united.com/api/flight/shop/flight
+[2025-03-28 16:21:45] WARNING: API request failed with status 404
+[2025-03-28 16:21:45] ERROR: All API endpoint attempts failed
+[2025-03-28 16:21:45] ERROR: Crawl failed for SFO-JFK on 2025-05-15: No results found after 3.4 seconds (session: 20eaa627-9765-4210-9688-fb890b8b1592)
+[2025-03-28 16:21:47] WARNING: No output file found for session 20eaa627-9765-4210-9688-fb890b8b1592

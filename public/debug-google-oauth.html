@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google OAuth Debug Tool</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 40px; 
+            background: #f8fafc;
+            color: #334155;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section { 
+            margin: 30px 0; 
+            padding: 20px; 
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        .success { 
+            background: #f0fdf4; 
+            color: #166534; 
+            border-color: #bbf7d0; 
+        }
+        .error { 
+            background: #fef2f2; 
+            color: #dc2626; 
+            border-color: #fecaca; 
+        }
+        .info { 
+            background: #f0f9ff; 
+            color: #0369a1; 
+            border-color: #bae6fd; 
+        }
+        .warning { 
+            background: #fffbeb; 
+            color: #d97706; 
+            border-color: #fed7aa; 
+        }
+        button { 
+            margin: 10px; 
+            padding: 12px 24px; 
+            background: #3b82f6; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 14px;
+            font-weight: 500;
+        }
+        button:hover { 
+            background: #2563eb; 
+        }
+        button:disabled { 
+            background: #9ca3af; 
+            cursor: not-allowed; 
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #d1d5db;
+            border-radius: 6px; 
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        textarea { 
+            height: 100px; 
+            resize: vertical; 
+            font-family: 'Courier New', monospace;
+        }
+        .code { 
+            background: #f8fafc; 
+            padding: 12px; 
+            border-radius: 6px; 
+            font-family: 'Courier New', monospace; 
+            font-size: 12px;
+            border: 1px solid #e2e8f0;
+            word-break: break-all;
+        }
+        h1 { color: #1e293b; margin-bottom: 30px; }
+        h2 { color: #334155; margin-bottom: 15px; font-size: 18px; }
+        .step { counter-increment: step; }
+        .step::before { 
+            content: "Step " counter(step) ": ";
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .steps { counter-reset: step; }
+        pre { 
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Google OAuth Debug Tool</h1>
+        
+        <div class="section info">
+            <h2>OAuth Configuration Status</h2>
+            <div id="config-status">Checking configuration...</div>
+        </div>
+
+        <div class="steps">
+            <div class="section step">
+                <h2>Test OAuth URL Generation</h2>
+                <button onclick="testOAuthURL()">Generate OAuth URL</button>
+                <div id="oauth-url-result"></div>
+            </div>
+
+            <div class="section step">
+                <h2>Manual Code Entry (For Testing)</h2>
+                <p>If you have an authorization code from Google, enter it here to test the token exchange:</p>
+                <input type="text" id="manual-code" placeholder="Enter authorization code from Google">
+                <input type="text" id="manual-state" placeholder="Enter state parameter (optional)">
+                <button onclick="testTokenExchange()">Test Token Exchange</button>
+                <div id="token-exchange-result"></div>
+            </div>
+
+            <div class="section step">
+                <h2>URL Query Parameters</h2>
+                <p>Current URL parameters (useful if redirected from Google):</p>
+                <div id="url-params" class="code"></div>
+                <button onclick="parseCurrentURL()">Parse Current URL</button>
+                <button onclick="testCurrentCallback()" id="test-callback-btn" style="display:none;">Test Current Callback</button>
+            </div>
+
+            <div class="section step">
+                <h2>Backend Health Check</h2>
+                <button onclick="checkBackendHealth()">Check Backend</button>
+                <div id="health-result"></div>
+            </div>
+
+            <div class="section step">
+                <h2>Common Issues & Solutions</h2>
+                <div class="warning">
+                    <h3>🚨 "invalid_grant" Error Troubleshooting:</h3>
+                    <ul>
+                        <li><strong>Expired Code:</strong> Authorization codes expire after 10 minutes</li>
+                        <li><strong>Redirect URI Mismatch:</strong> Must exactly match Google Console settings</li>
+                        <li><strong>Code Already Used:</strong> Each code can only be used once</li>
+                        <li><strong>Clock Skew:</strong> Server time might be out of sync</li>
+                        <li><strong>Wrong Environment:</strong> Using dev credentials in prod or vice versa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Debug Log</h2>
+            <textarea id="debug-log" readonly placeholder="Debug information will appear here..."></textarea>
+            <button onclick="clearLog()">Clear Log</button>
+            <button onclick="copyLog()">Copy Log</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let debugLog = '';
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toISOString();
+            const logEntry = `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            debugLog += logEntry;
+            document.getElementById('debug-log').value = debugLog;
+            console.log(logEntry);
+        }
+
+        function clearLog() {
+            debugLog = '';
+            document.getElementById('debug-log').value = '';
+        }
+
+        function copyLog() {
+            navigator.clipboard.writeText(debugLog).then(() => {
+                alert('Debug log copied to clipboard');
+            });
+        }
+
+        async function checkBackendHealth() {
+            try {
+                log('Checking backend health...');
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('health-result').innerHTML = 
+                        `<div class="success">✅ Backend is healthy: ${JSON.stringify(data)}</div>`;
+                    log('Backend health check passed');
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${JSON.stringify(data)}`);
+                }
+            } catch (error) {
+                document.getElementById('health-result').innerHTML = 
+                    `<div class="error">❌ Backend health check failed: ${error.message}</div>`;
+                log(`Backend health check failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkGoogleAuthConfig() {
+            try {
+                log('Checking Google OAuth configuration...');
+                const response = await fetch(`${API_BASE}/api/auth/google/status`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const configDiv = document.getElementById('config-status');
+                    if (data.available) {
+                        configDiv.innerHTML = `
+                            <div class="success">
+                                ✅ Google OAuth is configured<br>
+                                <strong>Redirect URI:</strong> ${data.redirect_uri}
+                            </div>`;
+                        log('Google OAuth is properly configured');
+                    } else {
+                        configDiv.innerHTML = `<div class="error">❌ Google OAuth is not configured</div>`;
+                        log('Google OAuth is not configured', 'error');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                document.getElementById('config-status').innerHTML = 
+                    `<div class="error">❌ Failed to check configuration: ${error.message}</div>`;
+                log(`Config check failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function testOAuthURL() {
+            try {
+                log('Generating OAuth URL...');
+                const response = await fetch(`${API_BASE}/api/auth/google`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('oauth-url-result').innerHTML = `
+                        <div class="success">
+                            ✅ OAuth URL generated successfully<br>
+                            <strong>State:</strong> ${data.state}<br>
+                            <strong>URL:</strong> <a href="${data.authorization_url}" target="_blank">Open in new tab</a><br>
+                            <div class="code">${data.authorization_url}</div>
+                        </div>`;
+                    log(`OAuth URL generated with state: ${data.state}`);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${JSON.stringify(data)}`);
+                }
+            } catch (error) {
+                document.getElementById('oauth-url-result').innerHTML = 
+                    `<div class="error">❌ Failed to generate OAuth URL: ${error.message}</div>`;
+                log(`OAuth URL generation failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function testTokenExchange() {
+            const code = document.getElementById('manual-code').value.trim();
+            const state = document.getElementById('manual-state').value.trim();
+            
+            if (!code) {
+                alert('Please enter an authorization code');
+                return;
+            }
+
+            try {
+                log(`Testing token exchange with code: ${code.substring(0, 20)}...`);
+                const response = await fetch(`${API_BASE}/api/auth/google/callback`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code, state: state || undefined })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('token-exchange-result').innerHTML = `
+                        <div class="success">
+                            ✅ Token exchange successful!<br>
+                            <strong>User:</strong> ${data.user?.full_name || 'Unknown'} (${data.user?.email || 'No email'})<br>
+                            <strong>Token:</strong> ${data.access_token?.substring(0, 20)}...<br>
+                            <div class="code">${JSON.stringify(data, null, 2)}</div>
+                        </div>`;
+                    log('Token exchange successful');
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${JSON.stringify(data)}`);
+                }
+            } catch (error) {
+                document.getElementById('token-exchange-result').innerHTML = 
+                    `<div class="error">❌ Token exchange failed: ${error.message}</div>`;
+                log(`Token exchange failed: ${error.message}`, 'error');
+            }
+        }
+
+        function parseCurrentURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of urlParams.entries()) {
+                params[key] = value;
+            }
+            
+            document.getElementById('url-params').textContent = JSON.stringify(params, null, 2);
+            log(`Current URL parameters: ${JSON.stringify(params)}`);
+            
+            if (params.code) {
+                document.getElementById('test-callback-btn').style.display = 'inline-block';
+                document.getElementById('manual-code').value = params.code;
+                document.getElementById('manual-state').value = params.state || '';
+            }
+        }
+
+        async function testCurrentCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            
+            if (code) {
+                document.getElementById('manual-code').value = code;
+                document.getElementById('manual-state').value = state || '';
+                await testTokenExchange();
+            }
+        }
+
+        // Initialize page
+        window.onload = async function() {
+            log('Google OAuth Debug Tool initialized');
+            await checkBackendHealth();
+            await checkGoogleAuthConfig();
+            parseCurrentURL();
+        };
+    </script>
+</body>
+</html> 
