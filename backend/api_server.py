@@ -23,6 +23,10 @@ import httpx
 from award_flight_api import award_flight_api
 # Fix the other relative import
 from airport_service import airport_service
+# Import auth router
+from routes.auth import router as auth_router
+# Import database initialization
+from db.users import init_db
 
 # Set default port
 PORT = 8000
@@ -38,16 +42,68 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Initialize database on startup
+logger.info("Initializing database...")
+init_db()
+logger.info("Database initialized successfully")
+
 # Initialize FastAPI app
 app = FastAPI(title="Award Flight API Server")
 
-# Configure CORS
+# Include routers
+app.include_router(auth_router)
+
+# Configure CORS for mobile and tunnel environments
+def get_allowed_origins():
+    """Dynamically determine allowed origins for CORS"""
+    origins = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+        # Current tunnel URLs
+        "https://shaggy-drinks-join.loca.lt",
+        "https://afraid-otters-start.loca.lt",
+        # Allow all localtunnel subdomains
+        "https://*.loca.lt",
+        # Allow ngrok and other common tunneling services
+        "https://*.ngrok.io",
+        "https://*.ngrok-free.app",
+        "https://*.tunnel.app",
+        # Production domains
+        "https://aeropoints.com",
+        "https://www.aeropoints.com",
+        "https://staging.aeropoints.com"
+    ]
+    
+    # Add environment-specific origins
+    env_origin = os.getenv('FRONTEND_URL')
+    if env_origin:
+        origins.append(env_origin)
+    
+    return origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, limit to your frontend domain
+    allow_origins=get_allowed_origins(),
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_headers=[
+        "Accept",
+        "Accept-Language",
+        "Content-Language",
+        "Content-Type",
+        "Authorization",
+        "X-Requested-With",
+        "X-CSRFToken",
+        "User-Agent",
+        "Referer",
+        "Origin"
+    ],
+    expose_headers=["*"],
+    allow_origin_regex=r"https://.*\.loca\.lt|https://.*\.ngrok\.io|https://.*\.ngrok-free\.app"
 )
 
 # Ensure data directory exists

@@ -1,0 +1,92 @@
+{
+  "name": "AeroPoints Development Sharing",
+  "version": "1.0.0",
+  "description": "Local tunneling configuration for AeroPoints website sharing",
+  
+  "services": {
+    "frontend": {
+      "name": "AeroPoints Frontend (React + Vite)",
+      "port": 5174,
+      "protocol": "http",
+      "subdomain": "aeropoints-app",
+      "description": "Premium flight search interface with dark theme"
+    },
+    "backend": {
+      "name": "AeroPoints Backend (FastAPI)",
+      "port": 8000,
+      "protocol": "http",
+      "subdomain": "aeropoints-api",
+      "description": "Award flight search API with authentication"
+    }
+  },
+  
+  "tunneling": {
+    "primary": "ngrok",
+    "fallback": "localtunnel",
+    "ngrok": {
+      "region": "us",
+      "auth_token_env": "NGROK_AUTH_TOKEN",
+      "config_path": "~/.ngrok2/ngrok.yml",
+      "custom_domain": false,
+      "basic_auth": false,
+      "session_timeout": "8h"
+    },
+    "localtunnel": {
+      "host": "https://localtunnel.me",
+      "max_conn": 10
+    }
+  },
+  
+  "cors": {
+    "enabled": true,
+    "origins": [
+      "*.ngrok.io",
+      "*.loca.lt",
+      "localhost:*"
+    ]
+  },
+  
+  "security": {
+    "tunnel_auth": false,
+    "rate_limiting": false,
+    "ip_whitelist": [],
+    "session_duration": "8h",
+    "warning_banner": true
+  },
+  
+  "monitoring": {
+    "health_check_interval": 30000,
+    "auto_restart": true,
+    "log_level": "info",
+    "status_endpoint": "/health"
+  },
+  
+  "sharing": {
+    "qr_codes": true,
+    "clipboard_copy": true,
+    "social_preview": true,
+    "demo_accounts": [
+      {
+        "email": "demo@aeropoints.com",
+        "password": "Demo123!",
+        "note": "Demo account for testing"
+      }
+    ]
+  },
+  
+  "current_state": {
+    "features": [
+      "User authentication (register/login)",
+      "Flight search with real-time data",
+      "Airport autocomplete",
+      "Premium dark theme UI",
+      "Settings page with profile management",
+      "Award flight tracking",
+      "Responsive design"
+    ],
+    "database": "SQLite with sample users",
+    "external_apis": "seats.aero integration",
+    "styling": "Dark glassmorphism theme",
+    "last_updated": "2025-06-27"
+  }
+} 

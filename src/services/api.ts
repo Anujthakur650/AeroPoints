@@ -126,13 +126,31 @@ class ApiService {
   private baseUrl = config.API_BASE_URL;
   private token: string | null = localStorage.getItem('token');
 
+  constructor() {
+    // Debug: Log the configuration being used
+    console.log('🔧 ApiService Configuration:');
+    console.log('📍 Base URL:', this.baseUrl);
+    console.log('🌍 Environment:', config.NODE_ENV);
+    console.log('🔧 Is Development:', config.IS_DEVELOPMENT);
+    console.log('🔧 Is Production:', config.IS_PRODUCTION);
+    console.log('🎫 Has stored token:', !!this.token);
+  }
+
   /**
-   * Private method to make authenticated requests
+   * Detect if running on mobile device
    */
-  private async fetch(endpoint: string, options: RequestInit = {}): Promise<any> {
+  private isMobile(): boolean {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  /**
+   * Enhanced fetch method with mobile optimizations and retry logic
+   */
+  private async fetch(endpoint: string, options: RequestInit = {}, retryCount = 0): Promise<any> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
+      'User-Agent': navigator.userAgent,
       ...(options.headers as Record<string, string> || {}),
     };
 
@@ -140,18 +158,78 @@ class ApiService {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
 
-    const response = await fetch(url, {
-      ...options,
-      headers,
-      credentials: 'include',
-    });
+    // Mobile-specific timeout settings
+    const isMobileDevice = this.isMobile();
+    const timeoutMs = isMobileDevice ? 15000 : 8000; // Longer timeout for mobile
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      console.warn(`[MOBILE API] Request timeout after ${timeoutMs}ms for ${endpoint}`);
+      controller.abort();
+    }, timeoutMs);
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.detail || `Request failed: ${response.status}`);
+    try {
+      console.log(`[MOBILE API] ${options.method || 'GET'} ${url} (Mobile: ${isMobileDevice}, Retry: ${retryCount})`);
+      const startTime = performance.now();
+
+      const response = await fetch(url, {
+        ...options,
+        headers,
+        credentials: 'include',
+        signal: controller.signal,
+      });
+
+      const endTime = performance.now();
+      console.log(`[MOBILE API] Response received in ${Math.round(endTime - startTime)}ms (Status: ${response.status})`);
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.detail || `Request failed: ${response.status}`;
+        
+        // Mobile-specific retry logic for network issues
+        if (isMobileDevice && retryCount < 2 && (response.status >= 500 || response.status === 0)) {
+          console.log(`[MOBILE API] Retrying request due to server error (attempt ${retryCount + 1}/3)`);
+          await new Promise(resolve => setTimeout(resolve, (retryCount + 1) * 1000));
+          return this.fetch(endpoint, options, retryCount + 1);
+        }
+        
+        throw new Error(errorMessage);
+      }
+
+      return response.json();
+    } catch (error) {
+      clearTimeout(timeoutId);
+      
+      // Handle specific mobile network errors
+      if (error instanceof Error) {
+        console.error(`[MOBILE API] Error for ${endpoint}:`, error.message);
+        
+        // Mobile-specific retry for network errors
+        if (isMobileDevice && retryCount < 2) {
+          if (error.name === 'AbortError' || 
+              error.message.includes('network') || 
+              error.message.includes('fetch') ||
+              error.message.includes('timeout')) {
+            console.log(`[MOBILE API] Retrying due to network error (attempt ${retryCount + 1}/3)`);
+            await new Promise(resolve => setTimeout(resolve, (retryCount + 1) * 2000));
+            return this.fetch(endpoint, options, retryCount + 1);
+          }
+        }
+        
+        // Enhanced error messages for mobile debugging
+        if (error.name === 'AbortError') {
+          throw new Error(`Request timeout (${timeoutMs}ms) - check your network connection`);
+        } else if (error.message.includes('CORS')) {
+          throw new Error('Cross-origin request blocked - API configuration issue');
+        } else if (error.message.includes('fetch')) {
+          throw new Error('Network connection failed - check your internet connection');
+        }
+      }
+      
+      throw error;
     }
-
-    return response.json();
   }
 
   /**
@@ -984,14 +1062,16 @@ class ApiService {
    */
   async login(email: string, password: string): Promise<AuthResponse> {
     try {
-      // Backend expects OAuth2PasswordRequestForm which requires form data
-      const formData = new FormData();
-      formData.append('username', email); // OAuth2 uses 'username' field for email
-      formData.append('password', password);
-      
+      // Backend expects JSON data with email and password
       const response = await fetch(`${this.baseUrl}/api/auth/token`, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        }),
         credentials: 'include',
       });
       
@@ -1000,7 +1080,25 @@ class ApiService {
         throw new Error(errorData.detail || `Login failed: ${response.status}`);
       }
       
-      const data: AuthResponse = await response.json();
+      const rawData = await response.json();
+      
+      // Map backend response to frontend format
+      const data: AuthResponse = {
+        access_token: rawData.access_token,
+        token_type: rawData.token_type || 'bearer',
+        user: {
+          id: rawData.user.id.toString(),
+          email: rawData.user.email,
+          full_name: rawData.user.name, // Backend returns 'name', frontend expects 'full_name'
+          points_balance: rawData.user.points || 0,
+          created_at: rawData.user.created_at || new Date().toISOString(),
+          updated_at: rawData.user.updated_at || new Date().toISOString(),
+          is_admin: false,
+          frequent_flyer_programs: [],
+          saved_searches: [],
+          search_history: []
+        }
+      };
       
       // Store token in localStorage
       if (data.access_token) {
@@ -1028,32 +1126,156 @@ class ApiService {
     }>;
   }): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/auth/register`, {
+      console.log('🚀 Starting registration process...');
+      console.log('📍 Base URL:', this.baseUrl);
+      console.log('📝 User data:', { ...userData, password: '[HIDDEN]' });
+      
+      const url = `${this.baseUrl}/api/auth/register`;
+      console.log('🌐 Full registration URL:', url);
+      
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      console.log('📋 Request headers:', headers);
+      
+      // Map full_name to name for backend compatibility
+      const backendUserData = {
+        email: userData.email,
+        password: userData.password,
+        name: userData.full_name, // Backend expects 'name' field
+        preferred_airport: userData.preferred_airport,
+        frequent_flyer_programs: userData.frequent_flyer_programs
+      };
+      
+      const body = JSON.stringify(backendUserData);
+      console.log('📦 Request body length:', body.length);
+      
+      console.log('📡 Making registration request...');
+      const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
+        headers,
+        body,
         credentials: 'include',
       });
       
+      console.log('✅ Response received!');
+      console.log('📊 Response status:', response.status, response.statusText);
+      console.log('📋 Response headers:', Object.fromEntries(response.headers.entries()));
+      
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || `Registration failed: ${response.status}`);
+        console.log('❌ Response not OK, attempting to parse error...');
+        let errorData;
+        try {
+          errorData = await response.json();
+          console.log('📄 Error data:', errorData);
+        } catch (parseError) {
+          console.log('⚠️ Could not parse error response as JSON:', parseError);
+          const errorText = await response.text();
+          console.log('📄 Error text:', errorText);
+          errorData = { detail: errorText };
+        }
+        throw new Error(errorData.detail || `Registration failed: ${response.status} ${response.statusText}`);
       }
       
-      const data: AuthResponse = await response.json();
+      console.log('✅ Registration successful, parsing response...');
+      const rawData = await response.json();
+      console.log('📦 Raw response data:', { ...rawData, token: rawData.token ? '[TOKEN_RECEIVED]' : 'NO_TOKEN' });
+      
+      // Map backend response to frontend format
+      const data: AuthResponse = {
+        access_token: rawData.token, // Backend returns 'token', frontend expects 'access_token'
+        token_type: 'bearer',
+        user: {
+          id: rawData.user.id.toString(),
+          email: rawData.user.email,
+          full_name: rawData.user.name, // Backend returns 'name', frontend expects 'full_name'
+          points_balance: rawData.user.points || 0,
+          created_at: rawData.user.created_at || new Date().toISOString(),
+          updated_at: rawData.user.updated_at || new Date().toISOString(),
+          is_admin: false,
+          frequent_flyer_programs: [],
+          saved_searches: [],
+          search_history: []
+        }
+      };
       
       // Store token in localStorage
       if (data.access_token) {
         localStorage.setItem('token', data.access_token);
         this.token = data.access_token;
+        console.log('💾 Token stored in localStorage');
       }
       
+      console.log('🎉 Registration completed successfully!');
       return data;
     } catch (error: any) {
-      console.error('Registration API error:', error);
+      console.error('💥 Registration API error:', error);
+      console.error('📚 Error stack:', error.stack);
+      
+      // Additional network error diagnostics
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        console.error('🌐 Network error detected - backend might be down or CORS issue');
+        throw new Error('Connection failed: Unable to reach the server. Please check if the backend is running.');
+      } else if (error.name === 'AbortError') {
+        console.error('⏱️ Request timeout detected');
+        throw new Error('Request timeout: The server took too long to respond.');
+      }
+      
       throw new Error(error.message || 'Failed to register');
+    }
+  }
+
+  async forgotPassword(email: string, captchaToken?: string): Promise<{ message: string; success: boolean }> {
+    try {
+      const requestBody: any = { email };
+      if (captchaToken) {
+        requestBody.captcha_token = captchaToken;
+      }
+      
+      const response = await fetch(`${this.baseUrl}/api/auth/forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+        credentials: 'include',
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || `Failed to send reset email: ${response.status}`);
+      }
+      
+      return await response.json();
+    } catch (error: any) {
+      console.error('Forgot password API error:', error);
+      throw new Error(error.message || 'Failed to send reset email');
+    }
+  }
+
+  async resetPassword(token: string, newPassword: string): Promise<{ message: string }> {
+    try {
+      const response = await fetch(`${this.baseUrl}/api/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          token, 
+          new_password: newPassword 
+        }),
+        credentials: 'include',
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || `Password reset failed: ${response.status}`);
+      }
+      
+      return await response.json();
+    } catch (error: any) {
+      console.error('Reset password API error:', error);
+      throw new Error(error.message || 'Failed to reset password');
     }
   }
 
@@ -1111,7 +1333,7 @@ class ApiService {
 
   async handleGoogleCallback(code: string, state?: string): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/auth/google/callback`, {
+              const response = await fetch(`${this.baseUrl}/api/auth/google/callback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

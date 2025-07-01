@@ -327,13 +327,13 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       <DateRangePicker
                         value={dateRange}
                         onChange={setDateRange}
-                        className="w-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20"
+                        className="w-full date-picker-dark-theme"
                       />
                     ) : (
                       <DatePicker
                         value={dateRange.start}
                         onChange={(date) => setDateRange({...dateRange, start: date!})}
-                        className="w-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20"
+                        className="w-full date-picker-dark-theme"
                       />
                     )}
                   </div>
@@ -350,12 +350,28 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       className="w-full"
                       classNames={{
                         trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white"
+                        value: "text-white",
+                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
+                        listbox: "bg-gray-900/95"
+                      }}
+                      listboxProps={{
+                        itemClasses: {
+                          base: "text-white hover:bg-white/10 data-[hover=true]:bg-white/10 data-[selectable=true]:focus:bg-white/10 rounded-lg transition-colors",
+                          selectedIcon: "text-[#FFD700]"
+                        }
+                      }}
+                      popoverProps={{
+                        classNames: {
+                          base: "before:bg-gray-900/95",
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
+                        }
                       }}
                       size="lg"
                     >
                       {mileagePrograms.map((program) => (
-                        <SelectItem key={program.key}>
+                        <SelectItem 
+                          key={program.key}
+                        >
                           {program.label}
                         </SelectItem>
                       ))}
@@ -374,12 +390,28 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       className="w-full"
                       classNames={{
                         trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white"
+                        value: "text-white",
+                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
+                        listbox: "bg-gray-900/95"
+                      }}
+                      listboxProps={{
+                        itemClasses: {
+                          base: "text-white hover:bg-white/10 data-[hover=true]:bg-white/10 data-[selectable=true]:focus:bg-white/10 rounded-lg transition-colors",
+                          selectedIcon: "text-[#FFD700]"
+                        }
+                      }}
+                      popoverProps={{
+                        classNames: {
+                          base: "before:bg-gray-900/95",
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
+                        }
                       }}
                       size="lg"
                     >
                       {passengerCounts.map((count) => (
-                        <SelectItem key={count.key}>
+                        <SelectItem 
+                          key={count.key}
+                        >
                           {count.label}
                         </SelectItem>
                       ))}
@@ -398,12 +430,28 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       className="w-full"
                       classNames={{
                         trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white"
+                        value: "text-white",
+                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
+                        listbox: "bg-gray-900/95"
+                      }}
+                      listboxProps={{
+                        itemClasses: {
+                          base: "text-white hover:bg-white/10 data-[hover=true]:bg-white/10 data-[selectable=true]:focus:bg-white/10 rounded-lg transition-colors",
+                          selectedIcon: "text-[#FFD700]"
+                        }
+                      }}
+                      popoverProps={{
+                        classNames: {
+                          base: "before:bg-gray-900/95",
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
+                        }
                       }}
                       size="lg"
                     >
                       {cabinClasses.map((cabin) => (
-                        <SelectItem key={cabin.key}>
+                        <SelectItem 
+                          key={cabin.key}
+                        >
                           {cabin.label}
                         </SelectItem>
                       ))}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroPoints - Test Page</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, hsl(222, 84%, 10%), hsl(222, 84%, 21%));
+            color: white;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            color: #fbbf24;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+        .info {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .nav-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: rgba(251, 191, 36, 0.1);
+            color: #fbbf24;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: rgba(251, 191, 36, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛩️ AeroPoints Status Check</h1>
+        
+        <div class="status success">
+            ✅ <strong>Static HTML Loading:</strong> This test page is loading correctly
+        </div>
+        
+        <div class="status info">
+            ℹ️ <strong>Test Info:</strong> This page verifies that the server is running and basic styling works
+        </div>
+        
+        <div class="status info">
+            🔄 <strong>Next Steps:</strong> Try the links below to test the main application
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="nav-link">🏠 Main Application</a>
+            <a href="/#/login" class="nav-link">🔐 Login Page</a>
+            <a href="/#/register" class="nav-link">📝 Register Page</a>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <h3>If you see this page:</h3>
+            <ul style="line-height: 1.8;">
+                <li>✅ Vite development server is running</li>
+                <li>✅ Static file serving works</li>
+                <li>✅ CSS styling is functional</li>
+                <li>✅ Basic server connectivity confirmed</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 20px; text-align: center; color: #9ca3af;">
+            <small>Test created: <span id="timestamp"></span></small>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        // Test console to ensure JavaScript is working
+        console.log('✅ AeroPoints Test Page: JavaScript is working');
+        console.log('🔍 Checking for React app...');
+        
+        // Check if React root exists after a moment
+        setTimeout(() => {
+            const root = document.querySelector('#root');
+            if (root) {
+                console.log('✅ React root element found');
+            } else {
+                console.log('❌ React root element not found');
+            }
+        }, 1000);
+    </script>
+</body>
+</html> 

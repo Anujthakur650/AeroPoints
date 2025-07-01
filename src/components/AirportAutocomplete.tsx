@@ -49,6 +49,12 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
   const [error, setError] = useState<string>("");
   const [noResults, setNoResults] = useState<boolean>(false);
   
+  // Mobile-specific state
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [touchStartTime, setTouchStartTime] = useState<number>(0);
+  const [retryCount, setRetryCount] = useState<number>(0);
+  const [networkError, setNetworkError] = useState<string>("");
+  
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
@@ -56,6 +62,19 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
   // Debounce the search query to avoid excessive API calls
   const debouncedQuery = useDebounce(query, 300);
   
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsMobile(mobile);
+      console.log(`AirportAutocomplete: Mobile device detected: ${mobile}`);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Load recent searches on mount
   useEffect(() => {
     loadRecentSearches();
@@ -111,7 +130,7 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
     loadRecentSearches();
   };
   
-  // Fetch airport suggestions when the debounced query changes
+  // Enhanced fetch suggestions with mobile-specific features
   useEffect(() => {
     const fetchSuggestions = async () => {
       // Skip if query is less than 2 characters
@@ -119,60 +138,101 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
         setSuggestions([]);
         setNoResults(false);
         setIsOpen(false);
+        setRetryCount(0);
+        setNetworkError("");
         return;
       }
       
       setIsLoading(true);
       setError("");
       setNoResults(false);
+      setNetworkError("");
       
       try {
-        console.log(`Searching for airports with query: "${debouncedQuery}"`);
+        console.log(`[MOBILE DEBUG] Searching for airports with query: "${debouncedQuery}" (Mobile: ${isMobile})`);
         
-        // Use the updated API service to fetch airport suggestions
-        // The service now returns the array of airports directly
+        // Mobile-specific timeout (longer for mobile networks)
+        const timeoutMs = isMobile ? 10000 : 5000;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+        
+        // Use the updated API service with mobile timeout
+        const startTime = performance.now();
         const results: Airport[] = await apiService.searchAirports(debouncedQuery, 10);
-        console.log('Airport search API response:', results);
+        const endTime = performance.now();
+        
+        clearTimeout(timeoutId);
+        
+        console.log(`[MOBILE DEBUG] Airport search completed in ${Math.round(endTime - startTime)}ms`);
+        console.log('[MOBILE DEBUG] Airport search API response:', results);
         
         if (results && results.length > 0) {
-          console.log(`Found ${results.length} airport suggestions for "${debouncedQuery}"`);
-          // Ensure results are mapped to the Airport interface if needed
-          // Assuming the API returns data matching the Airport interface
+          console.log(`[MOBILE DEBUG] Found ${results.length} airport suggestions for "${debouncedQuery}"`);
           setSuggestions(results);
           setNoResults(false);
           setIsOpen(true);
+          setRetryCount(0); // Reset retry count on success
         } else {
-          console.log(`No airports found for "${debouncedQuery}"`);
+          console.log(`[MOBILE DEBUG] No airports found for "${debouncedQuery}"`);
           setSuggestions([]);
           setNoResults(true);
           setIsOpen(true);
         }
       } catch (error) {
-        console.error("Error fetching airport suggestions:", error);
-        setError(`Failed to fetch airport suggestions: ${error instanceof Error ? error.message : String(error)}`);
-        setSuggestions([]);
+        console.error("[MOBILE DEBUG] Error fetching airport suggestions:", error);
         
-        // Keep the fallback logic in case the API is down
-        const fallbackAirports = getFallbackAirports(debouncedQuery);
-        if (fallbackAirports.length > 0) {
-          console.log("Using fallback airports due to API error:", fallbackAirports.length);
-          setSuggestions(fallbackAirports);
-          setNoResults(false);
-          setIsOpen(true);
+        // Enhanced mobile error handling
+        let errorMessage = error instanceof Error ? error.message : String(error);
+        let shouldRetry = false;
+        
+        // Check for network-specific errors
+        if (errorMessage.includes('fetch') || errorMessage.includes('network') || errorMessage.includes('timeout')) {
+          setNetworkError("Network connection issue");
+          shouldRetry = retryCount < 2 && isMobile;
+        } else if (errorMessage.includes('CORS') || errorMessage.includes('blocked')) {
+          setNetworkError("Cross-origin request blocked");
+        } else if (errorMessage.includes('404') || errorMessage.includes('500')) {
+          setNetworkError("API server unavailable");
+          shouldRetry = retryCount < 1;
+        }
+        
+        // Mobile-specific retry logic
+        if (shouldRetry) {
+          console.log(`[MOBILE DEBUG] Retrying request (attempt ${retryCount + 1}/3)`);
+          setRetryCount(prev => prev + 1);
+          setTimeout(() => {
+            // Retry after delay
+            setIsLoading(true);
+          }, (retryCount + 1) * 1000);
         } else {
-          setNoResults(true);
-          setIsOpen(true); // Keep dropdown open to show "No results"
+          setError(`Failed to fetch airport suggestions: ${errorMessage}`);
+          setSuggestions([]);
+          
+          // Enhanced fallback for mobile
+          const fallbackAirports = getFallbackAirports(debouncedQuery);
+          if (fallbackAirports.length > 0) {
+            console.log("[MOBILE DEBUG] Using fallback airports due to API error:", fallbackAirports.length);
+            setSuggestions(fallbackAirports);
+            setNoResults(false);
+            setIsOpen(true);
+            setError("Using offline airport data");
+          } else {
+            setNoResults(true);
+            setIsOpen(true);
+          }
         }
       } finally {
-        setIsLoading(false);
+        if (retryCount === 0) {
+          setIsLoading(false);
+        }
       }
     };
     
     if (debouncedQuery.length >= 2) {
-      console.log(`Initiating search for "${debouncedQuery}" after debounce`);
+      console.log(`[MOBILE DEBUG] Initiating search for "${debouncedQuery}" after debounce`);
       fetchSuggestions();
     }
-  }, [debouncedQuery]);
+  }, [debouncedQuery, retryCount, isMobile]);
   
   // Fallback function that returns common airports matching the query
   const getFallbackAirports = (query: string): Airport[] => {
@@ -328,12 +388,17 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
       {isOpen && hasContent && (
         <div 
           ref={suggestionsRef}
-          className="absolute z-50 w-full max-h-64 mt-1 overflow-y-auto bg-content1 shadow-lg rounded-lg border border-default-200 dark:border-default-100"
+          className="airport-autocomplete-dropdown absolute left-0 right-0 top-full mt-1 max-h-48 overflow-y-auto"
+          style={{
+            zIndex: 99999,
+            maxWidth: '100%',
+            width: '100%'
+          }}
         >
           {/* Recent Searches Section */}
           {hasRecentSearches && (
-            <div className="border-b border-default-200 dark:border-default-100">
-              <div className="px-2 py-1 text-xs text-default-500 bg-default-100 font-medium">
+            <div className="border-b border-white/10">
+              <div className="px-3 py-2 text-xs text-gray-400 bg-gray-800/50 font-medium">
                 Recent Searches
               </div>
               
@@ -341,20 +406,20 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
                 <div 
                   key={`recent-${airport.iata}-${index}`}
                   className={`
-                    p-2 cursor-pointer hover:bg-default-100 
-                    ${selectedIndex === index ? 'bg-default-100' : ''}
+                    p-3 cursor-pointer transition-all duration-200 text-white
+                    ${selectedIndex === index ? 'bg-yellow-400/10 text-yellow-400' : 'hover:bg-white/5'}
                   `}
                   onClick={() => handleSelect(airport)}
                   onMouseEnter={() => setSelectedIndex(index)}
                 >
                   <div className="flex items-center">
-                    <Icon icon="lucide:clock" className="mr-2 text-default-400" />
-                    <div className="mr-2 bg-primary/10 text-primary rounded px-2 py-0.5 font-mono font-semibold">
+                    <Icon icon="lucide:clock" className="mr-2 text-gray-400 flex-shrink-0" />
+                    <div className="mr-2 bg-yellow-400/20 text-yellow-400 rounded px-2 py-0.5 font-mono font-semibold text-sm flex-shrink-0">
                       {airport.iata}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-medium">{airport.city}</div>
-                      <div className="text-xs text-default-500 truncate">{airport.name}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate">{airport.city}</div>
+                      <div className="text-xs text-gray-400 truncate">{airport.name}</div>
                     </div>
                   </div>
                 </div>
@@ -366,7 +431,7 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
           {suggestions.length > 0 && (
             <div>
               {hasRecentSearches && (
-                <div className="px-2 py-1 text-xs text-default-500 bg-default-100 font-medium">
+                <div className="px-3 py-2 text-xs text-gray-400 bg-gray-800/50 font-medium">
                   Search Results
                 </div>
               )}
@@ -375,21 +440,21 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
                 <div 
                   key={airport.iata || airport.icao}
                   className={`
-                    p-2 cursor-pointer hover:bg-default-100 
-                    ${selectedIndex === (hasRecentSearches ? index + recentSearches.length : index) ? 'bg-default-100' : ''}
+                    p-3 cursor-pointer transition-all duration-200 text-white
+                    ${selectedIndex === (hasRecentSearches ? index + recentSearches.length : index) ? 'bg-yellow-400/10 text-yellow-400' : 'hover:bg-white/5'}
                   `}
                   onClick={() => handleSelect(airport)}
                   onMouseEnter={() => setSelectedIndex(hasRecentSearches ? index + recentSearches.length : index)}
                 >
                   <div className="flex items-center">
-                    <div className="mr-2 bg-primary/10 text-primary rounded px-2 py-0.5 font-mono font-semibold">
+                    <div className="mr-2 bg-yellow-400/20 text-yellow-400 rounded px-2 py-0.5 font-mono font-semibold text-sm flex-shrink-0">
                       {airport.iata || airport.icao}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-medium">{airport.city}</div>
-                      <div className="text-xs text-default-500 truncate">{airport.name}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate">{airport.city}</div>
+                      <div className="text-xs text-gray-400 truncate">{airport.name}</div>
                     </div>
-                    <div className="text-xs text-default-400 ml-1">{airport.country}</div>
+                    <div className="text-xs text-gray-500 ml-1 flex-shrink-0">{airport.country}</div>
                   </div>
                 </div>
               ))}
@@ -398,9 +463,9 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
           
           {/* No Results Message */}
           {noResults && suggestions.length === 0 && (
-            <div className="p-3 text-center text-default-500">
-              <Icon icon="lucide:search-x" className="mx-auto mb-2 text-default-400" width={24} />
-              <p>No airports found for "{debouncedQuery}"</p>
+            <div className="p-4 text-center text-gray-400">
+              <Icon icon="lucide:search-x" className="mx-auto mb-2 text-gray-500" width={24} />
+              <p className="text-white">No airports found for "{debouncedQuery}"</p>
               <p className="text-xs mt-1">Try a different search term or airport code</p>
             </div>
           )}

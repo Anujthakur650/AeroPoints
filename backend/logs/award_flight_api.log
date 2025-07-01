@@ -7724,3 +7724,1444 @@ Call log:
 [2025-06-17 13:38:13,227] INFO: Returning 3 flights
 [2025-06-17 13:38:13,227] INFO: Sample flight: {'id': '2iZgS4a8DCyIyIdO4VyELoDoS3V', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '8000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-17 13:38:13', 'layovers': []}
 [2025-06-17 13:38:13,227] INFO: Real-time data flag: True
+[2025-06-17 14:46:17,667] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:46:17,678] INFO: Loading airport data...
+[2025-06-17 14:46:17,757] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:46:17,757] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:46:17,759] INFO: Example airports:
+[2025-06-17 14:46:17,759] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:46:17,759] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:46:17,759] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 14:46:33,901] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:46:33,902] INFO: Loading airport data...
+[2025-06-17 14:46:33,977] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:46:33,977] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:46:33,978] INFO: Example airports:
+[2025-06-17 14:46:33,979] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:46:33,979] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:46:33,979] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 14:46:46,780] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:46:46,781] INFO: Loading airport data...
+[2025-06-17 14:46:46,858] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:46:46,859] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:46:46,860] INFO: Example airports:
+[2025-06-17 14:46:46,860] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:46:46,860] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:46:46,860] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 14:47:01,929] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:47:01,930] INFO: Loading airport data...
+[2025-06-17 14:47:02,007] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:47:02,007] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:47:02,008] INFO: Example airports:
+[2025-06-17 14:47:02,008] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:47:02,008] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:47:02,008] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 14:47:09,587] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:47:09,588] INFO: Loading airport data...
+[2025-06-17 14:47:09,663] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:47:09,663] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:47:09,664] INFO: Example airports:
+[2025-06-17 14:47:09,665] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:47:09,665] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:47:09,665] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 14:47:29,462] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 14:47:29,463] INFO: Loading airport data...
+[2025-06-17 14:47:29,542] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 14:47:29,542] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 14:47:29,543] INFO: Example airports:
+[2025-06-17 14:47:29,544] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 14:47:29,544] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 14:47:29,544] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:01:30,722] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:01:30,731] INFO: Loading airport data...
+[2025-06-17 15:01:30,811] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:01:30,811] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:01:30,813] INFO: Example airports:
+[2025-06-17 15:01:30,813] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:01:30,813] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:01:30,813] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:02:46,997] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:02:46,998] INFO: Loading airport data...
+[2025-06-17 15:02:47,074] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:02:47,074] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:02:47,076] INFO: Example airports:
+[2025-06-17 15:02:47,076] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:02:47,076] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:02:47,076] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:03:11,841] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:03:11,843] INFO: Loading airport data...
+[2025-06-17 15:03:11,919] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:03:11,919] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:03:11,920] INFO: Example airports:
+[2025-06-17 15:03:11,920] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:03:11,920] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:03:11,920] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:03:32,030] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:03:32,031] INFO: Loading airport data...
+[2025-06-17 15:03:32,111] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:03:32,111] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:03:32,112] INFO: Example airports:
+[2025-06-17 15:03:32,113] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:03:32,113] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:03:32,113] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:07:28,163] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:07:28,174] INFO: Loading airport data...
+[2025-06-17 15:07:28,252] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:07:28,252] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:07:28,253] INFO: Example airports:
+[2025-06-17 15:07:28,254] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:07:28,254] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:07:28,254] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:07:35,619] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:07:35,620] INFO: Loading airport data...
+[2025-06-17 15:07:35,698] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:07:35,698] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:07:35,699] INFO: Example airports:
+[2025-06-17 15:07:35,699] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:07:35,699] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:07:35,699] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:20:10,938] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:20:10,952] INFO: Loading airport data...
+[2025-06-17 15:20:11,031] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:20:11,032] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:20:11,033] INFO: Example airports:
+[2025-06-17 15:20:11,033] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:20:11,033] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:20:11,033] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:20:21,038] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:20:21,039] INFO: Loading airport data...
+[2025-06-17 15:20:21,133] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:20:21,133] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:20:21,135] INFO: Example airports:
+[2025-06-17 15:20:21,135] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:20:21,135] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:20:21,135] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:20:27,216] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:20:27,218] INFO: Loading airport data...
+[2025-06-17 15:20:27,298] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:20:27,298] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:20:27,299] INFO: Example airports:
+[2025-06-17 15:20:27,300] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:20:27,300] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:20:27,300] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:20:41,986] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:20:41,987] INFO: Loading airport data...
+[2025-06-17 15:20:42,068] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:20:42,068] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:20:42,069] INFO: Example airports:
+[2025-06-17 15:20:42,070] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:20:42,070] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:20:42,070] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:28:10,377] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 15:28:10,389] INFO: Loading airport data...
+[2025-06-17 15:28:11,047] INFO: Loaded 7908 airports with IATA codes
+[2025-06-17 15:28:11,047] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-17 15:28:11,051] INFO: Example airports:
+[2025-06-17 15:28:11,053] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 15:28:11,053] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 15:28:11,053] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 15:28:27,023] WARNING: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/.venv/lib/python3.10/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-06-17 23:11:40,567] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:11:40,579] INFO: Loading airport data...
+[2025-06-17 23:11:40,736] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:11:40,736] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:11:40,738] INFO: Example airports:
+[2025-06-17 23:11:40,750] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:11:40,750] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:11:40,750] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:11:41,598] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:11:41,599] INFO: Loading airport data...
+[2025-06-17 23:11:41,745] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:11:41,745] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:11:41,747] INFO: Example airports:
+[2025-06-17 23:11:41,764] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:11:41,764] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:11:41,764] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:11:49,030] INFO: Health check endpoint accessed
+[2025-06-17 23:13:37,934] INFO: Airport search: query='XNA', limit=10
+[2025-06-17 23:13:37,967] INFO: Found 3 airports matching 'XNA'
+[2025-06-17 23:13:37,967] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-17 23:13:40,358] INFO: Airport search: query='DFW', limit=10
+[2025-06-17 23:13:40,393] INFO: Found 1 airports matching 'DFW'
+[2025-06-17 23:13:40,393] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-17 23:13:48,173] INFO: Serving flights: XNA to DFW on 2025-07-23
+[2025-06-17 23:13:48,173] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-17 23:13:48,173] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-17 23:13:48,174] INFO: Generating fresh real-time data for XNA-DFW-2025-07-23-economy
+[2025-06-17 23:13:48,174] INFO: Using seats.aero API for real-time flight data
+[2025-06-17 23:13:48,174] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-07-23
+[2025-06-17 23:13:48,174] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-17 23:13:48,174] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-17 23:13:48,174] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-07-23", "end_date": "2025-07-23", "cabin": "economy"}
+[2025-06-17 23:13:48,476] INFO: API Response - Status: 200
+[2025-06-17 23:13:48,477] INFO: Found 4 flights in seats.aero API response
+[2025-06-17 23:13:48,478] INFO: Caching 4 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-07-23-economy.json
+[2025-06-17 23:13:48,479] INFO: Successfully mapped 4 flights from seats.aero API
+[2025-06-17 23:13:48,481] INFO: Returning 4 flights
+[2025-06-17 23:13:48,482] INFO: Sample flight: {'id': '2lFKxc2LU5iCZgjRTlyOEq7cqAQ', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '8000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-17 23:13:48', 'layovers': []}
+[2025-06-17 23:13:48,482] INFO: Real-time data flag: True
+[2025-06-17 23:16:23,730] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:16:23,731] INFO: Loading airport data...
+[2025-06-17 23:16:23,875] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:16:23,875] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:16:23,876] INFO: Example airports:
+[2025-06-17 23:16:23,890] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:16:23,890] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:16:23,890] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:16:43,434] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:16:43,436] INFO: Loading airport data...
+[2025-06-17 23:16:43,596] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:16:43,597] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:16:43,599] INFO: Example airports:
+[2025-06-17 23:16:43,612] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:16:43,612] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:16:43,612] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:16:44,427] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:16:44,428] INFO: Loading airport data...
+[2025-06-17 23:16:44,589] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:16:44,589] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:16:44,592] INFO: Example airports:
+[2025-06-17 23:16:44,608] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:16:44,608] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:16:44,608] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:16:49,714] INFO: Health check endpoint accessed
+[2025-06-17 23:23:26,436] INFO: Health check endpoint accessed
+[2025-06-17 23:30:22,548] INFO: Health check endpoint accessed
+[2025-06-17 23:34:11,718] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:34:11,720] INFO: Loading airport data...
+[2025-06-17 23:34:11,854] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:34:11,854] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:34:11,855] INFO: Example airports:
+[2025-06-17 23:34:11,869] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:34:11,869] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:34:11,869] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:34:12,515] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:34:12,515] INFO: Loading airport data...
+[2025-06-17 23:34:12,657] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:34:12,657] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:34:12,659] INFO: Example airports:
+[2025-06-17 23:34:12,673] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:34:12,673] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:34:12,673] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-17 23:34:19,799] INFO: Health check endpoint accessed
+[2025-06-17 23:40:37,318] INFO: Health check endpoint accessed
+[2025-06-17 23:53:22,610] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-17 23:53:22,614] INFO: Loading airport data...
+[2025-06-17 23:53:24,360] INFO: Loaded 7859 airports with IATA codes
+[2025-06-17 23:53:24,360] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-17 23:53:24,369] INFO: Example airports:
+[2025-06-17 23:53:24,396] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-17 23:53:24,396] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-17 23:53:24,396] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-18 11:35:59,692] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-18 11:35:59,703] INFO: Loading airport data...
+[2025-06-18 11:35:59,856] INFO: Loaded 7859 airports with IATA codes
+[2025-06-18 11:35:59,856] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-18 11:35:59,858] INFO: Example airports:
+[2025-06-18 11:35:59,871] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-18 11:35:59,872] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-18 11:35:59,872] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-18 11:36:11,938] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-18 11:36:11,941] INFO: Loading airport data...
+[2025-06-18 11:36:15,128] INFO: Loaded 7859 airports with IATA codes
+[2025-06-18 11:36:15,128] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-18 11:36:15,133] INFO: Example airports:
+[2025-06-18 11:36:15,166] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-18 11:36:15,166] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-18 11:36:15,166] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 18:57:53,526] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 18:57:53,535] INFO: Loading airport data...
+[2025-06-19 18:57:53,713] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 18:57:53,713] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 18:57:53,716] INFO: Example airports:
+[2025-06-19 18:57:53,730] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 18:57:53,730] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 18:57:53,730] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 18:57:54,378] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 18:57:54,379] INFO: Loading airport data...
+[2025-06-19 18:57:54,519] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 18:57:54,519] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 18:57:54,521] INFO: Example airports:
+[2025-06-19 18:57:54,534] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 18:57:54,535] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 18:57:54,535] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 18:58:15,185] INFO: Health check endpoint accessed
+[2025-06-19 18:58:30,463] INFO: Airport search: query='DFW', limit=3
+[2025-06-19 18:58:30,496] INFO: Found 1 airports matching 'DFW'
+[2025-06-19 18:58:30,496] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-19 19:00:48,873] INFO: Airport search: query='dfw', limit=10
+[2025-06-19 19:00:48,909] INFO: Found 1 airports matching 'dfw'
+[2025-06-19 19:00:48,910] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-19 19:00:53,905] INFO: Airport search: query='fa', limit=10
+[2025-06-19 19:00:53,941] INFO: Found 10 airports matching 'fa'
+[2025-06-19 19:00:53,941] INFO: First result: {'iata': 'FAQ', 'icao': 'AYFR', 'name': 'Frieda River Airport', 'city': 'Frieda River', 'country': 'PG', 'latitude': -4.61047, 'longitude': 141.96014}
+[2025-06-19 19:00:54,236] INFO: Airport search: query='fat', limit=10
+[2025-06-19 19:00:54,267] INFO: Found 3 airports matching 'fat'
+[2025-06-19 19:00:54,267] INFO: First result: {'iata': 'FAT', 'icao': 'KFAT', 'name': 'Fresno Yosemite International Airport', 'city': 'Fresno', 'country': 'US', 'latitude': 36.77656, 'longitude': -119.71883}
+[2025-06-19 19:00:58,405] INFO: Airport search: query='bo', limit=10
+[2025-06-19 19:00:58,441] INFO: Found 10 airports matching 'bo'
+[2025-06-19 19:00:58,441] INFO: First result: {'iata': 'KBS', 'icao': 'GFBO', 'name': 'Bo Airport', 'city': 'Bo', 'country': 'SL', 'latitude': 7.9444, 'longitude': -11.761}
+[2025-06-19 19:00:59,354] INFO: Airport search: query='boze', limit=10
+[2025-06-19 19:00:59,370] INFO: Found 1 airports matching 'boze'
+[2025-06-19 19:00:59,370] INFO: First result: {'iata': 'BZN', 'icao': 'KBZN', 'name': 'Bozeman Yellowstone International Airport', 'city': 'Bozeman', 'country': 'US', 'latitude': 45.77724, 'longitude': -111.15026}
+[2025-06-19 19:01:00,225] INFO: Airport search: query='bozem', limit=10
+[2025-06-19 19:01:00,255] INFO: Found 1 airports matching 'bozem'
+[2025-06-19 19:01:00,256] INFO: First result: {'iata': 'BZN', 'icao': 'KBZN', 'name': 'Bozeman Yellowstone International Airport', 'city': 'Bozeman', 'country': 'US', 'latitude': 45.77724, 'longitude': -111.15026}
+[2025-06-19 19:01:05,573] INFO: Airport search: query='XNA', limit=10
+[2025-06-19 19:01:05,599] INFO: Found 3 airports matching 'XNA'
+[2025-06-19 19:01:05,600] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-19 19:01:07,332] INFO: Airport search: query='DFW', limit=10
+[2025-06-19 19:01:07,366] INFO: Found 1 airports matching 'DFW'
+[2025-06-19 19:01:07,366] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-19 19:01:15,514] INFO: Serving flights: XNA to DFW on 2025-07-23
+[2025-06-19 19:01:15,514] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-19 19:01:15,514] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-19 19:01:15,515] INFO: Generating fresh real-time data for XNA-DFW-2025-07-23-economy
+[2025-06-19 19:01:15,515] INFO: Using seats.aero API for real-time flight data
+[2025-06-19 19:01:15,515] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-07-23
+[2025-06-19 19:01:15,515] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-19 19:01:15,515] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-19 19:01:15,515] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-07-23", "end_date": "2025-07-23", "cabin": "economy"}
+[2025-06-19 19:01:19,072] INFO: API Response - Status: 200
+[2025-06-19 19:01:19,073] INFO: Found 4 flights in seats.aero API response
+[2025-06-19 19:01:19,073] INFO: Caching 4 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-07-23-economy.json
+[2025-06-19 19:01:19,074] INFO: Successfully mapped 4 flights from seats.aero API
+[2025-06-19 19:01:19,077] INFO: Returning 4 flights
+[2025-06-19 19:01:19,077] INFO: Sample flight: {'id': '2lFKxc2LU5iCZgjRTlyOEq7cqAQ', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '8000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-19 19:01:19', 'layovers': []}
+[2025-06-19 19:01:19,077] INFO: Real-time data flag: True
+[2025-06-19 19:12:01,561] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:12:01,570] INFO: Loading airport data...
+[2025-06-19 19:12:01,826] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:12:01,826] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:12:01,828] INFO: Example airports:
+[2025-06-19 19:12:01,843] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:12:01,844] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:12:01,844] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:12:28,247] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:12:28,250] INFO: Loading airport data...
+[2025-06-19 19:12:29,055] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:12:29,055] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:12:29,170] INFO: Example airports:
+[2025-06-19 19:12:29,490] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:12:29,536] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:12:29,536] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:12:38,736] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:12:38,738] INFO: Loading airport data...
+[2025-06-19 19:12:40,651] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:12:40,651] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:12:40,655] INFO: Example airports:
+[2025-06-19 19:12:40,700] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:12:40,700] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:12:40,700] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:12:43,626] INFO: Health check endpoint accessed
+[2025-06-19 19:14:23,390] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:14:23,393] INFO: Loading airport data...
+[2025-06-19 19:14:24,157] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:14:24,157] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:14:24,162] INFO: Example airports:
+[2025-06-19 19:14:24,255] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:14:24,256] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:14:24,256] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:14:34,167] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:14:34,174] INFO: Loading airport data...
+[2025-06-19 19:14:34,656] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:14:34,667] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:14:34,901] INFO: Example airports:
+[2025-06-19 19:14:34,942] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:14:34,942] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:14:34,942] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:14:47,530] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:14:47,531] INFO: Loading airport data...
+[2025-06-19 19:14:47,713] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:14:47,713] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:14:47,715] INFO: Example airports:
+[2025-06-19 19:14:47,731] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:14:47,731] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:14:47,731] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:18:19,760] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 19:18:19,774] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 19:18:19,774] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=V3mlqxtsBZ9u0BbfAdWPVuiSwMfk8IrYkvXPR3Ar3qQ
+[2025-06-19 19:22:23,730] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:22:23,732] INFO: Loading airport data...
+[2025-06-19 19:22:23,874] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:22:23,874] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:22:23,876] INFO: Example airports:
+[2025-06-19 19:22:23,888] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:22:23,888] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:22:23,888] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:23:42,045] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:23:42,058] INFO: Loading airport data...
+[2025-06-19 19:23:42,199] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:23:42,200] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:23:42,202] INFO: Example airports:
+[2025-06-19 19:23:42,214] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:23:42,214] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:23:42,214] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:23:42,350] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 19:28:39,187] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:28:39,196] INFO: Loading airport data...
+[2025-06-19 19:28:39,385] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:28:39,385] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:28:39,388] INFO: Example airports:
+[2025-06-19 19:28:39,405] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:28:39,405] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:28:39,405] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:28:39,577] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 19:28:40,345] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:28:40,347] INFO: Loading airport data...
+[2025-06-19 19:28:40,605] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:28:40,606] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:28:40,690] INFO: Example airports:
+[2025-06-19 19:28:40,889] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:28:40,904] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:28:40,904] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:28:41,688] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 19:28:51,956] INFO: Health check endpoint accessed
+[2025-06-19 19:29:08,754] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 19:29:19,147] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 19:29:29,481] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 19:29:29,522] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 19:29:29,552] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 19:42:42,995] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:42:43,006] INFO: Loading airport data...
+[2025-06-19 19:42:43,146] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:42:43,146] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:42:43,148] INFO: Example airports:
+[2025-06-19 19:42:43,161] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:42:43,161] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:42:43,162] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:42:57,996] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:42:57,997] INFO: Loading airport data...
+[2025-06-19 19:42:58,142] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:42:58,143] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:42:58,145] INFO: Example airports:
+[2025-06-19 19:42:58,159] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:42:58,159] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:42:58,159] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:43:07,555] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:43:07,556] INFO: Loading airport data...
+[2025-06-19 19:43:07,689] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:43:07,689] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:43:07,691] INFO: Example airports:
+[2025-06-19 19:43:07,701] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:43:07,701] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:43:07,701] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:43:24,791] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:43:24,793] INFO: Loading airport data...
+[2025-06-19 19:43:24,933] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:43:24,933] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:43:24,935] INFO: Example airports:
+[2025-06-19 19:43:24,948] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:43:24,948] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:43:24,948] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:44:21,696] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:44:21,709] INFO: Loading airport data...
+[2025-06-19 19:44:21,850] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:44:21,850] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:44:21,851] INFO: Example airports:
+[2025-06-19 19:44:21,862] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:44:21,862] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:44:21,863] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:44:22,441] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:44:22,442] INFO: Loading airport data...
+[2025-06-19 19:44:22,582] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:44:22,582] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:44:22,583] INFO: Example airports:
+[2025-06-19 19:44:22,595] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:44:22,595] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:44:22,595] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:44:36,130] INFO: Health check endpoint accessed
+[2025-06-19 19:45:09,950] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:45:09,951] INFO: Loading airport data...
+[2025-06-19 19:45:10,094] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:45:10,094] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:45:10,096] INFO: Example airports:
+[2025-06-19 19:45:10,108] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:45:10,108] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:45:10,108] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:45:33,333] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 19:45:33,334] INFO: Loading airport data...
+[2025-06-19 19:45:33,473] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 19:45:33,473] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 19:45:33,475] INFO: Example airports:
+[2025-06-19 19:45:33,487] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 19:45:33,487] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 19:45:33,487] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 19:45:56,524] ERROR: Error in forgot_password: unable to open database file
+[2025-06-19 20:10:39,768] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 20:10:39,783] INFO: Loading airport data...
+[2025-06-19 20:10:40,261] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 20:10:40,261] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 20:10:40,267] INFO: Example airports:
+[2025-06-19 20:10:40,309] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 20:10:40,310] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 20:10:40,310] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 20:10:43,186] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 20:10:43,188] INFO: Loading airport data...
+[2025-06-19 20:10:43,959] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 20:10:43,960] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 20:10:43,965] INFO: Example airports:
+[2025-06-19 20:10:44,002] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 20:10:44,003] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 20:10:44,003] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 20:10:48,267] INFO: Health check endpoint accessed
+[2025-06-19 20:11:08,639] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 20:11:08,643] INFO: Loading airport data...
+[2025-06-19 20:11:09,460] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 20:11:09,464] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 20:11:09,537] INFO: Example airports:
+[2025-06-19 20:11:09,670] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 20:11:09,670] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 20:11:09,670] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 20:11:20,374] ERROR: Error in forgot_password: no such table: users
+[2025-06-19 20:11:27,035] INFO: Health check endpoint accessed
+[2025-06-19 20:11:27,554] ERROR: Error in forgot_password: no such table: users
+[2025-06-19 20:11:30,772] ERROR: Database error during password reset: no such table: password_reset_tokens
+[2025-06-19 20:11:37,485] ERROR: Database error during password reset: no such table: password_reset_tokens
+[2025-06-19 20:12:53,807] INFO: Health check endpoint accessed
+[2025-06-19 20:23:01,977] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 20:23:01,991] INFO: Loading airport data...
+[2025-06-19 20:23:02,314] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 20:23:02,314] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 20:23:02,320] INFO: Example airports:
+[2025-06-19 20:23:02,381] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 20:23:02,383] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 20:23:02,384] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 20:23:04,267] INFO: Health check endpoint accessed
+[2025-06-19 20:23:45,522] INFO: Health check endpoint accessed
+[2025-06-19 20:24:53,075] INFO: Health check endpoint accessed
+[2025-06-19 20:28:24,432] INFO: Health check endpoint accessed
+[2025-06-19 21:01:08,818] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:01:08,820] INFO: Loading airport data...
+[2025-06-19 21:01:08,957] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:01:08,958] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:01:08,959] INFO: Example airports:
+[2025-06-19 21:01:08,972] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:01:08,972] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:01:08,972] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:01:09,107] INFO: Initializing database...
+[2025-06-19 21:01:09,110] INFO: Database initialized successfully
+[2025-06-19 21:01:09,133] INFO: Initializing database...
+[2025-06-19 21:01:09,133] INFO: Database initialized successfully
+[2025-06-19 21:01:30,360] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:01:30,365] INFO: Loading airport data...
+[2025-06-19 21:01:30,822] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:01:30,822] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:01:30,826] INFO: Example airports:
+[2025-06-19 21:01:30,903] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:01:30,904] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:01:30,904] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:01:31,451] INFO: Initializing database...
+[2025-06-19 21:01:31,455] INFO: Database initialized successfully
+[2025-06-19 21:01:31,506] INFO: Initializing database...
+[2025-06-19 21:01:31,508] INFO: Database initialized successfully
+[2025-06-19 21:01:53,844] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:01:53,849] INFO: Loading airport data...
+[2025-06-19 21:01:55,424] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:01:55,424] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:01:55,431] INFO: Example airports:
+[2025-06-19 21:01:55,662] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:01:55,662] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:01:55,663] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:01:56,323] INFO: Initializing database...
+[2025-06-19 21:01:56,329] INFO: Database initialized successfully
+[2025-06-19 21:01:56,430] INFO: Initializing database...
+[2025-06-19 21:01:56,435] INFO: Database initialized successfully
+[2025-06-19 21:02:31,857] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:02:31,859] INFO: Loading airport data...
+[2025-06-19 21:02:33,011] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:02:33,012] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:02:33,017] INFO: Example airports:
+[2025-06-19 21:02:33,113] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:02:33,114] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:02:33,114] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:02:33,624] INFO: Initializing database...
+[2025-06-19 21:02:33,626] INFO: Database initialized successfully
+[2025-06-19 21:02:33,671] INFO: Initializing database...
+[2025-06-19 21:02:33,673] INFO: Database initialized successfully
+[2025-06-19 21:02:54,376] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:02:54,378] INFO: Loading airport data...
+[2025-06-19 21:02:54,735] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:02:54,735] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:02:54,743] INFO: Example airports:
+[2025-06-19 21:02:54,873] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:02:54,873] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:02:54,874] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:02:55,514] INFO: Initializing database...
+[2025-06-19 21:02:55,521] INFO: Database initialized successfully
+[2025-06-19 21:02:55,655] INFO: Initializing database...
+[2025-06-19 21:02:55,656] INFO: Database initialized successfully
+[2025-06-19 21:03:57,701] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:03:57,703] INFO: Loading airport data...
+[2025-06-19 21:03:58,916] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:03:58,916] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:03:59,002] INFO: Example airports:
+[2025-06-19 21:03:59,186] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:03:59,186] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:03:59,186] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:03:59,991] ERROR: ❌ Failed to initialize auth database: name 'init_auth_db' is not defined
+[2025-06-19 21:04:00,023] INFO: Initializing database...
+[2025-06-19 21:04:00,026] INFO: Database initialized successfully
+[2025-06-19 21:04:00,143] INFO: Initializing database...
+[2025-06-19 21:04:00,144] INFO: Database initialized successfully
+[2025-06-19 21:04:11,258] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:04:11,263] INFO: Loading airport data...
+[2025-06-19 21:04:11,748] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:04:11,748] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:04:11,755] INFO: Example airports:
+[2025-06-19 21:04:11,792] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:04:11,792] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:04:11,792] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:04:12,377] INFO: Initializing database...
+[2025-06-19 21:04:12,382] INFO: Database initialized successfully
+[2025-06-19 21:04:12,470] INFO: Initializing database...
+[2025-06-19 21:04:12,472] INFO: Database initialized successfully
+[2025-06-19 21:04:19,418] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:04:19,419] INFO: Loading airport data...
+[2025-06-19 21:04:19,912] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:04:19,913] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:04:19,916] INFO: Example airports:
+[2025-06-19 21:04:19,955] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:04:19,956] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:04:19,956] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:04:20,412] INFO: Auth database initialized successfully
+[2025-06-19 21:04:20,414] INFO: ✅ Auth database initialized on module load
+[2025-06-19 21:04:20,472] INFO: Initializing database...
+[2025-06-19 21:04:20,474] INFO: Database initialized successfully
+[2025-06-19 21:04:20,647] INFO: Initializing database...
+[2025-06-19 21:04:20,651] INFO: Database initialized successfully
+[2025-06-19 21:04:31,199] INFO: Health check endpoint accessed
+[2025-06-19 21:04:31,437] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:04:31,438] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-19 21:04:31,438] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-19 21:04:31,439] INFO: Auth database initialized successfully
+[2025-06-19 21:04:31,440] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:04:31,441] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:04:31,442] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:04:31,442] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:04:31,442] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:04:31,442] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=zOGuyDe3nJxn0Mxfi9im3MOHwaOifhFevQP0JpZwTAQ
+[2025-06-19 21:04:31,442] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:04:31,442] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:04:31,442] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-19 21:04:31,551] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:04:31,552] INFO: 🔒 CAPTCHA token provided: Yes
+[2025-06-19 21:04:31,552] INFO: Auth database initialized successfully
+[2025-06-19 21:04:31,553] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:04:31,574] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:04:31,574] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:04:31,575] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:04:31,575] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:04:31,575] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=oSwq2mOuklxU_cRygQaPHl-szP4J-MiHJFUbkCsueYQ
+[2025-06-19 21:04:31,575] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:04:31,575] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:04:31,575] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-19 21:04:31,594] INFO: Password reset successful for user: anujthakur650@gmail.com
+[2025-06-19 21:04:57,559] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-19 21:04:57,561] INFO: Loading airport data...
+[2025-06-19 21:04:58,898] INFO: Loaded 7859 airports with IATA codes
+[2025-06-19 21:04:58,900] INFO: Loaded 28223 airports with ICAO codes
+[2025-06-19 21:04:58,904] INFO: Example airports:
+[2025-06-19 21:04:59,322] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-19 21:04:59,322] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-19 21:04:59,322] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-19 21:04:59,910] INFO: Auth database initialized successfully
+[2025-06-19 21:04:59,910] INFO: ✅ Auth database initialized on module load
+[2025-06-19 21:04:59,932] INFO: Initializing database...
+[2025-06-19 21:04:59,934] INFO: Database initialized successfully
+[2025-06-19 21:05:00,499] INFO: Initializing database...
+[2025-06-19 21:05:00,500] INFO: Database initialized successfully
+[2025-06-19 21:05:00,609] INFO: Health check endpoint accessed
+[2025-06-19 21:05:00,736] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:05:00,736] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-19 21:05:00,736] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-19 21:05:00,737] INFO: Auth database initialized successfully
+[2025-06-19 21:05:00,738] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:05:00,741] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:05:00,741] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:05:00,741] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:05:00,741] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:05:00,741] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=39us7mNFU_kfGuOKEITCNtDmS9QRzoGkCtIShpiuufg
+[2025-06-19 21:05:00,741] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:05:00,741] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:05:00,741] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-19 21:05:00,760] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:05:00,780] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:05:00,780] INFO: 🔒 CAPTCHA token provided: Yes
+[2025-06-19 21:05:00,781] INFO: Auth database initialized successfully
+[2025-06-19 21:05:00,781] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:05:00,782] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:05:00,782] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:05:00,782] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:05:00,782] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:05:00,782] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=jEg7gm62lNxKoSzUxGponpTgHfxf4R7nkPAT3pZ6QpY
+[2025-06-19 21:05:00,782] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:05:00,782] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:05:00,783] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-19 21:05:00,815] INFO: Password reset successful for user: anujthakur650@gmail.com
+[2025-06-19 21:05:06,602] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:05:06,604] INFO: 🔒 CAPTCHA token provided: Yes
+[2025-06-19 21:05:06,604] INFO: Auth database initialized successfully
+[2025-06-19 21:05:06,604] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:05:06,605] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:05:06,605] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:05:06,605] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:05:06,605] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:05:06,605] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=x_rCQ5y_FQvgt47CLJD0ELwKHS73orsa-5srzXXR84M
+[2025-06-19 21:05:06,605] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:05:06,605] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:05:06,605] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-19 21:08:18,434] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-19 21:08:18,434] INFO: 🔒 CAPTCHA token provided: Yes
+[2025-06-19 21:08:18,435] INFO: Auth database initialized successfully
+[2025-06-19 21:08:18,436] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-19 21:08:18,437] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-19 21:08:18,437] WARNING: 📧 Email service not configured. Set SMTP_USERNAME and SMTP_PASSWORD environment variables.
+[2025-06-19 21:08:18,438] WARNING: 📧 Email service not configured. Password reset email not sent.
+[2025-06-19 21:08:18,438] INFO: 📧 Would send reset email to: anujthakur650@gmail.com
+[2025-06-19 21:08:18,438] INFO: 📧 Reset link: http://localhost:5173/reset-password?token=yl9mtrelgSUnNEAkrG6MLXWBa_9-xwL74NMlFaxseKA
+[2025-06-19 21:08:18,438] INFO: 📧 User: Anuj Singh
+[2025-06-19 21:08:18,438] INFO: 📧 To enable email sending, set SMTP_USERNAME and SMTP_PASSWORD environment variables
+[2025-06-19 21:08:18,438] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-25 15:21:36,887] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-25 15:21:36,900] INFO: Loading airport data...
+[2025-06-25 15:21:36,975] INFO: Loaded 7908 airports with IATA codes
+[2025-06-25 15:21:36,976] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-25 15:21:36,977] INFO: Example airports:
+[2025-06-25 15:21:36,977] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-25 15:21:36,977] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-25 15:21:36,977] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-25 15:28:01,495] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-25 15:28:01,509] INFO: Loading airport data...
+[2025-06-25 15:28:01,583] INFO: Loaded 7908 airports with IATA codes
+[2025-06-25 15:28:01,583] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-25 15:28:01,584] INFO: Example airports:
+[2025-06-25 15:28:01,585] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-25 15:28:01,585] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-25 15:28:01,585] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-25 15:28:50,390] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-25 15:28:50,404] INFO: Loading airport data...
+[2025-06-25 15:28:50,502] INFO: Loaded 7908 airports with IATA codes
+[2025-06-25 15:28:50,502] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-25 15:28:50,503] INFO: Example airports:
+[2025-06-25 15:28:50,504] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-25 15:28:50,504] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-25 15:28:50,504] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:25:53,828] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:26:07,853] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:26:07,859] INFO: Loading airport data...
+[2025-06-27 11:26:08,980] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:26:08,980] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:26:09,100] INFO: Example airports:
+[2025-06-27 11:26:09,103] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:26:09,103] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:26:09,103] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:31:41,121] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:31:41,129] INFO: Loading airport data...
+[2025-06-27 11:31:41,223] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:31:41,224] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:31:41,225] INFO: Example airports:
+[2025-06-27 11:31:41,226] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:31:41,226] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:31:41,226] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:32:32,229] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:32:32,242] INFO: Loading airport data...
+[2025-06-27 11:32:32,333] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:32:32,333] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:32:32,334] INFO: Example airports:
+[2025-06-27 11:32:32,334] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:32:32,334] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:32:32,334] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:33:50,762] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:33:50,765] INFO: Loading airport data...
+[2025-06-27 11:33:50,852] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:33:50,852] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:33:50,854] INFO: Example airports:
+[2025-06-27 11:33:50,854] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:33:50,854] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:33:50,854] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:34:13,613] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:34:13,616] INFO: Loading airport data...
+[2025-06-27 11:34:13,776] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:34:13,776] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:34:13,778] INFO: Example airports:
+[2025-06-27 11:34:13,779] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:34:13,779] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:34:13,779] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 11:35:01,388] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 11:35:01,391] INFO: Loading airport data...
+[2025-06-27 11:35:03,488] INFO: Loaded 7860 airports with IATA codes
+[2025-06-27 11:35:03,489] INFO: Loaded 28224 airports with ICAO codes
+[2025-06-27 11:35:03,492] INFO: Example airports:
+[2025-06-27 11:35:03,493] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 11:35:03,493] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 11:35:03,493] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 12:45:13,362] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 12:45:13,372] INFO: Loading airport data...
+[2025-06-27 12:45:13,454] INFO: Loaded 7908 airports with IATA codes
+[2025-06-27 12:45:13,454] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-27 12:45:13,455] INFO: Example airports:
+[2025-06-27 12:45:13,455] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 12:45:13,455] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 12:45:13,455] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 13:10:06,202] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 13:10:06,216] INFO: Loading airport data...
+[2025-06-27 13:10:07,088] INFO: Loaded 7908 airports with IATA codes
+[2025-06-27 13:10:07,088] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-27 13:10:07,092] INFO: Example airports:
+[2025-06-27 13:10:07,093] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 13:10:07,093] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 13:10:07,093] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 13:10:07,463] INFO: Auth database initialized successfully
+[2025-06-27 13:10:07,463] INFO: ✅ Auth database initialized on module load
+[2025-06-27 13:10:07,469] INFO: Initializing database...
+[2025-06-27 13:10:07,470] INFO: Database initialized successfully
+[2025-06-27 13:10:08,469] INFO: Health check endpoint accessed
+[2025-06-27 13:10:09,658] INFO: Airport search: query='DFW', limit=3
+[2025-06-27 13:10:09,679] INFO: Found 1 airports matching 'DFW'
+[2025-06-27 13:10:09,679] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:10:45,810] INFO: Airport search: query='DFW', limit=5
+[2025-06-27 13:10:45,833] INFO: Found 1 airports matching 'DFW'
+[2025-06-27 13:10:45,833] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:10:46,035] INFO: Airport search: query='LAX', limit=5
+[2025-06-27 13:10:46,055] INFO: Found 1 airports matching 'LAX'
+[2025-06-27 13:10:46,055] INFO: First result: {'iata': 'LAX', 'icao': 'KLAX', 'name': 'Los Angeles International Airport', 'city': 'Los Angeles', 'country': 'US', 'latitude': 33.9425, 'longitude': -118.40805}
+[2025-06-27 13:10:46,064] INFO: Airport search: query='JFK', limit=5
+[2025-06-27 13:10:46,528] INFO: Found 1 airports matching 'JFK'
+[2025-06-27 13:10:46,528] INFO: First result: {'iata': 'JFK', 'icao': 'KJFK', 'name': 'John F Kennedy International Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.63993, 'longitude': -73.77869}
+[2025-06-27 13:10:46,535] INFO: Airport search: query='XNA', limit=5
+[2025-06-27 13:10:46,784] INFO: Found 3 airports matching 'XNA'
+[2025-06-27 13:10:46,784] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-27 13:10:46,790] INFO: Airport search: query='SEA', limit=5
+[2025-06-27 13:10:46,809] INFO: Found 5 airports matching 'SEA'
+[2025-06-27 13:10:46,810] INFO: First result: {'iata': 'SEA', 'icao': 'KSEA', 'name': 'Seattle-Tacoma International Airport', 'city': 'Seattle', 'country': 'US', 'latitude': 47.44989, 'longitude': -122.31178}
+[2025-06-27 13:10:46,817] INFO: Airport search: query='ORD', limit=5
+[2025-06-27 13:10:47,404] INFO: Found 5 airports matching 'ORD'
+[2025-06-27 13:10:47,404] INFO: First result: {'iata': 'ORD', 'icao': 'KORD', 'name': "Chicago O'Hare International Airport", 'city': 'Chicago', 'country': 'US', 'latitude': 41.97694, 'longitude': -87.90815}
+[2025-06-27 13:10:47,411] INFO: Airport search: query='dfw', limit=5
+[2025-06-27 13:10:47,428] INFO: Found 1 airports matching 'dfw'
+[2025-06-27 13:10:47,428] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:10:47,436] INFO: Airport search: query='dallas', limit=5
+[2025-06-27 13:10:47,685] INFO: Found 4 airports matching 'dallas'
+[2025-06-27 13:10:47,686] INFO: First result: {'iata': 'ADS', 'icao': 'KADS', 'name': 'Addison Airport', 'city': 'Dallas', 'country': 'US', 'latitude': 32.96856, 'longitude': -96.83644}
+[2025-06-27 13:10:47,905] INFO: Airport search: query='new york', limit=5
+[2025-06-27 13:10:47,905] INFO: Found 3 airports matching 'new york'
+[2025-06-27 13:10:47,905] INFO: First result: {'iata': 'JFK', 'icao': 'KJFK', 'name': 'John F Kennedy International Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.63993, 'longitude': -73.77869}
+[2025-06-27 13:10:47,919] INFO: Health check endpoint accessed
+[2025-06-27 13:10:47,942] INFO: Serving flights: DFW to LAX on 2025-07-15
+[2025-06-27 13:10:47,942] INFO: Request parameters: airline=None, cabin_class=None
+[2025-06-27 13:10:47,942] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:10:47,943] INFO: Generating fresh real-time data for DFW-LAX-2025-07-15
+[2025-06-27 13:10:47,943] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 13:10:47,943] INFO: Requesting flights from seats.aero: DFW to LAX on 2025-07-15
+[2025-06-27 13:10:47,943] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 13:10:47,943] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 13:10:47,943] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "LAX", "start_date": "2025-07-15", "end_date": "2025-07-15"}
+[2025-06-27 13:10:48,445] INFO: API Response - Status: 200
+[2025-06-27 13:10:48,446] INFO: Found 7 flights in seats.aero API response
+[2025-06-27 13:10:48,446] INFO: Caching 7 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-LAX-2025-07-15.json
+[2025-06-27 13:10:48,447] INFO: Successfully mapped 7 flights from seats.aero API
+[2025-06-27 13:10:48,448] INFO: Returning 7 flights
+[2025-06-27 13:10:48,448] INFO: Sample flight: {'id': '2lJttjkA0V1YRb5vcnTy74k505R', 'airline': 'smiles', 'flightNumber': 'sm100', 'origin': 'DFW', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '25000', 'cash': 10.1, 'seatsAvailable': 7, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:10:48', 'layovers': []}
+[2025-06-27 13:10:48,448] INFO: Real-time data flag: True
+[2025-06-27 13:10:53,462] INFO: Airport search: query='miami', limit=3
+[2025-06-27 13:10:53,463] INFO: Found 3 airports matching 'miami'
+[2025-06-27 13:10:53,463] INFO: First result: {'iata': 'MIA', 'icao': 'KMIA', 'name': 'Miami International Airport', 'city': 'Miami', 'country': 'US', 'latitude': 25.79536, 'longitude': -80.29012}
+[2025-06-27 13:10:54,654] INFO: Airport search: query='london', limit=5
+[2025-06-27 13:10:54,654] INFO: Found 5 airports matching 'london'
+[2025-06-27 13:10:54,654] INFO: First result: {'iata': 'LHR', 'icao': 'EGLL', 'name': 'London Heathrow Airport', 'city': 'London', 'country': 'GB', 'latitude': 51.4706, 'longitude': -0.46194}
+[2025-06-27 13:11:43,665] INFO: Airport search: query='sea', limit=10
+[2025-06-27 13:11:43,686] INFO: Found 10 airports matching 'sea'
+[2025-06-27 13:11:43,686] INFO: First result: {'iata': 'SEA', 'icao': 'KSEA', 'name': 'Seattle-Tacoma International Airport', 'city': 'Seattle', 'country': 'US', 'latitude': 47.44989, 'longitude': -122.31178}
+[2025-06-27 13:11:50,028] INFO: Airport search: query='dfw', limit=10
+[2025-06-27 13:11:50,055] INFO: Found 1 airports matching 'dfw'
+[2025-06-27 13:11:50,055] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:11:51,509] INFO: Airport search: query='DFW', limit=10
+[2025-06-27 13:11:51,543] INFO: Found 1 airports matching 'DFW'
+[2025-06-27 13:11:51,544] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:11:55,700] INFO: Airport search: query='lga', limit=10
+[2025-06-27 13:11:55,718] INFO: Found 5 airports matching 'lga'
+[2025-06-27 13:11:55,718] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-06-27 13:11:59,499] INFO: Airport search: query='LGA', limit=10
+[2025-06-27 13:11:59,808] INFO: Found 5 airports matching 'LGA'
+[2025-06-27 13:11:59,808] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-06-27 13:12:09,206] INFO: Serving flights: DFW to LGA on 2025-07-30
+[2025-06-27 13:12:09,206] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-27 13:12:09,206] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:12:09,207] INFO: Generating fresh real-time data for DFW-LGA-2025-07-30-economy
+[2025-06-27 13:12:09,207] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 13:12:09,207] INFO: Requesting flights from seats.aero: DFW to LGA on 2025-07-30
+[2025-06-27 13:12:09,207] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 13:12:09,208] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 13:12:09,208] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "LGA", "start_date": "2025-07-30", "end_date": "2025-07-30", "cabin": "economy"}
+[2025-06-27 13:12:09,338] INFO: API Response - Status: 200
+[2025-06-27 13:12:09,339] INFO: Found 6 flights in seats.aero API response
+[2025-06-27 13:12:09,339] INFO: Caching 6 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-LGA-2025-07-30-economy.json
+[2025-06-27 13:12:09,340] INFO: Successfully mapped 6 flights from seats.aero API
+[2025-06-27 13:12:09,341] INFO: Returning 6 flights
+[2025-06-27 13:12:09,341] INFO: Sample flight: {'id': '2l7h6yEFvgUnWlErw3dZ2W6ct3C', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'DFW', 'destination': 'LGA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7500', 'cash': 18.1, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:12:09', 'layovers': []}
+[2025-06-27 13:12:09,341] INFO: Real-time data flag: True
+[2025-06-27 13:16:04,479] INFO: Health check endpoint accessed
+[2025-06-27 13:21:04,599] INFO: Health check endpoint accessed
+[2025-06-27 13:21:06,205] INFO: Airport search: query='DFW', limit=3
+[2025-06-27 13:21:06,205] INFO: Found 1 airports matching 'DFW'
+[2025-06-27 13:21:06,205] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 13:21:07,366] INFO: Serving flights: LAX to JFK on 2025-07-15
+[2025-06-27 13:21:07,366] INFO: Request parameters: airline=None, cabin_class=None
+[2025-06-27 13:21:07,366] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:21:07,366] INFO: Generating fresh real-time data for LAX-JFK-2025-07-15
+[2025-06-27 13:21:07,366] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 13:21:07,366] INFO: Requesting flights from seats.aero: LAX to JFK on 2025-07-15
+[2025-06-27 13:21:07,366] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 13:21:07,366] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 13:21:07,366] INFO: API Request - Params: {"origin_airport": "LAX", "destination_airport": "JFK", "start_date": "2025-07-15", "end_date": "2025-07-15"}
+[2025-06-27 13:21:07,505] INFO: API Response - Status: 200
+[2025-06-27 13:21:07,506] INFO: Found 7 flights in seats.aero API response
+[2025-06-27 13:21:07,506] INFO: Caching 7 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/LAX-JFK-2025-07-15.json
+[2025-06-27 13:21:07,506] INFO: Successfully mapped 7 flights from seats.aero API
+[2025-06-27 13:21:07,506] INFO: Returning 7 flights
+[2025-06-27 13:21:07,506] INFO: Sample flight: {'id': '2lMHR3AFoxFSm0X6mqnWaZifq1X', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'LAX', 'destination': 'JFK', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '17500', 'cash': 11.2, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:21:07', 'layovers': []}
+[2025-06-27 13:21:07,506] INFO: Real-time data flag: True
+[2025-06-27 13:21:14,729] INFO: New user registered: test@example.com
+[2025-06-27 13:21:21,218] INFO: 🔒 Password reset request for: test@example.com
+[2025-06-27 13:21:21,218] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-27 13:21:21,218] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-27 13:21:21,219] INFO: Auth database initialized successfully
+[2025-06-27 13:21:21,220] INFO: ✅ User found: test@example.com
+[2025-06-27 13:21:21,224] INFO: 🔑 Reset token created for user: test@example.com
+[2025-06-27 13:21:21,226] INFO: 📧 Email service configured with smtp.gmail.com:587
+[2025-06-27 13:21:21,227] INFO: 📧 Sending password reset email to test@example.com
+[2025-06-27 13:21:22,980] INFO: 📧 Password reset email sent successfully to test@example.com
+[2025-06-27 13:21:22,981] INFO: 📧 Password reset email sent successfully to test@example.com
+[2025-06-27 13:23:27,085] INFO: Health check endpoint accessed
+[2025-06-27 13:23:27,094] INFO: Airport search: query='LAX', limit=3
+[2025-06-27 13:23:27,116] INFO: Found 1 airports matching 'LAX'
+[2025-06-27 13:23:27,116] INFO: First result: {'iata': 'LAX', 'icao': 'KLAX', 'name': 'Los Angeles International Airport', 'city': 'Los Angeles', 'country': 'US', 'latitude': 33.9425, 'longitude': -118.40805}
+[2025-06-27 13:23:27,124] INFO: Serving flights: DFW to LAX on 2025-07-15
+[2025-06-27 13:23:27,124] INFO: Request parameters: airline=None, cabin_class=None
+[2025-06-27 13:23:27,124] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:23:27,124] INFO: Found cached data for DFW-LAX-2025-07-15, file age: 758.7 seconds
+[2025-06-27 13:23:27,125] INFO: Using cached real-time data with 7 flights
+[2025-06-27 13:23:27,125] INFO: Returning 7 flights
+[2025-06-27 13:23:27,125] INFO: Sample flight: {'id': '2lJttjkA0V1YRb5vcnTy74k505R', 'airline': 'smiles', 'flightNumber': 'sm100', 'origin': 'DFW', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '25000', 'cash': 10.1, 'seatsAvailable': 7, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:10:48', 'layovers': []}
+[2025-06-27 13:23:27,125] INFO: Real-time data flag: True
+[2025-06-27 13:23:27,134] INFO: New user registered: test_1751048607@example.com
+[2025-06-27 13:23:27,147] INFO: 🔒 Password reset request for: test_1751048607@example.com
+[2025-06-27 13:23:27,147] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-27 13:23:27,147] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-27 13:23:27,148] INFO: Auth database initialized successfully
+[2025-06-27 13:23:27,149] INFO: ✅ User found: test_1751048607@example.com
+[2025-06-27 13:23:27,150] INFO: 🔑 Reset token created for user: test_1751048607@example.com
+[2025-06-27 13:23:27,150] INFO: 📧 Email service configured with smtp.gmail.com:587
+[2025-06-27 13:23:27,150] INFO: 📧 Sending password reset email to test_1751048607@example.com
+[2025-06-27 13:23:29,377] INFO: 📧 Password reset email sent successfully to test_1751048607@example.com
+[2025-06-27 13:23:29,379] INFO: 📧 Password reset email sent successfully to test_1751048607@example.com
+[2025-06-27 13:23:29,448] INFO: Airport search: query='INVALID', limit=1
+[2025-06-27 13:23:29,470] INFO: Found 0 airports matching 'INVALID'
+[2025-06-27 13:23:29,490] INFO: Health check endpoint accessed
+[2025-06-27 13:23:29,497] INFO: Airport search: query='LAX', limit=5
+[2025-06-27 13:23:29,497] INFO: Found 1 airports matching 'LAX'
+[2025-06-27 13:23:29,497] INFO: First result: {'iata': 'LAX', 'icao': 'KLAX', 'name': 'Los Angeles International Airport', 'city': 'Los Angeles', 'country': 'US', 'latitude': 33.9425, 'longitude': -118.40805}
+[2025-06-27 13:23:29,505] INFO: Serving flights: DFW to LAX on 2025-07-15
+[2025-06-27 13:23:29,506] INFO: Request parameters: airline=None, cabin_class=None
+[2025-06-27 13:23:29,506] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:23:29,506] INFO: Found cached data for DFW-LAX-2025-07-15, file age: 761.1 seconds
+[2025-06-27 13:23:29,506] INFO: Using cached real-time data with 7 flights
+[2025-06-27 13:23:29,506] INFO: Returning 7 flights
+[2025-06-27 13:23:29,506] INFO: Sample flight: {'id': '2lJttjkA0V1YRb5vcnTy74k505R', 'airline': 'smiles', 'flightNumber': 'sm100', 'origin': 'DFW', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '25000', 'cash': 10.1, 'seatsAvailable': 7, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:10:48', 'layovers': []}
+[2025-06-27 13:23:29,506] INFO: Real-time data flag: True
+[2025-06-27 13:23:35,327] INFO: Airport search: query='paris', limit=5
+[2025-06-27 13:23:35,327] INFO: Found 3 airports matching 'paris'
+[2025-06-27 13:23:35,327] INFO: First result: {'iata': 'CDG', 'icao': 'LFPG', 'name': 'Charles de Gaulle International Airport', 'city': 'Paris', 'country': 'FR', 'latitude': 49.0128, 'longitude': 2.55}
+[2025-06-27 13:23:37,678] INFO: Serving flights: JFK to LAX on 2025-08-15
+[2025-06-27 13:23:37,678] INFO: Request parameters: airline=None, cabin_class=business
+[2025-06-27 13:23:37,678] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 13:23:37,678] INFO: Generating fresh real-time data for JFK-LAX-2025-08-15-business
+[2025-06-27 13:23:37,679] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 13:23:37,679] INFO: Requesting flights from seats.aero: JFK to LAX on 2025-08-15
+[2025-06-27 13:23:37,679] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 13:23:37,679] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 13:23:37,679] INFO: API Request - Params: {"origin_airport": "JFK", "destination_airport": "LAX", "start_date": "2025-08-15", "end_date": "2025-08-15", "cabin": "business"}
+[2025-06-27 13:23:37,797] INFO: API Response - Status: 200
+[2025-06-27 13:23:37,797] INFO: Found 7 flights in seats.aero API response
+[2025-06-27 13:23:37,797] INFO: Caching 7 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/JFK-LAX-2025-08-15-business.json
+[2025-06-27 13:23:37,798] INFO: Successfully mapped 7 flights from seats.aero API
+[2025-06-27 13:23:37,798] INFO: Returning 7 flights
+[2025-06-27 13:23:37,798] INFO: Sample flight: {'id': '2lMDOyabq6jzJsjbCrjlZH1KPxk', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'JFK', 'destination': 'LAX', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'business', 'points': '35000', 'cash': 18.1, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-06-27 13:23:37', 'layovers': []}
+[2025-06-27 13:23:37,798] INFO: Real-time data flag: True
+[2025-06-27 13:23:44,815] INFO: 🔒 Password reset request for: nonexistent@example.com
+[2025-06-27 13:23:44,816] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-27 13:23:44,816] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-27 13:23:44,817] INFO: Auth database initialized successfully
+[2025-06-27 13:23:44,818] INFO: ❌ No user found with email: nonexistent@example.com
+[2025-06-27 13:26:53,838] INFO: Health check endpoint accessed
+[2025-06-27 13:26:53,868] INFO: 🔒 Password reset request for: anujthakur650@gmail.com
+[2025-06-27 13:26:53,869] INFO: 🔒 CAPTCHA token provided: No
+[2025-06-27 13:26:53,869] WARNING: ⚠️ CAPTCHA missing in development mode - proceeding anyway
+[2025-06-27 13:26:53,870] INFO: Auth database initialized successfully
+[2025-06-27 13:26:53,870] INFO: ✅ User found: anujthakur650@gmail.com
+[2025-06-27 13:26:53,871] INFO: 🔑 Reset token created for user: anujthakur650@gmail.com
+[2025-06-27 13:26:53,872] INFO: 📧 Email service configured with smtp.gmail.com:587
+[2025-06-27 13:26:53,872] INFO: 📧 Sending password reset email to anujthakur650@gmail.com
+[2025-06-27 13:26:55,475] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-27 13:26:55,476] INFO: 📧 Password reset email sent successfully to anujthakur650@gmail.com
+[2025-06-27 14:40:36,207] INFO: New user registered: test123@example.com
+[2025-06-27 14:41:36,657] INFO: User logged in: test123@example.com
+[2025-06-27 14:41:42,278] INFO: New user registered: jane.doe@example.com
+[2025-06-27 14:42:11,701] INFO: New user registered: test_reg_1751053331132@example.com
+[2025-06-27 14:42:11,715] INFO: User logged in: test_reg_1751053331132@example.com
+[2025-06-27 14:43:14,303] INFO: New user registered: nsayali14@gmail.com
+[2025-06-27 14:55:27,992] INFO: Health check endpoint accessed
+[2025-06-27 14:56:06,784] INFO: New user registered: test_settings_1751054166730@example.com
+[2025-06-27 14:56:06,800] INFO: User logged in: test_settings_1751054166730@example.com
+[2025-06-27 15:17:20,347] INFO: 🔒 Password reset request for: nsayali14@gmail.com
+[2025-06-27 15:17:20,348] INFO: 🔒 CAPTCHA token provided: Yes
+[2025-06-27 15:17:20,350] INFO: Auth database initialized successfully
+[2025-06-27 15:17:20,350] INFO: ✅ User found: nsayali14@gmail.com
+[2025-06-27 15:17:20,353] INFO: 🔑 Reset token created for user: nsayali14@gmail.com
+[2025-06-27 15:17:20,354] INFO: 📧 Email service configured with smtp.gmail.com:587
+[2025-06-27 15:17:20,354] INFO: 📧 Sending password reset email to nsayali14@gmail.com
+[2025-06-27 15:17:22,299] INFO: 📧 Password reset email sent successfully to nsayali14@gmail.com
+[2025-06-27 15:17:22,301] INFO: 📧 Password reset email sent successfully to nsayali14@gmail.com
+[2025-06-27 15:20:01,046] INFO: Airport search: query='es', limit=10
+[2025-06-27 15:20:01,092] INFO: Found 10 airports matching 'es'
+[2025-06-27 15:20:01,092] INFO: First result: {'iata': 'KES', 'icao': 'CZEE', 'name': 'Kelsey Airport', 'city': 'Kelsey', 'country': 'CA', 'latitude': 56.0375, 'longitude': -96.5097}
+[2025-06-27 15:20:16,922] INFO: Airport search: query='DFW', limit=10
+[2025-06-27 15:20:16,922] INFO: Found 1 airports matching 'DFW'
+[2025-06-27 15:20:16,922] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-27 15:20:21,283] INFO: Airport search: query='LGA', limit=10
+[2025-06-27 15:20:21,284] INFO: Found 5 airports matching 'LGA'
+[2025-06-27 15:20:21,284] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-06-27 15:20:24,620] INFO: Serving flights: DFW to LGA on 2025-06-27
+[2025-06-27 15:20:24,620] INFO: Request parameters: airline=None, cabin_class=business
+[2025-06-27 15:20:24,620] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 15:20:24,621] INFO: Generating fresh real-time data for DFW-LGA-2025-06-27-business
+[2025-06-27 15:20:24,621] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 15:20:24,621] INFO: Requesting flights from seats.aero: DFW to LGA on 2025-06-27
+[2025-06-27 15:20:24,621] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 15:20:24,621] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 15:20:24,621] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "LGA", "start_date": "2025-06-27", "end_date": "2025-06-27", "cabin": "business"}
+[2025-06-27 15:20:24,864] INFO: API Response - Status: 200
+[2025-06-27 15:20:24,864] INFO: Found 4 flights in seats.aero API response
+[2025-06-27 15:20:24,865] INFO: Caching 4 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-LGA-2025-06-27-business.json
+[2025-06-27 15:20:24,866] INFO: Successfully mapped 4 flights from seats.aero API
+[2025-06-27 15:20:24,866] INFO: Returning 4 flights
+[2025-06-27 15:20:24,866] INFO: Sample flight: {'id': '2j6w9hFgQplL64QNYwmBI8Zz61k', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'DFW', 'destination': 'LGA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'business', 'points': '15000', 'cash': 18.1, 'seatsAvailable': 4, 'realTimeData': True, 'lastUpdated': '2025-06-27 15:20:24', 'layovers': []}
+[2025-06-27 15:20:24,866] INFO: Real-time data flag: True
+[2025-06-27 15:20:34,047] INFO: Serving flights: DFW to LGA on 2025-06-27
+[2025-06-27 15:20:34,047] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-27 15:20:34,047] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-27 15:20:34,047] INFO: Generating fresh real-time data for DFW-LGA-2025-06-27-economy
+[2025-06-27 15:20:34,048] INFO: Using seats.aero API for real-time flight data
+[2025-06-27 15:20:34,048] INFO: Requesting flights from seats.aero: DFW to LGA on 2025-06-27
+[2025-06-27 15:20:34,048] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-27 15:20:34,048] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-27 15:20:34,048] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "LGA", "start_date": "2025-06-27", "end_date": "2025-06-27", "cabin": "economy"}
+[2025-06-27 15:20:34,240] INFO: API Response - Status: 200
+[2025-06-27 15:20:34,241] INFO: Found 4 flights in seats.aero API response
+[2025-06-27 15:20:34,241] INFO: Caching 4 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-LGA-2025-06-27-economy.json
+[2025-06-27 15:20:34,242] INFO: Successfully mapped 4 flights from seats.aero API
+[2025-06-27 15:20:34,242] INFO: Returning 4 flights
+[2025-06-27 15:20:34,242] INFO: Sample flight: {'id': '2j6w9hFgQplL64QNYwmBI8Zz61k', 'airline': 'Alaska Airlines', 'flightNumber': 'Al100', 'origin': 'DFW', 'destination': 'LGA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7500', 'cash': 18.1, 'seatsAvailable': 9, 'realTimeData': True, 'lastUpdated': '2025-06-27 15:20:34', 'layovers': []}
+[2025-06-27 15:20:34,242] INFO: Real-time data flag: True
+[2025-06-27 15:59:10,879] INFO: Health check endpoint accessed
+[2025-06-27 16:03:08,692] INFO: Health check endpoint accessed
+[2025-06-27 16:05:52,352] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 16:05:52,355] INFO: Loading airport data...
+[2025-06-27 16:05:52,490] INFO: Loaded 7908 airports with IATA codes
+[2025-06-27 16:05:52,490] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-27 16:05:52,491] INFO: Example airports:
+[2025-06-27 16:05:52,492] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 16:05:52,492] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 16:05:52,492] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 16:05:52,638] INFO: Auth database initialized successfully
+[2025-06-27 16:05:52,639] INFO: ✅ Auth database initialized on module load
+[2025-06-27 16:05:52,641] INFO: Initializing database...
+[2025-06-27 16:05:52,642] INFO: Database initialized successfully
+[2025-06-27 16:06:10,793] INFO: Health check endpoint accessed
+[2025-06-27 16:07:06,605] INFO: Health check endpoint accessed
+[2025-06-27 16:07:32,203] INFO: Health check endpoint accessed
+[2025-06-27 22:41:57,491] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 22:41:57,493] INFO: Loading airport data...
+[2025-06-27 22:41:57,578] INFO: Loaded 7908 airports with IATA codes
+[2025-06-27 22:41:57,578] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-27 22:41:57,579] INFO: Example airports:
+[2025-06-27 22:41:57,580] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 22:41:57,580] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 22:41:57,580] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 22:41:57,684] INFO: Auth database initialized successfully
+[2025-06-27 22:41:57,685] INFO: ✅ Auth database initialized on module load
+[2025-06-27 22:41:57,687] INFO: Initializing database...
+[2025-06-27 22:41:57,688] INFO: Database initialized successfully
+[2025-06-27 22:42:25,395] INFO: Health check endpoint accessed
+[2025-06-27 22:44:24,954] INFO: Health check endpoint accessed
+[2025-06-27 22:55:18,269] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-27 22:55:18,271] INFO: Loading airport data...
+[2025-06-27 22:55:18,347] INFO: Loaded 7908 airports with IATA codes
+[2025-06-27 22:55:18,347] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-27 22:55:18,349] INFO: Example airports:
+[2025-06-27 22:55:18,350] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-27 22:55:18,350] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-27 22:55:18,350] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-27 22:55:18,447] INFO: Auth database initialized successfully
+[2025-06-27 22:55:18,447] INFO: ✅ Auth database initialized on module load
+[2025-06-27 22:55:18,449] INFO: Initializing database...
+[2025-06-27 22:55:18,450] INFO: Database initialized successfully
+[2025-06-27 22:56:03,965] INFO: Health check endpoint accessed
+[2025-06-28 21:18:17,043] INFO: Health check endpoint accessed
+[2025-06-28 21:21:06,824] INFO: Health check endpoint accessed
+[2025-06-29 23:00:29,716] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-29 23:00:29,729] INFO: Loading airport data...
+[2025-06-29 23:00:29,813] INFO: Loaded 7908 airports with IATA codes
+[2025-06-29 23:00:29,813] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-29 23:00:29,815] INFO: Example airports:
+[2025-06-29 23:00:29,815] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-29 23:00:29,815] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-29 23:00:29,815] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-29 23:00:29,937] INFO: Auth database initialized successfully
+[2025-06-29 23:00:29,937] INFO: ✅ Auth database initialized on module load
+[2025-06-29 23:00:29,940] INFO: Initializing database...
+[2025-06-29 23:00:29,940] INFO: Database initialized successfully
+[2025-06-29 23:03:36,493] INFO: Health check endpoint accessed
+[2025-06-29 23:03:50,412] INFO: Health check endpoint accessed
+[2025-06-30 14:40:05,635] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-06-30 14:40:05,637] INFO: Loading airport data...
+[2025-06-30 14:40:05,781] INFO: Loaded 7908 airports with IATA codes
+[2025-06-30 14:40:05,781] INFO: Loaded 28258 airports with ICAO codes
+[2025-06-30 14:40:05,783] INFO: Example airports:
+[2025-06-30 14:40:05,783] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-06-30 14:40:05,783] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-06-30 14:40:05,783] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-06-30 14:40:05,894] INFO: Auth database initialized successfully
+[2025-06-30 14:40:05,894] INFO: ✅ Auth database initialized on module load
+[2025-06-30 14:40:05,896] INFO: Initializing database...
+[2025-06-30 14:40:05,897] INFO: Database initialized successfully
+[2025-06-30 14:40:12,264] INFO: Health check endpoint accessed
+[2025-06-30 14:40:42,928] INFO: Health check endpoint accessed
+[2025-06-30 14:42:28,837] INFO: Health check endpoint accessed
+[2025-06-30 14:46:14,002] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 14:46:14,028] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 14:46:14,028] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 14:46:16,302] INFO: Airport search: query='LGA', limit=10
+[2025-06-30 14:46:16,324] INFO: Found 5 airports matching 'LGA'
+[2025-06-30 14:46:16,324] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-06-30 14:46:23,698] INFO: Serving flights: DFW to LGA on 2025-07-23
+[2025-06-30 14:46:23,698] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 14:46:23,698] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 14:46:23,699] INFO: Generating fresh real-time data for DFW-LGA-2025-07-23-economy
+[2025-06-30 14:46:23,699] INFO: Using seats.aero API for real-time flight data
+[2025-06-30 14:46:23,699] INFO: Requesting flights from seats.aero: DFW to LGA on 2025-07-23
+[2025-06-30 14:46:23,699] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 14:46:23,699] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 14:46:23,699] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "LGA", "start_date": "2025-07-23", "end_date": "2025-07-23", "cabin": "economy"}
+[2025-06-30 14:46:23,969] INFO: API Response - Status: 200
+[2025-06-30 14:46:23,969] INFO: Found 7 flights in seats.aero API response
+[2025-06-30 14:46:23,970] INFO: Caching 7 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-LGA-2025-07-23-economy.json
+[2025-06-30 14:46:23,970] INFO: Successfully mapped 7 flights from seats.aero API
+[2025-06-30 14:46:23,971] INFO: Returning 7 flights
+[2025-06-30 14:46:23,971] INFO: Sample flight: {'id': '2kIeqthSE7G2hB3tY1EOmt2lqai', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'DFW', 'destination': 'LGA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '17800', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 14:46:23', 'layovers': []}
+[2025-06-30 14:46:23,971] INFO: Real-time data flag: True
+[2025-06-30 15:21:29,343] INFO: Health check endpoint accessed
+[2025-06-30 15:28:23,543] INFO: Root endpoint accessed
+[2025-06-30 15:28:35,113] INFO: Airport search: query='Dfw', limit=10
+[2025-06-30 15:28:35,130] INFO: Found 1 airports matching 'Dfw'
+[2025-06-30 15:28:35,130] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 15:28:36,958] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 15:28:36,960] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 15:28:36,960] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 15:28:41,052] INFO: Airport search: query='Xna', limit=10
+[2025-06-30 15:28:41,069] INFO: Found 3 airports matching 'Xna'
+[2025-06-30 15:28:41,069] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 15:28:44,119] INFO: Airport search: query='XNA', limit=10
+[2025-06-30 15:28:44,144] INFO: Found 3 airports matching 'XNA'
+[2025-06-30 15:28:44,144] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 15:28:57,826] INFO: Serving flights: DFW to XNA on 2025-06-30
+[2025-06-30 15:28:57,827] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 15:28:57,827] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 15:28:57,829] INFO: Generating fresh real-time data for DFW-XNA-2025-06-30-economy
+[2025-06-30 15:28:57,829] INFO: Using seats.aero API for real-time flight data
+[2025-06-30 15:28:57,829] INFO: Requesting flights from seats.aero: DFW to XNA on 2025-06-30
+[2025-06-30 15:28:57,829] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 15:28:57,829] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 15:28:57,829] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "XNA", "start_date": "2025-06-30", "end_date": "2025-06-30", "cabin": "economy"}
+[2025-06-30 15:28:58,301] INFO: API Response - Status: 200
+[2025-06-30 15:28:58,302] INFO: Found 2 flights in seats.aero API response
+[2025-06-30 15:28:58,302] INFO: Caching 2 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-XNA-2025-06-30-economy.json
+[2025-06-30 15:28:58,303] INFO: Successfully mapped 2 flights from seats.aero API
+[2025-06-30 15:28:58,304] INFO: Returning 2 flights
+[2025-06-30 15:28:58,304] INFO: Sample flight: {'id': '2jryv19KM3yxcUbWb2kbxITfskE', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'DFW', 'destination': 'XNA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7900', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 15:28:58', 'layovers': []}
+[2025-06-30 15:28:58,304] INFO: Real-time data flag: True
+[2025-06-30 15:29:42,378] INFO: Health check endpoint accessed
+[2025-06-30 15:41:19,521] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 15:41:19,523] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 15:41:19,523] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 15:41:20,528] INFO: Airport search: query='XNA', limit=10
+[2025-06-30 15:41:20,528] INFO: Found 3 airports matching 'XNA'
+[2025-06-30 15:41:20,529] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 15:41:24,731] INFO: Serving flights: DFW to XNA on 2025-06-30
+[2025-06-30 15:41:24,731] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 15:41:24,731] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 15:41:24,732] INFO: Found cached data for DFW-XNA-2025-06-30-economy, file age: 746.4 seconds
+[2025-06-30 15:41:24,733] INFO: Using cached real-time data with 2 flights
+[2025-06-30 15:41:24,734] INFO: Returning 2 flights
+[2025-06-30 15:41:24,734] INFO: Sample flight: {'id': '2jryv19KM3yxcUbWb2kbxITfskE', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'DFW', 'destination': 'XNA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '7900', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 15:28:58', 'layovers': []}
+[2025-06-30 15:41:24,734] INFO: Real-time data flag: True
+[2025-06-30 22:57:53,391] INFO: Airport search: query='sea', limit=10
+[2025-06-30 22:57:53,411] INFO: Found 10 airports matching 'sea'
+[2025-06-30 22:57:53,411] INFO: First result: {'iata': 'SEA', 'icao': 'KSEA', 'name': 'Seattle-Tacoma International Airport', 'city': 'Seattle', 'country': 'US', 'latitude': 47.44989, 'longitude': -122.31178}
+[2025-06-30 23:06:11,573] INFO: Airport search: query='sea', limit=10
+[2025-06-30 23:06:11,574] INFO: Found 10 airports matching 'sea'
+[2025-06-30 23:06:11,574] INFO: First result: {'iata': 'SEA', 'icao': 'KSEA', 'name': 'Seattle-Tacoma International Airport', 'city': 'Seattle', 'country': 'US', 'latitude': 47.44989, 'longitude': -122.31178}
+[2025-06-30 23:15:54,102] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 23:15:54,103] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 23:15:54,103] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 23:15:57,055] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 23:15:57,055] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 23:15:57,055] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 23:15:59,928] INFO: Airport search: query='SFO', limit=10
+[2025-06-30 23:15:59,952] INFO: Found 3 airports matching 'SFO'
+[2025-06-30 23:15:59,952] INFO: First result: {'iata': 'SFO', 'icao': 'KSFO', 'name': 'San Francisco International Airport', 'city': 'San Francisco', 'country': 'US', 'latitude': 37.61881, 'longitude': -122.37542}
+[2025-06-30 23:16:05,109] INFO: Serving flights: DFW to SFO on 2025-06-26
+[2025-06-30 23:16:05,109] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 23:16:05,109] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 23:16:05,109] INFO: Generating fresh real-time data for DFW-SFO-2025-06-26-economy
+[2025-06-30 23:16:05,109] INFO: Using seats.aero API for real-time flight data
+[2025-06-30 23:16:05,109] INFO: Requesting flights from seats.aero: DFW to SFO on 2025-06-26
+[2025-06-30 23:16:05,109] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 23:16:05,110] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 23:16:05,110] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "SFO", "start_date": "2025-06-26", "end_date": "2025-06-26", "cabin": "economy"}
+[2025-06-30 23:16:05,628] INFO: API Response - Status: 200
+[2025-06-30 23:16:05,628] INFO: Found 0 flights in seats.aero API response
+[2025-06-30 23:16:05,628] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-06-30 23:16:05,628] INFO: No flights from award_flight_api, trying direct seats.aero API
+[2025-06-30 23:16:05,628] INFO: Requesting flights from seats.aero: DFW to SFO on 2025-06-26
+[2025-06-30 23:16:05,629] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 23:16:05,629] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 23:16:05,629] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "SFO", "start_date": "2025-06-26", "end_date": "2025-06-26", "cabin": "economy"}
+[2025-06-30 23:16:06,153] INFO: HTTP Request: GET https://seats.aero/partnerapi/search?origin_airport=DFW&destination_airport=SFO&start_date=2025-06-26&end_date=2025-06-26&cabin=economy "HTTP/1.1 200 OK"
+[2025-06-30 23:16:06,155] INFO: API Response - Status: 200
+[2025-06-30 23:16:06,155] INFO: Found 0 flights in seats.aero API response
+[2025-06-30 23:16:06,155] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-06-30 23:16:06,155] INFO: Returning 0 flights
+[2025-06-30 23:16:06,155] WARNING: No flights found for this route and date
+[2025-06-30 23:16:17,217] INFO: Airport search: query='xn', limit=10
+[2025-06-30 23:16:17,241] INFO: Found 10 airports matching 'xn'
+[2025-06-30 23:16:17,242] INFO: First result: {'iata': 'YXN', 'icao': 'CYXN', 'name': 'Whale Cove Airport', 'city': 'Whale Cove', 'country': 'CA', 'latitude': 62.24, 'longitude': -92.5981}
+[2025-06-30 23:16:17,542] INFO: Airport search: query='xna', limit=10
+[2025-06-30 23:16:17,565] INFO: Found 3 airports matching 'xna'
+[2025-06-30 23:16:17,566] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 23:16:19,806] INFO: Airport search: query='XNA', limit=10
+[2025-06-30 23:16:19,806] INFO: Found 3 airports matching 'XNA'
+[2025-06-30 23:16:19,806] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 23:16:30,036] INFO: Serving flights: DFW to XNA on 2025-07-23
+[2025-06-30 23:16:30,037] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 23:16:30,037] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 23:16:30,038] INFO: Generating fresh real-time data for DFW-XNA-2025-07-23-economy
+[2025-06-30 23:16:30,038] INFO: Using seats.aero API for real-time flight data
+[2025-06-30 23:16:30,038] INFO: Requesting flights from seats.aero: DFW to XNA on 2025-07-23
+[2025-06-30 23:16:30,038] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 23:16:30,038] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 23:16:30,038] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "XNA", "start_date": "2025-07-23", "end_date": "2025-07-23", "cabin": "economy"}
+[2025-06-30 23:16:30,245] INFO: API Response - Status: 200
+[2025-06-30 23:16:30,245] INFO: Found 2 flights in seats.aero API response
+[2025-06-30 23:16:30,245] INFO: Caching 2 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-XNA-2025-07-23-economy.json
+[2025-06-30 23:16:30,246] INFO: Successfully mapped 2 flights from seats.aero API
+[2025-06-30 23:16:30,246] INFO: Returning 2 flights
+[2025-06-30 23:16:30,246] INFO: Sample flight: {'id': '2mARN1zzgvGlVbHMC3BmFmQPYX9', 'airline': 'American Airlines', 'flightNumber': 'Am100', 'origin': 'DFW', 'destination': 'XNA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '8500', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 23:16:30', 'layovers': []}
+[2025-06-30 23:16:30,247] INFO: Real-time data flag: True
+[2025-06-30 23:16:46,835] INFO: Serving flights: DFW to XNA on 2025-07-23
+[2025-06-30 23:16:46,836] INFO: Request parameters: airline=None, cabin_class=business
+[2025-06-30 23:16:46,836] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 23:16:46,836] INFO: Generating fresh real-time data for DFW-XNA-2025-07-23-business
+[2025-06-30 23:16:46,836] INFO: Using seats.aero API for real-time flight data
+[2025-06-30 23:16:46,836] INFO: Requesting flights from seats.aero: DFW to XNA on 2025-07-23
+[2025-06-30 23:16:46,836] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-06-30 23:16:46,836] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-06-30 23:16:46,836] INFO: API Request - Params: {"origin_airport": "DFW", "destination_airport": "XNA", "start_date": "2025-07-23", "end_date": "2025-07-23", "cabin": "business"}
+[2025-06-30 23:16:46,973] INFO: API Response - Status: 200
+[2025-06-30 23:16:46,973] INFO: Found 3 flights in seats.aero API response
+[2025-06-30 23:16:46,973] INFO: Caching 3 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/DFW-XNA-2025-07-23-business.json
+[2025-06-30 23:16:46,974] INFO: Successfully mapped 3 flights from seats.aero API
+[2025-06-30 23:16:46,975] INFO: Returning 3 flights
+[2025-06-30 23:16:46,975] INFO: Sample flight: {'id': '2mdDAHf2sVz2KbUy4v3G9cUPuJh', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'DFW', 'destination': 'XNA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'business', 'points': '18200', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 23:16:46', 'layovers': []}
+[2025-06-30 23:16:46,975] INFO: Real-time data flag: True
+[2025-06-30 23:30:12,083] INFO: Airport search: query='DFW', limit=10
+[2025-06-30 23:30:12,084] INFO: Found 1 airports matching 'DFW'
+[2025-06-30 23:30:12,084] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-06-30 23:30:16,947] INFO: Airport search: query='XNA', limit=10
+[2025-06-30 23:30:16,947] INFO: Found 3 airports matching 'XNA'
+[2025-06-30 23:30:16,947] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-06-30 23:30:25,740] INFO: Serving flights: DFW to XNA on 2025-07-23
+[2025-06-30 23:30:25,740] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-06-30 23:30:25,740] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-06-30 23:30:25,741] INFO: Found cached data for DFW-XNA-2025-07-23-economy, file age: 835.5 seconds
+[2025-06-30 23:30:25,741] INFO: Using cached real-time data with 2 flights
+[2025-06-30 23:30:25,741] INFO: Returning 2 flights
+[2025-06-30 23:30:25,742] INFO: Sample flight: {'id': '2mARN1zzgvGlVbHMC3BmFmQPYX9', 'airline': 'American Airlines', 'flightNumber': 'Am100', 'origin': 'DFW', 'destination': 'XNA', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '8500', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-06-30 23:16:30', 'layovers': []}
+[2025-06-30 23:30:25,742] INFO: Real-time data flag: True
+[2025-07-01 00:06:44,449] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-01 00:06:44,450] INFO: Loading airport data...
+[2025-07-01 00:06:44,521] INFO: Loaded 7908 airports with IATA codes
+[2025-07-01 00:06:44,521] INFO: Loaded 28258 airports with ICAO codes
+[2025-07-01 00:06:44,523] INFO: Example airports:
+[2025-07-01 00:06:44,523] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-01 00:06:44,523] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-01 00:06:44,523] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-01 00:06:44,644] INFO: Auth database initialized successfully
+[2025-07-01 00:06:44,644] INFO: ✅ Auth database initialized on module load
+[2025-07-01 00:06:44,647] INFO: Initializing database...
+[2025-07-01 00:06:44,647] INFO: Database initialized successfully
+[2025-07-01 00:06:56,922] INFO: Health check endpoint accessed
+[2025-07-01 00:07:27,163] INFO: Airport search: query='DFW', limit=10
+[2025-07-01 00:07:27,189] INFO: Found 1 airports matching 'DFW'
+[2025-07-01 00:07:27,189] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-07-01 00:07:31,797] INFO: Airport search: query='lg', limit=10
+[2025-07-01 00:07:31,823] INFO: Found 10 airports matching 'lg'
+[2025-07-01 00:07:31,824] INFO: First result: {'iata': 'ALG', 'icao': 'DAAG', 'name': 'Houari Boumediene Airport', 'city': 'Algiers', 'country': 'DZ', 'latitude': 36.691, 'longitude': 3.21541}
+[2025-07-01 00:07:32,239] INFO: Airport search: query='lga', limit=10
+[2025-07-01 00:07:32,262] INFO: Found 5 airports matching 'lga'
+[2025-07-01 00:07:32,262] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-07-01 00:07:36,238] INFO: Airport search: query='LGA', limit=10
+[2025-07-01 00:07:36,258] INFO: Found 5 airports matching 'LGA'
+[2025-07-01 00:07:36,258] INFO: First result: {'iata': 'LGA', 'icao': 'KLGA', 'name': 'Laguardia Airport', 'city': 'New York', 'country': 'US', 'latitude': 40.77725, 'longitude': -73.87261}
+[2025-07-01 00:07:42,267] INFO: Airport search: query='bo', limit=10
+[2025-07-01 00:07:42,292] INFO: Found 10 airports matching 'bo'
+[2025-07-01 00:07:42,292] INFO: First result: {'iata': 'KBS', 'icao': 'GFBO', 'name': 'Bo Airport', 'city': 'Bo', 'country': 'SL', 'latitude': 7.9444, 'longitude': -11.761}
+[2025-07-01 00:07:42,876] INFO: Airport search: query='bos', limit=10
+[2025-07-01 00:07:42,902] INFO: Found 10 airports matching 'bos'
+[2025-07-01 00:07:42,902] INFO: First result: {'iata': 'BOS', 'icao': 'KBOS', 'name': 'General Edward Lawrence Logan International Airport', 'city': 'Boston', 'country': 'US', 'latitude': 42.36294, 'longitude': -71.00639}
+[2025-07-01 00:07:51,737] INFO: Airport search: query='BOS', limit=10
+[2025-07-01 00:07:51,761] INFO: Found 10 airports matching 'BOS'
+[2025-07-01 00:07:51,762] INFO: First result: {'iata': 'BOS', 'icao': 'KBOS', 'name': 'General Edward Lawrence Logan International Airport', 'city': 'Boston', 'country': 'US', 'latitude': 42.36294, 'longitude': -71.00639}
+[2025-07-01 00:07:59,593] INFO: Airport search: query='xn', limit=10
+[2025-07-01 00:07:59,618] INFO: Found 10 airports matching 'xn'
+[2025-07-01 00:07:59,619] INFO: First result: {'iata': 'YXN', 'icao': 'CYXN', 'name': 'Whale Cove Airport', 'city': 'Whale Cove', 'country': 'CA', 'latitude': 62.24, 'longitude': -92.5981}
+[2025-07-01 00:08:00,172] INFO: Airport search: query='xna', limit=10
+[2025-07-01 00:08:00,193] INFO: Found 3 airports matching 'xna'
+[2025-07-01 00:08:00,193] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-07-01 00:08:06,280] INFO: Airport search: query='XNA', limit=10
+[2025-07-01 00:08:06,300] INFO: Found 3 airports matching 'XNA'
+[2025-07-01 00:08:06,300] INFO: First result: {'iata': 'XNA', 'icao': 'KXNA', 'name': 'Northwest Arkansas Ntl Airport', 'city': 'Fayetteville/Springdale/Rogers', 'country': 'US', 'latitude': 36.28158, 'longitude': -94.30777}
+[2025-07-01 00:08:25,137] INFO: Serving flights: XNA to BOS on 2025-10-02
+[2025-07-01 00:08:25,137] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-07-01 00:08:25,137] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-07-01 00:08:25,138] INFO: Generating fresh real-time data for XNA-BOS-2025-10-02-economy
+[2025-07-01 00:08:25,138] INFO: Using seats.aero API for real-time flight data
+[2025-07-01 00:08:25,138] INFO: Requesting flights from seats.aero: XNA to BOS on 2025-10-02
+[2025-07-01 00:08:25,138] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 00:08:25,138] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 00:08:25,138] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "BOS", "start_date": "2025-10-02", "end_date": "2025-10-02", "cabin": "economy"}
+[2025-07-01 00:08:25,427] INFO: API Response - Status: 200
+[2025-07-01 00:08:25,428] INFO: Found 0 flights in seats.aero API response
+[2025-07-01 00:08:25,428] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-07-01 00:08:25,428] INFO: No flights from award_flight_api, trying direct seats.aero API
+[2025-07-01 00:08:25,428] INFO: Requesting flights from seats.aero: XNA to BOS on 2025-10-02
+[2025-07-01 00:08:25,428] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 00:08:25,428] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 00:08:25,428] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "BOS", "start_date": "2025-10-02", "end_date": "2025-10-02", "cabin": "economy"}
+[2025-07-01 00:08:25,721] INFO: HTTP Request: GET https://seats.aero/partnerapi/search?origin_airport=XNA&destination_airport=BOS&start_date=2025-10-02&end_date=2025-10-02&cabin=economy "HTTP/1.1 200 OK"
+[2025-07-01 00:08:25,722] INFO: API Response - Status: 200
+[2025-07-01 00:08:25,722] INFO: Found 0 flights in seats.aero API response
+[2025-07-01 00:08:25,722] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-07-01 00:08:25,723] INFO: Returning 0 flights
+[2025-07-01 00:08:25,723] WARNING: No flights found for this route and date
+[2025-07-01 00:08:33,832] INFO: Serving flights: XNA to BOS on 2025-10-23
+[2025-07-01 00:08:33,832] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-07-01 00:08:33,832] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-07-01 00:08:33,833] INFO: Generating fresh real-time data for XNA-BOS-2025-10-23-economy
+[2025-07-01 00:08:33,833] INFO: Using seats.aero API for real-time flight data
+[2025-07-01 00:08:33,833] INFO: Requesting flights from seats.aero: XNA to BOS on 2025-10-23
+[2025-07-01 00:08:33,833] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 00:08:33,833] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 00:08:33,833] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "BOS", "start_date": "2025-10-23", "end_date": "2025-10-23", "cabin": "economy"}
+[2025-07-01 00:08:33,971] INFO: API Response - Status: 200
+[2025-07-01 00:08:33,972] INFO: Found 0 flights in seats.aero API response
+[2025-07-01 00:08:33,972] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-07-01 00:08:33,972] INFO: No flights from award_flight_api, trying direct seats.aero API
+[2025-07-01 00:08:33,972] INFO: Requesting flights from seats.aero: XNA to BOS on 2025-10-23
+[2025-07-01 00:08:33,972] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 00:08:33,972] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 00:08:33,972] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "BOS", "start_date": "2025-10-23", "end_date": "2025-10-23", "cabin": "economy"}
+[2025-07-01 00:08:34,083] INFO: HTTP Request: GET https://seats.aero/partnerapi/search?origin_airport=XNA&destination_airport=BOS&start_date=2025-10-23&end_date=2025-10-23&cabin=economy "HTTP/1.1 200 OK"
+[2025-07-01 00:08:34,084] INFO: API Response - Status: 200
+[2025-07-01 00:08:34,084] INFO: Found 0 flights in seats.aero API response
+[2025-07-01 00:08:34,084] INFO: Successfully mapped 0 flights from seats.aero API
+[2025-07-01 00:08:34,084] INFO: Returning 0 flights
+[2025-07-01 00:08:34,084] WARNING: No flights found for this route and date
+[2025-07-01 00:08:40,501] INFO: Airport search: query='df', limit=10
+[2025-07-01 00:08:40,525] INFO: Found 10 airports matching 'df'
+[2025-07-01 00:08:40,525] INFO: First result: {'iata': 'BDF', 'icao': '3IS8', 'name': 'Rinkenberger Airport', 'city': 'Bradford', 'country': 'US', 'latitude': 41.23087, 'longitude': -89.61565}
+[2025-07-01 00:08:40,816] INFO: Airport search: query='dfw', limit=10
+[2025-07-01 00:08:40,839] INFO: Found 1 airports matching 'dfw'
+[2025-07-01 00:08:40,839] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-07-01 00:08:44,981] INFO: Airport search: query='DFW', limit=10
+[2025-07-01 00:08:44,981] INFO: Found 1 airports matching 'DFW'
+[2025-07-01 00:08:44,981] INFO: First result: {'iata': 'DFW', 'icao': 'KDFW', 'name': 'Dallas-Fort Worth International Airport', 'city': 'Dallas-Fort Worth', 'country': 'US', 'latitude': 32.89723, 'longitude': -97.03769}
+[2025-07-01 00:08:48,517] INFO: Serving flights: XNA to DFW on 2025-10-23
+[2025-07-01 00:08:48,517] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-07-01 00:08:48,517] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-07-01 00:08:48,518] INFO: Generating fresh real-time data for XNA-DFW-2025-10-23-economy
+[2025-07-01 00:08:48,518] INFO: Using seats.aero API for real-time flight data
+[2025-07-01 00:08:48,518] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-10-23
+[2025-07-01 00:08:48,518] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 00:08:48,518] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 00:08:48,518] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-10-23", "end_date": "2025-10-23", "cabin": "economy"}
+[2025-07-01 00:08:48,852] INFO: API Response - Status: 200
+[2025-07-01 00:08:48,853] INFO: Found 2 flights in seats.aero API response
+[2025-07-01 00:08:48,853] INFO: Caching 2 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-10-23-economy.json
+[2025-07-01 00:08:48,854] INFO: Successfully mapped 2 flights from seats.aero API
+[2025-07-01 00:08:48,854] INFO: Returning 2 flights
+[2025-07-01 00:08:48,854] INFO: Sample flight: {'id': '2ryqSpTzOf9YnLy2OXCC4rEJemO', 'airline': 'American Airlines', 'flightNumber': 'Am100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '14000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-07-01 00:08:48', 'layovers': []}
+[2025-07-01 00:08:48,854] INFO: Real-time data flag: True
+[2025-07-01 12:31:21,758] INFO: Serving flights: XNA to DFW on 2025-10-23
+[2025-07-01 12:31:21,759] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-07-01 12:31:21,759] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-07-01 12:31:21,759] INFO: Generating fresh real-time data for XNA-DFW-2025-10-23-economy
+[2025-07-01 12:31:21,759] INFO: Using seats.aero API for real-time flight data
+[2025-07-01 12:31:21,759] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-10-23
+[2025-07-01 12:31:21,759] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 12:31:21,759] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 12:31:21,760] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-10-23", "end_date": "2025-10-23", "cabin": "economy"}
+[2025-07-01 12:31:22,007] INFO: API Response - Status: 200
+[2025-07-01 12:31:22,008] INFO: Found 2 flights in seats.aero API response
+[2025-07-01 12:31:22,008] INFO: Caching 2 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-10-23-economy.json
+[2025-07-01 12:31:22,009] INFO: Successfully mapped 2 flights from seats.aero API
+[2025-07-01 12:31:22,009] INFO: Returning 2 flights
+[2025-07-01 12:31:22,009] INFO: Sample flight: {'id': '2ryqSpTzOf9YnLy2OXCC4rEJemO', 'airline': 'American Airlines', 'flightNumber': 'Am100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '14000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-07-01 12:31:22', 'layovers': []}
+[2025-07-01 12:31:22,009] INFO: Real-time data flag: True
+[2025-07-01 12:31:29,920] INFO: Serving flights: XNA to DFW on 2025-10-19
+[2025-07-01 12:31:29,920] INFO: Request parameters: airline=None, cabin_class=economy
+[2025-07-01 12:31:29,920] INFO: Calling award_flight_api.get_award_flights for fresh data
+[2025-07-01 12:31:29,921] INFO: Generating fresh real-time data for XNA-DFW-2025-10-19-economy
+[2025-07-01 12:31:29,921] INFO: Using seats.aero API for real-time flight data
+[2025-07-01 12:31:29,921] INFO: Requesting flights from seats.aero: XNA to DFW on 2025-10-19
+[2025-07-01 12:31:29,921] INFO: API Request - URL: https://seats.aero/partnerapi/search
+[2025-07-01 12:31:29,921] INFO: API Request - Headers: {"Partner-Authorization": "***", "Accept": "application/json"}
+[2025-07-01 12:31:29,922] INFO: API Request - Params: {"origin_airport": "XNA", "destination_airport": "DFW", "start_date": "2025-10-19", "end_date": "2025-10-19", "cabin": "economy"}
+[2025-07-01 12:31:30,117] INFO: API Response - Status: 200
+[2025-07-01 12:31:30,118] INFO: Found 2 flights in seats.aero API response
+[2025-07-01 12:31:30,118] INFO: Caching 2 flights to /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data/cache/XNA-DFW-2025-10-19-economy.json
+[2025-07-01 12:31:30,119] INFO: Successfully mapped 2 flights from seats.aero API
+[2025-07-01 12:31:30,119] INFO: Returning 2 flights
+[2025-07-01 12:31:30,119] INFO: Sample flight: {'id': '2ryq4sFBnyjHnzVKnNtAJDROLS9', 'airline': 'American Airlines', 'flightNumber': 'Am100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '33000', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-07-01 12:31:30', 'layovers': []}
+[2025-07-01 12:31:30,119] INFO: Real-time data flag: True
+[2025-07-01 12:43:57,504] INFO: New user registered: test2@example.com
+[2025-07-01 12:44:02,644] INFO: User logged in: test2@example.com
+[2025-07-01 13:09:48,003] INFO: Health check endpoint accessed
+[2025-07-01 14:26:35,166] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-01 14:26:35,167] INFO: Loading airport data...
+[2025-07-01 14:26:35,326] INFO: Loaded 7908 airports with IATA codes
+[2025-07-01 14:26:35,327] INFO: Loaded 28258 airports with ICAO codes
+[2025-07-01 14:26:35,328] INFO: Example airports:
+[2025-07-01 14:26:35,329] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-01 14:26:35,329] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-01 14:26:35,329] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-01 14:26:35,455] INFO: Auth database initialized successfully
+[2025-07-01 14:26:35,456] INFO: ✅ Auth database initialized on module load
+[2025-07-01 14:26:35,463] INFO: Initializing database...
+[2025-07-01 14:26:35,464] INFO: Database initialized successfully
+[2025-07-01 14:44:26,694] INFO: User logged in: nsayali14@gmail.com

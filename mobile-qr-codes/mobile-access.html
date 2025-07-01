@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 AeroPoints Mobile Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .access-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .access-card h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .url-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online { background: #4CAF50; }
+        .status-loading { background: #FFC107; animation: pulse 1s infinite; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .qr-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .debug-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        
+        #debug-output {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .last-updated {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 AeroPoints Mobile Access</h1>
+        
+        <!-- Main App Access -->
+        <div class="access-card">
+            <h2>🌐 Main Application</h2>
+            <div class="url-box">
+                <strong>Frontend URL:</strong><br>
+                https://tasty-donuts-brush.loca.lt
+            </div>
+            <div class="url-box">
+                <strong>Access Password:</strong> 98.172.10.237
+            </div>
+            <a href="https://tasty-donuts-brush.loca.lt" class="btn" target="_blank">
+                🚀 Open AeroPoints App
+            </a>
+        </div>
+        
+        <!-- API Access -->
+        <div class="access-card">
+            <h2>🔧 Backend API</h2>
+            <div class="url-box">
+                <strong>API Base URL:</strong><br>
+                https://tired-worlds-camp.loca.lt
+            </div>
+            <div class="url-box">
+                <strong>Health Check:</strong><br>
+                https://tired-worlds-camp.loca.lt/health
+            </div>
+            <div class="url-box">
+                <strong>API Documentation:</strong><br>
+                https://tired-worlds-camp.loca.lt/docs
+            </div>
+            <a href="https://tired-worlds-camp.loca.lt/health" class="btn" target="_blank">
+                ✅ Test API Health
+            </a>
+            <a href="https://tired-worlds-camp.loca.lt/docs" class="btn" target="_blank">
+                📖 View API Docs
+            </a>
+        </div>
+        
+        <!-- Mobile Features -->
+        <div class="access-card">
+            <h2>📱 Mobile Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <strong>🔍 Real-time Diagnostics</strong><br>
+                    Auto-detects mobile environment
+                </div>
+                <div class="feature-item">
+                    <strong>⚡ Optimized Timeouts</strong><br>
+                    15s mobile vs 8s desktop
+                </div>
+                <div class="feature-item">
+                    <strong>🔄 Smart Retry Logic</strong><br>
+                    Network error handling
+                </div>
+                <div class="feature-item">
+                    <strong>👆 Touch Optimized</strong><br>
+                    Mobile-first interface
+                </div>
+            </div>
+        </div>
+        
+        <!-- QR Code Information -->
+        <div class="qr-info">
+            <h3>📊 QR Codes Generated</h3>
+            <p>Terminal QR codes have been generated for:</p>
+            <ul style="text-align: left; margin: 10px 0;">
+                <li>Frontend App Access</li>
+                <li>Backend API Access</li>
+                <li>API Documentation</li>
+            </ul>
+            <p><small>Scan QR codes from terminal output above</small></p>
+        </div>
+        
+        <!-- Live Debug Section -->
+        <div class="debug-section">
+            <h3>🔧 Live Mobile Debug</h3>
+            <p>Real-time mobile diagnostics and connectivity testing:</p>
+            <div id="debug-output">Initializing mobile debug system...</div>
+            <button onclick="runConnectivityTest()" class="btn">🧪 Run Connectivity Test</button>
+            <button onclick="clearDebugOutput()" class="btn">🗑️ Clear Output</button>
+        </div>
+        
+        <!-- Session Information -->
+        <div class="last-updated">
+            <strong>Session Active:</strong> June 30, 2025<br>
+            <strong>Tunnel URLs:</strong> Current Session<br>
+            <strong>Debug Features:</strong> Enabled<br>
+            <strong>Mobile Optimization:</strong> Active
+        </div>
+    </div>
+
+    <script>
+        // Mobile debug output
+        const debugOutput = document.getElementById('debug-output');
+        
+        function logDebug(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : 'ℹ️';
+            debugOutput.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        
+        function clearDebugOutput() {
+            debugOutput.textContent = '';
+            logDebug('Debug output cleared');
+        }
+        
+        async function runConnectivityTest() {
+            logDebug('Starting connectivity test...');
+            
+            // Test frontend
+            try {
+                const frontendResponse = await fetch('https://tasty-donuts-brush.loca.lt', { 
+                    method: 'HEAD',
+                    timeout: 10000 
+                });
+                logDebug(`Frontend: ${frontendResponse.ok ? 'ONLINE' : 'ISSUES'}`, 
+                        frontendResponse.ok ? 'success' : 'error');
+            } catch (error) {
+                logDebug(`Frontend: ERROR - ${error.message}`, 'error');
+            }
+            
+            // Test backend health
+            try {
+                const healthResponse = await fetch('https://tired-worlds-camp.loca.lt/health');
+                const healthData = await healthResponse.json();
+                logDebug(`Backend Health: ${healthData.status}`, 'success');
+            } catch (error) {
+                logDebug(`Backend Health: ERROR - ${error.message}`, 'error');
+            }
+            
+            // Device info
+            logDebug(`Device: ${navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'}`);
+            logDebug(`Screen: ${window.screen.width}x${window.screen.height}`);
+            logDebug(`Viewport: ${window.innerWidth}x${window.innerHeight}`);
+            logDebug(`Connection: ${navigator.onLine ? 'Online' : 'Offline'}`);
+            
+            logDebug('Connectivity test completed');
+        }
+        
+        // Auto-run initial test
+        document.addEventListener('DOMContentLoaded', () => {
+            logDebug('Mobile access page loaded');
+            logDebug('Auto-running initial connectivity test...');
+            setTimeout(runConnectivityTest, 1000);
+        });
+        
+        // Monitor connection status
+        window.addEventListener('online', () => logDebug('Connection restored', 'success'));
+        window.addEventListener('offline', () => logDebug('Connection lost', 'error'));
+    </script>
+</body>
+</html>

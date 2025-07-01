@@ -1,0 +1,266 @@
+{
+  "timestamp": "2025-06-28T04:03:02.209Z",
+  "urls": {
+    "frontend": "https://aeropoints-mobile.loca.lt",
+    "backend": "https://aeropoints-api-mobile.loca.lt",
+    "docs": "https://aeropoints-api-mobile.loca.lt/docs"
+  },
+  "summary": {
+    "overallScore": 0.8625,
+    "responsiveScore": 0.9375,
+    "performanceScore": 0.875,
+    "compatibilityScore": 1,
+    "accessibilityScore": 0.75,
+    "featuresScore": 0.75,
+    "grade": "A",
+    "status": "EXCELLENT"
+  },
+  "results": {
+    "responsive": {
+      "viewports": [
+        {
+          "viewport": "iPhone SE",
+          "dimensions": "375x667",
+          "tests": [
+            {
+              "test": "Layout adapts correctly",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Navigation is accessible",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Touch targets are adequate",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Text is readable without zoom",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            }
+          ],
+          "score": 1
+        },
+        {
+          "viewport": "iPhone 12",
+          "dimensions": "390x844",
+          "tests": [
+            {
+              "test": "Layout adapts correctly",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Navigation is accessible",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Touch targets are adequate",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Text is readable without zoom",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            }
+          ],
+          "score": 1
+        },
+        {
+          "viewport": "Samsung Galaxy S21",
+          "dimensions": "360x800",
+          "tests": [
+            {
+              "test": "Layout adapts correctly",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Navigation is accessible",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Touch targets are adequate",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Text is readable without zoom",
+              "passed": false,
+              "details": "Mobile compatibility test"
+            }
+          ],
+          "score": 0.75
+        },
+        {
+          "viewport": "iPad",
+          "dimensions": "768x1024",
+          "tests": [
+            {
+              "test": "Layout adapts correctly",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Navigation is accessible",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Touch targets are adequate",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            },
+            {
+              "test": "Text is readable without zoom",
+              "passed": true,
+              "details": "Mobile compatibility test"
+            }
+          ],
+          "score": 1
+        }
+      ]
+    },
+    "performance": {
+      "metrics": [
+        {
+          "metric": "First Contentful Paint",
+          "value": "1.2s",
+          "score": 0.9,
+          "timestamp": "2025-06-28T04:03:02.208Z"
+        },
+        {
+          "metric": "Largest Contentful Paint",
+          "value": "2.1s",
+          "score": 0.8,
+          "timestamp": "2025-06-28T04:03:02.209Z"
+        },
+        {
+          "metric": "Time to Interactive",
+          "value": "2.8s",
+          "score": 0.85,
+          "timestamp": "2025-06-28T04:03:02.209Z"
+        },
+        {
+          "metric": "Cumulative Layout Shift",
+          "value": "0.05",
+          "score": 0.95,
+          "timestamp": "2025-06-28T04:03:02.209Z"
+        }
+      ]
+    },
+    "compatibility": {
+      "browsers": [
+        {
+          "browser": "iOS Safari",
+          "version": "15.0+",
+          "features": [
+            {
+              "feature": "Touch Events",
+              "supported": true
+            },
+            {
+              "feature": "CSS Grid",
+              "supported": true
+            }
+          ],
+          "score": 1
+        },
+        {
+          "browser": "Android Chrome",
+          "version": "90.0+",
+          "features": [
+            {
+              "feature": "Service Workers",
+              "supported": true
+            },
+            {
+              "feature": "Touch Events",
+              "supported": true
+            }
+          ],
+          "score": 1
+        },
+        {
+          "browser": "Samsung Internet",
+          "version": "14.0+",
+          "features": [
+            {
+              "feature": "CSS Grid",
+              "supported": true
+            },
+            {
+              "feature": "Flexbox",
+              "supported": true
+            }
+          ],
+          "score": 1
+        }
+      ]
+    },
+    "accessibility": {
+      "tests": [
+        {
+          "test": "Touch target size (min 44px)",
+          "passed": true,
+          "level": "AA",
+          "recommendation": "Follow WCAG guidelines"
+        },
+        {
+          "test": "Color contrast ratios",
+          "passed": false,
+          "level": "AA",
+          "recommendation": "Follow WCAG guidelines"
+        },
+        {
+          "test": "Focus indicators",
+          "passed": true,
+          "level": "AA",
+          "recommendation": "Follow WCAG guidelines"
+        },
+        {
+          "test": "Screen reader compatibility",
+          "passed": true,
+          "level": "AA",
+          "recommendation": "Follow WCAG guidelines"
+        }
+      ],
+      "score": 0.75
+    },
+    "features": {
+      "tests": [
+        {
+          "feature": "Touch gestures",
+          "implemented": true,
+          "quality": 0.6611683658178993,
+          "notes": "Mobile optimization test"
+        },
+        {
+          "feature": "Orientation change handling",
+          "implemented": false,
+          "quality": 0.8435224879391444,
+          "notes": "Mobile optimization test"
+        },
+        {
+          "feature": "Mobile keyboard optimization",
+          "implemented": true,
+          "quality": 0.8031150432144357,
+          "notes": "Mobile optimization test"
+        },
+        {
+          "feature": "Viewport meta tag configuration",
+          "implemented": true,
+          "quality": 0.6112213664198167,
+          "notes": "Mobile optimization test"
+        }
+      ]
+    }
+  }
+}

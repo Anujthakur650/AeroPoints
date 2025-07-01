@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2mdDAHf2sVz2KbUy4v3G9cUPuJh",
+    "airline": "qantas",
+    "flightNumber": "qa100",
+    "origin": "DFW",
+    "destination": "XNA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "business",
+    "points": "18200",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-30 23:16:46",
+    "layovers": []
+  },
+  {
+    "id": "2mARN1zzgvGlVbHMC3BmFmQPYX9",
+    "airline": "American Airlines",
+    "flightNumber": "Am101",
+    "origin": "DFW",
+    "destination": "XNA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "business",
+    "points": "15000",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-30 23:16:46",
+    "layovers": []
+  },
+  {
+    "id": "2l9jS9SIr1YHDj4CobSukoyXm4E",
+    "airline": "Alaska Airlines",
+    "flightNumber": "Al102",
+    "origin": "DFW",
+    "destination": "XNA",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "business",
+    "points": "9000",
+    "cash": 18.1,
+    "seatsAvailable": 8,
+    "realTimeData": true,
+    "lastUpdated": "2025-06-30 23:16:46",
+    "layovers": []
+  }
+]

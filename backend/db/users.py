@@ -1,9 +1,9 @@
 import sqlite3
 import uuid
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional, List
-from ..models.user import UserCreate, UserDB, UserUpdate, SavedSearch, SearchHistory, FrequentFlyerProgram, FlightPreference
+from models.user import UserCreate, UserDB, UserUpdate, SavedSearch, SearchHistory, FrequentFlyerProgram, FlightPreference
 
 DATABASE_URL = "users.db"
 
@@ -38,6 +38,19 @@ def init_db():
     )
     ''')
     
+    # Create password reset tokens table
+    conn.execute('''
+    CREATE TABLE IF NOT EXISTS password_reset_tokens (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL,
+        token TEXT UNIQUE NOT NULL,
+        created_at TEXT NOT NULL,
+        expires_at TEXT NOT NULL,
+        used BOOLEAN DEFAULT 0,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+    )
+    ''')
+    
     # Add Google authentication columns if they don't exist (for existing databases)
     try:
         conn.execute('ALTER TABLE users ADD COLUMN google_id TEXT UNIQUE')
@@ -58,6 +71,8 @@ def init_db():
     conn.execute('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)')
     conn.execute('CREATE INDEX IF NOT EXISTS idx_users_created_at ON users(created_at)')
     conn.execute('CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id)')
+    conn.execute('CREATE INDEX IF NOT EXISTS idx_reset_tokens_token ON password_reset_tokens(token)')
+    conn.execute('CREATE INDEX IF NOT EXISTS idx_reset_tokens_user_id ON password_reset_tokens(user_id)')
     
     conn.commit()
     conn.close()
@@ -252,15 +267,114 @@ async def remove_saved_search(user_id: str, search_id: str) -> bool:
     return True
 
 async def update_points_balance(user_id: str, points_delta: int) -> Optional[UserDB]:
+    """Update user's points balance by adding/subtracting points"""
     conn = get_db_connection()
     cursor = conn.cursor()
+    
+    # Update points balance
     cursor.execute(
         "UPDATE users SET points_balance = points_balance + ?, updated_at = ? WHERE id = ?",
         (points_delta, datetime.utcnow().isoformat(), user_id)
     )
+    
     conn.commit()
     conn.close()
     
-    if cursor.rowcount > 0:
-        return await get_user_by_id(user_id)
-    return None 
+    # Return updated user
+    return await get_user_by_id(user_id)
+
+async def update_user_password(user_id: str, hashed_password: str) -> bool:
+    """Update user's password"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute(
+            "UPDATE users SET hashed_password = ?, updated_at = ? WHERE id = ?",
+            (hashed_password, datetime.utcnow().isoformat(), user_id)
+        )
+        
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        
+        return success
+    except Exception as e:
+        print(f"Error updating password: {e}")
+        return False
+
+async def store_password_reset_token(user_id: str, token: str) -> bool:
+    """Store password reset token with 1 hour expiry"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        token_id = str(uuid.uuid4())
+        now = datetime.utcnow()
+        expires_at = now + timedelta(hours=1)
+        
+        # First, mark any existing tokens for this user as used
+        cursor.execute(
+            "UPDATE password_reset_tokens SET used = 1 WHERE user_id = ? AND used = 0",
+            (user_id,)
+        )
+        
+        # Insert new token
+        cursor.execute(
+            """INSERT INTO password_reset_tokens 
+            (id, user_id, token, created_at, expires_at) 
+            VALUES (?, ?, ?, ?, ?)""",
+            (token_id, user_id, token, now.isoformat(), expires_at.isoformat())
+        )
+        
+        conn.commit()
+        conn.close()
+        
+        return True
+    except Exception as e:
+        print(f"Error storing reset token: {e}")
+        return False
+
+async def get_user_by_reset_token(token: str) -> Optional[UserDB]:
+    """Get user by valid reset token"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Check if token exists and is valid
+        cursor.execute(
+            """SELECT user_id FROM password_reset_tokens 
+            WHERE token = ? AND used = 0 AND expires_at > ? ORDER BY created_at DESC LIMIT 1""",
+            (token, datetime.utcnow().isoformat())
+        )
+        
+        result = cursor.fetchone()
+        conn.close()
+        
+        if result:
+            return await get_user_by_id(result[0])
+        
+        return None
+    except Exception as e:
+        print(f"Error getting user by reset token: {e}")
+        return None
+
+async def delete_reset_token(token: str) -> bool:
+    """Mark reset token as used"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute(
+            "UPDATE password_reset_tokens SET used = 1 WHERE token = ?",
+            (token,)
+        )
+        
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        
+        return success
+    except Exception as e:
+        print(f"Error deleting reset token: {e}")
+        return False 

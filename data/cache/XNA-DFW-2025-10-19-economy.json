@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2ryq4sFBnyjHnzVKnNtAJDROLS9",
+    "airline": "American Airlines",
+    "flightNumber": "Am100",
+    "origin": "XNA",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "33000",
+    "cash": 5.6,
+    "seatsAvailable": 0,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-01 12:31:30",
+    "layovers": []
+  },
+  {
+    "id": "2pT0ft5qmYPyWyKs37sVcCfXKPj",
+    "airline": "Alaska Airlines",
+    "flightNumber": "Al101",
+    "origin": "XNA",
+    "destination": "DFW",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "12:00 PM",
+    "duration": "2h 0m",
+    "cabinClass": "economy",
+    "points": "4500",
+    "cash": 18.1,
+    "seatsAvailable": 1,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-01 12:31:30",
+    "layovers": []
+  }
+]

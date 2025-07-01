@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Test - AeroPoints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e293b, #4c1d95);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        .captcha-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .btn {
+            background: linear-gradient(135deg, #D4AF37, #F7DC6F);
+            color: #1e293b;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            color: #22c55e;
+        }
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+        }
+        .status.info {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: #3b82f6;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 CAPTCHA Integration Test</h1>
+        <p>This page tests the CAPTCHA integration for the AeroPoints forgot password flow.</p>
+        
+        <form id="testForm">
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" value="test@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <button type="button" id="showCaptchaBtn" class="btn">🎯 Show CAPTCHA</button>
+            </div>
+            
+            <div id="captchaContainer" class="captcha-container hidden">
+                <h3>🛡️ Security Verification</h3>
+                <p>Complete the CAPTCHA below:</p>
+                <div id="h-captcha"></div>
+                <p><small>Using hCaptcha test site key</small></p>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" id="submitBtn" class="btn" disabled>📧 Test Password Reset</button>
+            </div>
+        </form>
+        
+        <div id="status"></div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+            <h3>🧪 Test Instructions:</h3>
+            <ol>
+                <li>Click "Show CAPTCHA" - CAPTCHA should appear with fade-in animation</li>
+                <li>Complete the CAPTCHA (test keys allow clicking checkbox)</li>
+                <li>Click "Test Password Reset" to simulate the API call</li>
+                <li>Check if proper validation messages appear</li>
+            </ol>
+            
+            <h3>✅ Expected Behavior:</h3>
+            <ul>
+                <li>CAPTCHA appears smoothly after clicking "Show CAPTCHA"</li>
+                <li>Submit button remains disabled until CAPTCHA is completed</li>
+                <li>API call includes the CAPTCHA token</li>
+                <li>Proper error handling for failed submissions</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- hCaptcha Script -->
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    
+    <script>
+        let captchaToken = null;
+        let captchaRendered = false;
+        
+        const showCaptchaBtn = document.getElementById('showCaptchaBtn');
+        const captchaContainer = document.getElementById('captchaContainer');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusDiv = document.getElementById('status');
+        const form = document.getElementById('testForm');
+        
+        // Show status message
+        function showStatus(message, type = 'info') {
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+            statusDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Show CAPTCHA
+        showCaptchaBtn.addEventListener('click', function() {
+            showStatus('🎯 Showing CAPTCHA...', 'info');
+            
+            // Show CAPTCHA container with animation
+            captchaContainer.classList.remove('hidden');
+            captchaContainer.classList.add('fade-in');
+            
+            // Render CAPTCHA if not already rendered
+            if (!captchaRendered && window.hcaptcha) {
+                try {
+                    window.hcaptcha.render('h-captcha', {
+                        sitekey: '10000000-ffff-ffff-ffff-000000000001', // Test site key
+                        callback: function(token) {
+                            captchaToken = token;
+                            submitBtn.disabled = false;
+                            showStatus('✅ CAPTCHA completed! You can now submit.', 'success');
+                            console.log('CAPTCHA token received:', token.substring(0, 20) + '...');
+                        },
+                        'error-callback': function() {
+                            captchaToken = null;
+                            submitBtn.disabled = true;
+                            showStatus('❌ CAPTCHA verification failed. Please try again.', 'error');
+                        },
+                        theme: 'dark',
+                        size: 'normal'
+                    });
+                    captchaRendered = true;
+                    showStatus('🛡️ CAPTCHA loaded. Please complete the verification.', 'info');
+                } catch (error) {
+                    showStatus('❌ Error loading CAPTCHA: ' + error.message, 'error');
+                    console.error('CAPTCHA error:', error);
+                }
+            } else if (!window.hcaptcha) {
+                showStatus('⏳ Waiting for hCaptcha to load...', 'info');
+                // Wait for hCaptcha to load
+                setTimeout(() => {
+                    if (window.hcaptcha) {
+                        showCaptchaBtn.click(); // Retry
+                    } else {
+                        showStatus('❌ hCaptcha failed to load. Check your internet connection.', 'error');
+                    }
+                }, 2000);
+            }
+            
+            // Disable the show button
+            showCaptchaBtn.disabled = true;
+            showCaptchaBtn.textContent = '✅ CAPTCHA Shown';
+        });
+        
+        // Handle form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            if (!captchaToken) {
+                showStatus('❌ Please complete the CAPTCHA first.', 'error');
+                return;
+            }
+            
+            showStatus('🚀 Testing password reset API call...', 'info');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Testing...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/auth/forgot-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        captcha_token: captchaToken
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.status === 429) {
+                    showStatus('⚠️ Rate limiting active (this is good for security!)<br>Message: ' + data.detail, 'info');
+                } else if (response.status === 400) {
+                    showStatus('❌ Validation error: ' + data.detail, 'error');
+                } else if (response.ok) {
+                    showStatus('✅ Success! Password reset request processed.<br>Response: ' + JSON.stringify(data), 'success');
+                } else {
+                    showStatus('⚠️ Unexpected response (' + response.status + '): ' + JSON.stringify(data), 'info');
+                }
+                
+                console.log('API Response:', response.status, data);
+                
+            } catch (error) {
+                showStatus('❌ Network error: ' + error.message, 'error');
+                console.error('Network error:', error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '📧 Test Password Reset';
+            }
+        });
+        
+        // Initial status
+        showStatus('🔧 Ready to test CAPTCHA integration. Click "Show CAPTCHA" to begin.', 'info');
+        
+        console.log('CAPTCHA Test Page loaded. Backend should be running on http://localhost:8000');
+    </script>
+</body>
+</html> 

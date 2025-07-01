@@ -76,20 +76,8 @@ export function Header() {
                 transition={{ duration: 0.5 }}
                 className="flex items-center gap-4"
               >
-                {/* Enhanced Points Balance */}
-                <motion.div 
-                  className="hidden sm:flex items-center gap-2 glass-card px-3 py-2 rounded-xl border border-emerald-500/20"
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Icon icon="lucide:award" className="text-emerald-400" />
-                  <span className="text-emerald-300 font-medium">
-                    {user?.points_balance?.toLocaleString() || '0'}
-                  </span>
-                </motion.div>
-
-                {/* Enhanced User Dropdown */}
-                <Dropdown placement="bottom-end">
+                {/* Enhanced User Dropdown with Premium Glassmorphism */}
+                <Dropdown placement="bottom-end" offset={12}>
                   <DropdownTrigger>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -106,90 +94,98 @@ export function Header() {
                           <div className="text-white font-medium text-sm">{user?.full_name}</div>
                           <div className="text-platinum-400 text-xs">Premium Member</div>
                         </div>
-                        <Icon icon="lucide:chevron-down" className="text-platinum-400" />
+                        <Icon icon="lucide:chevron-down" className="text-platinum-400 transition-transform duration-300 hidden sm:block" />
                       </div>
                     </motion.div>
                   </DropdownTrigger>
                   <DropdownMenu 
                     aria-label="User actions"
-                    className="w-64"
+                    className="w-80 max-w-xs"
                     classNames={{
-                      base: "bg-navy-900/95 backdrop-blur-sm border border-white/10",
-                      list: "p-2"
+                      base: "bg-slate-900/95 backdrop-blur-lg border border-gray-700/50 shadow-2xl rounded-2xl p-6 overflow-hidden",
+                      list: "gap-3"
                     }}
                   >
+                    {/* User Profile Header */}
                     <DropdownItem 
-                      key="profile" 
-                      onClick={() => handleNavigation('/profile')}
-                      className="text-white hover:bg-white/10 rounded-lg mb-1"
+                      key="user-profile"
+                      className="p-0 mb-4"
+                      isReadOnly
                     >
-                      <div className="flex items-center gap-3 py-1">
-                        <Icon icon="lucide:user" className="text-gold-400" />
-                        <div>
-                          <div className="font-medium">My Profile</div>
-                          <div className="text-xs text-platinum-400">Manage account settings</div>
+                      <div className="flex items-center gap-4 p-4 bg-slate-800/60 rounded-2xl border border-gray-700/50">
+                        <Avatar
+                          size="md"
+                          className="bg-gradient-to-r from-gold-500 to-gold-600 text-slate-900 font-bold ring-2 ring-gold-400/30"
+                          name={user?.full_name?.charAt(0).toUpperCase()}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-white truncate">{user?.full_name}</div>
+                          <div className="text-sm bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent font-medium">Premium Member</div>
+                          <div className="text-xs text-gray-300 truncate">{user?.email}</div>
                         </div>
                       </div>
                     </DropdownItem>
-                    
-                    <DropdownItem 
-                      key="points"
-                      className="text-white hover:bg-white/10 rounded-lg mb-1"
-                    >
-                      <div className="flex items-center gap-3 py-1">
-                        <Icon icon="lucide:award" className="text-emerald-400" />
-                        <div>
-                          <div className="font-medium">{user?.points_balance?.toLocaleString()} Points</div>
-                          <div className="text-xs text-platinum-400">View points history</div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                    
+
+                    {/* My Searches */}
                     <DropdownItem 
                       key="searches"
-                      className="text-white hover:bg-white/10 rounded-lg mb-1"
+                      onClick={() => handleNavigation('/searches')}
+                      className="text-white hover:bg-white/5 rounded-2xl transition-colors duration-200 p-4 cursor-pointer"
                     >
-                      <div className="flex items-center gap-3 py-1">
-                        <Icon icon="lucide:search" className="text-blue-400" />
-                        <div>
-                          <div className="font-medium">My Searches</div>
-                          <div className="text-xs text-platinum-400">Saved flight searches</div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center border border-blue-400/30">
+                          <Icon icon="lucide:search" className="text-blue-400 text-lg" />
                         </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-white">My Searches</div>
+                          <div className="text-sm text-gray-400">Saved flight searches</div>
+                        </div>
+                        <Icon icon="lucide:chevron-right" className="text-gray-400 text-sm" />
                       </div>
                     </DropdownItem>
                     
+                    {/* Settings */}
                     <DropdownItem 
                       key="settings"
                       onClick={() => handleNavigation('/settings')}
-                      className="text-white hover:bg-white/10 rounded-lg mb-1"
+                      className="text-white hover:bg-white/5 rounded-2xl transition-colors duration-200 p-4 cursor-pointer"
                     >
-                      <div className="flex items-center gap-3 py-1">
-                        <Icon icon="lucide:settings" className="text-gray-400" />
-                        <div>
-                          <div className="font-medium">Settings</div>
-                          <div className="text-xs text-platinum-400">Preferences & notifications</div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center border border-gold-400/30">
+                          <Icon icon="lucide:settings" className="text-gold-400 text-lg" />
                         </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-white">Settings</div>
+                          <div className="text-sm text-gray-400">Preferences & notifications</div>
+                        </div>
+                        <Icon icon="lucide:chevron-right" className="text-gray-400 text-sm" />
                       </div>
                     </DropdownItem>
                     
+                    {/* Elegant Divider */}
                     <DropdownItem 
                       key="divider"
-                      className="p-0 mb-2"
+                      className="p-0 my-3"
+                      isReadOnly
                     >
-                      <div className="border-t border-white/10 mx-2"></div>
+                      <div className="border-t border-gray-700/50 mx-2"></div>
                     </DropdownItem>
                     
+                    {/* Sign Out */}
                     <DropdownItem 
                       key="logout" 
                       onClick={logout}
-                      className="text-red-400 hover:bg-red-500/10 rounded-lg"
+                      className="text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-2xl transition-colors duration-200 p-4 cursor-pointer"
                     >
-                      <div className="flex items-center gap-3 py-1">
-                        <Icon icon="lucide:log-out" className="text-red-400" />
-                        <div>
-                          <div className="font-medium">Sign Out</div>
-                          <div className="text-xs text-red-300/70">Logout from account</div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center border border-red-400/30">
+                          <Icon icon="lucide:log-out" className="text-red-400 text-lg" />
                         </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-red-300">Sign Out</div>
+                          <div className="text-sm text-red-400/70">Logout from account</div>
+                        </div>
+                        <Icon icon="lucide:chevron-right" className="text-red-400/50 text-sm" />
                       </div>
                     </DropdownItem>
                   </DropdownMenu>

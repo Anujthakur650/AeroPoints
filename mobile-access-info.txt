@@ -1,0 +1,26 @@
+📱 MOBILE ACCESS INFORMATION 📱
+==================================
+
+🌐 FRONTEND (Main App):
+URL: https://fifty-tigers-fix.loca.lt
+Password: 98.172.10.237
+
+🔧 BACKEND API:
+URL: https://cute-waves-sing.loca.lt
+Health Check: https://cute-waves-sing.loca.lt/health
+API Docs: https://cute-waves-sing.loca.lt/docs
+Password: 98.172.10.237
+
+📋 MOBILE DEBUG FEATURES:
+• Real-time diagnostics display
+• Environment auto-detection
+• API connectivity testing
+• Mobile-specific timeouts
+• Touch event optimization
+• Network error handling
+
+🔧 TROUBLESHOOTING:
+• Mobile debug runs automatically
+• Check browser console for logs
+• Use connectivity test page
+• Mobile timeouts: 15s vs 8s desktop

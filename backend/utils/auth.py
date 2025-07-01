@@ -5,8 +5,8 @@ from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from typing import Optional
-from ..models.user import User, TokenData
-from ..db.users import get_user_by_email
+from models.user import User, TokenData
+from db.users import get_user_by_email
 
 # Configuration - Use environment variables for production
 SECRET_KEY = os.getenv("SECRET_KEY", "award-flight-premium-secret-key-change-in-production")

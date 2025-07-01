@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Input } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { Icon } from '@iconify/react';
 
 const Login: React.FC = () => {
@@ -10,6 +10,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const { login, loading, error, loginWithGoogle, isGoogleAuthAvailable } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,8 +23,40 @@ const Login: React.FC = () => {
   // Get the redirect path or default to home
   const from = location.state?.from?.pathname || '/';
 
+  // Form validation
+  const validateForm = () => {
+    const errors: { [key: string]: string } = {};
+    
+    if (!email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!password) {
+      errors.password = 'Password is required';
+    } else if (password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      // Scroll to first error
+      const firstErrorField = document.querySelector('.field-feedback.invalid');
+      if (firstErrorField) {
+        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setValidationErrors({});
     
     try {
       await login(email, password);
@@ -33,8 +68,26 @@ const Login: React.FC = () => {
       navigate(from, { replace: true });
       
     } catch (err: any) {
-      // Error is already handled in AuthContext
       console.error('Login failed:', err);
+      setValidationErrors({ 
+        general: err.message || 'Login failed. Please check your credentials and try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      setIsSubmitting(true);
+      await loginWithGoogle();
+    } catch (err: any) {
+      console.error('Google login failed:', err);
+      setValidationErrors({ 
+        general: 'Google login failed. Please try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -49,7 +102,7 @@ const Login: React.FC = () => {
   }));
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-luxury)' }}>
+    <div className="auth-page">
       {/* Floating luxury elements */}
       <div className="absolute inset-0 pointer-events-none">
         {floatingElements.map((element) => (
@@ -99,7 +152,7 @@ const Login: React.FC = () => {
             className="login-header"
           >
             {/* Logo/Brand */}
-            <Link to="/" className="inline-flex items-center gap-3 mb-6">
+            <Link to="/" className="inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
               <Icon icon="lucide:plane" className="text-gold-400 text-3xl" />
               <span className="font-luxury text-3xl font-bold text-white">AeroPoints</span>
             </Link>
@@ -144,7 +197,8 @@ const Login: React.FC = () => {
             className="login-container"
           >
             <div className="login-content">
-              {error && (
+              {/* General Error Display */}
+              {(error || validationErrors.general) && (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -153,61 +207,80 @@ const Login: React.FC = () => {
                 >
                   <div className="flex items-center gap-2">
                     <Icon icon="lucide:alert-circle" className="text-red-400" />
-                    <span>{error}</span>
+                    <span>{error || validationErrors.general}</span>
                   </div>
                 </motion.div>
               )}
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Email */}
+                {/* Email Field */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="login-form-group"
                 >
-                  <Icon icon="lucide:mail" className="login-input-icon" />
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="login-input"
-                    classNames={{
-                      input: "text-white placeholder:text-platinum-400 bg-transparent pl-12",
-                      inputWrapper: "bg-transparent border-2 border-gold-400/20 hover:border-gold-400/30 focus-within:border-gold-400/50 backdrop-blur-sm h-14 rounded-xl"
-                    }}
-                    isRequired
-                  />
+                  <label htmlFor="email" className="login-form-label">
+                    Email Address
+                  </label>
+                  <div className="login-input-container">
+                    <Icon icon="lucide:mail" className="login-input-icon" />
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`login-form-input ${validationErrors.email ? 'error' : ''}`}
+                      required
+                      aria-describedby={validationErrors.email ? "email-error" : undefined}
+                    />
+                  </div>
+                  {validationErrors.email && (
+                    <div id="email-error" className="field-feedback invalid">
+                      <Icon icon="lucide:x-circle" className="feedback-icon" />
+                      {validationErrors.email}
+                    </div>
+                  )}
                 </motion.div>
                 
-                {/* Password */}
+                {/* Password Field */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="login-form-group password-field-container"
+                  className="login-form-group"
                 >
-                  <Icon icon="lucide:lock" className="login-input-icon" />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="login-input"
-                    classNames={{
-                      input: "text-white placeholder:text-platinum-400 bg-transparent pl-12 pr-12",
-                      inputWrapper: "bg-transparent border-2 border-gold-400/20 hover:border-gold-400/30 focus-within:border-gold-400/50 backdrop-blur-sm h-14 rounded-xl"
-                    }}
-                    isRequired
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="password-toggle"
-                  >
-                    <Icon icon={showPassword ? "lucide:eye-off" : "lucide:eye"} />
-                  </button>
+                  <label htmlFor="password" className="login-form-label">
+                    Password
+                  </label>
+                  <div className="login-input-container">
+                    <Icon icon="lucide:lock" className="login-input-icon" />
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`login-form-input ${validationErrors.password ? 'error' : ''}`}
+                      required
+                      aria-describedby={validationErrors.password ? "password-error" : undefined}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="password-toggle-btn"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      <Icon icon={showPassword ? "lucide:eye-off" : "lucide:eye"} />
+                    </button>
+                  </div>
+                  {validationErrors.password && (
+                    <div id="password-error" className="field-feedback invalid">
+                      <Icon icon="lucide:x-circle" className="feedback-icon" />
+                      {validationErrors.password}
+                    </div>
+                  )}
                 </motion.div>
 
                 {/* Enhanced Remember Me & Forgot Password */}
@@ -220,11 +293,14 @@ const Login: React.FC = () => {
                   <div className="remember-me-container">
                     <input
                       type="checkbox"
+                      id="rememberMe"
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                       className="remember-checkbox"
                     />
-                    <span className="remember-text">Remember me</span>
+                    <label htmlFor="rememberMe" className="remember-text">
+                      Remember me
+                    </label>
                   </div>
                   
                   <Link to="/forgot-password" className="forgot-password-link">
@@ -240,10 +316,11 @@ const Login: React.FC = () => {
                 >
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || isSubmitting}
                     className="sign-in-button"
+                    aria-describedby={error ? "login-error" : undefined}
                   >
-                    {loading ? (
+                    {(loading || isSubmitting) ? (
                       <>
                         <Icon icon="lucide:loader-2" className="animate-spin mr-2" />
                         Signing In...
@@ -259,14 +336,16 @@ const Login: React.FC = () => {
               </form>
 
               {/* Enhanced Divider */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="social-login-divider"
-              >
-                <span className="social-login-text">Or continue with</span>
-              </motion.div>
+              {isGoogleAuthAvailable && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="social-login-divider"
+                >
+                  <span className="social-login-text">Or continue with</span>
+                </motion.div>
+              )}
 
               {/* Google Sign In */}
               {isGoogleAuthAvailable && (
@@ -278,9 +357,9 @@ const Login: React.FC = () => {
                   <Button
                     variant="bordered"
                     size="lg"
-                    className="w-full h-14 text-white border-white/20 hover:border-gold-400/50 transition-all duration-300 hover:bg-white/5"
-                    onPress={loginWithGoogle}
-                    isDisabled={loading}
+                    className="google-auth-button"
+                    onPress={handleGoogleLogin}
+                    isDisabled={loading || isSubmitting}
                   >
                     <Icon icon="logos:google-icon" className="mr-3 text-lg" />
                     Continue with Google
@@ -296,8 +375,24 @@ const Login: React.FC = () => {
                 className="auth-switch-link"
               >
                 Don't have an account?{' '}
-                <Link to="/register">
+                <Link to="/register" className="auth-link-gold">
                   Sign Up
+                </Link>
+              </motion.div>
+
+              {/* Back to Home Link */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                className="text-center mt-4"
+              >
+                <Link 
+                  to="/" 
+                  className="back-to-home-link"
+                >
+                  <Icon icon="lucide:arrow-left" className="text-sm" />
+                  Back to Home
                 </Link>
               </motion.div>
             </div>

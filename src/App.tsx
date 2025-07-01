@@ -20,7 +20,10 @@ import { Header } from './components/header';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Profile from './components/auth/Profile';
+import Settings from './components/Settings';
 import GoogleCallback from './components/auth/GoogleCallback';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
 
 // Ultra-Premium Membership Section
 function PlatinumCircle() {
@@ -443,12 +446,22 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/auth/google/callback" element={<GoogleCallback />} />
               <Route 
                 path="/profile" 
                 element={
                   <ProtectedRoute>
                     <Profile />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/settings" 
+                element={
+                  <ProtectedRoute>
+                    <Settings />
                   </ProtectedRoute>
                 } 
               />

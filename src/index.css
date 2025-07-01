@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Import luxury fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
 @import url('./styles/premium-search.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer components {
   /* Hero Section Styles */
@@ -200,6 +200,64 @@
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
   }
 
+  /* Enhanced User Dropdown Glassmorphism */
+  [data-slot="base"] {
+    backdrop-filter: blur(40px) saturate(180%) !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid rgba(75, 85, 99, 0.5) !important;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.8),
+      0 8px 32px rgba(212, 175, 55, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    z-index: 99999 !important;
+  }
+
+  .dropdown-item-enhanced {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+  }
+
+  .dropdown-item-enhanced:hover {
+    background: rgba(212, 175, 55, 0.1) !important;
+    transform: translateX(4px);
+    backdrop-filter: blur(10px);
+  }
+
+  .dropdown-icon-container {
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-item-enhanced:hover .dropdown-icon-container {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+  /* Force glassmorphism for dropdown specifically */
+[role="menu"] {
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(75, 85, 99, 0.5) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  z-index: 99999 !important;
+}
+
+  /* Mobile responsive dropdown */
+  @media (max-width: 640px) {
+    [role="menu"] {
+      min-width: 250px !important;
+      max-width: 300px !important;
+      right: 1rem !important;
+    }
+    
+    .dropdown-item-enhanced:hover {
+      transform: none;
+    }
+  }
+
   .luxury-script {
     font-family: var(--font-accent);
     letter-spacing: 0.05em;
@@ -347,58 +405,106 @@
     transform: scale(1.1);
   }
 
-  /* Enhanced Stats Section with Premium Glass Morphism */
-  .stats-section {
+  /* Enhanced Stats Section with Superior Glassmorphism */
+  .stats-section-enhanced {
     background: linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(212, 175, 55, 0.05) 100%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 25px;
-    padding: 2rem;
-    margin: 3rem auto;
-    max-width: 1000px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.08) 100%);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 30px;
+    padding: 2rem 2.5rem;
+    box-shadow: 
+      0 12px 48px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 100%;
+    margin: 0 auto;
   }
 
-  .stats-container {
+  .stats-section-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, 
+      rgba(212, 175, 55, 0.4) 0%, 
+      transparent 30%, 
+      transparent 70%, 
+      rgba(212, 175, 55, 0.4) 100%);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .stats-section-enhanced:hover::before {
+    opacity: 1;
+  }
+
+  .stats-container-enhanced {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .stat-item-enhanced {
+    text-align: center;
+    padding: 1.25rem 1rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-item-enhanced:hover {
+    background: linear-gradient(135deg, 
+      rgba(212, 175, 55, 0.1) 0%,
+      rgba(212, 175, 55, 0.05) 100%);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+  }
+
+  .stat-number-enhanced {
+    font-family: var(--font-luxury);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, 
+      #D4AF37 0%, 
+      #F7DC6F 50%, 
+      #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+  }
+
+  .stat-label-enhanced {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    line-height: 1.3;
     text-align: center;
   }
 
-  .stat-item {
-    position: relative;
-    padding: 1rem;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-  }
-
-  .stat-item:hover {
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-3px);
-  }
-
-  .stat-number {
-    background: linear-gradient(135deg, #D4AF37 0%, #F7DC6F 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .stat-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* Add subtle dividers between stats */
   .stat-item:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -687,6 +793,21 @@
 @keyframes subtle-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  0% { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
 }
 
 /* ===== PREMIUM CALCULATOR ENHANCEMENTS ===== */
@@ -1594,15 +1715,17 @@
 /* Enhanced Login Specific Styles */
 .login-container {
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 2px solid rgba(212, 175, 55, 0.3);
-  border-radius: 30px;
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(15, 23, 42, 0.90) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(156, 163, 175, 0.5);
+  border-radius: 24px;
   padding: 3rem;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .login-content {
@@ -1616,7 +1739,7 @@
 }
 
 .welcome-back-text {
-    color: var(--gold-primary);
+  color: var(--gold-primary);
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
@@ -1640,7 +1763,7 @@
 }
 
 .trust-indicators-row {
-    display: flex;
+  display: flex;
   gap: 1rem;
   justify-content: center;
   margin-bottom: 2rem;
@@ -1656,13 +1779,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-    transition: all 0.3s ease;
-  }
+  transition: all 0.3s ease;
+}
 
 .trust-indicator-badge:hover {
   background: rgba(212, 175, 55, 0.1);
-    border-color: var(--gold-primary);
-  }
+  border-color: var(--gold-primary);
+}
 
 .trust-badge-icon {
   color: var(--gold-primary);
@@ -1670,7 +1793,7 @@
 }
 
 .trust-badge-text {
-    color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
   font-weight: 500;
 }
@@ -1680,36 +1803,89 @@
   position: relative;
 }
 
+.login-form-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.025em;
+}
+
+.login-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .login-input-icon {
   position: absolute;
   left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-    color: var(--gold-primary);
+  color: var(--gold-primary);
   font-size: 1.1rem;
   z-index: 3;
+  pointer-events: none;
 }
 
-.password-field-container {
-  position: relative;
+.login-form-input {
+  width: 100%;
+  height: 56px;
+  background: rgba(51, 65, 85, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(156, 163, 175, 0.6);
+  border-radius: 16px;
+  padding: 0 48px 0 48px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
 
-.password-toggle {
+.login-form-input[type="email"] {
+  padding: 0 16px 0 48px;
+}
+
+.login-form-input::placeholder {
+  color: rgba(156, 163, 175, 0.7);
+}
+
+.login-form-input:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(51, 65, 85, 0.7);
+}
+
+.login-form-input:focus {
+  border-color: #D4AF37;
+  box-shadow: 
+    0 0 0 2px rgba(212, 175, 55, 0.2),
+    0 4px 12px rgba(212, 175, 55, 0.1);
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.login-form-input.error {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.password-toggle-btn {
   position: absolute;
   right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
-    transition: all 0.3s ease;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
   z-index: 3;
-  }
+  padding: 4px;
+  border-radius: 4px;
+}
 
-.password-toggle:hover {
+.password-toggle-btn:hover {
   color: var(--gold-primary);
-  }
+  background: rgba(212, 175, 55, 0.1);
+}
 
   .login-options {
     display: flex;
@@ -1725,39 +1901,51 @@
   }
 
   .remember-checkbox {
-    width: 16px;
-    height: 16px;
-  border: 2px solid rgba(212, 175, 55, 0.3);
-  border-radius: 4px;
-  background: transparent;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    border-radius: 4px;
+    background: rgba(51, 65, 85, 0.6);
     cursor: pointer;
+    transition: all 0.3s ease;
+    accent-color: #D4AF37;
+  }
+
+  .remember-checkbox:checked {
+    background: linear-gradient(135deg, #D4AF37 0%, #F7DC6F 100%);
+    border-color: #D4AF37;
   }
 
   .remember-text {
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
   }
 
   .forgot-password-link {
     color: var(--gold-primary);
     text-decoration: none;
     font-size: 0.9rem;
+    font-weight: 500;
     transition: all 0.3s ease;
   }
 
   .forgot-password-link:hover {
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-}
+    color: #F7DC6F;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
 
 .sign-in-button {
   background: linear-gradient(135deg, #D4AF37 0%, #F7DC6F 50%, #D4AF37 100%);
   color: #0A1628;
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 16px 32px;
   font-size: 1.1rem;
   font-weight: 600;
   width: 100%;
+  height: 56px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
@@ -1769,11 +1957,17 @@
   gap: 0.5rem;
 }
 
-.sign-in-button:hover {
+.sign-in-button:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 
     0 12px 35px rgba(212, 175, 55, 0.4),
     inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.sign-in-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
   .social-login-divider {
@@ -1820,6 +2014,116 @@
 
   .auth-switch-link a:hover {
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.google-auth-button {
+  width: 100% !important;
+  height: 56px !important;
+  background: rgba(51, 65, 85, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.4) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.google-auth-button:hover {
+  border-color: rgba(212, 175, 55, 0.5) !important;
+  background: rgba(51, 65, 85, 0.8) !important;
+}
+
+.auth-link-gold {
+  color: var(--gold-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.auth-link-gold:hover {
+  color: #F7DC6F;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.back-to-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.back-to-home-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.benefit-cards-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.benefit-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  flex: 1;
+  max-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold-primary);
+  transform: translateY(-4px);
+}
+
+.benefit-card-icon {
+  color: var(--gold-primary);
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.benefit-card-title {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.field-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.field-feedback.invalid {
+  color: #F87171;
+}
+
+.field-feedback.valid {
+  color: #10B981;
+}
+
+.feedback-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 
 /* Registration Specific Styles */
@@ -2370,6 +2674,41 @@
   .registration-container { padding: 2rem; margin: 1rem; }
   .password-fields-container { grid-template-columns: 1fr; }
   .trust-indicators-row { flex-direction: column; align-items: center; }
+  
+  .login-container {
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 20px;
+  }
+  
+  .login-title {
+    font-size: 2rem;
+  }
+  
+  .trust-indicators-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .trust-indicator-badge {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .benefit-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .benefit-card {
+    max-width: 100%;
+  }
+  
+  .login-options {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
 
   /* Enhanced Bespoke Travel Experiences Mobile Styles */
   .trust-badges-container-enhanced {
@@ -2413,13 +2752,18 @@
   }
 
   .stats-section-enhanced {
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     margin: 0 1rem;
+    border-radius: 25px;
   }
 
   .stats-container-enhanced {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .stat-item-enhanced {
+    padding: 1rem 0.75rem;
   }
 
   .stat-number-enhanced {
@@ -2427,7 +2771,8 @@
   }
 
   .stat-label-enhanced {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.6px;
   }
 }
 
@@ -2448,6 +2793,25 @@
   .auth-container { padding: 1.5rem; }
   .registration-container { padding: 1.5rem; }
   .login-title, .registration-title { font-size: 2rem; }
+  
+  .login-container {
+    padding: 1.5rem;
+  }
+  
+  .login-title {
+    font-size: 1.75rem;
+  }
+  
+  .login-form-input,
+  .sign-in-button,
+  .google-auth-button {
+    height: 52px;
+  }
+  
+  .trust-indicator-badge {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
 
   /* Enhanced Bespoke Travel Experiences Ultra Mobile Styles */
   .trust-badge-enhanced {
@@ -2474,15 +2838,24 @@
   }
 
   .stats-section-enhanced {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
   }
 
   .stat-item-enhanced {
-    padding: 1rem;
+    padding: 0.875rem 0.5rem;
+    border-radius: 15px;
   }
 
   .stat-number-enhanced {
     font-size: 1.75rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .stat-label-enhanced {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -2744,13 +3117,15 @@
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 2px solid rgba(212, 175, 55, 0.3);
   border-radius: 30px;
-  padding: 2.5rem;
+  padding: 2rem 2.5rem;
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .stats-section-enhanced::before {
@@ -2774,14 +3149,16 @@
 
 .stats-container-enhanced {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .stat-item-enhanced {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1.25rem 1rem;
   border-radius: 20px;
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.08) 0%,
@@ -2790,6 +3167,11 @@
   border: 1px solid rgba(212, 175, 55, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-item-enhanced:hover {
@@ -2802,10 +3184,10 @@
 
 .stat-number-enhanced {
   font-family: var(--font-luxury);
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(135deg, 
     #D4AF37 0%, 
     #F7DC6F 50%, 
@@ -2817,12 +3199,13 @@
 }
 
 .stat-label-enhanced {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   line-height: 1.3;
+  text-align: center;
 }
 
 /* Enhanced Glass Card for Scroll Indicator */
@@ -2835,4 +3218,2962 @@
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Dropdown Glassmorphism - Force Apply */
+[data-slot="base"],
+[role="menu"] {
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.3) 100%) !important;
+  border: 2px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: 24px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 15px 35px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  padding: 24px !important;
+  margin-top: 12px !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+.dropdown-item-enhanced {
+  color: white !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+}
+
+.dropdown-item-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dropdown-icon-container {
+  transition: all 0.3s ease !important;
+}
+
+.dropdown-item-enhanced:hover .dropdown-icon-container {
+  transform: scale(1.1) !important;
+  filter: brightness(1.2) !important;
+}
+
+/* Mobile responsive dropdown adjustments */
+[role="menu"] {
+  width: 280px !important;
+  max-width: 90vw !important;
+}
+
+@media (max-width: 640px) {
+  [role="menu"] {
+    width: 250px !important;
+    max-width: 85vw !important;
+    margin-top: 4px !important;
+    transform: none !important;
+  }
+
+  .dropdown-item-enhanced:hover {
+    transform: none !important;
+  }
+}
+
+/* Search Form Dropdowns - Enhanced styling */
+[data-slot="popover"] {
+  z-index: 99999 !important;
+}
+
+/* Select popover content styling */
+[data-slot="popover"] [role="listbox"] {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  z-index: 99999 !important;
+}
+
+/* Select items styling */
+[data-slot="popover"] [role="listbox"] [role="option"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 12px 16px !important;
+  transition: all 0.2s ease !important;
+  border-radius: 8px !important;
+  margin: 2px 4px !important;
+}
+
+[data-slot="popover"] [role="listbox"] [role="option"]:hover,
+[data-slot="popover"] [role="listbox"] [role="option"][data-hover="true"] {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  transform: translateX(2px) !important;
+}
+
+[data-slot="popover"] [role="listbox"] [role="option"][data-selected="true"] {
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+}
+
+/* Select trigger hover states */
+[data-slot="trigger"]:hover {
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* Ensure dropdowns appear above all other elements */
+.dropdown-enhanced {
+  z-index: 99999 !important;
+  position: relative;
+}
+
+/* Airport autocomplete dropdown positioning */
+.airport-autocomplete-dropdown {
+  z-index: 99999 !important;
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+  position: absolute !important;
+  transform: translateZ(0) !important;
+  /* Contain the dropdown within its parent */
+  contain: layout style paint !important;
+  /* Add smooth transitions */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: dropdownSlideIn 0.2s ease-out !important;
+}
+
+/* Dropdown animation */
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) translateZ(0);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+    max-height: 200px;
+  }
+}
+
+/* Ensure airport search container has proper stacking context */
+.airport-autocomplete-dropdown + * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent dropdown from interfering with form layout */
+.relative:has(.airport-autocomplete-dropdown) {
+  isolation: isolate;
+}
+
+/* Mobile responsiveness for airport dropdown */
+@media (max-width: 768px) {
+  .airport-autocomplete-dropdown {
+    max-height: 160px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .airport-autocomplete-dropdown {
+    max-height: 140px !important;
+    margin-top: 4px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ===== REACT ARIA CALENDAR DARK THEME OVERRIDES ===== */
+
+/* React Aria Calendar Container */
+.react-aria-Calendar {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  color: white !important;
+}
+
+/* React Aria Calendar Header */
+.react-aria-Calendar .react-aria-CalendarHeader {
+  background: transparent !important;
+  color: white !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* React Aria Calendar Heading (Month/Year) */
+.react-aria-Calendar .react-aria-Heading {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+/* React Aria Calendar Navigation Buttons */
+.react-aria-Calendar .react-aria-Button {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 215, 0, 0.8) !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  min-width: 32px !important;
+  height: 32px !important;
+}
+
+.react-aria-Calendar .react-aria-Button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+/* React Aria Calendar Grid */
+.react-aria-Calendar .react-aria-CalendarGrid {
+  background: transparent !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+/* React Aria Calendar Grid Header (Weekdays) */
+.react-aria-Calendar .react-aria-CalendarGridHeader {
+  background: transparent !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarHeaderCell {
+  color: rgba(156, 163, 175, 0.8) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* React Aria Calendar Grid Body */
+.react-aria-Calendar .react-aria-CalendarGridBody {
+  background: transparent !important;
+}
+
+/* React Aria Calendar Cells */
+.react-aria-Calendar .react-aria-CalendarCell {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell[data-outside-month="true"] {
+  color: rgba(156, 163, 175, 0.4) !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell[data-disabled="true"] {
+  color: rgba(156, 163, 175, 0.3) !important;
+  cursor: not-allowed !important;
+}
+
+/* React Aria Calendar Cell Buttons (Date Numbers) */
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  min-width: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button:hover:not([data-disabled="true"]) {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-selected="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.5) !important;
+  font-weight: 600 !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-today="true"]:not([data-selected="true"]) {
+  background: rgba(255, 215, 0, 0.05) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  color: #FFD700 !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-focused="true"] {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* ===== HEROUI CALENDAR DARK THEME OVERRIDES ===== */
+
+/* HeroUI Calendar Dialog Container */
+[role="dialog"][aria-label*="calendar"],
+[role="dialog"][aria-label*="Calendar"] {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* HeroUI Calendar Header Elements */
+[role="dialog"][aria-label*="calendar"] button,
+[role="dialog"][aria-label*="Calendar"] button {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 215, 0, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+[role="dialog"][aria-label*="calendar"] button:hover,
+[role="dialog"][aria-label*="Calendar"] button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+}
+
+/* HeroUI Calendar Grid Cells */
+[role="dialog"][aria-label*="calendar"] [role="gridcell"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] {
+  color: white !important;
+  background: transparent !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button {
+  color: white !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+  width: 36px !important;
+  height: 36px !important;
+  transition: all 0.2s ease !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button:hover,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[aria-selected="true"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[aria-selected="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.5) !important;
+  font-weight: 600 !important;
+}
+
+/* HeroUI Calendar Text Elements */
+[role="dialog"][aria-label*="calendar"] h2,
+[role="dialog"][aria-label*="Calendar"] h2,
+[role="dialog"][aria-label*="calendar"] [role="columnheader"],
+[role="dialog"][aria-label*="Calendar"] [role="columnheader"] {
+  color: white !important;
+}
+
+/* ===== CALENDAR MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 768px) {
+  /* Calendar popup mobile adjustments */
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"], [role="dialog"][aria-label*="Calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    padding: 16px !important;
+    margin-top: 6px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Calendar container mobile adjustments */
+  .react-aria-Calendar {
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Calendar header mobile adjustments */
+  .react-aria-Calendar .react-aria-CalendarHeader {
+    margin-bottom: 12px !important;
+  }
+
+  .react-aria-Calendar .react-aria-Heading {
+    font-size: 14px !important;
+  }
+
+  /* Calendar navigation buttons mobile */
+  .react-aria-Calendar .react-aria-Button {
+    min-width: 28px !important;
+    height: 28px !important;
+    padding: 6px !important;
+  }
+
+  /* Calendar cell buttons mobile */
+  .react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 14px !important;
+  }
+
+  /* Calendar weekday headers mobile */
+  .react-aria-Calendar .react-aria-CalendarHeaderCell {
+    font-size: 11px !important;
+    padding: 6px 2px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile adjustments */
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"], [role="dialog"][aria-label*="Calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 260px !important;
+    max-width: 280px !important;
+    padding: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .react-aria-Calendar {
+    padding: 10px !important;
+  }
+
+  .react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    font-size: 13px !important;
+  }
+
+  .react-aria-Calendar .react-aria-CalendarHeaderCell {
+    font-size: 10px !important;
+    padding: 4px 1px !important;
+  }
+}
+
+/* ===== ENHANCED BESPOKE TRAVEL EXPERIENCES SECTION STYLES ===== */
+
+/* Enhanced Hero Section */
+.hero-overlay-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(10, 22, 40, 0.85) 0%, 
+    rgba(10, 22, 40, 0.7) 30%,
+    rgba(10, 22, 40, 0.8) 70%, 
+    rgba(10, 22, 40, 0.9) 100%);
+}
+
+/* Enhanced Trust Badges with Superior Glassmorphism */
+.trust-badges-container-enhanced {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trust-badge-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 25px;
+  padding: 16px 32px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  cursor: pointer;
+}
+
+.trust-badge-enhanced::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.6) 0%, 
+    transparent 40%, 
+    transparent 60%, 
+    rgba(212, 175, 55, 0.6) 100%);
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.trust-badge-enhanced:hover::before {
+  opacity: 1;
+}
+
+.trust-badge-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.1) 100%);
+  border-color: rgba(212, 175, 55, 0.6);
+  color: #D4AF37;
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Luxury Tagline */
+.luxury-tagline-enhanced {
+  font-family: var(--font-accent);
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, 
+    #D4AF37 0%, 
+    #F7DC6F 30%, 
+    #FFD700 70%, 
+    #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Enhanced Main Title for Bespoke Travel Experiences */
+.hero-main-title-enhanced {
+  font-family: var(--font-luxury);
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, 
+    #ffffff 0%, 
+    #f1f5f9 25%,
+    #e2e8f0 50%,
+    #cbd5e1 75%,
+    #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient-luxury-enhanced {
+  background: linear-gradient(135deg, 
+    #D4AF37 0%, 
+    #F7DC6F 25%, 
+    #FFD700 50%,
+    #FFA500 75%,
+    #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.text-gradient-luxury-enhanced::after {
+  content: 'Experiences';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.4) 0%, 
+    rgba(255, 215, 0, 0.3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(3px);
+  z-index: -1;
+}
+
+/* Enhanced Description */
+.hero-description-enhanced {
+  font-size: 1.375rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* Enhanced CTA Buttons with Premium Glassmorphism */
+.hero-cta-container-enhanced {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.discover-deals-btn-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.9) 0%,
+    rgba(212, 175, 55, 0.8) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  border-radius: 50px;
+  padding: 18px 36px;
+  color: #0A1628;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discover-deals-btn-enhanced::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.discover-deals-btn-enhanced:hover::before {
+  opacity: 1;
+}
+
+.discover-deals-btn-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 1) 0%,
+    rgba(255, 215, 0, 0.9) 100%);
+  border-color: #FFD700;
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(212, 175, 55, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.watch-experience-btn-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 18px 36px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watch-experience-btn-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #D4AF37;
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Stats Section with Superior Glassmorphism */
+.stats-section-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 30px;
+  padding: 2rem 2.5rem;
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.stats-section-enhanced::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.4) 0%, 
+    transparent 30%, 
+    transparent 70%, 
+    rgba(212, 175, 55, 0.4) 100%);
+  border-radius: 30px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stats-section-enhanced:hover::before {
+  opacity: 1;
+}
+
+.stats-container-enhanced {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.stat-item-enhanced {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-item-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.05) 100%);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.stat-number-enhanced {
+  font-family: var(--font-luxury);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, 
+    #D4AF37 0%, 
+    #F7DC6F 50%, 
+    #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.stat-label-enhanced {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Enhanced Glass Card for Scroll Indicator */
+.glass-card-enhanced {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Dropdown Glassmorphism - Force Apply */
+[data-slot="base"],
+[role="menu"] {
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.3) 100%) !important;
+  border: 2px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: 24px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 15px 35px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  padding: 24px !important;
+  margin-top: 12px !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+.dropdown-item-enhanced {
+  color: white !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+}
+
+.dropdown-item-enhanced:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dropdown-icon-container {
+  transition: all 0.3s ease !important;
+}
+
+.dropdown-item-enhanced:hover .dropdown-icon-container {
+  transform: scale(1.1) !important;
+  filter: brightness(1.2) !important;
+}
+
+/* Mobile responsive dropdown adjustments */
+[role="menu"] {
+  width: 280px !important;
+  max-width: 90vw !important;
+}
+
+@media (max-width: 640px) {
+  [role="menu"] {
+    width: 250px !important;
+    max-width: 85vw !important;
+    margin-top: 4px !important;
+    transform: none !important;
+  }
+
+  .dropdown-item-enhanced:hover {
+    transform: none !important;
+  }
+}
+
+/* Search Form Dropdowns - Enhanced styling */
+[data-slot="popover"] {
+  z-index: 99999 !important;
+}
+
+/* Select popover content styling */
+[data-slot="popover"] [role="listbox"] {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  z-index: 99999 !important;
+}
+
+/* Select items styling */
+[data-slot="popover"] [role="listbox"] [role="option"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 12px 16px !important;
+  transition: all 0.2s ease !important;
+  border-radius: 8px !important;
+  margin: 2px 4px !important;
+}
+
+[data-slot="popover"] [role="listbox"] [role="option"]:hover,
+[data-slot="popover"] [role="listbox"] [role="option"][data-hover="true"] {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  transform: translateX(2px) !important;
+}
+
+[data-slot="popover"] [role="listbox"] [role="option"][data-selected="true"] {
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+}
+
+/* Select trigger hover states */
+[data-slot="trigger"]:hover {
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* Ensure dropdowns appear above all other elements */
+.dropdown-enhanced {
+  z-index: 99999 !important;
+  position: relative;
+}
+
+/* Airport autocomplete dropdown positioning */
+.airport-autocomplete-dropdown {
+  z-index: 99999 !important;
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+  position: absolute !important;
+  transform: translateZ(0) !important;
+  /* Contain the dropdown within its parent */
+  contain: layout style paint !important;
+  /* Add smooth transitions */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: dropdownSlideIn 0.2s ease-out !important;
+}
+
+/* Dropdown animation */
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) translateZ(0);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+    max-height: 200px;
+  }
+}
+
+/* Ensure airport search container has proper stacking context */
+.airport-autocomplete-dropdown + * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent dropdown from interfering with form layout */
+.relative:has(.airport-autocomplete-dropdown) {
+  isolation: isolate;
+}
+
+/* Mobile responsiveness for airport dropdown */
+@media (max-width: 768px) {
+  .airport-autocomplete-dropdown {
+    max-height: 160px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .airport-autocomplete-dropdown {
+    max-height: 140px !important;
+    margin-top: 4px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ===== REACT ARIA CALENDAR DARK THEME OVERRIDES ===== */
+
+/* React Aria Calendar Container */
+.react-aria-Calendar {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  color: white !important;
+}
+
+/* React Aria Calendar Header */
+.react-aria-Calendar .react-aria-CalendarHeader {
+  background: transparent !important;
+  color: white !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* React Aria Calendar Heading (Month/Year) */
+.react-aria-Calendar .react-aria-Heading {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+/* React Aria Calendar Navigation Buttons */
+.react-aria-Calendar .react-aria-Button {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 215, 0, 0.8) !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  min-width: 32px !important;
+  height: 32px !important;
+}
+
+.react-aria-Calendar .react-aria-Button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+/* React Aria Calendar Grid */
+.react-aria-Calendar .react-aria-CalendarGrid {
+  background: transparent !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+/* React Aria Calendar Grid Header (Weekdays) */
+.react-aria-Calendar .react-aria-CalendarGridHeader {
+  background: transparent !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarHeaderCell {
+  color: rgba(156, 163, 175, 0.8) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* React Aria Calendar Grid Body */
+.react-aria-Calendar .react-aria-CalendarGridBody {
+  background: transparent !important;
+}
+
+/* React Aria Calendar Cells */
+.react-aria-Calendar .react-aria-CalendarCell {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell[data-outside-month="true"] {
+  color: rgba(156, 163, 175, 0.4) !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell[data-disabled="true"] {
+  color: rgba(156, 163, 175, 0.3) !important;
+  cursor: not-allowed !important;
+}
+
+/* React Aria Calendar Cell Buttons (Date Numbers) */
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  min-width: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button:hover:not([data-disabled="true"]) {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-selected="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.5) !important;
+  font-weight: 600 !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-today="true"]:not([data-selected="true"]) {
+  background: rgba(255, 215, 0, 0.05) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  color: #FFD700 !important;
+}
+
+.react-aria-Calendar .react-aria-CalendarCell .react-aria-Button[data-focused="true"] {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* ===== HEROUI CALENDAR DARK THEME OVERRIDES ===== */
+
+/* HeroUI Calendar Dialog Container */
+[role="dialog"][aria-label*="calendar"],
+[role="dialog"][aria-label*="Calendar"] {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* HeroUI Calendar Header Elements */
+[role="dialog"][aria-label*="calendar"] button,
+[role="dialog"][aria-label*="Calendar"] button {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 215, 0, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+[role="dialog"][aria-label*="calendar"] button:hover,
+[role="dialog"][aria-label*="Calendar"] button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+}
+
+/* HeroUI Calendar Grid Cells */
+[role="dialog"][aria-label*="calendar"] [role="gridcell"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] {
+  color: white !important;
+  background: transparent !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button {
+  color: white !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+  width: 36px !important;
+  height: 36px !important;
+  transition: all 0.2s ease !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button:hover,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[aria-selected="true"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[aria-selected="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.5) !important;
+  font-weight: 600 !important;
+}
+
+/* HeroUI Calendar Text Elements */
+[role="dialog"][aria-label*="calendar"] h2,
+[role="dialog"][aria-label*="Calendar"] h2,
+[role="dialog"][aria-label*="calendar"] [role="columnheader"],
+[role="dialog"][aria-label*="Calendar"] [role="columnheader"] {
+  color: white !important;
+}
+
+/* ===== CALENDAR MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 768px) {
+  /* Calendar popup mobile adjustments */
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"], [role="dialog"][aria-label*="Calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    padding: 16px !important;
+    margin-top: 6px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Calendar container mobile adjustments */
+  .react-aria-Calendar {
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Calendar header mobile adjustments */
+  .react-aria-Calendar .react-aria-CalendarHeader {
+    margin-bottom: 12px !important;
+  }
+
+  .react-aria-Calendar .react-aria-Heading {
+    font-size: 14px !important;
+  }
+
+  /* Calendar navigation buttons mobile */
+  .react-aria-Calendar .react-aria-Button {
+    min-width: 28px !important;
+    height: 28px !important;
+    padding: 6px !important;
+  }
+
+  /* Calendar cell buttons mobile */
+  .react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 14px !important;
+  }
+
+  /* Calendar weekday headers mobile */
+  .react-aria-Calendar .react-aria-CalendarHeaderCell {
+    font-size: 11px !important;
+    padding: 6px 2px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile adjustments */
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"], [role="dialog"][aria-label*="Calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 260px !important;
+    max-width: 280px !important;
+    padding: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .react-aria-Calendar {
+    padding: 10px !important;
+  }
+
+  .react-aria-Calendar .react-aria-CalendarCell .react-aria-Button {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    font-size: 13px !important;
+  }
+
+  .react-aria-Calendar .react-aria-CalendarHeaderCell {
+    font-size: 10px !important;
+    padding: 4px 1px !important;
+  }
+}
+
+/* Ensure form sections maintain proper spacing with dropdowns */
+.space-y-4 > div:has(.airport-autocomplete-dropdown) + div {
+  margin-top: 1.5rem !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Form grid layout protection */
+.grid > div:has(.airport-autocomplete-dropdown) {
+  position: relative;
+  z-index: 10;
+}
+
+.grid > div:has(.airport-autocomplete-dropdown) + div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Specific spacing for airport search section */
+.space-y-10 > .grid:has(.airport-autocomplete-dropdown) {
+  margin-bottom: 3rem !important;
+}
+
+/* Ensure dropdown doesn't interfere with subsequent form sections */
+.space-y-10 > .grid:has(.airport-autocomplete-dropdown) + .grid {
+  margin-top: 3rem !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== COMPREHENSIVE CALENDAR DARK THEME FIXES ===== */
+
+/* 1. CALENDAR POPUP CONTAINER - Fixed positioning and dark theme */
+[data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"]),
+[data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="Calendar"]),
+.date-picker-dark-theme [data-slot="popover"][data-open="true"],
+.date-picker-dark-theme .react-aria-Popover {
+  /* Dark Theme Background - CRITICAL FIX */
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  
+  /* POSITIONING FIX - Appear below Travel Dates input */
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+  
+  /* Size and layering */
+  min-width: 320px !important;
+  max-width: 400px !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+  padding: 20px !important;
+  
+  /* Prevent overflow and ensure proper containment */
+  max-height: calc(100vh - 200px) !important;
+  overflow: visible !important;
+}
+
+/* 2. CALENDAR DIALOG CONTAINER - Ensure dark theme */
+[role="dialog"][aria-label*="calendar"], 
+[role="dialog"][aria-label*="Calendar"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: white !important;
+  width: 100% !important;
+}
+
+/* 3. CALENDAR GRID CONTAINER - Dark theme base */
+.react-aria-Calendar,
+[data-slot="calendar"] {
+  background: transparent !important;
+  color: white !important;
+  font-family: inherit !important;
+  width: 100% !important;
+}
+
+/* 4. CALENDAR HEADER - Month/Year with gold accent */
+.react-aria-Calendar header,
+[data-slot="calendar"] header,
+.react-aria-CalendarHeader {
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* 5. CALENDAR HEADER TITLE - White text for Month Year */
+.react-aria-Calendar .react-aria-Heading,
+.react-aria-CalendarHeader .react-aria-Heading,
+[data-slot="calendar"] .react-aria-Heading,
+[role="dialog"] h2 {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  flex: 1 !important;
+}
+
+/* 6. CALENDAR NAVIGATION BUTTONS - Gold accent styling */
+.react-aria-Calendar .react-aria-Button,
+.react-aria-CalendarHeader .react-aria-Button,
+[data-slot="calendar"] .react-aria-Button,
+[role="dialog"] button:not([role="gridcell"] button) {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 8px !important;
+  color: #FFD700 !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-aria-Calendar .react-aria-Button:hover,
+.react-aria-CalendarHeader .react-aria-Button:hover,
+[data-slot="calendar"] .react-aria-Button:hover,
+[role="dialog"] button:not([role="gridcell"] button):hover {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+}
+
+/* 7. CALENDAR GRID TABLE - Proper spacing */
+.react-aria-CalendarGrid,
+[data-slot="calendar"] table,
+[role="grid"] {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+  margin-top: 12px !important;
+}
+
+/* 8. CALENDAR WEEKDAY HEADERS - Light gray text */
+.react-aria-CalendarGridHeader th,
+.react-aria-CalendarHeaderCell,
+[data-slot="calendar"] thead th,
+[role="columnheader"] {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+  border: none !important;
+  background: transparent !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* 9. CALENDAR GRID BODY - Transparent background */
+.react-aria-CalendarGridBody,
+[data-slot="calendar"] tbody {
+  background: transparent !important;
+}
+
+/* 10. CALENDAR DATE CELLS - Container for date buttons */
+.react-aria-CalendarCell,
+[data-slot="calendar"] td,
+[role="gridcell"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 2px !important;
+  position: relative !important;
+  text-align: center !important;
+}
+
+/* 11. CALENDAR DATE BUTTONS - Main date styling */
+.react-aria-CalendarCell .react-aria-Button,
+[data-slot="calendar"] td button,
+[role="gridcell"] button {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+
+/* 12. DATE BUTTON HOVER STATES - Gold accent on hover */
+.react-aria-CalendarCell .react-aria-Button:hover,
+[data-slot="calendar"] td button:hover,
+[role="gridcell"] button:hover {
+  background: rgba(255, 215, 0, 0.15) !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* 13. SELECTED DATE STYLING - Gold gradient background */
+.react-aria-CalendarCell .react-aria-Button[aria-selected="true"],
+.react-aria-CalendarCell .react-aria-Button[data-selected="true"],
+[data-slot="calendar"] td button[aria-selected="true"],
+[data-slot="calendar"] td button[data-selected="true"],
+[role="gridcell"] button[aria-selected="true"],
+[role="gridcell"] button[data-selected="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* 14. TODAY'S DATE STYLING - Special gold border */
+.react-aria-CalendarCell .react-aria-Button[data-today="true"],
+[data-slot="calendar"] td button[data-today="true"],
+[role="gridcell"] button[data-today="true"] {
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+}
+
+/* 15. TODAY'S DATE WHEN SELECTED - Override for selected today */
+.react-aria-CalendarCell .react-aria-Button[data-today="true"][aria-selected="true"],
+[data-slot="calendar"] td button[data-today="true"][aria-selected="true"],
+[role="gridcell"] button[data-today="true"][aria-selected="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* 16. DISABLED/OUTSIDE MONTH DATES - Muted appearance */
+.react-aria-CalendarCell .react-aria-Button[data-outside-month="true"],
+.react-aria-CalendarCell .react-aria-Button[aria-disabled="true"],
+[data-slot="calendar"] td button[data-outside-month="true"],
+[data-slot="calendar"] td button[aria-disabled="true"],
+[role="gridcell"] button[data-outside-month="true"],
+[role="gridcell"] button[aria-disabled="true"] {
+  color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  cursor: not-allowed !important;
+}
+
+/* 17. DISABLED HOVER STATES - Prevent interaction */
+.react-aria-CalendarCell .react-aria-Button[data-outside-month="true"]:hover,
+.react-aria-CalendarCell .react-aria-Button[aria-disabled="true"]:hover,
+[data-slot="calendar"] td button[data-outside-month="true"]:hover,
+[data-slot="calendar"] td button[aria-disabled="true"]:hover,
+[role="gridcell"] button[data-outside-month="true"]:hover,
+[role="gridcell"] button[aria-disabled="true"]:hover {
+  transform: none !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: none !important;
+}
+
+/* 18. DATE RANGE SELECTION - Start and end dates */
+.react-aria-CalendarCell .react-aria-Button[data-selection-start="true"],
+.react-aria-CalendarCell .react-aria-Button[data-selection-end="true"],
+[data-slot="calendar"] td button[data-selection-start="true"],
+[data-slot="calendar"] td button[data-selection-end="true"],
+[role="gridcell"] button[data-selection-start="true"],
+[role="gridcell"] button[data-selection-end="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* 19. DATE RANGE MIDDLE DATES - In-between selection */
+.react-aria-CalendarCell .react-aria-Button[data-selection="true"]:not([data-selection-start="true"]):not([data-selection-end="true"]),
+[data-slot="calendar"] td button[data-selection="true"]:not([data-selection-start="true"]):not([data-selection-end="true"]),
+[role="gridcell"] button[data-selection-middle="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+/* 20. FOCUS STATES - Accessibility outline */
+.react-aria-CalendarCell .react-aria-Button[data-focused="true"],
+.react-aria-CalendarCell .react-aria-Button:focus-visible,
+[data-slot="calendar"] td button[data-focused="true"],
+[data-slot="calendar"] td button:focus-visible,
+[role="gridcell"] button[data-focused="true"],
+[role="gridcell"] button:focus-visible {
+  outline: 2px solid #FFD700 !important;
+  outline-offset: 2px !important;
+  z-index: 10 !important;
+}
+
+/* 21. CALENDAR POSITIONING FIXES - Ensure proper placement */
+[data-slot="popover"]:has([role="dialog"][aria-label*="calendar"]),
+.date-picker-dark-theme [data-slot="popover"] {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+  max-height: calc(100vh - 200px) !important;
+  overflow: visible !important;
+  /* Ensure it doesn't extend beyond form boundaries */
+  max-width: 100% !important;
+  width: auto !important;
+  min-width: 300px !important;
+}
+
+/* 25. MOBILE RESPONSIVENESS - Calendar sizing for smaller screens */
+@media (max-width: 768px) {
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"] {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+  }
+  
+  .react-aria-CalendarCell .react-aria-Button,
+  [data-slot="calendar"] td button,
+  [role="gridcell"] button {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+  
+  .react-aria-CalendarGridHeader th,
+  [role="columnheader"] {
+    font-size: 11px !important;
+    padding: 6px 2px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"] {
+    min-width: 260px !important;
+    max-width: 300px !important;
+    padding: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .react-aria-CalendarCell .react-aria-Button,
+  [data-slot="calendar"] td button,
+  [role="gridcell"] button {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"]),
+  .date-picker-dark-theme [data-slot="popover"][data-open="true"] {
+    min-width: 240px !important;
+    max-width: 280px !important;
+    padding: 10px !important;
+  }
+  
+  .react-aria-CalendarCell .react-aria-Button,
+  [data-slot="calendar"] td button,
+  [role="gridcell"] button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* 26. FORM LAYOUT PROTECTION - Prevent calendar overlap */
+.space-y-10 > .grid:has([data-slot="popover"][data-open="true"]),
+.space-y-8 > .grid:has([data-slot="popover"][data-open="true"]) {
+  margin-bottom: 4rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure subsequent form sections maintain proper spacing */
+.space-y-10 > .grid:has([data-slot="popover"][data-open="true"]) + *,
+.space-y-8 > .grid:has([data-slot="popover"][data-open="true"]) + * {
+  margin-top: 4rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Travel Dates field container positioning */
+.space-y-4.group:has(.date-picker-dark-theme) {
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* 22. DATE INPUT FIELD DARK THEME - Fix white background issue */
+.date-picker-dark-theme [data-slot="base"],
+.date-picker-dark-theme .react-aria-Group,
+[data-slot="input"]:has([data-slot="calendar"]) {
+  background: rgba(51, 65, 85, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.6) !important;
+  border-radius: 12px !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  height: 56px !important;
+  min-height: 56px !important;
+}
+
+.date-picker-dark-theme [data-slot="base"]:hover,
+.date-picker-dark-theme .react-aria-Group:hover,
+[data-slot="input"]:has([data-slot="calendar"]):hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1) !important;
+}
+
+.date-picker-dark-theme [data-slot="base"][data-focus="true"],
+.date-picker-dark-theme [data-slot="base"][data-focused="true"],
+.date-picker-dark-theme .react-aria-Group[data-focus-within="true"],
+[data-slot="input"]:has([data-slot="calendar"])[data-focus="true"] {
+  border-color: #FFD700 !important;
+  background: rgba(51, 65, 85, 0.9) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2), 0 8px 25px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* 23. DATE INPUT TEXT STYLING - Ensure proper formatting */
+.date-picker-dark-theme [data-slot="input"],
+.date-picker-dark-theme input,
+.date-picker-dark-theme .react-aria-DateInput {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  padding: 0 16px !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+.date-picker-dark-theme [data-slot="input"]::placeholder,
+.date-picker-dark-theme input::placeholder,
+.date-picker-dark-theme .react-aria-DateInput::placeholder {
+  color: rgba(156, 163, 175, 0.7) !important;
+  font-weight: 400 !important;
+}
+
+/* 24. DATE PICKER POSITIONING WRAPPER */
+.date-picker-dark-theme {
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* Date Picker Input Wrapper Styling - Fix white background issue */
+.date-picker-dark-theme [data-slot="base"],
+.date-picker-dark-theme .react-aria-Group {
+  background: rgba(51, 65, 85, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.6) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  height: 56px !important;
+  color: white !important;
+}
+
+.date-picker-dark-theme [data-slot="base"]:hover,
+.date-picker-dark-theme .react-aria-Group:hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1) !important;
+}
+
+.date-picker-dark-theme [data-slot="base"][data-focus="true"],
+.date-picker-dark-theme [data-slot="base"][data-focused="true"],
+.date-picker-dark-theme .react-aria-Group[data-focus-within="true"] {
+  border-color: #FFD700 !important;
+  background: rgba(51, 65, 85, 0.9) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2), 0 8px 25px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* Date Picker Input Text Styling - Ensure white text */
+.date-picker-dark-theme [data-slot="input"],
+.date-picker-dark-theme input,
+.date-picker-dark-theme .react-aria-DateInput {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  padding: 0 16px !important;
+}
+
+.date-picker-dark-theme [data-slot="input"]::placeholder,
+.date-picker-dark-theme input::placeholder,
+.date-picker-dark-theme .react-aria-DateInput::placeholder {
+  color: rgba(156, 163, 175, 0.7) !important;
+}
+
+/* Date Picker Icon Styling */
+.date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+.date-picker-dark-theme .react-aria-Button[aria-label*="calendar"] {
+  color: rgba(255, 215, 0, 0.8) !important;
+}
+
+/* Date Picker Segment Styling (for individual date parts) */
+.date-picker-dark-theme [data-slot="segment"],
+.date-picker-dark-theme .react-aria-DateSegment {
+  color: white !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+  padding: 2px 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"]:hover,
+.date-picker-dark-theme .react-aria-DateSegment:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"][data-focused="true"],
+.date-picker-dark-theme .react-aria-DateSegment[data-focused="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  outline: none !important;
+}
+
+/* Date Picker Label Styling */
+.date-picker-dark-theme [data-slot="label"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Calendar Button/Trigger Styling */
+.date-picker-dark-theme button[aria-label*="calendar"],
+.date-picker-dark-theme button[aria-label*="Calendar"],
+.date-picker-dark-theme .react-aria-Button[aria-label*="calendar"] {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 215, 0, 0.8) !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.date-picker-dark-theme button[aria-label*="calendar"]:hover,
+.date-picker-dark-theme button[aria-label*="Calendar"]:hover,
+.date-picker-dark-theme .react-aria-Button[aria-label*="calendar"]:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Fix Calendar Popup Positioning - Ensure it appears below input */
+.date-picker-dark-theme [data-slot="popover"],
+.date-picker-dark-theme .react-aria-Popover {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  margin-top: 8px !important;
+  width: 100% !important;
+  max-width: 400px !important;
+}
+
+/* ===== ENHANCED FEATURE CARDS DARK THEME STYLING ===== */
+
+/* Override card-premium for dark theme compatibility */
+.card-premium {
+  background: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 24px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white !important;
+}
+
+.card-premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 35px 70px -15px rgba(0, 0, 0, 0.4),
+    0 15px 45px rgba(212, 175, 55, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* Feature Cards Container Styling */
+.space-luxury {
+  background: transparent;
+  position: relative;
+}
+
+/* Feature Card Content Styling for Dark Theme */
+.card-premium .space-y-6 h3,
+.card-premium h3 {
+  color: white !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+}
+
+.card-premium .space-y-6 p,
+.card-premium p {
+  color: rgba(229, 231, 235, 0.9) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Badge Styling for Dark Theme */
+.card-premium .inline-flex.rounded-full {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.15) 0%, 
+    rgba(212, 175, 55, 0.25) 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  color: rgba(212, 175, 55, 0.9) !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Icon Container Enhancements */
+.card-premium .w-16.h-16 {
+  background: var(--gradient-luxury) !important;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(212, 175, 55, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.card-premium:hover .w-16.h-16 {
+  transform: scale(1.05) rotate(5deg) !important;
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* "Learn More" Link Styling */
+.card-premium .flex.items-center.gap-2 {
+  color: rgba(255, 215, 0, 0.9) !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.card-premium .flex.items-center.gap-2:hover {
+  color: #FFD700 !important;
+  transform: translateX(5px) !important;
+}
+
+.card-premium .flex.items-center.gap-2 span {
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.card-premium .flex.items-center.gap-2:hover span {
+  border-bottom-color: rgba(255, 215, 0, 0.6) !important;
+}
+
+/* Tier-specific Icon Colors and Effects */
+.card-premium [class*="from-yellow-400"] {
+  background: linear-gradient(135deg, #D4AF37 0%, #F7DC6F 100%) !important;
+}
+
+.card-premium [class*="from-blue-500"] {
+  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%) !important;
+}
+
+.card-premium [class*="from-purple-500"] {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%) !important;
+}
+
+/* Enhanced Interactive Effects */
+.interactive-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 215, 0, 0.05) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.interactive-hover:hover::before {
+  left: 100%;
+}
+
+.interactive-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* Feature Cards Grid Enhancement */
+.grid.grid-cols-1.md\\:grid-cols-2.gap-8 > .group {
+  transition: all 0.3s ease;
+}
+
+.grid.grid-cols-1.md\\:grid-cols-2.gap-8 > .group:hover {
+  z-index: 10;
+}
+
+/* Floating Particles Animation for Icons */
+@keyframes floating-particles {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+  25% { transform: translateY(-3px) rotate(1deg); opacity: 1; }
+  50% { transform: translateY(-5px) rotate(-1deg); opacity: 0.9; }
+  75% { transform: translateY(-2px) rotate(1deg); opacity: 1; }
+}
+
+.card-premium .w-16.h-16::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 50%;
+  animation: floating-particles 3s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-premium:hover .w-16.h-16::after {
+  opacity: 1;
+}
+
+/* Text Gradient Enhancement for Card Titles */
+.card-premium h3 {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(229, 231, 235, 0.9) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* CTA Section Enhanced Styling */
+.card-premium.p-12.max-w-4xl {
+  background: rgba(10, 22, 42, 0.95) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium.p-12.max-w-4xl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(212, 175, 55, 0.05) 0%, 
+    transparent 70%);
+  pointer-events: none;
+}
+
+/* Stats Section in CTA */
+.card-premium .grid.grid-cols-1.md\\:grid-cols-3.gap-8 > div {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-premium .grid.grid-cols-1.md\\:grid-cols-3.gap-8 > div:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Button Enhancements */
+.btn-luxury {
+  background: linear-gradient(135deg, #D4AF37 0%, #F7DC6F 50%, #D4AF37 100%) !important;
+  color: #0A1628 !important;
+  border: none !important;
+  font-weight: 600 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  transition: left 0.5s ease;
+}
+
+.btn-luxury:hover::before {
+  left: 100%;
+}
+
+.btn-luxury:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Pulse Animation for Primary Button */
+.animate-pulse-luxury {
+  animation: luxury-pulse 2s ease-in-out infinite;
+}
+
+@keyframes luxury-pulse {
+  0%, 100% { 
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  }
+  50% { 
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+  }
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  .card-premium {
+    padding: 1.5rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .card-premium .w-16.h-16 {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  
+  .card-premium h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .card-premium p {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-1.md\\:grid-cols-2.gap-8 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .card-premium:hover {
+    transform: translateY(-4px) !important;
+  }
+}
+
+/* Text Gradient Classes */
+.text-gradient-luxury {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(212, 175, 55, 0.9) 50%,
+    rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, 
+    #D4AF37 0%, 
+    #F7DC6F 50%, 
+    #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== DATE PICKER / CALENDAR DARK THEME STYLING ===== */
+
+/* ===== COMPREHENSIVE CALENDAR DARK THEME FIXES ===== */
+
+/* 1. CALENDAR POPUP CONTAINER - Fix white background issue */
+[data-slot="popover"][data-open="true"],
+.date-picker-dark-theme [data-slot="popover"],
+.react-aria-Popover,
+[role="dialog"]:has([role="grid"]),
+[role="presentation"]:has([role="dialog"]) {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  z-index: 99999 !important;
+  position: absolute !important;
+  margin-top: 8px !important;
+  padding: 20px !important;
+  min-width: 320px !important;
+  max-width: 400px !important;
+  color: white !important;
+}
+
+/* 2. CALENDAR DIALOG CONTAINER - Ensure transparent background */
+[role="dialog"][aria-label*="calendar"],
+[role="dialog"][aria-label*="Calendar"],
+[role="dialog"]:has([role="grid"]),
+.react-aria-Calendar {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: white !important;
+  font-family: inherit !important;
+}
+
+/* 3. CALENDAR HEADER STYLING - Fix header appearance */
+[role="dialog"] header,
+.react-aria-CalendarHeader,
+[role="dialog"] h2,
+[data-slot="calendar"] header {
+  background: transparent !important;
+  color: white !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+/* 4. CALENDAR HEADER TITLE (Month/Year) */
+[role="dialog"] h2,
+.react-aria-Heading,
+[role="dialog"] [role="heading"],
+[data-slot="calendar"] h2 {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* 5. CALENDAR NAVIGATION BUTTONS - Gold accent styling */
+[role="dialog"] button,
+.react-aria-Button,
+[role="dialog"] [role="button"],
+[data-slot="calendar"] button {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 8px !important;
+  color: #FFD700 !important;
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  font-weight: 500 !important;
+}
+
+[role="dialog"] button:hover,
+.react-aria-Button:hover,
+[role="dialog"] [role="button"]:hover,
+[data-slot="calendar"] button:hover {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  transform: translateY(-1px) !important;
+  color: #FFD700 !important;
+}
+
+/* 6. CALENDAR GRID CONTAINER */
+[role="grid"],
+.react-aria-CalendarGrid,
+[data-slot="calendar"] table,
+table[role="grid"] {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 2px !important;
+  background: transparent !important;
+}
+
+/* 7. CALENDAR WEEKDAY HEADERS (S M T W T F S) */
+[role="columnheader"],
+.react-aria-CalendarHeaderCell,
+[role="grid"] thead th,
+[data-slot="calendar"] th {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 8. CALENDAR DATE CELLS */
+[role="gridcell"],
+.react-aria-CalendarCell,
+[role="grid"] td,
+[data-slot="calendar"] td {
+  background: transparent !important;
+  border: none !important;
+  padding: 2px !important;
+  position: relative !important;
+}
+
+/* 9. CALENDAR DATE BUTTONS - Main styling */
+[role="gridcell"] button,
+.react-aria-CalendarCell button,
+[role="grid"] td button,
+[data-slot="calendar"] td button,
+.react-aria-CalendarCell .react-aria-Button {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+}
+
+/* 10. DATE BUTTON HOVER STATES */
+[role="gridcell"] button:hover,
+.react-aria-CalendarCell button:hover,
+[role="grid"] td button:hover,
+[data-slot="calendar"] td button:hover,
+.react-aria-CalendarCell .react-aria-Button:hover {
+  background: rgba(255, 215, 0, 0.15) !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+}
+
+/* 11. SELECTED DATE STYLING - Gold highlight */
+[role="gridcell"] button[aria-selected="true"],
+[role="gridcell"] button[data-selected="true"],
+.react-aria-CalendarCell button[aria-selected="true"],
+.react-aria-CalendarCell button[data-selected="true"],
+[role="grid"] td button[aria-selected="true"],
+[data-slot="calendar"] td button[aria-selected="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* 12. TODAY'S DATE SPECIAL STYLING */
+[role="gridcell"] button[data-today="true"],
+.react-aria-CalendarCell button[data-today="true"],
+[role="grid"] td button[data-today="true"],
+[data-slot="calendar"] td button[data-today="true"] {
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+}
+
+/* 13. DISABLED/OUTSIDE MONTH DATES */
+[role="gridcell"] button[aria-disabled="true"],
+[role="gridcell"] button[data-outside-month="true"],
+.react-aria-CalendarCell button[aria-disabled="true"],
+.react-aria-CalendarCell button[data-outside-month="true"],
+[role="grid"] td button[aria-disabled="true"],
+[data-slot="calendar"] td button[data-outside-month="true"] {
+  color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  cursor: not-allowed !important;
+}
+
+[role="gridcell"] button[aria-disabled="true"]:hover,
+[role="gridcell"] button[data-outside-month="true"]:hover,
+.react-aria-CalendarCell button[aria-disabled="true"]:hover,
+.react-aria-CalendarCell button[data-outside-month="true"]:hover,
+[role="grid"] td button[aria-disabled="true"]:hover,
+[data-slot="calendar"] td button[data-outside-month="true"]:hover {
+  transform: none !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: transparent !important;
+}
+
+/* 14. DATE RANGE SELECTION STYLING */
+[role="gridcell"] button[data-selection-start="true"],
+[role="gridcell"] button[data-selection-end="true"],
+.react-aria-CalendarCell button[data-selection-start="true"],
+.react-aria-CalendarCell button[data-selection-end="true"],
+[role="grid"] td button[data-selection-start="true"],
+[data-slot="calendar"] td button[data-selection-end="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* 15. RANGE MIDDLE DATES */
+[role="gridcell"] button[data-selection-middle="true"],
+.react-aria-CalendarCell button[data-selection-middle="true"],
+[role="grid"] td button[data-selection-middle="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: white !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+/* 16. CALENDAR FOCUS STATES */
+[role="gridcell"] button[data-focused="true"],
+.react-aria-CalendarCell button[data-focused="true"],
+[role="grid"] td button[data-focused="true"],
+.react-aria-CalendarCell .react-aria-Button[data-focused="true"] {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* 17. ENHANCED POSITIONING - Fix overlap issues */
+.date-picker-dark-theme [data-slot="popover"][data-open="true"] {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  transform: none !important;
+}
+
+/* 18. MOBILE RESPONSIVE CALENDAR */
+@media (max-width: 768px) {
+  [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme [data-slot="popover"] {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+
+  [role="gridcell"] button,
+  .react-aria-CalendarCell button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 12px !important;
+  }
+
+  [role="columnheader"],
+  .react-aria-CalendarHeaderCell {
+    font-size: 10px !important;
+    padding: 6px 2px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-slot="popover"][data-open="true"],
+  .date-picker-dark-theme [data-slot="popover"] {
+    min-width: 260px !important;
+    max-width: 280px !important;
+    padding: 12px !important;
+  }
+
+  [role="gridcell"] button,
+  .react-aria-CalendarCell button {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* 19. FORM LAYOUT PROTECTION - Prevent overlap */
+.space-y-10 > .grid:has(.date-picker-dark-theme [data-slot="popover"][data-open="true"]) {
+  margin-bottom: 400px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.space-y-10 > .grid:has(.date-picker-dark-theme [data-slot="popover"][data-open="true"]) + .grid {
+  margin-top: 20px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 20. ADDITIONAL CALENDAR CONTAINER OVERRIDES */
+[data-slot="popover"]:has([role="dialog"]),
+[data-slot="popover"]:has([role="grid"]) {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(255, 215, 0, 0.1) !important;
+  color: white !important;
+}
+
+/* ===== DATE PICKER INPUT FIELD DARK THEME FIXES ===== */
+
+/* Date Picker Input Wrapper Styling - Fix white background issue */
+.date-picker-dark-theme [data-slot="base"],
+.date-picker-dark-theme .react-aria-Group,
+.date-picker-dark-theme [data-slot="input-wrapper"] {
+  background: rgba(51, 65, 85, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.6) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  height: 56px !important;
+  color: white !important;
+  padding: 0 16px !important;
+}
+
+.date-picker-dark-theme [data-slot="base"]:hover,
+.date-picker-dark-theme .react-aria-Group:hover,
+.date-picker-dark-theme [data-slot="input-wrapper"]:hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.2) !important;
+}
+
+.date-picker-dark-theme [data-slot="base"][data-focus="true"],
+.date-picker-dark-theme .react-aria-Group[data-focus="true"],
+.date-picker-dark-theme [data-slot="input-wrapper"][data-focus="true"] {
+  background: rgba(51, 65, 85, 0.9) !important;
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Date Input Field Text Styling */
+.date-picker-dark-theme [data-slot="input"],
+.date-picker-dark-theme input,
+.date-picker-dark-theme .react-aria-DateInput {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  width: 100% !important;
+  outline: none !important;
+  padding: 0 !important;
+}
+
+.date-picker-dark-theme [data-slot="input"]::placeholder,
+.date-picker-dark-theme input::placeholder,
+.date-picker-dark-theme .react-aria-DateInput::placeholder {
+  color: rgba(156, 163, 175, 0.7) !important;
+  font-weight: 400 !important;
+}
+
+/* Date Segments (for individual date parts) */
+/* 27. DATE SEGMENTS AND FORMAT FIXES - Critical for proper date display */
+.date-picker-dark-theme [data-slot="segment"],
+.date-picker-dark-theme .react-aria-DateSegment {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 4px !important;
+  padding: 3px 6px !important;
+  margin: 0 1px !important;
+  min-width: 24px !important;
+  text-align: center !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"]:hover,
+.date-picker-dark-theme .react-aria-DateSegment:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"][data-focused="true"],
+.date-picker-dark-theme .react-aria-DateSegment[data-focused="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* Date separators and literals - Fix broken format */
+.date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] span:not([data-slot="segment"]) {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400 !important;
+  margin: 0 2px !important;
+  font-size: 16px !important;
+}
+
+/* Date Picker Label Styling */
+.date-picker-dark-theme [data-slot="label"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Calendar Button (Date picker trigger) */
+.date-picker-dark-theme button[aria-label*="calendar"],
+.date-picker-dark-theme button[aria-label*="Calendar"],
+.date-picker-dark-theme [data-slot="end-content"] button {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 8px !important;
+  color: #FFD700 !important;
+  padding: 8px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.date-picker-dark-theme button[aria-label*="calendar"]:hover,
+.date-picker-dark-theme button[aria-label*="Calendar"]:hover,
+.date-picker-dark-theme [data-slot="end-content"] button:hover {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  transform: scale(1.05) !important;
+}
+
+/* Date Picker Popover Container */
+.date-picker-dark-theme [data-slot="popover"],
+.date-picker-dark-theme .react-aria-Popover {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(255, 215, 0, 0.1) !important;
+  padding: 20px !important;
+  z-index: 99999 !important;
+  color: white !important;
+  margin-top: 8px !important;
+  min-width: 320px !important;
+  max-width: 400px !important;
+}
+
+/* ===== FINAL COMPREHENSIVE CALENDAR FIXES - HIGHEST PRIORITY ===== */
+
+/* 28. CRITICAL OVERRIDE - Ensure calendar always has dark background */
+[data-slot="popover"][data-open="true"]:has([role="dialog"]),
+.date-picker-dark-theme [data-slot="popover"],
+.react-aria-Popover:has(.react-aria-Calendar),
+.react-aria-Popover:has([role="dialog"]) {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(156, 163, 175, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  z-index: 99999 !important;
+}
+
+/* 29. POSITIONING OVERRIDE - Calendar below Travel Dates field */
+.date-picker-dark-theme [data-slot="popover"] {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* 30. FORM PROTECTION - Prevent "Find Luxury Flights" button overlap */
+.space-y-8 > .grid:has(.date-picker-dark-theme),
+.lg\\:grid-cols-4:has(.date-picker-dark-theme) {
+  margin-bottom: 2rem !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* 31. DATE FORMAT PROTECTION - Ensure proper display */
+.date-picker-dark-theme [data-slot="input-wrapper"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 2px !important;
+  width: 100% !important;
+  padding: 0 16px !important;
+}
+
+/* 32. FINAL MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .date-picker-dark-theme [data-slot="popover"] {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-picker-dark-theme [data-slot="popover"] {
+    min-width: 260px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* ===== CRITICAL CALENDAR DARK THEME FIXES - HIGHEST PRIORITY ===== */
+/* 32. FINAL MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .date-picker-dark-theme [data-slot="popover"] {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-picker-dark-theme [data-slot="popover"] {
+    min-width: 260px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* ===== ULTIMATE CALENDAR DARK THEME OVERRIDE - MAXIMUM SPECIFICITY ===== */
+
+/* 33. ABSOLUTE OVERRIDE - Calendar popup container with maximum priority */
+.date-picker-dark-theme [data-slot="popover"][data-open="true"],
+.date-picker-dark-theme [data-slot="popover"][data-open],
+.date-picker-dark-theme .react-aria-Popover,
+[data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="calendar"]),
+[data-slot="popover"][data-open="true"]:has([role="dialog"][aria-label*="Calendar"]),
+div[data-slot="popover"][data-open="true"]:has([role="dialog"]),
+div[data-slot="popover"][data-open]:has([role="dialog"]),
+.react-aria-Popover:has(.react-aria-Calendar),
+.react-aria-Popover:has([role="dialog"]) {
+  /* FORCE DARK BACKGROUND */
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  
+  /* ENHANCED VISUAL APPEAL */
+  border: 1px solid rgba(255, 215, 0, 0.4) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 8px 32px rgba(255, 215, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  
+  /* POSITIONING - CRITICAL FIX */
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+  
+  /* SIZE AND SPACING */
+  min-width: 320px !important;
+  max-width: 400px !important;
+  width: 100% !important;
+  padding: 20px !important;
+  z-index: 999999 !important;
+  
+  /* TEXT COLOR OVERRIDE */
+  color: white !important;
+}
+
+/* 34. CALENDAR DIALOG AND GRID CONTAINER - FORCE TRANSPARENT */
+.date-picker-dark-theme [role="dialog"][aria-label*="calendar"],
+.date-picker-dark-theme [role="dialog"][aria-label*="Calendar"],
+[role="dialog"][aria-label*="calendar"],
+[role="dialog"][aria-label*="Calendar"],
+.date-picker-dark-theme .react-aria-Calendar,
+.react-aria-Calendar {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: white !important;
+  font-family: inherit !important;
+  width: 100% !important;
+}
+
+/* 35. CALENDAR HEADER STYLING - MONTH/YEAR TITLE */
+.date-picker-dark-theme [role="dialog"] header,
+.date-picker-dark-theme .react-aria-CalendarHeader,
+.date-picker-dark-theme [role="dialog"] h2,
+[role="dialog"][aria-label*="calendar"] header,
+[role="dialog"][aria-label*="Calendar"] header,
+[role="dialog"][aria-label*="calendar"] h2,
+[role="dialog"][aria-label*="Calendar"] h2,
+.react-aria-CalendarHeader,
+.react-aria-Calendar header {
+  background: transparent !important;
+  color: white !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* 36. CALENDAR NAVIGATION BUTTONS - GOLD ACCENT */
+.date-picker-dark-theme [role="dialog"] button:not([role="gridcell"] button),
+.date-picker-dark-theme .react-aria-Button:not(.react-aria-CalendarCell .react-aria-Button),
+[role="dialog"][aria-label*="calendar"] button:not([role="gridcell"] button),
+[role="dialog"][aria-label*="Calendar"] button:not([role="gridcell"] button),
+.react-aria-CalendarHeader .react-aria-Button,
+.react-aria-Calendar .react-aria-Button:not(.react-aria-CalendarCell .react-aria-Button) {
+  background: rgba(255, 215, 0, 0.15) !important;
+  border: 1px solid rgba(255, 215, 0, 0.4) !important;
+  border-radius: 8px !important;
+  color: #FFD700 !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  min-width: 32px !important;
+  height: 32px !important;
+}
+
+.date-picker-dark-theme [role="dialog"] button:not([role="gridcell"] button):hover,
+.date-picker-dark-theme .react-aria-Button:not(.react-aria-CalendarCell .react-aria-Button):hover,
+[role="dialog"][aria-label*="calendar"] button:not([role="gridcell"] button):hover,
+[role="dialog"][aria-label*="Calendar"] button:not([role="gridcell"] button):hover,
+.react-aria-CalendarHeader .react-aria-Button:hover,
+.react-aria-Calendar .react-aria-Button:not(.react-aria-CalendarCell .react-aria-Button):hover {
+  background: rgba(255, 215, 0, 0.25) !important;
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  color: #FFD700 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* 37. CALENDAR WEEKDAY HEADERS (S M T W T F S) */
+.date-picker-dark-theme [role="columnheader"],
+.date-picker-dark-theme .react-aria-CalendarHeaderCell,
+[role="dialog"][aria-label*="calendar"] [role="columnheader"],
+[role="dialog"][aria-label*="Calendar"] [role="columnheader"],
+.react-aria-CalendarHeaderCell {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+  border: none !important;
+  background: transparent !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+}
+
+/* 38. CALENDAR DATE BUTTONS - MAIN STYLING */
+.date-picker-dark-theme [role="gridcell"] button,
+.date-picker-dark-theme .react-aria-CalendarCell button,
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button,
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button,
+.react-aria-CalendarCell .react-aria-Button {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 2px !important;
+}
+
+/* 39. DATE BUTTON HOVER STATES */
+.date-picker-dark-theme [role="gridcell"] button:hover:not([aria-disabled="true"]),
+.date-picker-dark-theme .react-aria-CalendarCell button:hover:not([aria-disabled="true"]),
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button:hover:not([aria-disabled="true"]),
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button:hover:not([aria-disabled="true"]),
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button:hover:not([aria-disabled="true"]),
+.react-aria-CalendarCell .react-aria-Button:hover:not([aria-disabled="true"]) {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  color: #FFD700 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25) !important;
+}
+
+/* 40. SELECTED DATE STYLING - GOLD HIGHLIGHT */
+.date-picker-dark-theme [role="gridcell"] button[aria-selected="true"],
+.date-picker-dark-theme [role="gridcell"] button[data-selected="true"],
+.date-picker-dark-theme .react-aria-CalendarCell button[aria-selected="true"],
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[aria-selected="true"],
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[data-selected="true"],
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[aria-selected="true"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[aria-selected="true"],
+.react-aria-CalendarCell .react-aria-Button[aria-selected="true"],
+.react-aria-CalendarCell .react-aria-Button[data-selected="true"] {
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00) !important;
+  border-color: #FFD700 !important;
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5) !important;
+}
+
+/* 41. TODAY'S DATE SPECIAL STYLING */
+.date-picker-dark-theme [role="gridcell"] button[data-today="true"]:not([aria-selected="true"]),
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[data-today="true"]:not([aria-selected="true"]),
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[data-today="true"]:not([aria-selected="true"]),
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[data-today="true"]:not([aria-selected="true"]),
+.react-aria-CalendarCell .react-aria-Button[data-today="true"]:not([aria-selected="true"]) {
+  border-color: rgba(255, 215, 0, 0.7) !important;
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* 42. DISABLED/OUTSIDE MONTH DATES */
+.date-picker-dark-theme [role="gridcell"] button[aria-disabled="true"],
+.date-picker-dark-theme [role="gridcell"] button[data-outside-month="true"],
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[aria-disabled="true"],
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[data-outside-month="true"],
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[aria-disabled="true"],
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[aria-disabled="true"],
+.react-aria-CalendarCell .react-aria-Button[aria-disabled="true"],
+.react-aria-CalendarCell .react-aria-Button[data-outside-month="true"] {
+  color: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  cursor: not-allowed !important;
+}
+
+.date-picker-dark-theme [role="gridcell"] button[aria-disabled="true"]:hover,
+.date-picker-dark-theme [role="gridcell"] button[data-outside-month="true"]:hover,
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[aria-disabled="true"]:hover,
+.date-picker-dark-theme .react-aria-CalendarCell .react-aria-Button[data-outside-month="true"]:hover,
+[role="dialog"][aria-label*="calendar"] [role="gridcell"] button[aria-disabled="true"]:hover,
+[role="dialog"][aria-label*="Calendar"] [role="gridcell"] button[aria-disabled="true"]:hover,
+.react-aria-CalendarCell .react-aria-Button[aria-disabled="true"]:hover,
+.react-aria-CalendarCell .react-aria-Button[data-outside-month="true"]:hover {
+  transform: none !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: none !important;
 }
