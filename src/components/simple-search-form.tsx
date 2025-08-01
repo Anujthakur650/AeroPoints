@@ -1,18 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Card, CardBody, Input, Button, Select, SelectItem, Divider } from "@heroui/react";
-import { DateRangePicker, DatePicker } from "@heroui/react";
-import { getLocalTimeZone, today } from "@internationalized/date";
-import type { RangeValue } from "@react-types/shared";
-import type { DateValue } from "@react-types/datepicker";
-import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
-import apiService from "../services/api";
-import type { Flight } from "../services/api";
+import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { DatePicker } from "./calendar";
+import apiService, { FlightSearchParams, Flight, GroupedFlight, BookingOption } from "../services/api";
+import { useAuth } from "../contexts/AuthContext";
 import { AirportAutocomplete, type Airport } from "./AirportAutocomplete";
 
 // Define the SearchFormProps interface
 interface SimpleSearchFormProps {
   onSearchResults?: (results: Flight[]) => void;
+  onGroupedSearchResults?: (results: GroupedFlight[]) => void;
   onSearchStart?: () => void;
 }
 
@@ -44,9 +42,8 @@ const mileagePrograms = [
   { key: "british", label: "British Airways Avios" }
 ];
 
-export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearchFormProps) {
-  // Form state
-  const [tripType, setTripType] = useState<string>("round-trip");
+export function SimpleSearchForm({ onSearchResults, onGroupedSearchResults, onSearchStart }: SimpleSearchFormProps) {
+  // Form state - Award flight focused
   const [origin, setOrigin] = useState<string>("");
   const [destination, setDestination] = useState<string>("");
   const [originAirport, setOriginAirport] = useState<Airport | null>(null);
@@ -57,21 +54,25 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   
-  // Create today and next week dates
-  const todayDate = today(getLocalTimeZone());
-  const nextWeek = todayDate.add({ days: 7 });
-  
-  const [dateRange, setDateRange] = useState<RangeValue<DateValue>>({
-    start: todayDate,
-    end: nextWeek
-  });
+  // Single date for award flight searches
+  const [travelDate, setTravelDate] = useState<Date | null>(new Date());
 
   // Format date for API (YYYY-MM-DD)
-  const formatDateForApi = (dateValue: DateValue): string => {
-    const year = dateValue.year;
-    const month = String(dateValue.month).padStart(2, '0');
-    const day = String(dateValue.day).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  const formatDateForApi = (date: Date | null): string | undefined => {
+    if (!date) return undefined;
+    return date.toISOString().split('T')[0];
+  };
+
+  // Format date for display (MM/DD/YYYY)
+  const formatDateForDisplay = (date: Date | null): string => {
+    if (!date) return "";
+    return date.toLocaleDateString('en-US');
+  };
+
+  // Get formatted travel date display
+  const getTravelDateDisplay = (): string => {
+    if (!travelDate) return "Select date";
+    return formatDateForDisplay(travelDate);
   };
 
   // Handle airport selection
@@ -86,19 +87,43 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
   };
 
   const handleSearch = async () => {
-    // Validate inputs
-    if (!origin || !destination) {
-      setError("Please enter both origin and destination airports (e.g., LAX, JFK).");
-      return;
+    // Enhanced validation with specific field feedback
+    let validationErrors = [];
+    
+    if (!origin || origin.length < 3) {
+      validationErrors.push("Please enter a valid departure airport (e.g., LAX, JFK, Los Angeles)");
+    }
+    
+    if (!destination || destination.length < 3) {
+      validationErrors.push("Please enter a valid destination airport (e.g., LHR, Tokyo, New York)");
+    }
+    
+    if (origin && destination && origin.toUpperCase() === destination.toUpperCase()) {
+      validationErrors.push("Departure and destination airports must be different");
     }
 
-    if (!dateRange.start) {
-      setError("Please select a departure date.");
-      return;
+    if (!travelDate) {
+      validationErrors.push("Please select your travel date");
+    } else {
+      const selectedDate = new Date(travelDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      selectedDate.setHours(0, 0, 0, 0);
+      
+      if (selectedDate < today) {
+        validationErrors.push("Travel date cannot be in the past");
+      }
     }
-
-    if (tripType === "round-trip" && !dateRange.end) {
-      setError("Please select a return date for round trips.");
+    
+    if (validationErrors.length > 0) {
+      setError(validationErrors.join(". "));
+      // Scroll to error message
+      setTimeout(() => {
+        const errorElement = document.querySelector('[data-error-display]');
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
       return;
     }
 
@@ -111,24 +136,51 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
     }
 
     try {
-      // Prepare search parameters
+      // Prepare search parameters for award flight
       const searchParams = {
         origin: origin.toUpperCase(),
         destination: destination.toUpperCase(),
-        date: formatDateForApi(dateRange.start),
-        returnDate: tripType === 'round-trip' && dateRange.end ? formatDateForApi(dateRange.end) : undefined,
+        date: formatDateForApi(travelDate),
         cabin_class: cabinClass,
         passengers: parseInt(passengers)
       };
       
-      console.log('Search parameters:', searchParams);
+      console.log('Award flight search parameters:', searchParams);
       
-      // Call the search API
-      const response = await apiService.searchFlights(searchParams);
+      // Call both search APIs for regular and grouped results
+      const [response, groupedResponse] = await Promise.all([
+        apiService.searchFlights(searchParams),
+        apiService.searchFlightsGrouped(searchParams)
+      ]);
+      
       const results = response.flights || [];
+      const groupedResults = groupedResponse.groupedFlights || [];
       
+      console.log('Regular search results:', results);
+      console.log('Grouped search results:', groupedResults);
+      
+      // Show success feedback
+      if (results.length > 0 || groupedResults.length > 0) {
+        // Brief success indication before showing results
+        setError("");
+        setTimeout(() => {
+          if (onSearchResults) {
+            onSearchResults(results);
+          }
+          if (onGroupedSearchResults) {
+            onGroupedSearchResults(groupedResults);
+          }
+        }, 300);
+      } else {
+        setError(`No flights found for ${origin} to ${destination} on ${formatDateForDisplay(travelDate)}. Try different dates or airports.`);
+      }
+      
+      // Pass results to parent components
       if (onSearchResults) {
         onSearchResults(results);
+      }
+      if (onGroupedSearchResults) {
+        onGroupedSearchResults(groupedResults);
       }
       
     } catch (error: any) {
@@ -224,56 +276,40 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
               }}
             />
             
-            <CardBody className="p-10 relative z-10">
-              <div className="space-y-10">
-                {/* Trip Type Toggle - At the top as requested */}
-                <div className="flex justify-center">
-                  <div 
-                    className="p-2 rounded-full inline-flex relative"
+            <CardBody className="p-8 md:p-10 relative z-10">
+              <div className="space-y-8">
+                {/* Award Flight Branding */}
+                <div className="text-center space-y-3">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    className="text-3xl md:text-4xl font-bold"
                     style={{
-                      background: 'rgba(255, 215, 0, 0.05)',
-                      backdropFilter: 'blur(15px)',
-                      border: '1px solid rgba(255, 215, 0, 0.2)',
-                      boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                      background: 'linear-gradient(135deg, #FFD700, #FFA500, #FF8C00)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      fontFamily: 'Playfair Display, serif',
+                      textShadow: '0 4px 8px rgba(255, 215, 0, 0.3)'
                     }}
                   >
-                    <button
-                      onClick={() => setTripType("round-trip")}
-                      className={`px-8 py-4 rounded-full font-semibold transition-all duration-500 relative overflow-hidden ${
-                        tripType === "round-trip"
-                          ? "text-gray-900 shadow-xl"
-                          : "text-gray-300 hover:text-white hover:bg-white/5"
-                      }`}
-                      style={tripType === "round-trip" ? {
-                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                        boxShadow: '0 10px 25px rgba(255, 215, 0, 0.4)'
-                      } : {}}
-                    >
-                      <Icon icon="lucide:repeat" className="inline mr-2" />
-                      Round Trip
-                    </button>
-                    <button
-                      onClick={() => setTripType("one-way")}
-                      className={`px-8 py-4 rounded-full font-semibold transition-all duration-500 relative overflow-hidden ${
-                        tripType === "one-way"
-                          ? "text-gray-900 shadow-xl"
-                          : "text-gray-300 hover:text-white hover:bg-white/5"
-                      }`}
-                      style={tripType === "one-way" ? {
-                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                        boxShadow: '0 10px 25px rgba(255, 215, 0, 0.4)'
-                      } : {}}
-                    >
-                      <Icon icon="lucide:arrow-right" className="inline mr-2" />
-                      One Way
-                    </button>
-                  </div>
+                    AWARD FLIGHTS
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-gray-300 text-base font-medium"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                  >
+                    Find your perfect award journey
+                  </motion.p>
                 </div>
 
-                {/* Airport Selection Row */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+                {/* Airport Selection Row - Enhanced alignment and spacing */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                   {/* From Airport */}
-                  <div className="space-y-4 group">
+                  <div className="space-y-3 group relative">
                     <AirportAutocomplete
                       label="Departure"
                       placeholder="Search airports (e.g., LAX, Los Angeles)"
@@ -290,20 +326,22 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       whileHover={{ scale: 1.1, rotate: 180 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={handleSwap}
-                      className="p-4 rounded-full transition-all duration-300 group"
+                      className="p-4 rounded-full transition-all duration-300 group focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                       style={{
                         background: 'rgba(255, 215, 0, 0.1)',
                         backdropFilter: 'blur(10px)',
                         border: '1px solid rgba(255, 215, 0, 0.3)',
                         boxShadow: '0 8px 25px rgba(255, 215, 0, 0.2)'
                       }}
+                      aria-label="Swap departure and destination airports"
+                      title="Swap airports"
                     >
-                      <Icon icon="lucide:arrow-left-right" className="text-[#FFD700] text-xl group-hover:text-white transition-colors duration-300" />
+                      <Icon icon="lucide:arrow-left-right" className="text-[#FFD700] text-xl group-hover:text-white transition-colors duration-300" aria-hidden="true" />
                     </motion.button>
                   </div>
 
                   {/* To Airport */}
-                  <div className="space-y-4 group">
+                  <div className="space-y-3 group relative">
                     <AirportAutocomplete
                       label="Arrival"
                       placeholder="Search airports (e.g., JFK, New York)"
@@ -315,33 +353,32 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                   </div>
                 </div>
 
-                {/* Date and Options Row */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                  {/* Dates */}
-                  <div className="space-y-4 group">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 transition-colors duration-300 group-hover:text-[#FFD700]">
+                {/* Date and Options Row - Enhanced UI/UX with improved alignment and spacing */}
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 items-end p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                  {/* Travel Date */}
+                  <div className="space-y-2 group">
+                    <label className="block text-sm font-semibold text-gray-200 mb-2 transition-colors duration-300 group-hover:text-[#FFD700]">
                       <Icon icon="lucide:calendar" className="inline mr-2 text-[#FFD700] text-lg" />
-                      {tripType === "round-trip" ? "Travel Dates" : "Departure Date"}
+                      Travel Date
                     </label>
-                    {tripType === "round-trip" ? (
-                      <DateRangePicker
-                        value={dateRange}
-                        onChange={setDateRange}
-                        className="w-full date-picker-dark-theme"
-                      />
-                    ) : (
+                    
+                    {/* Single Date Input */}
+                    <div className="relative">
                       <DatePicker
-                        value={dateRange.start}
-                        onChange={(date) => setDateRange({...dateRange, start: date!})}
-                        className="w-full date-picker-dark-theme"
+                        value={travelDate}
+                        onChange={setTravelDate}
+                        label=""
+                        placeholder="Select travel date"
+                        minDate={new Date()}
+                        className="w-full"
                       />
-                    )}
+                    </div>
                   </div>
 
-                  {/* Mileage Program */}
-                  <div className="space-y-4 group">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 transition-colors duration-300 group-hover:text-[#FFD700]">
-                      <Icon icon="lucide:credit-card" className="inline mr-2 text-[#FFD700] text-lg" />
+                  {/* Loyalty Program */}
+                  <div className="space-y-2 group relative">
+                    <label className="block text-sm font-semibold text-gray-200 mb-2 transition-colors duration-300 group-hover:text-[#FFD700]">
+                      <Icon icon="lucide:award" className="inline mr-2 text-[#FFD700] text-lg" />
                       Loyalty Program
                     </label>
                     <Select
@@ -349,10 +386,26 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       onSelectionChange={(keys) => setMileageProgram(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white",
-                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
-                        listbox: "bg-gray-900/95"
+                        trigger: [
+                          "!bg-slate-800",
+                          "backdrop-blur-lg",
+                          "border",
+                          "!border-slate-600",
+                          "hover:!bg-slate-700",
+                          "hover:border-[#FFD700]/30",
+                          "focus-within:border-[#FFD700]",
+                          "focus-within:!bg-slate-700",
+                          "transition-all",
+                          "duration-300",
+                          "rounded-xl",
+                          "h-12",
+                          "min-h-[48px]",
+                          "group-hover:shadow-lg",
+                          "group-hover:shadow-[#FFD700]/20"
+                        ].join(" "),
+                        value: "text-white text-base font-medium",
+                        popoverContent: "bg-slate-800/95 backdrop-blur-lg border border-yellow-400/40 shadow-2xl rounded-xl",
+                        listbox: "bg-slate-800/95"
                       }}
                       listboxProps={{
                         itemClasses: {
@@ -361,12 +414,17 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                         }
                       }}
                       popoverProps={{
+                        placement: "bottom-start",
+                        offset: 8,
                         classNames: {
                           base: "before:bg-gray-900/95",
-                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
-                        }
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden max-w-[220px]"
+                        },
+                        containerPadding: 24,
+                        shouldFlip: true,
+                        crossOffset: 0
                       }}
-                      size="lg"
+                      size="md"
                     >
                       {mileagePrograms.map((program) => (
                         <SelectItem 
@@ -379,8 +437,8 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                   </div>
 
                   {/* Passengers */}
-                  <div className="space-y-4 group">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 transition-colors duration-300 group-hover:text-[#FFD700]">
+                  <div className="space-y-2 group relative">
+                    <label className="block text-sm font-semibold text-gray-200 mb-2 transition-colors duration-300 group-hover:text-[#FFD700]">
                       <Icon icon="lucide:users" className="inline mr-2 text-[#FFD700] text-lg" />
                       Travelers
                     </label>
@@ -389,10 +447,26 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       onSelectionChange={(keys) => setPassengers(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white",
-                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
-                        listbox: "bg-gray-900/95"
+                        trigger: [
+                          "!bg-slate-800",
+                          "backdrop-blur-lg",
+                          "border",
+                          "!border-slate-600",
+                          "hover:!bg-slate-700",
+                          "hover:border-[#FFD700]/30",
+                          "focus-within:border-[#FFD700]",
+                          "focus-within:!bg-slate-700",
+                          "transition-all",
+                          "duration-300",
+                          "rounded-xl",
+                          "h-12",
+                          "min-h-[48px]",
+                          "group-hover:shadow-lg",
+                          "group-hover:shadow-[#FFD700]/20"
+                        ].join(" "),
+                        value: "text-white text-base font-medium",
+                        popoverContent: "bg-slate-800/95 backdrop-blur-lg border border-yellow-400/40 shadow-2xl rounded-xl",
+                        listbox: "bg-slate-800/95"
                       }}
                       listboxProps={{
                         itemClasses: {
@@ -401,12 +475,17 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                         }
                       }}
                       popoverProps={{
+                        placement: "bottom-start",
+                        offset: 8,
                         classNames: {
                           base: "before:bg-gray-900/95",
-                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
-                        }
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden max-w-[200px]"
+                        },
+                        containerPadding: 24,
+                        shouldFlip: true,
+                        crossOffset: 0
                       }}
-                      size="lg"
+                      size="md"
                     >
                       {passengerCounts.map((count) => (
                         <SelectItem 
@@ -418,9 +497,9 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                     </Select>
                   </div>
 
-                  {/* Cabin Class */}
-                  <div className="space-y-4 group">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 transition-colors duration-300 group-hover:text-[#FFD700]">
+                  {/* Cabin Class - Enhanced positioning to prevent boundary overflow */}
+                  <div className="space-y-2 group relative">
+                    <label className="block text-sm font-semibold text-gray-200 mb-2 transition-colors duration-300 group-hover:text-[#FFD700]">
                       <Icon icon="lucide:armchair" className="inline mr-2 text-[#FFD700] text-lg" />
                       Cabin Class
                     </label>
@@ -429,10 +508,26 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       onSelectionChange={(keys) => setCabinClass(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border-white/20 hover:bg-white/10 hover:border-[#FFD700]/30 backdrop-blur-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFD700]/20",
-                        value: "text-white",
-                        popoverContent: "bg-gray-900/95 backdrop-blur-lg border border-white/20 shadow-2xl",
-                        listbox: "bg-gray-900/95"
+                        trigger: [
+                          "!bg-slate-800",
+                          "backdrop-blur-lg",
+                          "border",
+                          "!border-slate-600",
+                          "hover:!bg-slate-700",
+                          "hover:border-[#FFD700]/30",
+                          "focus-within:border-[#FFD700]",
+                          "focus-within:!bg-slate-700",
+                          "transition-all",
+                          "duration-300",
+                          "rounded-xl",
+                          "h-12",
+                          "min-h-[48px]",
+                          "group-hover:shadow-lg",
+                          "group-hover:shadow-[#FFD700]/20"
+                        ].join(" "),
+                        value: "text-white text-base font-medium",
+                        popoverContent: "bg-slate-800/95 backdrop-blur-lg border border-yellow-400/40 shadow-2xl rounded-xl",
+                        listbox: "bg-slate-800/95"
                       }}
                       listboxProps={{
                         itemClasses: {
@@ -441,12 +536,18 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                         }
                       }}
                       popoverProps={{
+                        placement: "bottom-end",
+                        offset: 8,
                         classNames: {
-                          base: "before:bg-gray-900/95",
-                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden"
-                        }
+                          base: "before:bg-gray-900/95 z-[9999]",
+                          content: "p-0 border-small border-white/20 bg-gray-900/95 backdrop-blur-lg shadow-2xl rounded-xl overflow-hidden max-w-[200px] z-[9999]"
+                        },
+                        containerPadding: 40,
+                        shouldFlip: true,
+                        shouldCloseOnBlur: true,
+                        crossOffset: -30
                       }}
-                      size="lg"
+                      size="md"
                     >
                       {cabinClasses.map((cabin) => (
                         <SelectItem 
@@ -459,32 +560,54 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                   </div>
                 </div>
 
-                {/* Error Display */}
+                {/* Enhanced Error Display */}
                 {error && (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-6 rounded-xl relative overflow-hidden"
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    data-error-display
+                    className="p-6 rounded-xl relative overflow-hidden border-l-4 border-red-400"
                     style={{
-                      background: 'rgba(239, 68, 68, 0.1)',
+                      background: 'rgba(239, 68, 68, 0.15)',
                       backdropFilter: 'blur(15px)',
-                      border: '1px solid rgba(239, 68, 68, 0.3)',
-                      boxShadow: '0 8px 32px rgba(239, 68, 68, 0.1)'
+                      border: '1px solid rgba(239, 68, 68, 0.4)',
+                      boxShadow: '0 8px 32px rgba(239, 68, 68, 0.15)'
                     }}
+                    role="alert"
+                    aria-live="polite"
                   >
-                    <div className="flex items-center gap-4">
-                      <Icon icon="lucide:alert-circle" className="text-red-400 text-2xl" />
-                      <p className="text-red-300 font-medium">{error}</p>
+                    <div className="flex items-start gap-4">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
+                      >
+                        <Icon icon="lucide:alert-triangle" className="text-red-400 text-2xl mt-0.5" />
+                      </motion.div>
+                      <div className="flex-1">
+                        <h4 className="text-red-300 font-semibold mb-2">Please check your search details:</h4>
+                        <p className="text-red-200 leading-relaxed">{error}</p>
+                      </div>
+                      <button
+                        onClick={() => setError("")}
+                        className="text-red-400 hover:text-red-300 transition-colors p-1 rounded-full hover:bg-red-500/20"
+                        aria-label="Dismiss error"
+                      >
+                        <Icon icon="lucide:x" className="text-lg" />
+                      </button>
                     </div>
                   </motion.div>
                 )}
 
-                {/* Search Button - Centered below all fields */}
-                <div className="flex justify-center pt-6">
+                {/* Search Button - Enhanced with better spacing and visual consistency */}
+                <div className="flex justify-center pt-8 pb-2">
                   <Button
                     onPress={handleSearch}
                     isLoading={isLoading}
-                    className="font-bold px-16 py-6 rounded-2xl text-xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden"
+                    isDisabled={isLoading}
+                    className="font-bold px-12 md:px-16 py-4 md:py-6 rounded-2xl text-lg md:text-xl transition-all duration-500 transform hover:scale-105 focus:scale-105 relative overflow-hidden focus:ring-4 focus:ring-yellow-400/50 focus:outline-none min-w-[200px]"
                     size="lg"
                     style={{
                       background: isLoading 
@@ -494,16 +617,17 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
                       boxShadow: isLoading ? 'none' : '0 25px 50px -12px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2)',
                       border: '2px solid rgba(255, 215, 0, 0.3)'
                     }}
+                    aria-label={isLoading ? "Searching for premium flights" : "Search for premium flights"}
                   >
                     {isLoading ? (
                       <>
-                        <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-gray-900 mr-3"></div>
+                        <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-gray-900 mr-3" aria-hidden="true"></div>
                         Searching Premium Flights...
                       </>
                     ) : (
                       <>
-                        <Icon icon="lucide:search" className="mr-3 text-2xl" />
-                        Find Luxury Flights
+                        <Icon icon="lucide:search" className="mr-3 text-2xl" aria-hidden="true" />
+                        Find Flights
                       </>
                     )}
                   </Button>
@@ -513,77 +637,7 @@ export function SimpleSearchForm({ onSearchResults, onSearchStart }: SimpleSearc
           </Card>
         </motion.div>
 
-        {/* Recent Searches and Search Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="space-y-8"
-        >
-          <div 
-            className="h-px w-full"
-            style={{ 
-              background: 'linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent)' 
-            }}
-          />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Recent Searches */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white flex items-center gap-4">
-                <Icon icon="lucide:clock" className="text-[#FFD700] text-2xl" />
-                <span style={{
-                  background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>
-                  Recent Searches
-                </span>
-              </h3>
-              <Card 
-                className="shadow-xl border relative overflow-hidden"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  backdropFilter: 'blur(25px)',
-                  borderColor: 'rgba(255, 215, 0, 0.1)',
-                  boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}
-              >
-                <CardBody className="p-8">
-                  <p className="text-gray-300 text-center font-medium">No recent searches yet</p>
-                </CardBody>
-              </Card>
-            </div>
-
-            {/* Search Statistics */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white flex items-center gap-4">
-                <Icon icon="lucide:bar-chart" className="text-[#FFD700] text-2xl" />
-                <span style={{
-                  background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>
-                  Search Insights
-                </span>
-              </h3>
-              <Card 
-                className="shadow-xl border relative overflow-hidden"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  backdropFilter: 'blur(25px)',
-                  borderColor: 'rgba(255, 215, 0, 0.1)',
-                  boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}
-              >
-                <CardBody className="p-8">
-                  <p className="text-gray-300 text-center font-medium">Premium statistics coming soon</p>
-                </CardBody>
-              </Card>
-            </div>
-          </div>
-        </motion.div>
       </motion.div>
     </div>
   );
-} 
+}

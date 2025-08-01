@@ -294,3 +294,47 @@ ModuleNotFoundError: No module named 'playwright'
 [2025-04-04 15:01:48,364] INFO: Returning 3 flights
 [2025-04-04 15:01:48,364] INFO: Sample flight: {'id': '2g7qLzvJSutzmCGa5pzPLwOattb', 'airline': 'qantas', 'flightNumber': 'qa100', 'origin': 'XNA', 'destination': 'DFW', 'departureTime': '10:00 AM', 'arrivalTime': '12:00 PM', 'duration': '2h 0m', 'cabinClass': 'economy', 'points': '17900', 'cash': 5.6, 'seatsAvailable': 0, 'realTimeData': True, 'lastUpdated': '2025-04-04 14:54:32', 'layovers': []}
 [2025-04-04 15:01:48,364] INFO: Real-time data flag: True
+[2025-07-29 15:16:08,445] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-29 15:16:08,446] INFO: Loading airport data...
+[2025-07-29 15:16:08,580] INFO: Loaded 7859 airports with IATA codes
+[2025-07-29 15:16:08,581] INFO: Loaded 28223 airports with ICAO codes
+[2025-07-29 15:16:08,583] INFO: Example airports:
+[2025-07-29 15:16:08,583] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-29 15:16:08,583] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-29 15:16:08,583] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-29 15:18:13,586] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-29 15:18:13,588] INFO: Loading airport data...
+[2025-07-29 15:18:13,725] INFO: Loaded 7859 airports with IATA codes
+[2025-07-29 15:18:13,725] INFO: Loaded 28223 airports with ICAO codes
+[2025-07-29 15:18:13,727] INFO: Example airports:
+[2025-07-29 15:18:13,727] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-29 15:18:13,727] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-29 15:18:13,727] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-29 15:19:47,402] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-29 15:19:47,404] INFO: Loading airport data...
+[2025-07-29 15:19:47,540] INFO: Loaded 7859 airports with IATA codes
+[2025-07-29 15:19:47,540] INFO: Loaded 28223 airports with ICAO codes
+[2025-07-29 15:19:47,542] INFO: Example airports:
+[2025-07-29 15:19:47,542] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-29 15:19:47,543] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-29 15:19:47,543] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-29 15:21:33,722] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-29 15:21:33,723] INFO: Loading airport data...
+[2025-07-29 15:21:33,860] INFO: Loaded 7859 airports with IATA codes
+[2025-07-29 15:21:33,860] INFO: Loaded 28223 airports with ICAO codes
+[2025-07-29 15:21:33,863] INFO: Example airports:
+[2025-07-29 15:21:33,863] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-29 15:21:33,863] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-29 15:21:33,863] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-29 15:22:22,529] INFO: Initialized AwardFlightAPI with data_dir: /Users/anujsingh/Desktop/My_Projects/AwardFlight_Frontend/data
+[2025-07-29 15:22:22,530] INFO: Loading airport data...
+[2025-07-29 15:22:22,667] INFO: Loaded 7859 airports with IATA codes
+[2025-07-29 15:22:22,667] INFO: Loaded 28223 airports with ICAO codes
+[2025-07-29 15:22:22,669] INFO: Example airports:
+[2025-07-29 15:22:22,669] INFO:   OCA: Ocean Reef Club Airport in Key Largo, US
+[2025-07-29 15:22:22,669] INFO:   CYT: Yakataga Airport in Yakataga, US
+[2025-07-29 15:22:22,669] INFO:   FWL: Farewell Airport in Farewell, US
+[2025-07-29 15:22:22,831] INFO: Auth database initialized successfully
+[2025-07-29 15:22:22,831] INFO: ✅ Auth database initialized on module load
+[2025-07-29 15:22:22,835] INFO: Initializing database...
+[2025-07-29 15:22:22,843] INFO: Database initialized successfully

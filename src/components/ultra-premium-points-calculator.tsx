@@ -46,7 +46,7 @@ export function UltraPremiumPointsCalculator() {
   };
 
   return (
-    <div className="calculator-section">
+    <div id="points-calculator" className="calculator-section">
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Section Header */}
         <motion.div

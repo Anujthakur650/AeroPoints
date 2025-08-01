@@ -263,7 +263,7 @@ const Register: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Join AeroPoints Elite
+                                    Join AeroPoints
               </motion.h1>
               <motion.p 
                 className="registration-subtitle"
@@ -627,7 +627,7 @@ const Register: React.FC = () => {
                 >
                   <Icon icon="lucide:plane" className="button-icon" />
                   <span className="button-text">
-                    {isLoading ? 'Creating Account...' : 'Join AeroPoints Elite'}
+                    {isLoading ? 'Creating Account...' : 'Join AeroPoints'}
                   </span>
                 </Button>
               </motion.div>

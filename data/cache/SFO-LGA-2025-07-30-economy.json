@@ -1,0 +1,434 @@
+[
+  {
+    "id": "30Ky4WrWaZalWiILaREhKKwhFTE",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA1687, UA222",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T05:00:00Z",
+    "arrivalTime": "2025-07-30T19:00:00Z",
+    "duration": "11h 0m",
+    "durationMinutes": 660,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 22.4,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "IAH",
+        "duration": "3h 24m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "Boeing 737-900",
+      "Boeing 737-800"
+    ],
+    "segments": [
+      {
+        "ID": "30Ky4RqnmVkgJ0YMEkRKZIW8vAv",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4WrWaZalWiILaREhKKwhFTE",
+        "FlightNumber": "UA1687",
+        "Distance": 1635,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-900",
+        "AircraftCode": "739",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "IAH",
+        "DepartsAt": "2025-07-30T05:00:00Z",
+        "ArrivesAt": "2025-07-30T10:58:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30Ky4T7EDaKI2iFkkD2o6VL0j0T",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4WrWaZalWiILaREhKKwhFTE",
+        "FlightNumber": "UA222",
+        "Distance": 1416,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-800",
+        "AircraftCode": "738",
+        "OriginAirport": "IAH",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-30T14:22:00Z",
+        "ArrivesAt": "2025-07-30T19:00:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  },
+  {
+    "id": "30Ky4UonlEM2ydbZcqFqcxNACQF",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA1687, UA571",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T05:00:00Z",
+    "arrivalTime": "2025-07-30T20:58:00Z",
+    "duration": "12h 58m",
+    "durationMinutes": 778,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 31.0,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "IAH",
+        "duration": "5h 22m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "Boeing 737-900",
+      "Boeing 737-800"
+    ],
+    "segments": [
+      {
+        "ID": "30Ky4SsToeJ99J4sPAduwYiHBd1",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4UonlEM2ydbZcqFqcxNACQF",
+        "FlightNumber": "UA1687",
+        "Distance": 1635,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-900",
+        "AircraftCode": "739",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "IAH",
+        "DepartsAt": "2025-07-30T05:00:00Z",
+        "ArrivesAt": "2025-07-30T10:58:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30Ky4S7DjwzaaqWPFG4gxNmCk5k",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4UonlEM2ydbZcqFqcxNACQF",
+        "FlightNumber": "UA571",
+        "Distance": 1416,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-800",
+        "AircraftCode": "738",
+        "OriginAirport": "IAH",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-30T16:20:00Z",
+        "ArrivesAt": "2025-07-30T20:58:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  },
+  {
+    "id": "30QzOFoClj5Gj6QDvVS2xIdM5qa",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA512, UA2017",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T00:30:00Z",
+    "arrivalTime": "2025-07-30T12:43:00Z",
+    "duration": "9h 13m",
+    "durationMinutes": 553,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 22.4,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "IAH",
+        "duration": "1h 35m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "Boeing 737 MAX 9",
+      "Boeing 737 MAX 8"
+    ],
+    "segments": [
+      {
+        "ID": "30QzOEkb1FnmChIyJXoABRMTAra",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30QzOFoClj5Gj6QDvVS2xIdM5qa",
+        "FlightNumber": "UA512",
+        "Distance": 1635,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737 MAX 9",
+        "AircraftCode": "7M9",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "IAH",
+        "DepartsAt": "2025-07-30T00:30:00Z",
+        "ArrivesAt": "2025-07-30T06:30:00Z",
+        "CreatedAt": "2025-07-27T00:02:30.920696Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30QzOGxYyvyrUsoMc5jQngYTINi",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30QzOFoClj5Gj6QDvVS2xIdM5qa",
+        "FlightNumber": "UA2017",
+        "Distance": 1416,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737 MAX 8",
+        "AircraftCode": "7M8",
+        "OriginAirport": "IAH",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-30T08:05:00Z",
+        "ArrivesAt": "2025-07-30T12:43:00Z",
+        "CreatedAt": "2025-07-27T00:02:30.920696Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  },
+  {
+    "id": "30Ky4KGRISomOjMGTJCsQId2Wpe",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA1687, UA2181",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T05:00:00Z",
+    "arrivalTime": "2025-07-30T16:49:00Z",
+    "duration": "8h 49m",
+    "durationMinutes": 529,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 22.4,
+    "seatsAvailable": 9,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "IAH",
+        "duration": "1h 13m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "Boeing 737-900",
+      "Boeing 737-800"
+    ],
+    "segments": [
+      {
+        "ID": "30Ky4QR3ms3HdkhzxBLId7q5Oop",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4KGRISomOjMGTJCsQId2Wpe",
+        "FlightNumber": "UA1687",
+        "Distance": 1635,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-900",
+        "AircraftCode": "739",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "IAH",
+        "DepartsAt": "2025-07-30T05:00:00Z",
+        "ArrivesAt": "2025-07-30T10:58:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30Ky4PfpcRelQr8pARptskqwaSv",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30Ky4KGRISomOjMGTJCsQId2Wpe",
+        "FlightNumber": "UA2181",
+        "Distance": 1416,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737-800",
+        "AircraftCode": "738",
+        "OriginAirport": "IAH",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-30T12:11:00Z",
+        "ArrivesAt": "2025-07-30T16:49:00Z",
+        "CreatedAt": "2025-07-24T20:52:46.905836Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  },
+  {
+    "id": "30TQzrDK3e5wM37cJd7Z41EgfWr",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA2142, UA3704",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T23:24:00Z",
+    "arrivalTime": "2025-07-31T14:12:00Z",
+    "duration": "11h 48m",
+    "durationMinutes": 708,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 31.0,
+    "seatsAvailable": 4,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "BWI",
+        "duration": "4h 52m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "Boeing 737 MAX 8",
+      "Embraer E175"
+    ],
+    "segments": [
+      {
+        "ID": "30TQzlH6DQIyV1mM71KDiQxnqn9",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30TQzrDK3e5wM37cJd7Z41EgfWr",
+        "FlightNumber": "UA2142",
+        "Distance": 2454,
+        "FareClass": "X",
+        "AircraftName": "Boeing 737 MAX 8",
+        "AircraftCode": "7M8",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "BWI",
+        "DepartsAt": "2025-07-30T23:24:00Z",
+        "ArrivesAt": "2025-07-31T07:43:00Z",
+        "CreatedAt": "2025-07-27T20:49:07.854537Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30TQzoM7i5WHQdrDH44yK9OF1jc",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30TQzrDK3e5wM37cJd7Z41EgfWr",
+        "FlightNumber": "UA3704",
+        "Distance": 227,
+        "FareClass": "X",
+        "AircraftName": "Embraer E175",
+        "AircraftCode": "E7W",
+        "OriginAirport": "IAD",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-31T12:35:00Z",
+        "ArrivesAt": "2025-07-31T14:12:00Z",
+        "CreatedAt": "2025-07-27T20:49:07.854537Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  },
+  {
+    "id": "30TQzsU1KydDnIyJchkNF6Gc4Ta",
+    "availabilityId": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+    "airline": "Virgin Australia",
+    "flightNumber": "UA1870, UA3704",
+    "origin": "SFO",
+    "destination": "LGA",
+    "departureTime": "2025-07-30T23:05:00Z",
+    "arrivalTime": "2025-07-31T14:12:00Z",
+    "duration": "12h 7m",
+    "durationMinutes": 727,
+    "cabinClass": "economy",
+    "points": 23500,
+    "cash": 31.0,
+    "seatsAvailable": 4,
+    "realTimeData": true,
+    "lastUpdated": "2025-07-29 17:11:58",
+    "layovers": [
+      {
+        "airport": "IAD",
+        "duration": "5h 16m"
+      }
+    ],
+    "stops": 1,
+    "aircraft": [
+      "753",
+      "Embraer E175"
+    ],
+    "segments": [
+      {
+        "ID": "30TQzv81zTFE48Y7z68Q83E0MlI",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30TQzsU1KydDnIyJchkNF6Gc4Ta",
+        "FlightNumber": "UA1870",
+        "Distance": 2416,
+        "FareClass": "X",
+        "AircraftName": "753",
+        "AircraftCode": "753",
+        "OriginAirport": "SFO",
+        "DestinationAirport": "IAD",
+        "DepartsAt": "2025-07-30T23:05:00Z",
+        "ArrivesAt": "2025-07-31T07:19:00Z",
+        "CreatedAt": "2025-07-27T20:49:07.854537Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 0
+      },
+      {
+        "ID": "30TQztMd5GoMXFv7ljbHnphDZmt",
+        "RouteID": "2WC3F1Tajm5UtoWPjIQyu6VrLI3",
+        "AvailabilityID": "2mAb1Vkzvu70zVUBJJsQOwLcvBp",
+        "AvailabilityTripID": "30TQzsU1KydDnIyJchkNF6Gc4Ta",
+        "FlightNumber": "UA3704",
+        "Distance": 227,
+        "FareClass": "X",
+        "AircraftName": "Embraer E175",
+        "AircraftCode": "E7W",
+        "OriginAirport": "IAD",
+        "DestinationAirport": "LGA",
+        "DepartsAt": "2025-07-31T12:35:00Z",
+        "ArrivesAt": "2025-07-31T14:12:00Z",
+        "CreatedAt": "2025-07-27T20:49:07.854537Z",
+        "UpdatedAt": "2025-07-29T08:01:45.954338Z",
+        "Source": "velocity",
+        "Cabin": "economy",
+        "Order": 1
+      }
+    ],
+    "source": "velocity"
+  }
+]

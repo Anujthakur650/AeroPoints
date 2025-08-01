@@ -1,0 +1,173 @@
+{
+  "search_api_response": {
+    "comment": "This is what the basic search API returns - notice it has NO departure/arrival times or duration",
+    "example_flight": {
+      "ID": "2uXEKtbgWjFoNb3bwafczxEHLDC",
+      "RouteID": "2uUwQHixNqxoEeh9przcBtqxTDL",
+      "Route": {
+        "ID": "2uUwQHixNqxoEeh9przcBtqxTDL",
+        "OriginAirport": "JFK",
+        "OriginRegion": "North America",
+        "DestinationAirport": "LHR",
+        "DestinationRegion": "Europe",
+        "NumDaysOut": 60,
+        "Distance": 3446,
+        "Source": "qatar"
+      },
+      "Date": "2025-08-14",
+      "YAvailable": true,
+      "JAvailable": true,
+      "FAvailable": true,
+      "YMileageCost": "20750",
+      "JMileageCost": "90000",
+      "FMileageCost": "82500",
+      "YAirlines": "AA, BA, QR",
+      "JAirlines": "BA",
+      "FAirlines": "AA",
+      "YDirect": true,
+      "JDirect": true,
+      "FDirect": true,
+      "Source": "qatar"
+    }
+  },
+  
+  "trip_details_api_response": {
+    "comment": "This is what the trip details API returns when we query with the flight ID",
+    "data": [
+      {
+        "comment": "Example 1: Direct flight on British Airways",
+        "ID": "2zuxRyXiPMllH4Tfk40GvO1akxa",
+        "RouteID": "2uUwQHixNqxoEeh9przcBtqxTDL",
+        "AvailabilityID": "2uXEKtbgWjFoNb3bwafczxEHLDC",
+        "AvailabilitySegments": [
+          {
+            "FlightNumber": "BA176",
+            "Distance": 3446,
+            "AircraftName": "Boeing 777",
+            "AircraftCode": "777",
+            "OriginAirport": "JFK",
+            "DestinationAirport": "LHR",
+            "DepartsAt": "2025-08-14T19:30:00Z",
+            "ArrivesAt": "2025-08-15T07:45:00Z",
+            "Cabin": "economy",
+            "Order": 0
+          }
+        ],
+        "TotalDuration": 435,
+        "Stops": 0,
+        "Carriers": "BA",
+        "MileageCost": 30000,
+        "Aircraft": ["Boeing 777"],
+        "FlightNumbers": "BA176",
+        "DepartsAt": "2025-08-14T19:30:00Z",
+        "Cabin": "economy",
+        "ArrivesAt": "2025-08-15T07:45:00Z"
+      },
+      
+      {
+        "comment": "Example 2: One-stop flight via Doha on Qatar Airways",
+        "ID": "2uXEKqqZVZ42QgRrTC2CJ9fsb1n",
+        "RouteID": "2uUwQHixNqxoEeh9przcBtqxTDL",
+        "AvailabilityID": "2uXEKtbgWjFoNb3bwafczxEHLDC",
+        "AvailabilitySegments": [
+          {
+            "FlightNumber": "QR704",
+            "Distance": 6700,
+            "AircraftName": "Boeing 777-300ER",
+            "AircraftCode": "77W",
+            "OriginAirport": "JFK",
+            "DestinationAirport": "DOH",
+            "DepartsAt": "2025-08-14T11:20:00Z",
+            "ArrivesAt": "2025-08-15T06:40:00Z",
+            "Cabin": "economy",
+            "Order": 0
+          },
+          {
+            "FlightNumber": "QR007",
+            "Distance": 3261,
+            "AircraftName": "Boeing 777-300ER",
+            "AircraftCode": "77W",
+            "OriginAirport": "DOH",
+            "DestinationAirport": "LHR",
+            "DepartsAt": "2025-08-15T08:55:00Z",
+            "ArrivesAt": "2025-08-15T14:10:00Z",
+            "Cabin": "economy",
+            "Order": 1
+          }
+        ],
+        "TotalDuration": 1310,
+        "Stops": 1,
+        "Carriers": "QR",
+        "MileageCost": 94500,
+        "Connections": ["DOH"],
+        "Aircraft": ["Boeing 777-300ER", "Boeing 777-300ER"],
+        "FlightNumbers": "QR704, QR007",
+        "DepartsAt": "2025-08-14T11:20:00Z",
+        "Cabin": "economy",
+        "ArrivesAt": "2025-08-15T14:10:00Z"
+      },
+      
+      {
+        "comment": "Example 3: Direct flight on American Airlines",
+        "ID": "2uXEKrHSwjc9QD551gLB69hJv16",
+        "RouteID": "2uUwQHixNqxoEeh9przcBtqxTDL",
+        "AvailabilityID": "2uXEKtbgWjFoNb3bwafczxEHLDC",
+        "AvailabilitySegments": [
+          {
+            "FlightNumber": "AA104",
+            "Distance": 3446,
+            "AircraftName": "Boeing 777-300ER",
+            "AircraftCode": "77W",
+            "OriginAirport": "JFK",
+            "DestinationAirport": "LHR",
+            "DepartsAt": "2025-08-14T22:55:00Z",
+            "ArrivesAt": "2025-08-15T11:05:00Z",
+            "Cabin": "economy",
+            "Order": 0
+          }
+        ],
+        "TotalDuration": 430,
+        "Stops": 0,
+        "Carriers": "AA",
+        "MileageCost": 20750,
+        "Aircraft": ["Boeing 777-300ER"],
+        "FlightNumbers": "AA104",
+        "DepartsAt": "2025-08-14T22:55:00Z",
+        "Cabin": "economy",
+        "ArrivesAt": "2025-08-15T11:05:00Z"
+      }
+    ],
+    
+    "additional_data": {
+      "origin_coordinates": {
+        "Lat": 40.642335,
+        "Lon": -73.78817
+      },
+      "destination_coordinates": {
+        "Lat": 51.469603,
+        "Lon": -0.453566
+      },
+      "booking_links": [
+        {
+          "label": "Book via Qatar Airways Privilege Club",
+          "link": "https://www.qatarairways.com/en/homepage.html?utm_source=seatsaero",
+          "primary": true
+        }
+      ],
+      "carriers": {
+        "AA": "American Airlines",
+        "BA": "British Airways",
+        "QR": "Qatar Airways"
+      }
+    }
+  },
+  
+  "key_insights": {
+    "1": "The basic search API returns flight availability but NO timing details",
+    "2": "To get actual departure/arrival times, duration, and layover info, we MUST call the trip details API",
+    "3": "The trip details API returns multiple cabin options (economy, business, first) for the same flight",
+    "4": "Real data includes: exact departure/arrival times, flight numbers, aircraft types, total duration, and connections",
+    "5": "For connecting flights, we get details for each segment including layover airports",
+    "6": "Duration is in minutes (e.g., 435 minutes = 7 hours 15 minutes)"
+  }
+}

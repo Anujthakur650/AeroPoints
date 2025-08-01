@@ -57,7 +57,6 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  token: string | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (userData: {
@@ -75,23 +74,23 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<void>;
   handleGoogleCallback: (code: string, state?: string) => Promise<void>;
   isGoogleAuthAvailable: boolean;
+  refreshToken: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isGoogleAuthAvailable, setIsGoogleAuthAvailable] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Load user data if token exists
+  // Load user data on component mount (check if authenticated via cookies)
   useEffect(() => {
     const loadUser = async () => {
-      if (token && !user) {
+      if (!user) {
         try {
           setLoading(true);
           const userData = await apiService.getCurrentUser();
@@ -101,7 +100,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
           console.error('Failed to load user:', err);
           // Only logout if it's a real auth error, not network issues
           if (err.message?.includes('Session expired') || err.message?.includes('Not authenticated')) {
-            logout();
+            setIsAuthenticated(false);
+            setUser(null);
           }
         } finally {
           setLoading(false);
@@ -110,7 +110,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     };
 
     loadUser();
-  }, [token]);
+  }, []);
 
   // Check Google auth availability on component mount
   useEffect(() => {
@@ -140,12 +140,10 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       
       const response = await apiService.login(email, password);
       
-      if (response.access_token && response.user) {
-        setToken(response.access_token);
+      if (response.user) {
         setUser(response.user);
         setIsAuthenticated(true);
         
-        // Don't navigate here - let the calling component decide
         console.log('Login successful for user:', response.user.full_name);
       } else {
         throw new Error('Invalid response from server');
@@ -153,7 +151,6 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     } catch (err: any) {
       console.error('Login error:', err);
       setError(err.message || 'Failed to login');
-      setIsAuthenticated(false);
       throw err; // Re-throw so components can handle it
     } finally {
       setLoading(false);
@@ -174,8 +171,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       
       const response = await apiService.register(userData);
       
-      if (response.access_token && response.user) {
-        setToken(response.access_token);
+      if (response.user) {
         setUser(response.user);
         setIsAuthenticated(true);
         
@@ -220,13 +216,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     }
     
     setUser(null);
-    setToken(null);
     setIsAuthenticated(false);
     setError(null);
-    
-    // Clear all auth data
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
     
     navigate('/');
   };
@@ -237,13 +228,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       setLoading(true);
       setError(null);
       
-      const authData = await apiService.getGoogleAuthUrl();
-      
-      // Store state for verification
-      sessionStorage.setItem('google_oauth_state', authData.state);
-      
-      // Redirect to Google
-      window.location.href = authData.authorization_url;
+      await apiService.loginWithGoogle();
     } catch (err: any) {
       console.error('Google login error:', err);
       console.error('Error details:', {
@@ -263,19 +248,9 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       setLoading(true);
       setError(null);
       
-      // Verify state parameter
-      const storedState = sessionStorage.getItem('google_oauth_state');
-      if (state && storedState && state !== storedState) {
-        throw new Error('Invalid state parameter');
-      }
+      const response = await apiService.handleGoogleCallback(code, state);
       
-      // Clear stored state
-      sessionStorage.removeItem('google_oauth_state');
-      
-      const response = await apiService.authenticateWithGoogle(code, state);
-      
-      if (response.access_token && response.user) {
-        setToken(response.access_token);
+      if (response.user) {
         setUser(response.user);
         setIsAuthenticated(true);
         
@@ -299,11 +274,26 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     }
   };
 
+  // Refresh token function
+  const refreshToken = async () => {
+    try {
+      // With httpOnly cookies, token refresh is handled automatically by the browser
+      // We just need to check if we're still authenticated
+      const userData = await apiService.getCurrentUser();
+      setUser(userData);
+      setIsAuthenticated(true);
+    } catch (err: any) {
+      console.error('Token refresh failed:', err);
+      setIsAuthenticated(false);
+      setUser(null);
+      throw err;
+    }
+  };
+
   return (
     <AuthContext.Provider 
       value={{ 
         user, 
-        token, 
         isAuthenticated, 
         login, 
         register, 
@@ -314,7 +304,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
         clearError,
         loginWithGoogle,
         handleGoogleCallback,
-        isGoogleAuthAvailable
+        isGoogleAuthAvailable,
+        refreshToken
       }}
     >
       {children}

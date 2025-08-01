@@ -93,7 +93,7 @@ const featuredDeals: Deal[] = [
       airline: 'Emirates',
       validUntil: '2025-12-15',
       availability: 'limited',
-      tags: ['Ultra Luxury', 'A380 Suite'],
+      tags: ['Luxury', 'A380 Suite'],
       description: 'Ultimate luxury awaits in Emirates\' private First Class suites with shower spa.',
       partnership: 'Independent'
   },
@@ -135,7 +135,7 @@ const featuredDeals: Deal[] = [
     if (selectedCategory === 'all') return true;
     if (selectedCategory === 'business') return deal.cabin === 'business';
     if (selectedCategory === 'first') return deal.cabin === 'first';
-    if (selectedCategory === 'exclusive') return deal.tags.includes('Exclusive') || deal.tags.includes('Ultra Luxury');
+    if (selectedCategory === 'exclusive') return deal.tags.includes('Exclusive') || deal.tags.includes('Luxury');
     return true;
   });
 
@@ -171,7 +171,7 @@ const featuredDeals: Deal[] = [
   };
 
   return (
-    <div className="space-luxury">
+    <div id="featured-deals" className="space-luxury">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
         <motion.div
@@ -191,7 +191,7 @@ const featuredDeals: Deal[] = [
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Handpicked exceptional offers from our exclusive partner network. These premium deals are available to our platinum members only.
+            Handpicked exceptional offers from our exclusive partner network. These premium deals are available to all our members.
           </p>
         </motion.div>
 
@@ -425,32 +425,7 @@ const featuredDeals: Deal[] = [
           </motion.div>
         )}
 
-        {/* Bottom CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="card-premium p-8 max-w-2xl mx-auto">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-luxury)' }}>
-                Unlock More Exclusive Deals
-              </h3>
-              <p className="text-gray-300">
-                Join our Platinum Circle to access even more premium offers and personalized travel recommendations.
-              </p>
-              <Button
-                className="btn-luxury"
-                size="lg"
-                endContent={<Icon icon="lucide:arrow-right" />}
-              >
-                Explore Platinum Benefits
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </div>
   );

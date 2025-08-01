@@ -1,12 +1,8 @@
 import React from "react";
 import { Card, CardBody, RadioGroup, Radio, Input, Button, Select, SelectItem, Tabs, Tab, Divider, Tooltip, Chip, Slider, Checkbox, CheckboxGroup } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { DateRangePicker, DatePicker } from "@heroui/react";
-import { parseDate, getLocalTimeZone, CalendarDate } from "@internationalized/date";
-import { useDateFormatter } from "@react-aria/i18n";
 import { motion, AnimatePresence } from "framer-motion";
-import type { RangeValue } from "@react-types/shared";
-import type { DateValue } from "@react-types/datepicker";
+import { DatePicker, DateRangePicker, DateRange } from "./calendar";
 import apiService, { FlightSearchParams, Flight } from "../services/api";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -100,70 +96,37 @@ const popularDestinations = [
 ];
 
 // Enhanced date utilities
-const formatDateForAPI = (date: DateValue | null): string | undefined => {
+const formatDateForAPI = (date: Date | null): string | undefined => {
   if (!date) return undefined;
-  
-  // Ensure we have a valid date and format it consistently
-  if (date instanceof CalendarDate) {
-    const year = date.year.toString().padStart(4, '0');
-    const month = date.month.toString().padStart(2, '0');
-    const day = date.day.toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-  
-  // Fallback to toString method
-  return date.toString();
+  return date.toISOString().split('T')[0];
 };
 
-const validateDateRange = (start: DateValue | null, end: DateValue | null, tripType: string): string | null => {
-  if (!start) {
-    return "Please select a departure date";
-  }
-  
+const validateDateRange = (start: Date | null, end: Date | null, tripType: string): string | null => {
   const today = new Date();
-  const currentDate = parseDate(today.toISOString().split('T')[0]);
-  
-  // Check if departure date is in the past
-  if (start.compare(currentDate) < 0) {
-    return "Departure date cannot be in the past";
+  today.setHours(0, 0, 0, 0);
+
+  if (tripType === "one-way") {
+    if (!start) return "Please select a departure date";
+    if (start < today) return "Departure date cannot be in the past";
+    return null;
   }
+
+  if (!start) return "Please select departure date";
+  if (!end) return "Please select return date";
+  if (start < today) return "Departure date cannot be in the past";
+  if (end < start) return "Return date must be after departure date";
   
-  // Check if departure date is too far in the future (more than 330 days)
-  const maxFutureDate = today.setDate(today.getDate() + 330);
-  const maxDate = parseDate(new Date(maxFutureDate).toISOString().split('T')[0]);
-  if (start.compare(maxDate) > 0) {
-    return "Departure date cannot be more than 330 days in the future";
-  }
-  
-  // For round trips, validate return date
-  if (tripType !== "one-way") {
-    if (!end) {
-      return "Please select a return date for round trip";
-    }
-    
-    // Return date should be after departure date
-    if (end.compare(start) <= 0) {
-      return "Return date must be after departure date";
-    }
-    
-    // Check if return date is too far in the future
-    if (end.compare(maxDate) > 0) {
-      return "Return date cannot be more than 330 days in the future";
-    }
-  }
+  const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+  if (daysDiff > 365) return "Trip duration cannot exceed 365 days";
   
   return null;
 };
 
-const getDefaultDateRange = (): RangeValue<DateValue> => {
+const getDefaultDateRange = (): DateRange => {
   const today = new Date();
-  const nextWeek = new Date();
+  const nextWeek = new Date(today);
   nextWeek.setDate(today.getDate() + 7);
-  
-  return {
-    start: parseDate(today.toISOString().split('T')[0]),
-    end: parseDate(nextWeek.toISOString().split('T')[0])
-  };
+  return { start: today, end: nextWeek };
 };
 
 export function EnhancedSearchForm({ onSearchResults, onSearchStart }: EnhancedSearchFormProps) {
@@ -186,16 +149,15 @@ export function EnhancedSearchForm({ onSearchResults, onSearchStart }: EnhancedS
   const [selectedAmenities, setSelectedAmenities] = React.useState(new Set([]));
   const [origin, setOrigin] = React.useState("");
   const [destination, setDestination] = React.useState("");
-  const [dateRange, setDateRange] = React.useState<RangeValue<DateValue>>(getDefaultDateRange());
+  const [dateRange, setDateRange] = React.useState<DateRange>(getDefaultDateRange());
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [searchComplete, setSearchComplete] = React.useState(false);
-  const dateFormatter = useDateFormatter();
   const useAwardTravel = tripType === "round-trip" || tripType === "multi-city";
   const [showPassengerSelector, setShowPassengerSelector] = React.useState(false);
 
   // Handler for the DateRangePicker to fix type issues
-  const handleDateRangeChange = (value: RangeValue<DateValue>) => {
+  const handleDateRangeChange = (value: DateRange) => {
     setDateRange(value);
     
     // Clear any existing date-related errors when user changes dates
@@ -638,38 +600,33 @@ export function EnhancedSearchForm({ onSearchResults, onSearchStart }: EnhancedS
             </div>
           </div>
           
-          <div className="mb-6">
-            <label className="flex items-center gap-2 mb-1.5 text-sm font-medium">
-              <Icon icon="lucide:calendar" className="text-primary" width={14} height={14} />
-              <span>Travel Dates</span>
+          <div className="space-y-4 group">
+            <label className="block text-sm font-semibold text-gray-200 mb-3 transition-colors duration-300 group-hover:text-[#FFD700]">
+              <Icon icon="lucide:calendar" className="inline mr-2 text-[#FFD700] text-lg" width={18} height={18} />
+              Travel Date
             </label>
-            <div className="bg-default-100/20 hover:bg-default-100/30 border border-default-200/30 hover:border-primary/40 rounded-xl p-1 transition-all duration-200 flex justify-center">
+            <div className="relative">
               {tripType === "one-way" ? (
-                <div className="w-full">
-                  <DatePicker
-                    value={dateRange.start}
-                    onChange={(date) => {
-                      if (date) {
-                        setDateRange({
-                          start: date,
-                          end: date // Set the same date for end to satisfy type requirements
-                        });
-                      }
-                    }}
-                    minValue={parseDate(new Date().toISOString().split('T')[0])}
-                    className="w-full"
-                  />
-                </div>
+                <DatePicker
+                  value={dateRange.start}
+                  onChange={(date) => setDateRange({ start: date, end: null })}
+                  label=""
+                  placeholder="Select departure date"
+                  minDate={new Date()}
+                  className="w-full"
+                />
               ) : (
                 <DateRangePicker
                   value={dateRange}
                   onChange={setDateRange}
-                  minValue={parseDate(new Date().toISOString().split('T')[0])}
+                  label=""
+                  placeholder="Select departure and return dates"
+                  minDate={new Date()}
                   className="w-full"
                 />
               )}
             </div>
-            <div className="flex items-center gap-1 mt-1 text-xs text-default-500">
+            <div className="flex items-center gap-2 text-xs text-gray-500">
               <Icon icon="lucide:info" width={12} height={12} />
               <span>Tip: Flexible dates may show better point values</span>
             </div>

@@ -54,9 +54,55 @@ export interface BulkAvailabilityParams {
 }
 
 // Types for flight data
+// Booking option for a specific flight through a particular program
+export interface BookingOption {
+  id: string;
+  bookingProgram: string; // Program name (e.g., "Virgin Atlantic Flying Club")
+  bookingProgramCurrency: string; // Currency type (e.g., "points", "miles", "avios")
+  points: number;
+  cash: number;
+  seatsAvailable: number;
+  source: string; // Original source identifier
+  bookingLink?: string;
+}
+
+// Grouped flight representing the same operating flight available through multiple booking programs
+export interface GroupedFlight {
+  id: string;
+  airline: string; // Operating airline name (e.g., "Delta Air Lines")
+  airlineCode: string; // Operating airline code (e.g., "DL", "AA")
+  flightNumber: string;
+  origin: string;
+  destination: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: string;
+  cabinClass: string;
+  stops?: number; // Number of stops
+  layovers?: {
+    airport: string;
+    duration: string;
+  }[];
+  segments?: any[]; // Flight segments for multi-leg flights
+  realTimeData?: boolean;
+  lastUpdated?: string;
+  rawTripData?: any;
+  departureDate?: string;
+  flightType?: string;
+  aircraftType?: string;
+  aircraft?: string[];
+  durationMinutes?: number;
+  // Multiple booking options for the same flight
+  bookingOptions: BookingOption[];
+  // Best option details for quick reference
+  bestPoints: number;
+  bestCash: number;
+  totalSeatsAvailable: number;
+}
+
 export interface Flight {
   id: string;
-  airline: string;
+  airline: string; // Operating airline name (e.g., "Delta Air Lines")
   flightNumber: string;
   origin: string;
   destination: string;
@@ -67,10 +113,12 @@ export interface Flight {
   points: number;
   cash: number;
   seatsAvailable: number;
+  stops?: number; // Number of stops
   layovers?: {
     airport: string;
     duration: string;
   }[];
+  segments?: any[]; // Flight segments for multi-leg flights
   realTimeData?: boolean;  // Indicates if this is real-time data
   lastUpdated?: string;    // Timestamp when data was last updated
   rawTripData?: any;       // Any additional trip data
@@ -79,7 +127,13 @@ export interface Flight {
   departureDate?: string;
   flightType?: string;
   aircraftType?: string;
+  aircraft?: string[]; // Aircraft types for each segment
   bookingLink?: string;
+  durationMinutes?: number; // Duration in minutes
+  // NEW: Booking program information (separate from operating airline)
+  airlineCode?: string; // Operating airline code (e.g., "DL", "AA")
+  bookingProgram?: string; // Booking program name (e.g., "Virgin Atlantic Flying Club")
+  bookingProgramCurrency?: string; // Currency type (e.g., "points", "miles", "avios")
 }
 
 // Types for route data
@@ -124,7 +178,8 @@ export interface AuthResponse {
 
 class ApiService {
   private baseUrl = config.API_BASE_URL;
-  private token: string | null = localStorage.getItem('token');
+  // Remove token storage - now using httpOnly cookies
+  private isAuthenticated: boolean = false;
 
   constructor() {
     // Debug: Log the configuration being used
@@ -133,7 +188,22 @@ class ApiService {
     console.log('🌍 Environment:', config.NODE_ENV);
     console.log('🔧 Is Development:', config.IS_DEVELOPMENT);
     console.log('🔧 Is Production:', config.IS_PRODUCTION);
-    console.log('🎫 Has stored token:', !!this.token);
+    console.log('🍪 Using secure httpOnly cookies for authentication');
+    
+    // Check authentication status on initialization
+    this.checkAuthStatus();
+  }
+
+  /**
+   * Check authentication status by attempting to get current user
+   */
+  private async checkAuthStatus(): Promise<void> {
+    try {
+      await this.getCurrentUser();
+      this.isAuthenticated = true;
+    } catch (error) {
+      this.isAuthenticated = false;
+    }
   }
 
   /**
@@ -154,9 +224,7 @@ class ApiService {
       ...(options.headers as Record<string, string> || {}),
     };
 
-    if (this.token) {
-      headers['Authorization'] = `Bearer ${this.token}`;
-    }
+    // No need to add Authorization header - cookies are sent automatically
 
     // Mobile-specific timeout settings
     const isMobileDevice = this.isMobile();
@@ -342,6 +410,11 @@ class ApiService {
           seatsAvailable: flight.seatsAvailable,
           realTimeData: flight.realTimeData || true,
           lastUpdated: flight.lastUpdated,
+          // Include stops and layovers data
+          stops: flight.stops,
+          layovers: flight.layovers || [],
+          // Include segments data
+          segments: flight.segments || [],
           // Enhanced fields from new API integration
           rawTripData: {
             route_distance: flight.route_distance,
@@ -354,7 +427,9 @@ class ApiService {
           departureDate: flight.departureDate,
           flightType: flight.flightType,
           aircraftType: flight.aircraftType,
-          bookingLink: flight.bookingLink
+          bookingLink: flight.bookingLink,
+          // Include additional fields for proper display
+          durationMinutes: flight.durationMinutes
         };
       });
       
@@ -378,7 +453,32 @@ class ApiService {
       throw error;
     }
   }
-  
+
+  /**
+   * Search for flights and return them grouped by operating details
+   * This consolidates identical flights from different booking programs
+   */
+  async searchFlightsGrouped(params: FlightSearchParams, retryCount = 0): Promise<{ groupedFlights: GroupedFlight[] }> {
+    try {
+      console.log('Searching for flights with grouping enabled:', params);
+      
+      // First get all individual flights
+      const { flights } = await this.searchFlights(params, retryCount);
+      
+      // Then group them by operating details
+      const groupedFlights = this.groupFlightsByOperatingDetails(flights);
+      
+      console.log(`Grouped ${flights.length} individual flights into ${groupedFlights.length} flight groups`);
+      
+      return {
+        groupedFlights
+      };
+    } catch (error) {
+      console.error('Error searching for grouped flights:', error);
+      throw error;
+    }
+  }
+
   /**
    * Get enhanced trip details from the API including real flight times
    */
@@ -513,13 +613,20 @@ class ApiService {
       console.log(`DEBUG: Mapping flight ${index + 1}/${flights.length}, ID:`, flight.ID || "unknown");
       
       try {
-        // Extract airline from source or route
-        let airline = "Unknown";
-        if (flight.Source) {
-          airline = this.getAirlineFromSource(flight.Source);
-        } else if (flight.Route && flight.Route.Source) {
-          airline = this.getAirlineFromSource(flight.Route.Source);
-        }
+        // Extract OPERATING airline from flight number (NOT booking program)
+        const operatingAirline = this.getOperatingAirlineFromFlightNumber(flight.FlightNumber);
+        const bookingProgram = this.getBookingProgramFromSource(flight.Source || (flight.Route && flight.Route.Source));
+        
+        // Use operating airline as the primary airline display
+        const airline = operatingAirline.name;
+        
+        // Log the distinction for debugging
+        console.log(`DEBUG: Flight ${flight.FlightNumber} - Operating: ${operatingAirline.name}, Booking Program: ${bookingProgram.name}`);
+        
+        // Store both operating airline and booking program info for display
+        const airlineCode = operatingAirline.code;
+        const bookingProgramName = bookingProgram.name;
+        const bookingProgramCurrency = bookingProgram.currency;
         
         // Generate a unique ID
         const id = flight.ID || `flight-${index}`;
@@ -600,11 +707,11 @@ class ApiService {
         // Parse flight dates
         const flightDate = flight.ParsedDate || flight.Date || new Date().toISOString().split('T')[0];
         
-        // Create a Flight object
+        // Create a Flight object with operating airline as primary and booking program as secondary
         return {
           id,
-          airline,
-          flightNumber: flight.FlightNumber || `${airline.substring(0, 2)}${100 + index}`,
+          airline, // Operating airline name (e.g., "Delta Air Lines")
+          flightNumber: flight.FlightNumber || `${airlineCode}${100 + index}`,
           origin,
           destination,
           departureTime: formattedDepartureTime,
@@ -622,7 +729,11 @@ class ApiService {
           bookingLink: "",
           realTimeData: true,
           lastUpdated: new Date().toISOString(),
-          rawTripData: {}
+          rawTripData: {},
+          // NEW: Include booking program information
+          airlineCode, // Operating airline code (e.g., "DL")
+          bookingProgram: bookingProgramName, // Booking program name
+          bookingProgramCurrency // Currency type
         };
       } catch (err) {
         console.error(`Error mapping flight ${index}:`, err);
@@ -652,6 +763,105 @@ class ApiService {
         };
       }
     });
+  }
+
+  /**
+   * Group flights by operating airline, flight number, departure time, and route
+   * This consolidates identical flights available through different booking programs
+   */
+  groupFlightsByOperatingDetails(flights: Flight[]): GroupedFlight[] {
+    console.log('DEBUG: Grouping flights by operating details, total flights:', flights.length);
+    
+    const flightGroups = new Map<string, Flight[]>();
+    
+    // Group flights by their operating characteristics
+    flights.forEach(flight => {
+      // Create a unique key for grouping based on operating flight details
+      const groupKey = [
+        flight.airlineCode || this.getOperatingAirlineFromFlightNumber(flight.flightNumber).code,
+        flight.flightNumber,
+        flight.origin,
+        flight.destination,
+        flight.departureTime,
+        flight.departureDate,
+        flight.cabinClass
+      ].join('|');
+      
+      if (!flightGroups.has(groupKey)) {
+        flightGroups.set(groupKey, []);
+      }
+      flightGroups.get(groupKey)!.push(flight);
+    });
+    
+    console.log('DEBUG: Created', flightGroups.size, 'flight groups from', flights.length, 'individual flights');
+    
+    // Convert groups to GroupedFlight objects
+    const groupedFlights: GroupedFlight[] = [];
+    
+    flightGroups.forEach((groupFlights, groupKey) => {
+      // Use the first flight as the base for operating details
+      const baseFlight = groupFlights[0];
+      const operatingAirline = this.getOperatingAirlineFromFlightNumber(baseFlight.flightNumber);
+      
+      // Create booking options from all flights in the group
+      const bookingOptions: BookingOption[] = groupFlights.map((flight, index) => {
+        const bookingProgram = this.getBookingProgramFromSource(flight.source);
+        return {
+          id: `${baseFlight.id}-option-${index}`,
+          bookingProgram: bookingProgram.name,
+          bookingProgramCurrency: bookingProgram.currency,
+          points: flight.points,
+          cash: flight.cash,
+          seatsAvailable: flight.seatsAvailable,
+          source: flight.source || 'unknown',
+          bookingLink: flight.bookingLink
+        };
+      });
+      
+      // Sort booking options by points (ascending) to show best deals first
+      bookingOptions.sort((a, b) => a.points - b.points);
+      
+      // Calculate aggregated data
+      const bestPoints = Math.min(...bookingOptions.map(opt => opt.points));
+      const bestCash = Math.min(...bookingOptions.map(opt => opt.cash));
+      const totalSeatsAvailable = Math.max(...bookingOptions.map(opt => opt.seatsAvailable));
+      
+      const groupedFlight: GroupedFlight = {
+        id: `grouped-${baseFlight.id}`,
+        airline: operatingAirline.name,
+        airlineCode: operatingAirline.code,
+        flightNumber: baseFlight.flightNumber,
+        origin: baseFlight.origin,
+        destination: baseFlight.destination,
+        departureTime: baseFlight.departureTime,
+        arrivalTime: baseFlight.arrivalTime,
+        duration: baseFlight.duration,
+        cabinClass: baseFlight.cabinClass,
+        stops: baseFlight.stops,
+        layovers: baseFlight.layovers,
+        segments: baseFlight.segments,
+        realTimeData: baseFlight.realTimeData,
+        lastUpdated: baseFlight.lastUpdated,
+        rawTripData: baseFlight.rawTripData,
+        departureDate: baseFlight.departureDate,
+        flightType: baseFlight.flightType,
+        aircraftType: baseFlight.aircraftType,
+        aircraft: baseFlight.aircraft,
+        durationMinutes: baseFlight.durationMinutes,
+        bookingOptions,
+        bestPoints,
+        bestCash,
+        totalSeatsAvailable
+      };
+      
+      groupedFlights.push(groupedFlight);
+      
+      console.log(`DEBUG: Grouped flight ${baseFlight.flightNumber} with ${bookingOptions.length} booking options:`, 
+        bookingOptions.map(opt => `${opt.bookingProgram} (${opt.points} ${opt.bookingProgramCurrency})`).join(', '));
+    });
+    
+    console.log('DEBUG: Final grouped flights count:', groupedFlights.length);
+    return groupedFlights;
   }
   
   /**
@@ -764,29 +974,172 @@ class ApiService {
   }
   
   /**
-   * Get airline name from source
+   * Comprehensive airline code mapping for operating airline detection
+   */
+  private static readonly AIRLINE_CODES: Record<string, { name: string; logo?: string; region: string }> = {
+    // North American Airlines
+    'DL': { name: 'Delta Air Lines', region: 'US' },
+    'AA': { name: 'American Airlines', region: 'US' },
+    'UA': { name: 'United Airlines', region: 'US' },
+    'WN': { name: 'Southwest Airlines', region: 'US' },
+    'B6': { name: 'JetBlue Airways', region: 'US' },
+    'AS': { name: 'Alaska Airlines', region: 'US' },
+    'HA': { name: 'Hawaiian Airlines', region: 'US' },
+    'F9': { name: 'Frontier Airlines', region: 'US' },
+    'NK': { name: 'Spirit Airlines', region: 'US' },
+    'AC': { name: 'Air Canada', region: 'CA' },
+    'WS': { name: 'WestJet', region: 'CA' },
+    
+    // European Airlines
+    'BA': { name: 'British Airways', region: 'EU' },
+    'LH': { name: 'Lufthansa', region: 'EU' },
+    'AF': { name: 'Air France', region: 'EU' },
+    'KL': { name: 'KLM Royal Dutch Airlines', region: 'EU' },
+    'VS': { name: 'Virgin Atlantic', region: 'EU' },
+    'EI': { name: 'Aer Lingus', region: 'EU' },
+    'IB': { name: 'Iberia', region: 'EU' },
+    'TP': { name: 'TAP Air Portugal', region: 'EU' },
+    'SK': { name: 'SAS Scandinavian Airlines', region: 'EU' },
+    'AY': { name: 'Finnair', region: 'EU' },
+    'LO': { name: 'LOT Polish Airlines', region: 'EU' },
+    'OS': { name: 'Austrian Airlines', region: 'EU' },
+    'LX': { name: 'Swiss International Air Lines', region: 'EU' },
+    'SN': { name: 'Brussels Airlines', region: 'EU' },
+    'UX': { name: 'Air Europa', region: 'EU' },
+    'TK': { name: 'Turkish Airlines', region: 'EU' },
+    
+    // Middle Eastern Airlines
+    'EK': { name: 'Emirates', region: 'ME' },
+    'EY': { name: 'Etihad Airways', region: 'ME' },
+    'QR': { name: 'Qatar Airways', region: 'ME' },
+    'MS': { name: 'EgyptAir', region: 'ME' },
+    'RJ': { name: 'Royal Jordanian', region: 'ME' },
+    
+    // Asian/Pacific Airlines
+    'SQ': { name: 'Singapore Airlines', region: 'ASIA' },
+    'CX': { name: 'Cathay Pacific', region: 'ASIA' },
+    'JL': { name: 'Japan Airlines', region: 'ASIA' },
+    'NH': { name: 'ANA (All Nippon Airways)', region: 'ASIA' },
+    'TG': { name: 'Thai Airways', region: 'ASIA' },
+    'MH': { name: 'Malaysia Airlines', region: 'ASIA' },
+    'GA': { name: 'Garuda Indonesia', region: 'ASIA' },
+    'CI': { name: 'China Airlines', region: 'ASIA' },
+    'BR': { name: 'EVA Air', region: 'ASIA' },
+    'KE': { name: 'Korean Air', region: 'ASIA' },
+    'OZ': { name: 'Asiana Airlines', region: 'ASIA' },
+    'AI': { name: 'Air India', region: 'ASIA' },
+    'QF': { name: 'Qantas', region: 'OCEANIA' },
+    'VA': { name: 'Virgin Australia', region: 'OCEANIA' },
+    'JQ': { name: 'Jetstar Airways', region: 'OCEANIA' },
+    'NZ': { name: 'Air New Zealand', region: 'OCEANIA' },
+    
+    // South American Airlines
+    'LA': { name: 'LATAM Airlines', region: 'SA' },
+    'AV': { name: 'Avianca', region: 'SA' },
+    'G3': { name: 'GOL Linhas Aéreas', region: 'SA' },
+    'AD': { name: 'Azul Brazilian Airlines', region: 'SA' },
+    'AR': { name: 'Aerolíneas Argentinas', region: 'SA' },
+    
+    // African Airlines
+    'SA': { name: 'South African Airways', region: 'AF' },
+    'ET': { name: 'Ethiopian Airlines', region: 'AF' },
+    'KQ': { name: 'Kenya Airways', region: 'AF' },
+    'AT': { name: 'Royal Air Maroc', region: 'AF' }
+  };
+
+  /**
+   * Comprehensive booking program mapping
+   */
+  private static readonly BOOKING_PROGRAMS: Record<string, { name: string; currency: string; icon?: string }> = {
+    'virginatlantic': { name: 'Virgin Atlantic Flying Club', currency: 'points' },
+    'united': { name: 'United MileagePlus', currency: 'miles' },
+    'delta': { name: 'Delta SkyMiles', currency: 'miles' },
+    'american': { name: 'American AAdvantage', currency: 'miles' },
+    'alaska': { name: 'Alaska Mileage Plan', currency: 'miles' },
+    'aeroplan': { name: 'Air Canada Aeroplan', currency: 'points' },
+    'turkish': { name: 'Turkish Airlines Miles&Smiles', currency: 'miles' },
+    'emirates': { name: 'Emirates Skywards', currency: 'miles' },
+    'etihad': { name: 'Etihad Guest', currency: 'miles' },
+    'qantas': { name: 'Qantas Frequent Flyer', currency: 'points' },
+    'velocity': { name: 'Virgin Australia Velocity', currency: 'points' },
+    'flyingblue': { name: 'Air France-KLM Flying Blue', currency: 'miles' },
+    'jetblue': { name: 'JetBlue TrueBlue', currency: 'points' },
+    'aeromexico': { name: 'Aeromexico Club Premier', currency: 'points' },
+    'azul': { name: 'Azul TudoAzul', currency: 'points' },
+    'smiles': { name: 'Smiles (GOL)', currency: 'miles' },
+    'lifemiles': { name: 'LifeMiles (Avianca)', currency: 'miles' },
+    'latampass': { name: 'LATAM Pass', currency: 'points' },
+    'britishairways': { name: 'British Airways Executive Club', currency: 'avios' },
+    'iberia': { name: 'Iberia Plus', currency: 'avios' },
+    'singapore': { name: 'Singapore Airlines KrisFlyer', currency: 'miles' },
+    'cathay': { name: 'Cathay Pacific Asia Miles', currency: 'miles' },
+    'ana': { name: 'ANA Mileage Club', currency: 'miles' },
+    'jal': { name: 'JAL Mileage Bank', currency: 'miles' }
+  };
+
+  /**
+   * Extract operating airline from flight number
+   */
+  private getOperatingAirlineFromFlightNumber(flightNumber?: string): { name: string; code: string } {
+    if (!flightNumber) {
+      return { name: 'Unknown Airline', code: 'XX' };
+    }
+
+    // Extract airline code from flight number (first 2-3 characters)
+    const airlineCodeMatch = flightNumber.match(/^([A-Z]{2,3})/);
+    if (!airlineCodeMatch) {
+      return { name: 'Unknown Airline', code: 'XX' };
+    }
+
+    const airlineCode = airlineCodeMatch[1];
+    const airlineInfo = ApiService.AIRLINE_CODES[airlineCode];
+    
+    if (airlineInfo) {
+      return { name: airlineInfo.name, code: airlineCode };
+    }
+
+    // Fallback: return formatted airline code
+    return { name: `${airlineCode} Airlines`, code: airlineCode };
+  }
+
+  /**
+   * Get booking program information from source
+   */
+  private getBookingProgramFromSource(source?: string): { name: string; currency: string } {
+    if (!source) {
+      return { name: 'Unknown Program', currency: 'points' };
+    }
+    
+    const program = ApiService.BOOKING_PROGRAMS[source.toLowerCase()];
+    return program || { name: source, currency: 'points' };
+  }
+
+  /**
+   * @deprecated Use getOperatingAirlineFromFlightNumber instead
+   * Get airline name from source (booking program)
    */
   private getAirlineFromSource(source?: string): string {
+    console.warn('getAirlineFromSource is deprecated - this shows booking program, not operating airline');
     if (!source) return "Unknown Airline";
     
-    // Map source to airline name
+    // Map source to booking program name (NOT operating airline)
     const sourceMap: Record<string, string> = {
-      'united': 'United Airlines',
-      'delta': 'Delta Air Lines',
-      'american': 'American Airlines',
-      'alaska': 'Alaska Airlines',
-      'aeroplan': 'Air Canada',
-      'turkish': 'Turkish Airlines',
-      'emirates': 'Emirates',
-      'etihad': 'Etihad Airways',
-      'qantas': 'Qantas',
-      'velocity': 'Virgin Australia',
-      'virginatlantic': 'Virgin Atlantic',
-      'flyingblue': 'Air France-KLM',
-      'jetblue': 'JetBlue',
-      'aeromexico': 'AeroMexico',
-      'azul': 'Azul Brazilian Airlines',
-      'smiles': 'GOL Airlines'
+      'united': 'United MileagePlus Program',
+      'delta': 'Delta SkyMiles Program', 
+      'american': 'American AAdvantage Program',
+      'alaska': 'Alaska Mileage Plan',
+      'aeroplan': 'Air Canada Aeroplan',
+      'turkish': 'Turkish Miles&Smiles',
+      'emirates': 'Emirates Skywards',
+      'etihad': 'Etihad Guest',
+      'qantas': 'Qantas Frequent Flyer',
+      'velocity': 'Virgin Australia Velocity',
+      'virginatlantic': 'Virgin Atlantic Flying Club',
+      'flyingblue': 'Air France-KLM Flying Blue',
+      'jetblue': 'JetBlue TrueBlue',
+      'aeromexico': 'Aeromexico Club Premier',
+      'azul': 'Azul TudoAzul',
+      'smiles': 'Smiles (GOL)'
     };
     
     return sourceMap[source.toLowerCase()] || source;
@@ -926,10 +1279,25 @@ class ApiService {
       }
     }
     
+    // Extract operating airline and booking program info
+    const operatingAirline = this.getOperatingAirlineFromFlightNumber(tripDetails.FlightNumber);
+    const bookingProgram = this.getBookingProgramFromSource(tripDetails.Source);
+    
+    // Debug logging to verify the fix is working
+    console.log(`🔍 AIRLINE FIX DEBUG:`);
+    console.log(`  Flight Number: ${tripDetails.FlightNumber}`);
+    console.log(`  Source (Booking Program): ${tripDetails.Source}`);
+    console.log(`  Operating Airline: ${operatingAirline.name} (${operatingAirline.code})`);
+    console.log(`  Booking Program: ${bookingProgram.name}`);
+    console.log(`  Currency: ${bookingProgram.currency}`);
+    
     // Initialize the Flight object with data from the trip
     const flight: Flight = {
       id: tripDetails.ID || String(Date.now()),
-      airline: this.getAirlineFromSource(tripDetails.Source),
+      airline: operatingAirline.name, // Operating airline (e.g., "Delta Air Lines")
+      airlineCode: operatingAirline.code, // Operating airline code (e.g., "DL")
+      bookingProgram: bookingProgram.name, // Booking program (e.g., "Virgin Atlantic Flying Club")
+      bookingProgramCurrency: bookingProgram.currency, // Currency type (e.g., "points")
       flightNumber,
       origin: tripDetails.OriginAirport || (tripDetails.AvailabilitySegments && tripDetails.AvailabilitySegments[0]?.OriginAirport) || "Unknown",
       destination: tripDetails.DestinationAirport || (tripDetails.AvailabilitySegments && tripDetails.AvailabilitySegments[tripDetails.AvailabilitySegments.length - 1]?.DestinationAirport) || "Unknown",
@@ -1063,7 +1431,7 @@ class ApiService {
   async login(email: string, password: string): Promise<AuthResponse> {
     try {
       // Backend expects JSON data with email and password
-      const response = await fetch(`${this.baseUrl}/api/auth/token`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1100,11 +1468,9 @@ class ApiService {
         }
       };
       
-      // Store token in localStorage
-      if (data.access_token) {
-        localStorage.setItem('token', data.access_token);
-        this.token = data.access_token;
-      }
+      // Cookies are set automatically by the server
+      // Update authentication status
+      this.isAuthenticated = true;
       
       return data;
     } catch (error: any) {
@@ -1129,101 +1495,98 @@ class ApiService {
       console.log('🚀 Starting registration process...');
       console.log('📍 Base URL:', this.baseUrl);
       console.log('📝 User data:', { ...userData, password: '[HIDDEN]' });
-      
-      const url = `${this.baseUrl}/api/auth/register`;
-      console.log('🌐 Full registration URL:', url);
-      
-      const headers = {
-        'Content-Type': 'application/json',
-      };
-      console.log('📋 Request headers:', headers);
-      
-      // Map full_name to name for backend compatibility
-      const backendUserData = {
-        email: userData.email,
-        password: userData.password,
-        name: userData.full_name, // Backend expects 'name' field
-        preferred_airport: userData.preferred_airport,
-        frequent_flyer_programs: userData.frequent_flyer_programs
-      };
-      
-      const body = JSON.stringify(backendUserData);
-      console.log('📦 Request body length:', body.length);
-      
-      console.log('📡 Making registration request...');
-      const response = await fetch(url, {
-        method: 'POST',
-        headers,
-        body,
-        credentials: 'include',
-      });
-      
-      console.log('✅ Response received!');
-      console.log('📊 Response status:', response.status, response.statusText);
-      console.log('📋 Response headers:', Object.fromEntries(response.headers.entries()));
-      
-      if (!response.ok) {
-        console.log('❌ Response not OK, attempting to parse error...');
-        let errorData;
-        try {
-          errorData = await response.json();
-          console.log('📄 Error data:', errorData);
-        } catch (parseError) {
-          console.log('⚠️ Could not parse error response as JSON:', parseError);
-          const errorText = await response.text();
-          console.log('📄 Error text:', errorText);
-          errorData = { detail: errorText };
-        }
-        throw new Error(errorData.detail || `Registration failed: ${response.status} ${response.statusText}`);
-      }
-      
-      console.log('✅ Registration successful, parsing response...');
-      const rawData = await response.json();
-      console.log('📦 Raw response data:', { ...rawData, token: rawData.token ? '[TOKEN_RECEIVED]' : 'NO_TOKEN' });
-      
-      // Map backend response to frontend format
-      const data: AuthResponse = {
-        access_token: rawData.token, // Backend returns 'token', frontend expects 'access_token'
-        token_type: 'bearer',
-        user: {
-          id: rawData.user.id.toString(),
-          email: rawData.user.email,
-          full_name: rawData.user.name, // Backend returns 'name', frontend expects 'full_name'
-          points_balance: rawData.user.points || 0,
-          created_at: rawData.user.created_at || new Date().toISOString(),
-          updated_at: rawData.user.updated_at || new Date().toISOString(),
-          is_admin: false,
-          frequent_flyer_programs: [],
-          saved_searches: [],
-          search_history: []
-        }
-      };
-      
-      // Store token in localStorage
-      if (data.access_token) {
-        localStorage.setItem('token', data.access_token);
-        this.token = data.access_token;
-        console.log('💾 Token stored in localStorage');
-      }
-      
-      console.log('🎉 Registration completed successfully!');
-      return data;
-    } catch (error: any) {
-      console.error('💥 Registration API error:', error);
-      console.error('📚 Error stack:', error.stack);
-      
-      // Additional network error diagnostics
-      if (error instanceof TypeError && error.message.includes('fetch')) {
-        console.error('🌐 Network error detected - backend might be down or CORS issue');
-        throw new Error('Connection failed: Unable to reach the server. Please check if the backend is running.');
-      } else if (error.name === 'AbortError') {
-        console.error('⏱️ Request timeout detected');
-        throw new Error('Request timeout: The server took too long to respond.');
-      }
-      
-      throw new Error(error.message || 'Failed to register');
+  
+  const url = `${this.baseUrl}/api/auth/register`;
+  console.log('🌐 Full registration URL:', url);
+  
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  console.log('📋 Request headers:', headers);
+  
+  // Map full_name to name for backend compatibility
+  const backendUserData = {
+    email: userData.email,
+    password: userData.password,
+    name: userData.full_name, // Backend expects 'name' field
+    preferred_airport: userData.preferred_airport,
+    frequent_flyer_programs: userData.frequent_flyer_programs
+  };
+  
+  const body = JSON.stringify(backendUserData);
+  console.log('📦 Request body length:', body.length);
+  
+  console.log('📡 Making registration request...');
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body,
+    credentials: 'include',
+  });
+  
+  console.log('✅ Response received!');
+  console.log('📊 Response status:', response.status, response.statusText);
+  console.log('📋 Response headers:', Object.fromEntries(response.headers.entries()));
+  
+  if (!response.ok) {
+    console.log('❌ Response not OK, attempting to parse error...');
+    let errorData;
+    try {
+      errorData = await response.json();
+      console.log('📄 Error data:', errorData);
+    } catch (parseError) {
+      console.log('⚠️ Could not parse error response as JSON:', parseError);
+      const errorText = await response.text();
+      console.log('📄 Error text:', errorText);
+      errorData = { detail: errorText };
     }
+    throw new Error(errorData.detail || `Registration failed: ${response.status} ${response.statusText}`);
   }
+  
+  console.log('✅ Registration successful, parsing response...');
+  const rawData = await response.json();
+  console.log('📦 Raw response data:', { ...rawData, token: rawData.token ? '[TOKEN_RECEIVED]' : 'NO_TOKEN' });
+  
+  // Map backend response to frontend format
+  const data: AuthResponse = {
+    access_token: rawData.token, // Backend returns 'token', frontend expects 'access_token'
+    token_type: 'bearer',
+    user: {
+      id: rawData.user.id.toString(),
+      email: rawData.user.email,
+      full_name: rawData.user.name, // Backend returns 'name', frontend expects 'full_name'
+      points_balance: rawData.user.points || 0,
+      created_at: rawData.user.created_at || new Date().toISOString(),
+      updated_at: rawData.user.updated_at || new Date().toISOString(),
+      is_admin: false,
+      frequent_flyer_programs: [],
+      saved_searches: [],
+      search_history: []
+    }
+  };
+  
+  // Cookies are set automatically by the server
+  // Update authentication status
+  this.isAuthenticated = true;
+  
+  console.log('🎉 Registration completed successfully!');
+  return data;
+} catch (error: any) {
+  console.error('💥 Registration API error:', error);
+  console.error('📚 Error stack:', error.stack);
+  
+  // Additional network error diagnostics
+  if (error instanceof TypeError && error.message.includes('fetch')) {
+    console.error('🌐 Network error detected - backend might be down or CORS issue');
+    throw new Error('Connection failed: Unable to reach the server. Please check if the backend is running.');
+  } else if (error.name === 'AbortError') {
+    console.error('⏱️ Request timeout detected');
+    throw new Error('Request timeout: The server took too long to respond.');
+  }
+  
+  throw new Error(error.message || 'Failed to register');
+}
+}
 
   async forgotPassword(email: string, captchaToken?: string): Promise<{ message: string; success: boolean }> {
     try {
@@ -1296,9 +1659,8 @@ class ApiService {
       // Don't throw error for logout - still clear local data
       console.warn('Logout API call failed, but clearing local data anyway');
     } finally {
-      // Always clear local authentication data
-      localStorage.removeItem('token');
-      this.token = null;
+      // Clear authentication status
+      this.isAuthenticated = false;
     }
   }
 
@@ -1333,7 +1695,7 @@ class ApiService {
 
   async handleGoogleCallback(code: string, state?: string): Promise<AuthResponse> {
     try {
-              const response = await fetch(`${this.baseUrl}/api/auth/google/callback`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/google/callback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1349,11 +1711,9 @@ class ApiService {
       
       const data: AuthResponse = await response.json();
       
-      // Store token in localStorage
-      if (data.access_token) {
-        localStorage.setItem('token', data.access_token);
-        this.token = data.access_token;
-      }
+      // Cookies are set automatically by the server
+      // Update authentication status
+      this.isAuthenticated = true;
       
       return data;
     } catch (error: any) {

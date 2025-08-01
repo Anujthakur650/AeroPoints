@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Request
+from fastapi import APIRouter, Depends, HTTPException, status, Request, Response
 from fastapi.security import OAuth2PasswordRequestForm, HTTPBearer, HTTPAuthorizationCredentials
 from datetime import timedelta, datetime
 from typing import Annotated, List, Optional
+from fastapi.responses import JSONResponse
 import uuid
 import secrets
 import os
@@ -11,6 +12,8 @@ import logging
 from collections import defaultdict
 from time import time
 import jwt
+from passlib.context import CryptContext
+from passlib.hash import bcrypt
 
 from models.user import (
     UserCreate, User, UserDB, UserUpdate, Token, 
@@ -42,15 +45,28 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
 security = HTTPBearer()
 
-# Production configuration
-JWT_SECRET = os.getenv('JWT_SECRET', 'your-super-secret-jwt-key-change-this-in-production')
+# Production configuration - Enhanced JWT security
+JWT_SECRET = os.getenv('JWT_SECRET')
+if not JWT_SECRET:
+    # Generate a secure random secret if not provided
+    import secrets
+    JWT_SECRET = secrets.token_urlsafe(64)
+    logger.warning("⚠️  JWT_SECRET not set in environment. Using generated secret. Set JWT_SECRET in production!")
+    
 JWT_ALGORITHM = 'HS256'
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', '30'))  # 30 minutes
+REFRESH_TOKEN_EXPIRE_DAYS = int(os.getenv('REFRESH_TOKEN_EXPIRE_DAYS', '7'))  # 7 days
 
 # Database configuration with proper path resolution
 DB_PATH = os.getenv('DB_PATH', os.path.join(os.path.dirname(os.path.dirname(__file__)), 'db', 'users.db'))
 
 # Rate limiting storage (in production, use Redis)
 rate_limit_storage = {}
+
+# Cookie configuration
+COOKIE_SECURE = os.getenv('COOKIE_SECURE', 'true').lower() == 'true'  # HTTPS only in production
+COOKIE_SAMESITE = os.getenv('COOKIE_SAMESITE', 'lax')  # CSRF protection
+COOKIE_DOMAIN = os.getenv('COOKIE_DOMAIN', None)  # Set domain for production
 
 # Models
 class UserRegistration(BaseModel):
@@ -70,23 +86,183 @@ class PasswordReset(BaseModel):
     token: str
     new_password: str
 
+# Password hashing context with bcrypt
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 # Utility Functions
 def hash_password(password: str) -> str:
-    """Hash password using SHA-256"""
-    return hashlib.sha256(password.encode()).hexdigest()
+    """Hash password using bcrypt (secure)"""
+    return pwd_context.hash(password)
 
 def verify_password(password: str, hashed: str) -> bool:
-    """Verify password against hash"""
-    return hash_password(password) == hashed
+    """Verify password against hash (supports both bcrypt and legacy SHA-256)"""
+    # First try bcrypt verification
+    try:
+        if pwd_context.verify(password, hashed):
+            return True
+    except Exception:
+        pass
+    
+    # Fallback to legacy SHA-256 for migration purposes
+    # This allows existing users to login while we migrate their passwords
+    legacy_hash = hashlib.sha256(password.encode()).hexdigest()
+    if legacy_hash == hashed:
+        # Password verified with legacy method - we should migrate it
+        logger.info("Legacy password hash detected - migration needed")
+        return True
+    
+    return False
 
-def create_jwt_token(user_data: dict) -> str:
-    """Create JWT token for user"""
+def needs_password_rehash(hashed: str) -> bool:
+    """Check if password hash needs to be updated to bcrypt"""
+    # If it's not a bcrypt hash (doesn't start with $2b$), it needs rehashing
+    return not hashed.startswith('$2b$')
+
+def migrate_user_password(user_id: str, plain_password: str) -> bool:
+    """Migrate user password from SHA-256 to bcrypt"""
+    try:
+        new_hash = hash_password(plain_password)
+        # Update the password in database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "UPDATE users SET password = ?, updated_at = ? WHERE id = ?",
+            (new_hash, datetime.now().isoformat(), user_id)
+        )
+        conn.commit()
+        conn.close()
+        logger.info(f"Successfully migrated password for user {user_id}")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to migrate password for user {user_id}: {e}")
+        return False
+
+def set_auth_cookies(response: Response, access_token: str, refresh_token: str) -> None:
+    """Set secure httpOnly cookies for authentication tokens"""
+    # Set access token cookie
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        httponly=True,
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+        domain=COOKIE_DOMAIN
+    )
+    
+    # Set refresh token cookie
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        max_age=REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
+        httponly=True,
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+        domain=COOKIE_DOMAIN
+    )
+
+def clear_auth_cookies(response: Response) -> None:
+    """Clear authentication cookies on logout"""
+    response.delete_cookie(
+        key="access_token",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+        domain=COOKIE_DOMAIN
+    )
+    response.delete_cookie(
+        key="refresh_token",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+        domain=COOKIE_DOMAIN
+    )
+
+def get_token_from_cookie_or_header(request: Request) -> str:
+    """Get token from cookie (preferred) or Authorization header (fallback)"""
+    # Try to get token from cookie first (more secure)
+    access_token = request.cookies.get("access_token")
+    if access_token:
+        return access_token
+    
+    # Fallback to Authorization header for backward compatibility
+    auth_header = request.headers.get("Authorization")
+    if auth_header and auth_header.startswith("Bearer "):
+        return auth_header.split(" ")[1]
+    
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="No valid authentication token found"
+    )
+
+def create_access_token(user_data: dict) -> str:
+    """Create JWT access token for user"""
     payload = {
         'user_id': user_data['id'],
         'email': user_data['email'],
-        'exp': datetime.utcnow() + timedelta(hours=24)
+        'type': 'access',
+        'exp': datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+        'iat': datetime.utcnow()
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+def create_refresh_token(user_data: dict) -> str:
+    """Create JWT refresh token for user"""
+    payload = {
+        'user_id': user_data['id'],
+        'email': user_data['email'],
+        'type': 'refresh',
+        'exp': datetime.utcnow() + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS),
+        'iat': datetime.utcnow()
+    }
+    return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+def verify_token(token: str, token_type: str = 'access') -> dict:
+    """Verify JWT token and return payload"""
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        
+        # Check token type
+        if payload.get('type') != token_type:
+            raise jwt.InvalidTokenError(f"Invalid token type. Expected {token_type}")
+        
+        # Check expiration
+        if datetime.utcnow() > datetime.fromtimestamp(payload['exp']):
+            raise jwt.ExpiredSignatureError("Token has expired")
+            
+        return payload
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired"
+        )
+    except jwt.InvalidTokenError as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=f"Invalid token: {str(e)}"
+        )
+
+def cleanup_expired_tokens():
+    """Clean up expired password reset tokens from database"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Delete expired tokens
+        cursor.execute(
+            "DELETE FROM password_reset_tokens WHERE expires_at < ? OR used = 1",
+            (datetime.now().isoformat(),)
+        )
+        
+        deleted_count = cursor.rowcount
+        conn.commit()
+        conn.close()
+        
+        if deleted_count > 0:
+            logger.info(f"Cleaned up {deleted_count} expired/used password reset tokens")
+        
+        return deleted_count
+    except Exception as e:
+        logger.error(f"Error cleaning up expired tokens: {e}")
+        return 0
 
 def init_auth_db():
     """Initialize auth database with required tables"""
@@ -186,19 +362,14 @@ def check_rate_limit(key: str, limit: int = 3, window: int = 3600) -> bool:
     rate_limit_storage[key].append(now)
     return True
 
-def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """Verify JWT token"""
-    try:
-        payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-        return payload
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token has expired")
-    except jwt.JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+def verify_jwt_token(request: Request):
+    """Verify JWT access token from cookie or header"""
+    token = get_token_from_cookie_or_header(request)
+    return verify_token(token, 'access')
 
 # Routes
-@router.post("/register", response_model=dict)
-async def register(user: UserRegistration):
+@router.post("/register")
+async def register(user: UserRegistration, response: Response):
     """Register a new user"""
     try:
         conn = get_db_connection()
@@ -221,20 +392,30 @@ async def register(user: UserRegistration):
         conn.commit()
         conn.close()
         
-        # Create token
+        # Create tokens
         user_data = {'id': user_id, 'email': user.email, 'name': user.name}
-        token = create_jwt_token(user_data)
+        access_token = create_access_token(user_data)
+        refresh_token = create_refresh_token(user_data)
         
         logger.info(f"New user registered: {user.email}")
         
+        # Set secure authentication cookies
+        set_auth_cookies(response, access_token, refresh_token)
+        
+        # Return user data (cookies are set automatically)
         return {
             "message": "Registration successful",
-            "token": token,
             "user": {
                 "id": user_id,
                 "email": user.email,
-                "name": user.name,
-                "points": 1000
+                "full_name": user.name,
+                "points_balance": 1000,
+                "created_at": datetime.utcnow().isoformat(),
+                "updated_at": datetime.utcnow().isoformat(),
+                "is_admin": False,
+                "frequent_flyer_programs": [],
+                "saved_searches": [],
+                "search_history": []
             }
         }
         
@@ -242,44 +423,129 @@ async def register(user: UserRegistration):
         logger.error(f"Database error during registration: {e}")
         raise HTTPException(status_code=500, detail="Registration failed")
 
-@router.post("/token", response_model=dict)
-async def login(credentials: UserLogin):
+@router.post("/login")
+async def login(credentials: UserLogin, response: Response):
     """Login user and return JWT token"""
     try:
+        # Rate limiting
+        client_ip = "127.0.0.1"  # In production, get real IP
+        if not check_rate_limit(f"login_{client_ip}", limit=5, window=900):  # 5 attempts per 15 minutes
+            raise HTTPException(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail="Too many login attempts. Please try again later."
+            )
+        
         conn = get_db_connection()
         cursor = conn.cursor()
         
-        cursor.execute("SELECT * FROM users WHERE email = ?", (credentials.email,))
+        cursor.execute("SELECT id, email, password, name FROM users WHERE email = ?", (credentials.email,))
         user = cursor.fetchone()
         conn.close()
         
-        if not user or not verify_password(credentials.password, user['password']):
-            raise HTTPException(status_code=401, detail="Invalid email or password")
+        if not user or not verify_password(credentials.password, user[2]):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid email or password"
+            )
         
-        # Create token
+        # Check if password needs migration from SHA-256 to bcrypt
+        if needs_password_rehash(user[2]):
+            logger.info(f"Migrating password for user {user[1]} from SHA-256 to bcrypt")
+            migrate_user_password(user[0], credentials.password)
+        
+        # Create tokens
         user_data = {
-            'id': user['id'],
-            'email': user['email'],
-            'name': user['name']
+            'id': user[0],
+            'email': user[1],
+            'name': user[3]
         }
-        token = create_jwt_token(user_data)
         
-        logger.info(f"User logged in: {credentials.email}")
+        access_token = create_access_token(user_data)
+        refresh_token = create_refresh_token(user_data)
+        
+        # Set secure httpOnly cookies
+        set_auth_cookies(response, access_token, refresh_token)
         
         return {
-            "access_token": token,
+            "access_token": access_token,
             "token_type": "bearer",
+            "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60,  # seconds
             "user": {
-                "id": user['id'],
-                "email": user['email'],
-                "name": user['name'],
-                "points": user['points']
+                "id": user_data['id'],
+                "email": user_data['email'],
+                "full_name": user_data['name'],
+                "points_balance": 1000,  # Default points
+                "created_at": datetime.utcnow().isoformat(),
+                "updated_at": datetime.utcnow().isoformat(),
+                "is_admin": False,
+                "frequent_flyer_programs": [],
+                "saved_searches": [],
+                "search_history": []
             }
         }
         
-    except sqlite3.Error as e:
-        logger.error(f"Database error during login: {e}")
-        raise HTTPException(status_code=500, detail="Login failed")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Login error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Login failed"
+        )
+
+@router.post("/refresh")
+async def refresh_token(request: Request):
+    """Refresh access token using refresh token"""
+    try:
+        # Get refresh token from request body
+        body = await request.json()
+        refresh_token_str = body.get('refresh_token')
+        
+        if not refresh_token_str:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Refresh token is required"
+            )
+        
+        # Verify refresh token
+        payload = verify_token(refresh_token_str, 'refresh')
+        
+        # Get user data from database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, email, name FROM users WHERE id = ?", (payload['user_id'],))
+        user = cursor.fetchone()
+        conn.close()
+        
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="User not found"
+            )
+        
+        # Create new access token
+        user_data = {
+            'id': user[0],
+            'email': user[1],
+            'name': user[2]
+        }
+        
+        new_access_token = create_access_token(user_data)
+        
+        return {
+            "access_token": new_access_token,
+            "token_type": "bearer",
+            "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Token refresh error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Token refresh failed"
+        )
 
 @router.get("/me", response_model=dict)
 async def get_current_user(current_user: dict = Depends(verify_jwt_token)):
@@ -307,10 +573,16 @@ async def get_current_user(current_user: dict = Depends(verify_jwt_token)):
         logger.error(f"Database error fetching user: {e}")
         raise HTTPException(status_code=500, detail="Failed to fetch user data")
 
-@router.post("/logout", response_model=dict)
-async def logout():
-    """Logout user (client should discard token)"""
-    return {"message": "Logged out successfully"}
+@router.post("/logout")
+async def logout(response: Response):
+    """Logout user and clear authentication cookies"""
+    # Clear authentication cookies
+    clear_auth_cookies(response)
+    
+    return {
+        "success": True,
+        "message": "Logged out successfully"
+    }
 
 @router.post("/forgot-password", response_model=dict)
 async def forgot_password(request: Request, forgot_request: PasswordResetRequest):

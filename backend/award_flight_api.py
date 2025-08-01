@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Award Flight API Client
-Connects to a real flight data API to get award flight information
+Connects to Seats.aero API to get real-time award flight availability
 """
 
 import os
@@ -11,11 +11,16 @@ import logging
 import time
 from datetime import datetime
 import traceback
-import random
-import importlib.util
-import asyncio
-import threading
-import uuid
+from dotenv import load_dotenv
+
+# Load environment variables from parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env_path = os.path.join(parent_dir, '.env')
+if os.path.exists(env_path):
+    load_dotenv(env_path)
+else:
+    # Try loading from current directory
+    load_dotenv()
 
 # Configure logging
 logging.basicConfig(
@@ -49,15 +54,32 @@ class AwardFlightAPI:
         
         logger.info(f"Initialized AwardFlightAPI with data_dir: {self.data_dir}")
     
-    async def get_award_flights(self, origin, destination, date, airline=None, cabin_class=None, force_crawl=False):
+    async def fetch_trip_details(self, availability_id, api_key):
+        """Fetch detailed trip information for a given availability ID"""
+        try:
+            url = f'https://seats.aero/partnerapi/trips/{availability_id}'
+            headers = {
+                'Partner-Authorization': api_key,
+                'Accept': 'application/json'
+            }
+            
+            response = requests.get(url, headers=headers, timeout=30.0)
+            
+            if response.status_code != 200:
+                logger.error(f'Trip details API request failed: {response.status_code}')
+                return []
+            
+            trip_data = response.json()
+            return trip_data.get('data', [])
+        except Exception as e:
+            logger.error(f'Error fetching trip details: {str(e)}')
+            return []
+    
+    async def get_award_flights(self, origin, destination, date, airline=None, cabin_class=None):
         """Get award flight data for a specific route and date"""
         # Create cache directory if it doesn't exist
         os.makedirs(self.cache_dir, exist_ok=True)
         
-        # Check if there's a current united_flight_data.json file
-        united_file = os.path.join(self.data_dir, "united_flight_data.json")
-        
-        # Continue with the regular flow if the above fails
         # Create directories for this specific route if they don't exist
         dest_dir = os.path.join(self.data_dir, f"flight_data_{origin}_{destination}_{date.replace('/', '_')}")
         os.makedirs(dest_dir, exist_ok=True)
@@ -143,33 +165,60 @@ class AwardFlightAPI:
             data = response.json()
             flights_data = data.get('data', [])
             
-            logger.info(f'Found {len(flights_data)} flights in seats.aero API response')
+            logger.info(f'Found {len(flights_data)} availability results in seats.aero API response')
             
             # Map the seats.aero response to our Flight structure
             mapped_flights = []
-            for flight in flights_data:
-                try:
-                    # Extract basic flight information
-                    flight_id = flight.get('ID', f'{origin}-{destination}-{len(mapped_flights)}')
-                    source = flight.get('Source', 'unknown')
-                    
-                    # Map airline name from source code
-                    airline_map = {
-                        'united': 'United Airlines',
-                        'delta': 'Delta Air Lines',
-                        'american': 'American Airlines',
-                        'aeroplan': 'Air Canada',
-                        'alaska': 'Alaska Airlines',
-                        'british': 'British Airways',
-                        'flyingblue': 'Air France-KLM',
-                        'iberia': 'Iberia',
-                        'virginatlantic': 'Virgin Atlantic',
-                        'emirates': 'Emirates',
-                        'etihad': 'Etihad Airways'
-                    }
-                    airline = airline_map.get(source.lower(), source)
+            airline_map = {
+                'united': 'United Airlines',
+                'delta': 'Delta Air Lines',
+                'american': 'American Airlines',
+                'aeroplan': 'Air Canada',
+                'alaska': 'Alaska Airlines',
+                'british': 'British Airways',
+                'flyingblue': 'Air France-KLM',
+                'iberia': 'Iberia',
+                'virginatlantic': 'Virgin Atlantic',
+                'emirates': 'Emirates',
+                'etihad': 'Etihad Airways',
+                'qatar': 'Qatar Airways',
+                'qantas': 'Qantas',
+                'jetblue': 'JetBlue',
+                'smiles': 'GOL (Smiles)',
+                'turkish': 'Turkish Airlines',
+                'singapore': 'Singapore Airlines',
+                'cathay': 'Cathay Pacific',
+                'ana': 'ANA',
+                'jal': 'Japan Airlines',
+                'klm': 'KLM',
+                'airfrance': 'Air France',
+                'lufthansa': 'Lufthansa',
+                'swiss': 'Swiss',
+                'austrian': 'Austrian Airlines',
+                'finnair': 'Finnair',
+                'tap': 'TAP Air Portugal',
+                'avianca': 'Avianca',
+                'aeromexico': 'Aeromexico',
+                'velocity': 'Virgin Australia'
+            }
             
-                    # Extract cabin-specific price information
+            # Fetch trip details for each availability ID and create individual flight objects
+            for availability in flights_data:
+                try:
+                    availability_id = availability.get('ID')
+                    source = availability.get('Source', 'unknown')
+                    airline_name = airline_map.get(source.lower(), source)
+                    
+                    # Get basic availability data
+                    route = availability.get('Route', {})
+                    origin_code = route.get('OriginAirport', origin)
+                    dest_code = route.get('DestinationAirport', destination)
+                    
+                    # Check if requested airline matches (if airline filter is specified)
+                    if airline and source.lower() != airline.lower():
+                        continue
+                    
+                    # Check cabin availability
                     cabin_indicator = {
                         'economy': 'Y',
                         'premium-economy': 'W',
@@ -177,48 +226,103 @@ class AwardFlightAPI:
                         'first': 'F'
                     }.get(cabin_class.lower() if cabin_class else 'economy', 'Y')
                     
-                    available = flight.get(f'{cabin_indicator}Available', False)
-                        
-                    # Skip unavailable flights for the selected cabin
-                    if not available:
+                    # Get price info from availability data
+                    base_points = availability.get(f'{cabin_indicator}MileageCost', 0)
+                    base_taxes = (availability.get(f'{cabin_indicator}TotalTaxes', 0) or 0) / 100
+                    base_seats = availability.get(f'{cabin_indicator}RemainingSeats', 1)
+                    
+                    # Skip if not available for requested cabin
+                    if cabin_class and not availability.get(f'{cabin_indicator}Available', False):
                         continue
+                    
+                    # Fetch trip details
+                    if availability_id:
+                        logger.info(f'Fetching trip details for availability ID: {availability_id} ({airline_name})')
+                        trip_details = await self.fetch_trip_details(availability_id, api_key)
+                        logger.info(f'Found {len(trip_details)} trip options for {availability_id}')
                         
-                    points = flight.get(f'{cabin_indicator}MileageCost', 0)
-                    taxes = (flight.get(f'{cabin_indicator}TotalTaxes', 0) or 0) / 100  # Convert cents to dollars
-                    seats = flight.get(f'{cabin_indicator}RemainingSeats', 1)
+                        # Create a flight object for EACH trip option
+                        for trip in trip_details:
+                            try:
+                                # Skip if cabin doesn't match requested
+                                if cabin_class and trip.get('Cabin', '').lower() != cabin_class.lower():
+                                    continue
+                                
+                                # Format duration
+                                duration_minutes = trip.get('TotalDuration', 0)
+                                hours = duration_minutes // 60
+                                minutes = duration_minutes % 60
+                                duration_str = f"{hours}h {minutes}m" if duration_minutes > 0 else "N/A"
+                                
+                                # Parse segments for layover information
+                                segments = trip.get('AvailabilitySegments', [])
+                                layovers = []
+                                if len(segments) > 1:
+                                    for i in range(len(segments) - 1):
+                                        current_arrival = segments[i].get('ArrivesAt', '')
+                                        next_departure = segments[i + 1].get('DepartsAt', '')
+                                        layover_duration = 'N/A'
+                                        
+                                        if current_arrival and next_departure:
+                                            try:
+                                                arr_dt = datetime.fromisoformat(current_arrival.replace('Z', '+00:00'))
+                                                dep_dt = datetime.fromisoformat(next_departure.replace('Z', '+00:00'))
+                                                duration_delta = dep_dt - arr_dt
+                                                hours = int(duration_delta.total_seconds() // 3600)
+                                                minutes = int((duration_delta.total_seconds() % 3600) // 60)
+                                                layover_duration = f"{hours}h {minutes}m"
+                                            except Exception as e:
+                                                logger.debug(f"Error calculating layover: {e}")
+                                        
+                                        layovers.append({
+                                            'airport': segments[i].get('DestinationAirport', ''),
+                                            'duration': layover_duration
+                                        })
+                                
+                                # Use trip-specific pricing if available, otherwise use base pricing
+                                trip_points = trip.get('MileageCost', base_points)
+                                trip_taxes = trip.get('TotalTaxes', base_taxes * 100) / 100 if trip.get('TotalTaxes') is not None else base_taxes
+                                trip_seats = trip.get('RemainingSeats', base_seats)
+                                
+                                # Create flight object
+                                mapped_flight = {
+                                    'id': trip.get('ID', ''),
+                                    'availabilityId': availability_id,
+                                    'airline': airline_name,
+                                    'flightNumber': trip.get('FlightNumbers', ''),
+                                    'origin': trip.get('OriginAirport', origin_code),
+                                    'destination': trip.get('DestinationAirport', dest_code),
+                                    'departureTime': trip.get('DepartsAt', ''),
+                                    'arrivalTime': trip.get('ArrivesAt', ''),
+                                    'duration': duration_str,
+                                    'durationMinutes': duration_minutes,
+                                    'cabinClass': trip.get('Cabin', cabin_class or 'economy'),
+                                    'points': trip_points,
+                                    'cash': trip_taxes,
+                                    'seatsAvailable': trip_seats,
+                                    'realTimeData': True,
+                                    'lastUpdated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                    'layovers': layovers,
+                                    'stops': trip.get('Stops', 0) or len(segments) - 1 if segments else 0,
+                                    'aircraft': trip.get('Aircraft', []),
+                                    'segments': segments,
+                                    'source': source
+                                }
+                                
+                                mapped_flights.append(mapped_flight)
+                                
+                            except Exception as trip_error:
+                                logger.error(f'Error mapping trip: {str(trip_error)}')
+                                continue
                     
-                    # Flight details
-                    flight_number = flight.get('FlightNumber', f'{airline[:2]}{100 + len(mapped_flights)}')
-                    route = flight.get('Route', {})
-                                    
-                    # Get origin/destination from route if available
-                    origin_code = route.get('OriginAirport', origin)
-                    dest_code = route.get('DestinationAirport', destination)
-                    
-                    # Format the flight for our API
-                    mapped_flight = {
-                        'id': flight_id,
-                        'airline': airline,
-                        'flightNumber': flight_number,
-                        'origin': origin_code,
-                        'destination': dest_code,
-                        'departureTime': '10:00 AM',  # Placeholder times
-                        'arrivalTime': '12:00 PM',    # seats.aero basic API doesn't provide times
-                        'duration': '2h 0m',          # Placeholder duration
-                        'cabinClass': cabin_class or 'economy',
-                        'points': points,
-                        'cash': taxes,
-                        'seatsAvailable': seats,
-                        'realTimeData': True,
-                        'lastUpdated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        'layovers': []
-                    }
-                    mapped_flights.append(mapped_flight)
-                except Exception as mapping_error:
-                    logger.error(f'Error mapping flight: {str(mapping_error)}')
+                except Exception as availability_error:
+                    logger.error(f'Error processing availability: {str(availability_error)}')
                     continue
             
-            # Cache the results only if they are real-time data
+            # Sort flights by points (best value first)
+            mapped_flights.sort(key=lambda x: x.get('points', float('inf')))
+            
+            # Cache the results
             if mapped_flights and len(mapped_flights) > 0:
                 logger.info(f"Caching {len(mapped_flights)} flights to {cache_file}")
                 try:
@@ -235,6 +339,5 @@ class AwardFlightAPI:
             logger.error(f'Error fetching flights from seats.aero: {str(e)}')
             logger.error(traceback.format_exc())
             return []
-    
-# Create singleton instance
+
 award_flight_api = AwardFlightAPI()

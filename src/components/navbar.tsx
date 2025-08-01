@@ -42,11 +42,13 @@ export function AppNavbar() {
             <Avatar
               isBordered
               as="button"
-              className="transition-transform"
+              className="transition-transform focus:ring-2 focus:ring-yellow-400 focus:outline-none"
               color="primary"
               name="Jason Smith"
               size="sm"
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              alt="User profile photo of Jason Smith"
+              aria-label="Open user menu"
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">

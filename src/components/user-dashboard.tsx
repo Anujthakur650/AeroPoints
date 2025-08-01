@@ -134,7 +134,7 @@ export function UserDashboard() {
                       }}
                     />
                     <p className="text-xs text-white/60 mt-2">
-                      25,000 more points needed for Platinum status
+                      Continue earning to maintain your Gold status
                     </p>
                   </div>
                 </CardBody>

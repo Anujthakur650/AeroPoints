@@ -11,7 +11,7 @@ export function UltraPremiumFooter() {
         { text: "Careers", href: "/careers", icon: "lucide:briefcase" },
         { text: "Press", href: "/press", icon: "lucide:newspaper" },
         { text: "Partners", href: "/partners", icon: "lucide:handshake" },
-        { text: "Contact", href: "/contact", icon: "lucide:mail" }
+        { text: "Contact Support", href: "/contact", icon: "lucide:mail" }
       ]
     },
     {

@@ -1,10 +1,12 @@
+// Updated to show real flight times from Seats.aero API
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardBody, Button, Chip, Select, SelectItem, Skeleton, Spinner } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { FlightDetailModal } from "./flight-detail-modal";
-import { Flight } from "../services/api";
+import { Flight, GroupedFlight, BookingOption } from "../services/api";
 import { formatCurrency, formatNumber } from "../utils/formatters";
+import { formatFlightTime, formatFlightDate, isNextDay, formatDuration, calculateLayoverDuration, getTimePeriod } from "../utils/flightFormatters";
 // Removed unused import
 
 // Define animation keyframes
@@ -63,68 +65,83 @@ const bestValueStyle = `
   }
 `;
 
-// Enhanced AirlineLogo component
+// Enhanced AirlineLogo component with comprehensive airline code mapping
 function AirlineLogo({ airline }: { airline: string }) {
   // Comprehensive airline code mapping for better logo support
+  // This mapping is synchronized with the API service AIRLINE_CODES
   const getAirlineCode = (airlineName: string): string => {
     const airlineMap: Record<string, string> = {
-      // Major US Airlines
+      // North American Airlines
+      'Delta Air Lines': 'DL',
       'American Airlines': 'AA',
-      'Delta Air Lines': 'DL', 
       'United Airlines': 'UA',
       'Southwest Airlines': 'WN',
-      'JetBlue': 'B6',
+      'JetBlue Airways': 'B6',
       'Alaska Airlines': 'AS',
       'Hawaiian Airlines': 'HA',
       'Frontier Airlines': 'F9',
       'Spirit Airlines': 'NK',
-      
-      // International Airlines
-      'Emirates': 'EK',
-      'Etihad Airways': 'EY',
-      'Qatar Airways': 'QR',
-      'British Airways': 'BA',
-      'Virgin Atlantic': 'VS',
-      'Air France': 'AF',
-      'Air France-KLM': 'AF',
-      'KLM': 'KL',
-      'Lufthansa': 'LH',
-      'Swiss International': 'LX',
-      'Turkish Airlines': 'TK',
-      'Singapore Airlines': 'SQ',
-      'Cathay Pacific': 'CX',
-      'Japan Airlines': 'JL',
-      'ANA': 'NH',
       'Air Canada': 'AC',
-      'Qantas': 'QF',
-      'Virgin Australia': 'VA',
+      'WestJet': 'WS',
       
-      // South American & Award Programs
-      'LATAM': 'LA',
-      'Avianca': 'AV',
-      'GOL Airlines': 'G3',
-      'Smiles (GOL)': 'G3',
-      'Azul Brazilian Airlines': 'AD',
-      'LifeMiles (Avianca)': 'AV',
-      
-      // Additional Airlines from backend API
+      // European Airlines
+      'British Airways': 'BA',
+      'Lufthansa': 'LH',
+      'Air France': 'AF',
+      'KLM Royal Dutch Airlines': 'KL',
+      'KLM': 'KL',
+      'Virgin Atlantic': 'VS',
+      'Aer Lingus': 'EI',
       'Iberia': 'IB',
       'TAP Air Portugal': 'TP',
-      'SAS': 'SK',
-      'Air Europa': 'UX',
-      'Aer Lingus': 'EI',
+      'SAS Scandinavian Airlines': 'SK',
       'Finnair': 'AY',
       'LOT Polish Airlines': 'LO',
       'Austrian Airlines': 'OS',
+      'Swiss International Air Lines': 'LX',
       'Brussels Airlines': 'SN',
-      'Air India': 'AI',
+      'Air Europa': 'UX',
+      'Turkish Airlines': 'TK',
+      
+      // Middle Eastern Airlines
+      'Emirates': 'EK',
+      'Etihad Airways': 'EY',
+      'Qatar Airways': 'QR',
+      'EgyptAir': 'MS',
+      'Royal Jordanian': 'RJ',
+      
+      // Asian/Pacific Airlines
+      'Singapore Airlines': 'SQ',
+      'Cathay Pacific': 'CX',
+      'Japan Airlines': 'JL',
+      'ANA (All Nippon Airways)': 'NH',
+      'ANA': 'NH',
       'Thai Airways': 'TG',
       'Malaysia Airlines': 'MH',
       'Garuda Indonesia': 'GA',
       'China Airlines': 'CI',
       'EVA Air': 'BR',
       'Korean Air': 'KE',
-      'Asiana Airlines': 'OZ'
+      'Asiana Airlines': 'OZ',
+      'Air India': 'AI',
+      'Qantas': 'QF',
+      'Virgin Australia': 'VA',
+      'Jetstar Airways': 'JQ',
+      'Air New Zealand': 'NZ',
+      
+      // South American Airlines
+      'LATAM Airlines': 'LA',
+      'Avianca': 'AV',
+      'GOL Linhas Aéreas': 'G3',
+      'GOL Airlines': 'G3',
+      'Azul Brazilian Airlines': 'AD',
+      'Aerolíneas Argentinas': 'AR',
+      
+      // African Airlines
+      'South African Airways': 'SA',
+      'Ethiopian Airlines': 'ET',
+      'Kenya Airways': 'KQ',
+      'Royal Air Maroc': 'AT'
     };
     
     return airlineMap[airlineName] || airlineName.substring(0, 2).toUpperCase();
@@ -256,7 +273,9 @@ interface SeatsAeroFlight {
   points?: number;
   cash?: number;
   seatsAvailable?: number;
+  stops?: number; // Add stops field
   layovers?: Layover[];
+  segments?: any[]; // Add segments field
   realTimeData?: boolean;
   lastUpdated?: string;
   departureDate?: string;
@@ -392,7 +411,9 @@ const convertFlightToSeatsAeroFormat = (flight: Flight): SeatsAeroFlight => {
     points: flight.points,
     cash: flight.cash,
     seatsAvailable: flight.seatsAvailable,
+    stops: flight.stops, // Include stops field
     layovers: flight.layovers || [],
+    segments: flight.segments || [], // Include segments field
     realTimeData: flight.realTimeData,
     lastUpdated: flight.lastUpdated,
     Date: flight.lastUpdated || new Date().toISOString(),
@@ -430,8 +451,16 @@ interface FlightResultsProps {
   onFlightSelect?: (flight: Flight) => void;
 }
 
+interface GroupedFlightResultsProps {
+  groupedFlights: GroupedFlight[];
+  isLoading: boolean;
+  searchParams: SearchParams;
+  onFlightSelect?: (flight: Flight) => void;
+  onBookingOptionSelect?: (groupedFlight: GroupedFlight, bookingOption: BookingOption) => void;
+}
+
 export function FlightResults({ flights, isLoading, searchParams, onFlightSelect }: FlightResultsProps) {
-  const [sortBy, setSortBy] = useState<'points' | 'airline'>('points');
+  const [sortBy, setSortBy] = useState<'points' | 'airline' | 'departure' | 'duration'>('points');
   const [selectedFlight, setSelectedFlight] = useState<string | null>(null);
 
   const sortedFlights = useMemo(() => {
@@ -443,6 +472,16 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
           return (a.points || 0) - (b.points || 0);
         case 'airline':
           return (a.airline || '').localeCompare(b.airline || '');
+        case 'departure':
+          // Sort by earliest departure time
+          const aTime = new Date(a.departureTime || 0).getTime();
+          const bTime = new Date(b.departureTime || 0).getTime();
+          return aTime - bTime;
+        case 'duration':
+          // Sort by shortest journey time
+          const aDuration = typeof a.durationMinutes === 'number' ? a.durationMinutes : (typeof a.duration === 'number' ? a.duration : 0);
+          const bDuration = typeof b.durationMinutes === 'number' ? b.durationMinutes : (typeof b.duration === 'number' ? b.duration : 0);
+          return aDuration - bDuration;
         default:
           return 0;
       }
@@ -542,10 +581,12 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
           </div>
 
           {/* Sort Options */}
-          <div className="flex gap-2 mt-4 md:mt-0">
+          <div className="flex flex-wrap gap-2 mt-4 md:mt-0">
             {[
-              { key: 'points', label: 'Best Value', icon: 'lucide:award' },
-              { key: 'airline', label: 'Airline', icon: 'lucide:plane' }
+              { key: 'points', label: 'Lowest Points', icon: 'lucide:award' },
+              { key: 'departure', label: 'Earliest Departure', icon: 'lucide:clock' },
+              { key: 'duration', label: 'Shortest Journey', icon: 'lucide:timer' },
+              { key: 'airline', label: 'By Airline', icon: 'lucide:plane' }
             ].map((sort) => (
               <button
                 key={sort.key}
@@ -595,44 +636,84 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
                 >
                   <CardBody className="p-6">
                     <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 items-center">
-                      {/* Airline & Flight Info */}
-                      <div className="lg:col-span-4">
-                        <div className="flex items-center gap-4 mb-3">
-                          <div className="glass-card p-2 rounded-lg w-16 h-16 bg-white/95 border border-white/20">
-                            <AirlineLogo airline={flight.airline} />
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-semibold text-white text-lg">{flight.airline}</div>
-                            <div className="text-sm text-gray-400 mb-2">{flight.flightNumber}</div>
-                            <div className="flex items-center gap-2">
-                              <Icon icon={getCabinIcon(flight.cabinClass)} className={`text-sm ${getCabinColor(flight.cabinClass)}`} />
-                              <span className="text-sm text-gray-300 capitalize">{flight.cabinClass}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                       {/* Operating Airline & Flight Info */}
+                       <div className="lg:col-span-4">
+                         <div className="flex items-center gap-4 mb-3">
+                           <div className="glass-card p-2 rounded-lg w-16 h-16 bg-white/95 border border-white/20">
+                             <AirlineLogo airline={flight.airline} />
+                           </div>
+                           <div className="flex-1">
+                             {/* Operating Airline (Primary) */}
+                             <div className="font-semibold text-white text-lg">{flight.airline}</div>
+                             <div className="text-sm text-gray-400 mb-1">{flight.flightNumber}</div>
+                             
+                             {/* Booking Program (Secondary) */}
+                             {flight.bookingProgram && (
+                               <div className="flex items-center gap-1 mb-2">
+                                 <Icon icon="lucide:credit-card" className="text-xs text-yellow-400" />
+                                 <span className="text-xs text-yellow-400">
+                                   Available with {flight.bookingProgram}
+                                 </span>
+                               </div>
+                             )}
+                             
+                             <div className="flex items-center gap-2">
+                               <Icon icon={getCabinIcon(flight.cabinClass)} className={`text-sm ${getCabinColor(flight.cabinClass)}`} />
+                               <span className="text-sm text-gray-300 capitalize">{flight.cabinClass}</span>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
 
-                      {/* Route Information */}
-                      <div className="lg:col-span-2">
-                        <div className="flex items-center justify-center">
+                      {/* Route Information with Times */}
+                      <div className="lg:col-span-3">
+                        <div className="flex items-center justify-between gap-4">
                           <div className="text-center">
-                            <div className="text-lg font-bold text-white">{flight.origin}</div>
-                            <div className="flex items-center gap-2 my-2">
-                              <div className="w-8 border-t border-dashed border-gray-400"></div>
-                                                             <Icon icon="lucide:plane" className="text-yellow-400 text-lg" />
-                              <div className="w-8 border-t border-dashed border-gray-400"></div>
+                            <div className="text-2xl font-bold text-white">{flight.origin}</div>
+                            <div className="text-lg text-white mt-1">
+                              {formatFlightTime(flight.departureTime)}
                             </div>
-                            <div className="text-lg font-bold text-white">{flight.destination}</div>
-                            <div className="mt-2">
-                              {flight.layovers && flight.layovers.length > 0 ? (
-                                <span className="text-xs text-yellow-400 px-2 py-1 rounded-full bg-yellow-400/10">
-                                  {flight.layovers.length} stop{flight.layovers.length > 1 ? 's' : ''}
-                                </span>
-                              ) : (
-                                <span className="text-xs text-green-400 px-2 py-1 rounded-full bg-green-400/10">
-                                  Non-stop
-                                </span>
+                            <div className="text-sm text-gray-400">
+                              {formatFlightDate(flight.departureTime)}
+                            </div>
+                          </div>
+                          
+                          <div className="flex-1 px-2">
+                            <div className="flex items-center justify-center gap-2 mb-1">
+                              <div className="flex-1 border-t border-dashed border-gray-400"></div>
+                              <Icon icon="lucide:plane" className="text-yellow-400 text-lg transform rotate-90" />
+                              <div className="flex-1 border-t border-dashed border-gray-400"></div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-sm text-gray-300">
+                                {formatDuration(flight.duration || flight.durationMinutes)}
+                              </div>
+                              <div className="text-xs text-gray-400 mt-1">
+                                {flight.stops !== undefined && flight.stops > 0 ? (
+                                  <span className="text-yellow-400">
+                                    {flight.stops} stop{flight.stops > 1 ? 's' : ''}
+                                  </span>
+                                ) : flight.layovers && flight.layovers.length > 0 ? (
+                                  <span className="text-yellow-400">
+                                    {flight.layovers.length} stop{flight.layovers.length > 1 ? 's' : ''}
+                                  </span>
+                                ) : (
+                                  <span className="text-green-400">Non-stop</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-white">{flight.destination}</div>
+                            <div className="text-lg text-white mt-1">
+                              {formatFlightTime(flight.arrivalTime)}
+                              {isNextDay(flight.departureTime, flight.arrivalTime) && (
+                                <span className="text-sm text-yellow-400 ml-1">+1</span>
                               )}
+                            </div>
+                            <div className="text-sm text-gray-400">
+                              {formatFlightDate(flight.arrivalTime)}
                             </div>
                           </div>
                         </div>
@@ -642,7 +723,7 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
                       <div className="lg:col-span-3">
                         <div className="text-center lg:text-right">
                           <div className="text-2xl font-bold text-gradient-gold">
-                            {flight.points?.toLocaleString() || 'N/A'} pts
+                            {flight.points?.toLocaleString() || 'N/A'} {flight.bookingProgramCurrency || 'pts'}
                           </div>
                           <div className="text-sm text-gray-400">
                             + ${flight.cash?.toLocaleString() || '0'} taxes
@@ -685,18 +766,72 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
                         transition={{ duration: 0.3 }}
                         className="mt-6 pt-6 border-t border-white/10"
                       >
+                        {/* Segment Details for Connecting Flights */}
+                        {flight.segments && flight.segments.length > 1 && (
+                          <div className="mb-6">
+                            <h4 className="font-semibold text-white mb-4">Flight Segments</h4>
+                            <div className="space-y-3">
+                              {flight.segments.map((segment: any, idx: number) => (
+                                <div key={idx} className="glass-card p-4 rounded-lg">
+                                  <div className="flex justify-between items-start">
+                                    <div>
+                                      <div className="font-medium text-white">
+                                        {segment.FlightNumber} - {segment.AircraftName || 'Aircraft'}
+                                      </div>
+                                      <div className="text-sm text-gray-400 mt-1">
+                                        {segment.OriginAirport} → {segment.DestinationAirport}
+                                      </div>
+                                      <div className="text-sm text-gray-400">
+                                        {formatFlightTime(segment.DepartsAt)} - {formatFlightTime(segment.ArrivesAt)}
+                                        {isNextDay(segment.DepartsAt, segment.ArrivesAt) && (
+                                          <span className="text-yellow-400 ml-1">+1</span>
+                                        )}
+                                      </div>
+                                    </div>
+                                    {idx < flight.segments.length - 1 && (
+                                      <div className="text-right">
+                                        <div className="text-xs text-yellow-400">Layover</div>
+                                        <div className="text-sm text-gray-300">
+                                          {calculateLayoverDuration(
+                                            segment.ArrivesAt,
+                                            flight.segments[idx + 1].DepartsAt
+                                          )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           <div>
                             <h4 className="font-semibold text-white mb-2">Aircraft</h4>
-                            <p className="text-gray-300">{flight.airline} Boeing 777-300ER</p>
+                            <p className="text-gray-300">
+                              {flight.aircraft && flight.aircraft.length > 0 
+                                ? flight.aircraft.join(', ')
+                                : 'Information not available'
+                              }
+                            </p>
                           </div>
                           <div>
                             <h4 className="font-semibold text-white mb-2">Booking Class</h4>
-                            <p className="text-gray-300">{flight.cabinClass}</p>
+                            <p className="text-gray-300 capitalize">{flight.cabinClass}</p>
                           </div>
                           <div>
-                            <h4 className="font-semibold text-white mb-2">Last Updated</h4>
-                            <p className="text-gray-300">{flight.lastUpdated ? new Date(flight.lastUpdated).toLocaleDateString() : 'N/A'}</p>
+                            <h4 className="font-semibold text-white mb-2">Data Source</h4>
+                            <p className="text-gray-300">
+                              {flight.realTimeData ? (
+                                <span className="flex items-center gap-1">
+                                  <Icon icon="lucide:check-circle" className="text-green-400" />
+                                  Real-time data
+                                </span>
+                              ) : (
+                                'Historical data'
+                              )}
+                            </p>
                           </div>
                         </div>
                         
@@ -758,4 +893,431 @@ export function FlightResults({ flights, isLoading, searchParams, onFlightSelect
       </div>
     </div>
   );
-} 
+}
+
+// GroupedFlightResults Component for displaying grouped flights with multiple booking options
+export function GroupedFlightResults({ groupedFlights, isLoading, searchParams, onFlightSelect, onBookingOptionSelect }: GroupedFlightResultsProps) {
+  const [sortBy, setSortBy] = useState<'points' | 'airline' | 'departure' | 'duration'>('points');
+  const [selectedFlight, setSelectedFlight] = useState<string | null>(null);
+  const [expandedBookingOptions, setExpandedBookingOptions] = useState<Set<string>>(new Set());
+
+  const sortedGroupedFlights = useMemo(() => {
+    if (!groupedFlights || groupedFlights.length === 0) return [];
+    
+    const sorted = [...groupedFlights].sort((a, b) => {
+      switch (sortBy) {
+        case 'points':
+          const aMinPoints = Math.min(...a.bookingOptions.map(opt => opt.points || 0));
+          const bMinPoints = Math.min(...b.bookingOptions.map(opt => opt.points || 0));
+          return aMinPoints - bMinPoints;
+        case 'airline':
+          return (a.airline || '').localeCompare(b.airline || '');
+        case 'departure':
+          // Sort by earliest departure time
+          const aTime = new Date(a.departureTime || 0).getTime();
+          const bTime = new Date(b.departureTime || 0).getTime();
+          return aTime - bTime;
+        case 'duration':
+          // Sort by shortest journey time
+          const aDuration = typeof a.durationMinutes === 'number' ? a.durationMinutes : (typeof a.duration === 'number' ? a.duration : 0);
+          const bDuration = typeof b.durationMinutes === 'number' ? b.durationMinutes : (typeof b.duration === 'number' ? b.duration : 0);
+          return aDuration - bDuration;
+        default:
+          return 0;
+      }
+    });
+    
+    return sorted;
+  }, [groupedFlights, sortBy]);
+
+  const toggleBookingOptions = (flightId: string) => {
+    const newExpanded = new Set(expandedBookingOptions);
+    if (newExpanded.has(flightId)) {
+      newExpanded.delete(flightId);
+    } else {
+      newExpanded.add(flightId);
+    }
+    setExpandedBookingOptions(newExpanded);
+  };
+
+  const getCabinIcon = (cabinClass: string) => {
+    switch (cabinClass?.toLowerCase()) {
+      case 'first': return 'lucide:crown';
+      case 'business': return 'lucide:briefcase';
+      case 'premium-economy': return 'lucide:star';
+      default: return 'lucide:plane';
+    }
+  };
+
+  const getCabinColor = (cabinClass: string) => {
+    switch (cabinClass?.toLowerCase()) {
+      case 'first': return 'text-yellow-400';
+      case 'business': return 'text-blue-400';
+      case 'premium-economy': return 'text-purple-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-luxury">
+        <div className="max-w-4xl mx-auto">
+          <div className="card-premium flex flex-col items-center justify-center py-16">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="mb-6"
+            >
+              <Icon icon="lucide:plane" className="text-6xl text-yellow-400" />
+            </motion.div>
+            <h3 className="text-2xl font-bold text-white mb-4">Searching Premium Flights</h3>
+            <p className="text-gray-300 text-center max-w-md">
+              We're scanning our exclusive network of luxury partners to find the best award availability for your journey.
+            </p>
+            <Spinner size="lg" className="mt-6" color="warning" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (groupedFlights.length === 0) {
+    return (
+      <div className="space-luxury">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="card-premium text-center py-16"
+          >
+            <Icon icon="lucide:search-x" className="text-6xl text-gray-400 mx-auto mb-6" />
+            <h3 className="text-2xl font-bold text-white mb-4">No Flights Found</h3>
+            <p className="text-gray-300 mb-6 max-w-md mx-auto">
+              We couldn't find any flights matching your criteria. Try adjusting your search parameters or dates.
+            </p>
+            <Button
+              className="btn-luxury"
+              onPress={() => window.location.reload()}
+            >
+              <Icon icon="lucide:refresh-cw" className="mr-2" />
+              Try Different Dates
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-luxury">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8"
+        >
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-luxury)' }}>
+              Grouped Flight Options
+            </h2>
+            <p className="text-gray-300">
+              {groupedFlights.length} unique flights from {searchParams.origin} to {searchParams.destination}
+            </p>
+          </div>
+
+          {/* Sort Options */}
+          <div className="flex flex-wrap gap-2 mt-4 md:mt-0">
+            {[
+              { key: 'points', label: 'Lowest Points', icon: 'lucide:award' },
+              { key: 'departure', label: 'Earliest Departure', icon: 'lucide:clock' },
+              { key: 'duration', label: 'Shortest Journey', icon: 'lucide:timer' },
+              { key: 'airline', label: 'By Airline', icon: 'lucide:plane' }
+            ].map((sort) => (
+              <button
+                key={sort.key}
+                onClick={() => setSortBy(sort.key as any)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  sortBy === sort.key
+                    ? 'bg-yellow-400 text-gray-900'
+                    : 'glass-card text-gray-300 hover:text-white'
+                }`}
+              >
+                <Icon icon={sort.icon} className="text-sm" />
+                {sort.label}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Grouped Flight Cards */}
+        <div className="space-y-4">
+          <AnimatePresence>
+            {sortedGroupedFlights.map((groupedFlight, index) => {
+              const isExpanded = expandedBookingOptions.has(groupedFlight.id);
+              const bestOption = groupedFlight.bookingOptions.reduce((best, current) => 
+                (current.points || 0) < (best.points || 0) ? current : best
+              );
+              
+              return (
+                <motion.div
+                  key={groupedFlight.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                  className={`
+                    relative group cursor-pointer
+                    ${selectedFlight === groupedFlight.id ? 'ring-2 ring-yellow-400/50' : ''}
+                  `}
+                >
+                  <Card 
+                    className={`
+                      bg-gradient-to-r from-gray-900/80 to-gray-800/80 
+                      backdrop-blur-xl border-0 overflow-hidden
+                      hover:shadow-2xl transition-all duration-300
+                      ${selectedFlight === groupedFlight.id ? 'shadow-yellow-400/20 shadow-2xl' : ''}
+                    `}
+                    style={{
+                      border: selectedFlight === groupedFlight.id ? '1px solid rgba(212, 175, 55, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                    }}
+                  >
+                    <CardBody className="p-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 items-center">
+                        {/* Operating Airline & Flight Info */}
+                        <div className="lg:col-span-4">
+                          <div className="flex items-center gap-4 mb-3">
+                            <div className="glass-card p-2 rounded-lg w-16 h-16 bg-white/95 border border-white/20">
+                              <AirlineLogo airline={groupedFlight.airline} />
+                            </div>
+                            <div className="flex-1">
+                              {/* Operating Airline (Primary) */}
+                              <div className="font-semibold text-white text-lg">{groupedFlight.airline}</div>
+                              <div className="text-sm text-gray-400 mb-1">{groupedFlight.flightNumber}</div>
+                              
+                              {/* Booking Programs Available */}
+                              <div className="flex items-center gap-1 mb-2">
+                                <Icon icon="lucide:credit-card" className="text-xs text-yellow-400" />
+                                <span className="text-xs text-yellow-400">
+                                  {groupedFlight.bookingOptions.length} booking option{groupedFlight.bookingOptions.length > 1 ? 's' : ''}
+                                </span>
+                              </div>
+                              
+                              <div className="flex items-center gap-2">
+                                <Icon icon={getCabinIcon(groupedFlight.cabinClass)} className={`text-sm ${getCabinColor(groupedFlight.cabinClass)}`} />
+                                <span className="text-sm text-gray-300 capitalize">{groupedFlight.cabinClass}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Route Information with Times */}
+                        <div className="lg:col-span-3">
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-white">{groupedFlight.origin}</div>
+                              <div className="text-lg text-white mt-1">
+                                {formatFlightTime(groupedFlight.departureTime)}
+                              </div>
+                              <div className="text-sm text-gray-400">
+                                {formatFlightDate(groupedFlight.departureTime)}
+                              </div>
+                            </div>
+                            
+                            <div className="flex-1 px-2">
+                              <div className="flex items-center justify-center gap-2 mb-1">
+                                <div className="flex-1 border-t border-dashed border-gray-400"></div>
+                                <Icon icon="lucide:plane" className="text-yellow-400 text-lg transform rotate-90" />
+                                <div className="flex-1 border-t border-dashed border-gray-400"></div>
+                              </div>
+                              <div className="text-center">
+                                <div className="text-sm text-gray-300">
+                                  {formatDuration(groupedFlight.duration)}
+                                </div>
+                                <div className="text-xs text-gray-400 mt-1">
+                                  <span className="text-green-400">Non-stop</span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-white">{groupedFlight.destination}</div>
+                              <div className="text-lg text-white mt-1">
+                                {formatFlightTime(groupedFlight.arrivalTime)}
+                                {isNextDay(groupedFlight.departureTime, groupedFlight.arrivalTime) && (
+                                  <span className="text-sm text-yellow-400 ml-1">+1</span>
+                                )}
+                              </div>
+                              <div className="text-sm text-gray-400">
+                                {formatFlightDate(groupedFlight.arrivalTime)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Best Pricing */}
+                        <div className="lg:col-span-2">
+                          <div className="text-center lg:text-right">
+                            <div className="text-sm text-gray-400 mb-1">Starting from</div>
+                            <div className="text-2xl font-bold text-gradient-gold">
+                              {bestOption.points?.toLocaleString() || 'N/A'} {bestOption.bookingProgramCurrency || 'pts'}
+                            </div>
+                            <div className="text-sm text-gray-400">
+                              + ${bestOption.cash?.toLocaleString() || '0'} taxes
+                            </div>
+                            <div className="mt-2">
+                              <Chip
+                                size="sm"
+                                className="bg-green-500/20 text-green-400"
+                              >
+                                {groupedFlight.bookingOptions.length} option{groupedFlight.bookingOptions.length > 1 ? 's' : ''}
+                              </Chip>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Action */}
+                        <div className="lg:col-span-1">
+                          <Button
+                            className="btn-luxury w-full group-hover:scale-105 transition-transform duration-300"
+                            size="lg"
+                            onPress={() => toggleBookingOptions(groupedFlight.id)}
+                          >
+                            <Icon icon={isExpanded ? "lucide:chevron-up" : "lucide:chevron-down"} className="mr-2" />
+                            {isExpanded ? 'Hide' : 'View'}
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Expandable Booking Options */}
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-6 pt-6 border-t border-white/10"
+                        >
+                          <h4 className="font-semibold text-white mb-4">Booking Options</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {groupedFlight.bookingOptions.map((option, optionIndex) => (
+                              <motion.div
+                                key={`${option.bookingProgram}-${optionIndex}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: optionIndex * 0.1 }}
+                                className="glass-card p-4 rounded-lg hover:bg-white/10 transition-all duration-300"
+                              >
+                                <div className="flex justify-between items-start mb-3">
+                                  <div>
+                                    <div className="font-medium text-white">{option.bookingProgram}</div>
+                                    <div className="text-sm text-gray-400">{option.bookingProgramCurrency}</div>
+                                  </div>
+                                  {option === bestOption && (
+                                    <Chip size="sm" color="warning" variant="solid" className="text-xs">
+                                      Best Value
+                                    </Chip>
+                                  )}
+                                </div>
+                                
+                                <div className="mb-3">
+                                  <div className="text-xl font-bold text-gradient-gold">
+                                    {option.points?.toLocaleString() || 'N/A'} {option.bookingProgramCurrency || 'pts'}
+                                  </div>
+                                  <div className="text-sm text-gray-400">
+                                    + ${option.cash?.toLocaleString() || '0'} taxes
+                                  </div>
+                                </div>
+                                
+                                <div className="mb-3">
+                                  <Chip
+                                    size="sm"
+                                    className={`${
+                                      option.seatsAvailable > 4
+                                        ? 'bg-green-500/20 text-green-400'
+                                        : option.seatsAvailable > 1
+                                        ? 'bg-yellow-500/20 text-yellow-400'
+                                        : 'bg-red-500/20 text-red-400'
+                                    }`}
+                                  >
+                                    {option.seatsAvailable} seat{option.seatsAvailable !== 1 ? 's' : ''} left
+                                  </Chip>
+                                </div>
+                                
+                                <Button
+                                  className="btn-luxury w-full"
+                                  size="sm"
+                                  onPress={() => {
+                                    setSelectedFlight(groupedFlight.id);
+                                    // Convert GroupedFlight to Flight for the callback
+                                    const flightForCallback: Flight = {
+                                      ...groupedFlight,
+                                      points: option.points,
+                                      cash: option.cash,
+                                      seatsAvailable: option.seatsAvailable,
+                                      bookingProgram: option.bookingProgram,
+                                      bookingProgramCurrency: option.bookingProgramCurrency
+                                    };
+                                    onFlightSelect?.(flightForCallback);
+                                    onBookingOptionSelect?.(groupedFlight, option);
+                                  }}
+                                >
+                                  <Icon icon="lucide:bookmark" className="mr-2" />
+                                  Book with {option.bookingProgram}
+                                </Button>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </CardBody>
+                  </Card>
+
+                  {/* Best Value Badge */}
+                  {index === 0 && sortBy === 'points' && (
+                    <div className="absolute -top-3 left-6 z-10">
+                      <Chip
+                        size="sm"
+                        color="warning"
+                        variant="solid"
+                        className="font-semibold"
+                      >
+                        Best Value
+                      </Chip>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <div className="card-premium p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-luxury)' }}>
+              Need Help Booking?
+            </h3>
+            <p className="text-gray-300 mb-6">
+              Our premium travel concierge team is available 24/7 to assist with complex bookings and special requests.
+            </p>
+            <Button
+              className="btn-luxury"
+              size="lg"
+              endContent={<Icon icon="lucide:phone" />}
+            >
+              Contact Concierge
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

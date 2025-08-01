@@ -376,11 +376,32 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
           isLoading ? (
             <Spinner size="sm" color="primary" />
           ) : (
-            <Icon icon={icon} className="text-default-400" />
+            <Icon icon={icon} className="text-[#FFD700]" />
           )
         }
         isRequired={required}
         isDisabled={disabled}
+        classNames={{
+          base: "w-full",
+          inputWrapper: [
+            "bg-white/5",
+            "backdrop-blur-lg",
+            "border",
+            "border-white/20",
+            "hover:bg-white/10",
+            "hover:border-[#FFD700]/30",
+            "focus-within:border-[#FFD700]",
+            "focus-within:bg-white/10",
+            "transition-all",
+            "duration-300",
+            "rounded-xl",
+            "h-14",
+            "group-hover:shadow-lg",
+            "group-hover:shadow-[#FFD700]/20"
+          ].join(" "),
+          input: "text-white text-lg font-medium",
+          label: "text-gray-200 text-sm",
+        }}
       />
       
       {error && <div className="text-danger text-xs mt-1">{error}</div>}
@@ -388,11 +409,14 @@ export const AirportAutocomplete: React.FC<AirportAutocompleteProps> = ({
       {isOpen && hasContent && (
         <div 
           ref={suggestionsRef}
-          className="airport-autocomplete-dropdown absolute left-0 right-0 top-full mt-1 max-h-48 overflow-y-auto"
+          className="airport-autocomplete-dropdown absolute left-0 right-0 top-full mt-2 max-h-48 overflow-y-auto rounded-xl border border-white/20 shadow-2xl"
           style={{
             zIndex: 99999,
             maxWidth: '100%',
-            width: '100%'
+            width: '100%',
+            background: 'rgba(15, 23, 42, 0.95)',
+            backdropFilter: 'blur(20px)',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(255, 215, 0, 0.15)'
           }}
         >
           {/* Recent Searches Section */}

@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody, RadioGroup, Radio, Input, Button, Select, SelectItem, Divider, Spinner } from "@heroui/react";
-import { DateRangePicker, DatePicker } from "@heroui/react";
-import { parseDate, getLocalTimeZone, today, DateValue, CalendarDate } from "@internationalized/date";
-import { useDateFormatter } from "@react-aria/i18n";
-import type { RangeValue } from "@react-types/shared";
-import type { DateValue as DateValueType } from "@react-types/datepicker";
-import apiService from "../services/api";
-import { FlightResults } from "./flight-results";
-import { Flight, FlightSearchParams } from "../services/api";
+import { Icon } from '@iconify/react';
+import { motion } from 'framer-motion';
+import { DatePicker, DateRangePicker, DateRange } from "./calendar";
+import apiService, { Flight, FlightSearchParams, GroupedFlight, BookingOption } from "../services/api";
+import { FlightResults, GroupedFlightResults } from "./flight-results";
 import AirportAutocomplete, { Airport } from "./AirportAutocomplete";
 import searchHistoryService from "../services/search-history";
 import SearchHistory from "./search-history";
 import { FlightSearchItem } from "../services/search-history";
-import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
 
 // Cabin class options
 const cabinClasses = [
@@ -61,28 +56,21 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
   const [selectedDestinationAirport, setSelectedDestinationAirport] = useState<any>(null);
   
   // Search results and loading state
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Flight[]>([]);
+  const [groupedSearchResults, setGroupedSearchResults] = useState<GroupedFlight[]>([]);
+  const [useGroupedView, setUseGroupedView] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [debug, setDebug] = useState<any>(null);
   
   // Create today and next week dates
-  const todayDate = today(getLocalTimeZone());
-  const nextWeek = todayDate.copy();
-  nextWeek.add({ days: 7 });
+  const todayDate = new Date();
+  const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   
-  // Define a custom type for our date range that allows null end date
-  type FlexibleDateRange = {
-    start: DateValue;
-    end: DateValue | null;
-  };
-  
-  const [dateRange, setDateRange] = useState<FlexibleDateRange>({
+  const [dateRange, setDateRange] = useState<DateRange>({
     start: todayDate,
     end: nextWeek
   });
-  
-  const formatter = useDateFormatter({ dateStyle: "medium" });
 
   // Apply a saved search from history
   const handleApplySearch = (search: FlightSearchItem) => {
@@ -94,18 +82,17 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
     
     // Set dates if available
     try {
-      const startDate = parseDate(search.departureDate);
+      const startDate = new Date(search.departureDate);
       
       if (search.returnDate) {
         // If we have a return date, set up round trip
-        const endDate = parseDate(search.returnDate);
+        const endDate = new Date(search.returnDate);
         setDateRange({ start: startDate, end: endDate });
         setTripType("round-trip");
       } else {
         // For one-way trips, use today's date + 7 days as placeholder end date
         // but set trip type to one-way
-        const placeholderEndDate = today(getLocalTimeZone());
-        placeholderEndDate.add({ days: 7 });
+        const placeholderEndDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
         setDateRange({ start: startDate, end: placeholderEndDate });
         setTripType("one-way");
       }
@@ -123,29 +110,58 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
   };
 
   const handleSearch = async () => {
-    // Validate inputs
+    // Validate inputs with clear, actionable messages
     if (!origin || !destination) {
-      setError("Please select both origin and destination airports.");
+      setError("Please select both departure and destination airports");
+      setIsLoading(false);
+      return;
+    }
+    
+    if (origin === destination) {
+      setError("Departure and arrival airports cannot be the same.");
       setIsLoading(false);
       return;
     }
 
-    // Validate dates
-    if (!dateRange.start) {
-      setError("Please select a departure date.");
-      setIsLoading(false); 
-      return;
-    }
-    if (tripType === "round-trip" && !dateRange.end) {
-      setError("Please select a return date for round trips.");
-      setIsLoading(false);
-      return;
-    }
-    // Optional: Add validation for date range (start before end)
-    if (tripType === "round-trip" && dateRange.end && dateRange.start.compare(dateRange.end) > 0) {
-        setError("Return date must be after the departure date.");
+    // Validate dates using native Date objects
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set to start of day for comparison
+    
+    if (tripType === 'round-trip') {
+      if (!dateRange?.start || !dateRange?.end) {
+        setError("Please select both departure and return dates");
         setIsLoading(false);
         return;
+      }
+      const startDate = new Date(dateRange.start);
+      const endDate = new Date(dateRange.end);
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+      
+      if (startDate < currentDate) {
+        setError("Departure date cannot be in the past");
+        setIsLoading(false);
+        return;
+      }
+      if (endDate < startDate) {
+        setError("Return date must be after departure date");
+        setIsLoading(false);
+        return;
+      }
+    } else {
+      if (!dateRange?.start) {
+        setError("Please select a departure date");
+        setIsLoading(false);
+        return;
+      }
+      const depDate = new Date(dateRange.start);
+      depDate.setHours(0, 0, 0, 0);
+      
+      if (depDate < currentDate) {
+        setError("Departure date cannot be in the past");
+        setIsLoading(false);
+        return;
+      }
     }
 
     // Clear previous errors and results
@@ -161,8 +177,8 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
     console.log("Starting flight search with parameters:", {
       origin,
       destination,
-      departureDate: dateRange.start ? dateRange.start.toString() : 'N/A',
-      returnDate: tripType === 'round-trip' && dateRange.end ? dateRange.end.toString() : 'N/A',
+      departureDate: dateRange.start ? dateRange.start.toISOString().split('T')[0] : 'N/A',
+      returnDate: tripType === 'round-trip' && dateRange.end ? dateRange.end.toISOString().split('T')[0] : 'N/A',
       cabinClass,
       mileageProgram,
       passengers,
@@ -187,8 +203,8 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
       const searchParams = {
         origin: origin,
         destination: destination,
-        date: formatDateForApi(dateRange.start),
-        returnDate: tripType === 'round-trip' ? formatDateForApi(dateRange.end) : undefined,
+        date: dateRange.start ? dateRange.start.toISOString().split('T')[0] : '',
+        returnDate: tripType === 'round-trip' ? dateRange.end.toISOString().split('T')[0] : undefined,
         cabin_class: cabinClass,
         passengers: parseInt(passengers),
         airline: mileageProgram // Use mileage program as the source filter
@@ -196,19 +212,25 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
       
       console.log('Final search parameters:', searchParams);
       
-      // Call the search API
-      const response = await apiService.searchFlights(searchParams);
+      // Call both search APIs for regular and grouped results
+      const [response, groupedResponse] = await Promise.all([
+        apiService.searchFlights(searchParams),
+        apiService.searchFlightsGrouped(searchParams)
+      ]);
+      
       console.log('Search results received:', response);
+      console.log('Grouped search results received:', groupedResponse);
       
       // Extract flights from response
       const results = response.flights || [];
+      const groupedResults = groupedResponse.groupedFlights || [];
       
       // Store search in history
       const searchItem: FlightSearchItem = {
         origin,
         destination,
-        departureDate: formatDateForApi(dateRange.start),
-        returnDate: tripType === 'round-trip' ? formatDateForApi(dateRange.end) : undefined,
+        departureDate: dateRange.start ? dateRange.start.toISOString().split('T')[0] : '',
+        returnDate: tripType === 'round-trip' ? dateRange.end.toISOString().split('T')[0] : undefined,
         cabinClass,
         passengers: parseInt(passengers),
         mileageProgram,
@@ -217,7 +239,9 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
       
       searchHistoryService.addFlightSearchToHistory(searchItem);
       
+      // Update both regular and grouped results
       setSearchResults(results);
+      setGroupedSearchResults(groupedResults);
       
       if (onSearchResults) {
         onSearchResults(results);
@@ -233,15 +257,11 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
   };
 
   // Format date for API (YYYY-MM-DD)
-  const formatDateForApi = (dateValue: DateValue | null): string => {
-    if (!dateValue) return '';
+  const formatDateForApi = (date: Date | null): string => {
+    if (!date) return '';
     
-    // Convert DateValue to a proper date string
-    const year = dateValue.year;
-    const month = String(dateValue.month).padStart(2, '0');
-    const day = String(dateValue.day).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
+    // Convert Date to YYYY-MM-DD format
+    return date.toISOString().split('T')[0];
   };
 
   const handleOriginChange = (value: string, airport?: Airport) => {
@@ -340,13 +360,13 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                   <div className="space-y-3">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:plane-takeoff" className="inline mr-2 text-yellow-400" />
-                      From
+                      Departure
                     </label>
                     <AirportAutocomplete
-                      label="From"
+                      label="Departure"
                       value={selectedOriginAirport?.name || origin || ""}
                       onChange={handleOriginChange}
-                      placeholder="Departure airport"
+                      placeholder="Enter departure city or airport code"
                       icon="lucide:plane-takeoff"
                       type="origin"
                     />
@@ -368,76 +388,74 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                   <div className="space-y-3">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:plane-landing" className="inline mr-2 text-yellow-400" />
-                      To
+                      Arrival
                     </label>
                     <AirportAutocomplete
+                      label="Arrival"
                       value={selectedDestinationAirport?.name || destination || ""}
-                      onSelectionChange={handleDestinationChange}
-                      placeholder="Arrival airport"
-                      className="w-full"
-                      inputProps={{
-                        classNames: {
-                          input: "text-white text-lg",
-                          inputWrapper: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14"
-                        }
-                      }}
+                      onChange={handleDestinationChange}
+                      placeholder="Enter arrival city or airport code"
+                      icon="lucide:plane-landing"
+                      type="destination"
                     />
                   </div>
                 </div>
 
-                {/* Date and Options Row */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                {/* Date and Options Row - Enhanced with better alignment and spacing */}
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
                   {/* Dates */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 relative">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:calendar" className="inline mr-2 text-yellow-400" />
-                      {tripType === "round-trip" ? "Dates" : "Departure Date"}
+                      Travel Date
                     </label>
+                    <div className="text-xs text-gray-400 mb-2 flex items-center gap-1">
+                      <Icon icon="lucide:info" className="w-3 h-3" />
+                      Format: MM/DD/YYYY
+                    </div>
                     {tripType === "round-trip" ? (
                       <DateRangePicker
+                        label="Travel Dates"
                         value={dateRange}
                         onChange={setDateRange}
                         className="w-full"
-                        classNames={{
-                          base: "w-full",
-                          inputWrapper: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14",
-                          input: "text-white text-lg"
-                        }}
                       />
                     ) : (
                       <DatePicker
+                        label="Departure Date"
                         value={dateRange.start}
                         onChange={(date) => setDateRange({...dateRange, start: date})}
                         className="w-full"
-                        classNames={{
-                          base: "w-full",
-                          inputWrapper: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14",
-                          input: "text-white text-lg"
-                        }}
                       />
                     )}
                   </div>
 
                   {/* Mileage Program */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 relative">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:credit-card" className="inline mr-2 text-yellow-400" />
-                      Mileage Program
+                      Loyalty Program
                     </label>
                     <Select
                       selectedKeys={[mileageProgram]}
                       onSelectionChange={(keys) => setMileageProgram(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14",
+                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14 min-h-[56px]",
                         value: "text-white text-lg",
-                        popover: "bg-gray-900 border border-white/20"
+                        popoverContent: "bg-gray-900 border border-white/20 max-w-[280px]"
+                      }}
+                      popoverProps={{
+                        placement: "bottom-start",
+                        offset: 8,
+                        containerPadding: 16,
+                        shouldFlip: true,
+                        crossOffset: 0
                       }}
                     >
                       {mileagePrograms.map((program) => (
                         <SelectItem 
-                          key={program.key} 
-                          value={program.key}
+                          key={program.key}
                           className="text-white hover:bg-white/10"
                         >
                           {program.label}
@@ -447,19 +465,26 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                   </div>
 
                   {/* Passengers */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 relative">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:users" className="inline mr-2 text-yellow-400" />
-                      Passengers
+                      Travelers
                     </label>
                     <Select
                       selectedKeys={[passengers]}
                       onSelectionChange={(keys) => setPassengers(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14",
+                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14 min-h-[56px]",
                         value: "text-white text-lg",
-                        popover: "bg-gray-900 border border-white/20"
+                        popoverContent: "bg-gray-900 border border-white/20 max-w-[280px]"
+                      }}
+                      popoverProps={{
+                        placement: "bottom-start",
+                        offset: 8,
+                        containerPadding: 16,
+                        shouldFlip: true,
+                        crossOffset: 0
                       }}
                     >
                       {passengerCounts.map((count) => (
@@ -475,7 +500,7 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                   </div>
 
                   {/* Cabin Class */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 relative">
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       <Icon icon="lucide:armchair" className="inline mr-2 text-yellow-400" />
                       Cabin Class
@@ -485,9 +510,16 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                       onSelectionChange={(keys) => setCabinClass(Array.from(keys)[0] as string)}
                       className="w-full"
                       classNames={{
-                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14",
+                        trigger: "bg-white/5 border border-white/20 hover:border-yellow-400/50 focus:border-yellow-400 rounded-xl h-14 min-h-[56px]",
                         value: "text-white text-lg",
-                        popover: "bg-gray-900 border border-white/20"
+                        popoverContent: "bg-gray-900 border border-white/20 max-w-[280px]"
+                      }}
+                      popoverProps={{
+                        placement: "bottom-start",
+                        offset: 8,
+                        containerPadding: 16,
+                        shouldFlip: true,
+                        crossOffset: 0
                       }}
                     >
                       {cabinClasses.map((cabin) => (
@@ -574,7 +606,7 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                     <div className="flex justify-between items-center">
                       <span className="text-gray-300">Total Searches</span>
                       <span className="text-yellow-400 font-bold">
-                        {searchHistoryService.getSearchHistory().length}
+                        {searchHistoryService.getFlightHistory().length}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
@@ -582,9 +614,9 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                       <span className="text-yellow-400 font-bold">
                         {Math.round(
                           searchHistoryService
-                            .getSearchHistory()
+                            .getFlightHistory()
                             .reduce((sum, search) => sum + (search.resultsCount || 0), 0) /
-                            Math.max(searchHistoryService.getSearchHistory().length, 1)
+                            Math.max(searchHistoryService.getFlightHistory().length, 1)
                         )}
                       </span>
                     </div>
@@ -592,7 +624,7 @@ export function SearchForm({ onSearchResults, onSearchStart }: SearchFormProps) 
                       <span className="text-gray-300">Most Popular Route</span>
                       <span className="text-yellow-400 font-bold text-sm">
                         {(() => {
-                          const routes = searchHistoryService.getSearchHistory();
+                          const routes = searchHistoryService.getFlightHistory();
                           if (routes.length === 0) return "N/A";
                           
                           const routeCounts = routes.reduce((acc, search) => {

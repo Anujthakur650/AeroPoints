@@ -5963,7 +5963,20 @@ table[role="grid"] {
 div[data-slot="popover"][data-open="true"]:has([role="dialog"]),
 div[data-slot="popover"][data-open]:has([role="dialog"]),
 .react-aria-Popover:has(.react-aria-Calendar),
-.react-aria-Popover:has([role="dialog"]) {
+.react-aria-Popover:has([role="dialog"]),
+/* HEROUI SPECIFIC OVERRIDES */
+.date-picker-dark-theme [data-slot="popover"][data-open="true"] > div,
+.date-picker-dark-theme [data-slot="popover"][data-open="true"] > div > div,
+div[data-slot="popover"][data-open="true"] > div,
+div[data-slot="popover"][data-open="true"] > div > div,
+/* ADDITIONAL HEROUI SELECTORS */
+.date-picker-dark-theme div[data-slot="popover"][data-open="true"],
+.date-picker-dark-theme div[data-slot="popover"][data-open],
+div[data-slot="popover"][data-open="true"][class*="heroui"],
+div[data-slot="popover"][data-open][class*="heroui"],
+/* CATCH-ALL FOR HEROUI CALENDAR POPOVERS */
+[data-slot="popover"][data-open="true"][class*="heroui"]:has([role="dialog"]),
+[data-slot="popover"][data-open][class*="heroui"]:has([role="dialog"]) {
   /* FORCE DARK BACKGROUND */
   background: rgba(15, 23, 42, 0.95) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
@@ -6176,4 +6189,566 @@ div[data-slot="popover"][data-open]:has([role="dialog"]),
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: rgba(255, 255, 255, 0.25) !important;
   box-shadow: none !important;
+}
+
+/* ===== FINAL HEROUI DATE PICKER OVERRIDE - ULTIMATE PRIORITY ===== */
+/* This section ensures all HeroUI date picker components have proper dark theme */
+
+/* Force all popover elements to use dark background */
+[data-slot="popover"]:has([role="dialog"]),
+[data-slot="popover"]:has([role="grid"]),
+[data-slot="popover"]:has([aria-label*="calendar"]),
+[data-slot="popover"]:has([aria-label*="Calendar"]),
+div[data-slot="popover"][data-open="true"],
+div[data-slot="popover"][data-open],
+.date-picker-dark-theme [data-slot="popover"],
+.date-picker-dark-theme [data-slot="popover"] > div,
+/* ALL HEROUI CALENDAR CONTAINERS */
+[class*="heroui"] [data-slot="popover"],
+[class*="heroui"] [data-slot="popover"] > div,
+/* React Aria Calendar components */
+.react-aria-Popover,
+.react-aria-Popover > div,
+/* Generic calendar containers */
+[role="dialog"][aria-label*="calendar"],
+[role="dialog"][aria-label*="Calendar"],
+[role="dialog"][aria-label*="calendar"] > div,
+[role="dialog"][aria-label*="Calendar"] > div {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 215, 0, 0.4) !important;
+  border-radius: 16px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 8px 32px rgba(255, 215, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Specific overrides for calendar grid and cells */
+.date-picker-dark-theme [data-slot="popover"] [role="grid"],
+.date-picker-dark-theme [data-slot="popover"] table,
+.date-picker-dark-theme [data-slot="popover"] thead,
+.date-picker-dark-theme [data-slot="popover"] tbody,
+.date-picker-dark-theme [data-slot="popover"] tr,
+.date-picker-dark-theme [data-slot="popover"] th,
+.date-picker-dark-theme [data-slot="popover"] td {
+  background: transparent !important;
+  color: white !important;
+}
+
+/* Ensure calendar container and all nested elements have dark background */
+.date-picker-dark-theme [data-slot="content"],
+.date-picker-dark-theme [data-slot="content"] > div,
+.date-picker-dark-theme [data-slot="popover-content"],
+.date-picker-dark-theme .heroui-popover-content,
+.date-picker-dark-theme .heroui-calendar,
+.date-picker-dark-theme .heroui-calendar-container {
+  background: rgba(17, 24, 39, 0.95) !important;
+  color: white !important;
+}
+
+/* Ensure date input fields maintain dark theme */
+.date-picker-dark-theme [data-slot="base"],
+.date-picker-dark-theme [data-slot="input"],
+.date-picker-dark-theme [data-slot="input-wrapper"],
+.date-picker-dark-theme [data-slot="inner-wrapper"],
+.date-picker-dark-theme input,
+.date-picker-dark-theme .react-aria-Group,
+.date-picker-dark-theme .react-aria-DateInput {
+  background: rgba(51, 65, 85, 0.6) !important;
+  color: white !important;
+  border: 1px solid rgba(156, 163, 175, 0.6) !important;
+  border-radius: 12px !important;
+}
+
+/* Date segment styling for proper formatting */
+.date-picker-dark-theme [data-slot="segment"],
+.date-picker-dark-theme .react-aria-DateSegment {
+  background: transparent !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 3px 6px !important;
+  margin: 0 1px !important;
+  min-width: 24px !important;
+  text-align: center !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"]:hover,
+.date-picker-dark-theme .react-aria-DateSegment:hover {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #FFD700 !important;
+}
+
+.date-picker-dark-theme [data-slot="segment"][data-focused="true"],
+.date-picker-dark-theme .react-aria-DateSegment[data-focused="true"] {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* Fix date separators and literals */
+.date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] span:not([data-slot="segment"]) {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400 !important;
+  margin: 0 2px !important;
+  font-size: 16px !important;
+}
+
+/* Calendar button styling */
+.date-picker-dark-theme button[aria-label*="calendar"],
+.date-picker-dark-theme button[aria-label*="Calendar"],
+.date-picker-dark-theme [data-slot="end-content"] button {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 8px !important;
+  color: #FFD700 !important;
+  padding: 8px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.date-picker-dark-theme button[aria-label*="calendar"]:hover,
+.date-picker-dark-theme button[aria-label*="Calendar"]:hover,
+.date-picker-dark-theme [data-slot="end-content"] button:hover {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  transform: scale(1.05) !important;
+}
+/* ===== NUCLEAR-LEVEL HEROUI OVERRIDE - FORCE DARK THEME ===== */
+/* This section uses the most aggressive CSS selectors possible */
+
+/* Override ALL white/light backgrounds in date picker components */
+[data-slot="popover"] *,
+[data-slot="popover"],
+div[data-slot="popover"] *,
+div[data-slot="popover"],
+[aria-label*="calendar"] *,
+[aria-label*="Calendar"] *,
+[aria-label*="calendar"],
+[aria-label*="Calendar"],
+[role="dialog"] *,
+[role="dialog"],
+[role="grid"] *,
+[role="grid"],
+[class*="heroui"] [data-slot="popover"] *,
+[class*="heroui"] [data-slot="popover"],
+[class*="heroui"] [role="dialog"] *,
+[class*="heroui"] [role="dialog"],
+/* Target HeroUI generated classes */
+[class*="nextui"] *,
+[class*="nextui"],
+/* Target any white/light backgrounds */
+*[style*="background: white"],
+*[style*="background: #fff"],
+*[style*="background: #ffffff"],
+*[style*="background-color: white"],
+*[style*="background-color: #fff"],
+*[style*="background-color: #ffffff"],
+*[style*="background-color: rgb(255, 255, 255)"],
+*[style*="background: rgb(255, 255, 255)"] {
+  background: rgba(15, 23, 42, 0.95) \!important;
+  background-color: rgba(15, 23, 42, 0.95) \!important;
+  color: white \!important;
+}
+
+/* Force dark background on all popover containers */
+[data-slot="popover"],
+div[data-slot="popover"],
+[data-slot="popover"] > div,
+[data-slot="popover"] > div > div,
+[data-slot="popover"] > div > div > div {
+  background: rgba(15, 23, 42, 0.95) \!important;
+  background-color: rgba(15, 23, 42, 0.95) \!important;
+  backdrop-filter: blur(20px) saturate(180%) \!important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) \!important;
+  border: 1px solid rgba(255, 215, 0, 0.4) \!important;
+  border-radius: 16px \!important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 8px 32px rgba(255, 215, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) \!important;
+}
+
+/* Force all calendar dialogs to have dark background */
+[role="dialog"],
+[role="dialog"] > div,
+[role="dialog"] > div > div,
+[aria-label*="calendar"],
+[aria-label*="Calendar"],
+[aria-label*="calendar"] > div,
+[aria-label*="Calendar"] > div {
+  background: transparent \!important;
+  background-color: transparent \!important;
+  color: white \!important;
+}
+
+/* Force all grid containers to be transparent */
+[role="grid"],
+[role="grid"] > div,
+[role="grid"] > div > div,
+table[role="grid"],
+table[role="grid"] > div {
+  background: transparent \!important;
+  background-color: transparent \!important;
+  color: white \!important;
+}
+
+/* Override any inline styles that set white backgrounds */
+[style*="background"] {
+  background: rgba(15, 23, 42, 0.95) \!important;
+}
+
+[style*="background-color"] {
+  background-color: rgba(15, 23, 42, 0.95) \!important;
+}
+
+/* Target specific HeroUI class patterns */
+[class*="data-slot-popover"],
+[class*="data-open-true"],
+[class*="nextui-popover"],
+[class*="heroui-popover"],
+[class*="react-aria-Popover"] {
+  background: rgba(15, 23, 42, 0.95) \!important;
+  background-color: rgba(15, 23, 42, 0.95) \!important;
+  color: white \!important;
+}
+
+/* Fix broken date segments and formatting */
+.date-picker-dark-theme [data-slot="segment"],
+.date-picker-dark-theme .react-aria-DateSegment,
+[data-slot="segment"],
+.react-aria-DateSegment {
+  background: transparent \!important;
+  color: white \!important;
+  border: none \!important;
+  border-radius: 4px \!important;
+  padding: 3px 6px \!important;
+  margin: 0 1px \!important;
+  min-width: 24px \!important;
+  text-align: center \!important;
+  font-size: 16px \!important;
+  font-weight: 500 \!important;
+  transition: all 0.2s ease \!important;
+  display: inline-block \!important;
+}
+
+/* Fix date separator styling */
+.date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] span:not([data-slot="segment"]),
+[data-slot="inner-wrapper"] [aria-hidden="true"],
+[data-slot="inner-wrapper"] span:not([data-slot="segment"]) {
+  color: rgba(255, 255, 255, 0.6) \!important;
+  font-weight: 400 \!important;
+  margin: 0 2px \!important;
+  font-size: 16px \!important;
+}
+
+/* Fix placeholder text */
+.date-picker-dark-theme [data-slot="segment"][data-placeholder="true"],
+.date-picker-dark-theme .react-aria-DateSegment[data-placeholder="true"],
+[data-slot="segment"][data-placeholder="true"],
+.react-aria-DateSegment[data-placeholder="true"] {
+  color: rgba(255, 255, 255, 0.4) \!important;
+  font-style: italic \!important;
+}
+
+/* Ensure input wrapper maintains dark theme */
+.date-picker-dark-theme [data-slot="input-wrapper"],
+.date-picker-dark-theme [data-slot="inner-wrapper"],
+[data-slot="input-wrapper"],
+[data-slot="inner-wrapper"] {
+  display: flex \!important;
+  align-items: center \!important;
+  justify-content: flex-start \!important;
+  gap: 2px \!important;
+  width: 100% \!important;
+  padding: 0 16px \!important;
+  background: rgba(51, 65, 85, 0.6) \!important;
+  color: white \!important;
+  border-radius: 12px \!important;
+}
+
+/* Fix calendar button icons */
+.date-picker-dark-theme button[aria-label*="calendar"] svg,
+.date-picker-dark-theme button[aria-label*="Calendar"] svg,
+.date-picker-dark-theme [data-slot="end-content"] button svg,
+button[aria-label*="calendar"] svg,
+button[aria-label*="Calendar"] svg,
+[data-slot="end-content"] button svg {
+  color: #FFD700 \!important;
+  fill: #FFD700 \!important;
+}
+
+/* Aggressive override for any remaining white backgrounds */
+*:has([role="dialog"]),
+*:has([role="grid"]),
+*:has([aria-label*="calendar"]),
+*:has([data-slot="popover"]) {
+  background: rgba(15, 23, 42, 0.95) !important;
+  background-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* ===== ENHANCED DATE PICKER STYLING FOR GLASS MORPHISM ===== */
+
+/* Glass morphism styling for date input containers */
+.date-picker-glass-container {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  height: 56px !important;
+  padding: 0 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+}
+
+.date-picker-glass-container:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2) !important;
+}
+
+.date-picker-glass-container:focus-within,
+.date-picker-glass-container.focused {
+  border-color: #FFD700 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2), 0 8px 25px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* Fix date segment display to show as single formatted string */
+.date-picker-glass-container .date-display-text {
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  flex: 1 !important;
+  text-align: left !important;
+}
+
+.date-picker-glass-container .date-display-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+}
+
+.date-picker-glass-container .calendar-icon {
+  color: #FFD700 !important;
+  margin-left: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Enhanced date segment styling for better appearance */
+.date-picker-dark-theme [data-slot="segment"],
+.date-picker-dark-theme .react-aria-DateSegment {
+  background: transparent !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 2px 4px !important;
+  margin: 0 1px !important;
+  min-width: auto !important;
+  text-align: center !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  display: inline !important;
+}
+
+/* Fix date separators to be more visible */
+.date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] span:not([data-slot="segment"]) {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 500 !important;
+  margin: 0 2px !important;
+  font-size: 16px !important;
+}
+
+/* Ensure proper input wrapper styling */
+.date-picker-dark-theme [data-slot="input-wrapper"],
+.date-picker-dark-theme [data-slot="inner-wrapper"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0px !important;
+  width: 100% !important;
+  padding: 0 16px !important;
+  height: 56px !important;
+}
+
+/* Hide default labels that might overlap */
+.date-picker-dark-theme [data-slot="label"] {
+  display: none !important;
+}
+
+/* Ensure date input has proper text formatting */
+.date-picker-dark-theme [data-slot="input"],
+.date-picker-dark-theme input,
+.date-picker-dark-theme .react-aria-DateInput {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  outline: none !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+}
+
+/* Style placeholder text appropriately */
+.date-picker-dark-theme [data-slot="input"]::placeholder,
+.date-picker-dark-theme input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+}
+
+/* ===== MOBILE RESPONSIVENESS FOR DATE PICKERS ===== */
+
+@media (max-width: 768px) {
+  /* Adjust glass morphism containers for mobile */
+  .date-picker-glass-container {
+    height: 52px !important;
+    padding: 0 12px !important;
+    border-radius: 10px !important;
+  }
+  
+  .date-picker-glass-container .date-display-text {
+    font-size: 14px !important;
+  }
+  
+  .date-picker-glass-container .date-display-placeholder {
+    font-size: 14px !important;
+  }
+  
+  /* Adjust date picker input styling for mobile */
+  .date-picker-dark-theme [data-slot="input-wrapper"],
+  .date-picker-dark-theme [data-slot="inner-wrapper"] {
+    height: 52px !important;
+    padding: 0 12px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="input"],
+  .date-picker-dark-theme input,
+  .date-picker-dark-theme .react-aria-DateInput {
+    font-size: 14px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="segment"] {
+    font-size: 14px !important;
+    padding: 2px 3px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="inner-wrapper"] [aria-hidden="true"],
+  .date-picker-dark-theme [data-slot="inner-wrapper"] span:not([data-slot="segment"]) {
+    font-size: 14px !important;
+  }
+  
+  /* Calendar popover adjustments for mobile */
+  .date-picker-dark-theme [data-slot="popover"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    padding: 16px !important;
+    margin-top: 6px !important;
+    border-radius: 12px !important;
+  }
+  
+  /* Calendar grid adjustments */
+  .react-aria-CalendarCell .react-aria-Button,
+  [data-slot="calendar"] td button,
+  [role="gridcell"] button {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further mobile adjustments for very small screens */
+  .date-picker-glass-container {
+    height: 48px !important;
+    padding: 0 10px !important;
+    border-radius: 8px !important;
+  }
+  
+  .date-picker-glass-container .date-display-text,
+  .date-picker-glass-container .date-display-placeholder {
+    font-size: 13px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="input-wrapper"],
+  .date-picker-dark-theme [data-slot="inner-wrapper"] {
+    height: 48px !important;
+    padding: 0 10px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="input"],
+  .date-picker-dark-theme input,
+  .date-picker-dark-theme .react-aria-DateInput {
+    font-size: 13px !important;
+  }
+  
+  .date-picker-dark-theme [data-slot="popover"],
+  .date-picker-dark-theme .react-aria-Popover {
+    min-width: 260px !important;
+    max-width: 280px !important;
+    padding: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  /* Calendar grid for very small screens */
+  .react-aria-CalendarCell .react-aria-Button,
+  [data-slot="calendar"] td button,
+  [role="gridcell"] button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ===== ENHANCED INTERACTION STATES ===== */
+
+/* Focus ring for better accessibility */
+.date-picker-dark-theme:focus-within {
+  outline: 2px solid rgba(255, 215, 0, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+/* Improved hover effects */
+.date-picker-dark-theme [data-slot="base"]:hover {
+  transform: translateY(-1px) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Active state */
+.date-picker-dark-theme [data-slot="base"]:active {
+  transform: translateY(0) !important;
+  transition: all 0.1s ease !important;
+}
+
+/* Enhanced calendar button styling */
+.date-picker-dark-theme button[aria-label*="calendar"]:focus,
+.date-picker-dark-theme button[aria-label*="Calendar"]:focus {
+  outline: 2px solid rgba(255, 215, 0, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+/* Smooth transition for all date picker elements */
+.date-picker-dark-theme * {
+  transition: all 0.2s ease !important;
 }

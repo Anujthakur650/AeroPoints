@@ -38,7 +38,7 @@ export function Footer() {
               <li><Link href="#" color="foreground" className="text-sm">Careers</Link></li>
               <li><Link href="#" color="foreground" className="text-sm">Press</Link></li>
               <li><Link href="#" color="foreground" className="text-sm">Partners</Link></li>
-              <li><Link href="#" color="foreground" className="text-sm">Contact</Link></li>
+              <li><Link href="#" color="foreground" className="text-sm">Contact Support</Link></li>
             </ul>
           </div>
           

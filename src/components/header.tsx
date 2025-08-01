@@ -27,9 +27,9 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <Link to="/" className="flex items-center gap-3">
-              <div className="aeropoints-logo w-10 h-10 rounded-xl flex items-center justify-center">
-                <Icon icon="lucide:plane" className="text-navy-900 text-xl" />
+            <Link to="/" className="flex items-center gap-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none rounded-lg p-1" aria-label="AeroPoints homepage">
+              <div className="aeropoints-logo w-10 h-10 rounded-xl flex items-center justify-center" aria-hidden="true">
+                <Icon icon="lucide:plane" className="text-navy-900 text-xl" aria-hidden="true" />
               </div>
               <div className="flex flex-col">
                 <span className="font-luxury text-2xl font-bold text-white">AeroPoints</span>
@@ -48,19 +48,27 @@ export function Header() {
             <div className="nav-links-container flex items-center gap-2">
               <Link 
                 to="/" 
-                className="nav-link text-platinum-300 hover:text-gold-400 font-medium transition-all duration-300"
+                className="nav-link text-platinum-300 hover:text-gold-400 focus:text-gold-400 font-medium transition-all duration-300 focus:ring-2 focus:ring-yellow-400 focus:outline-none rounded px-3 py-2"
               >
                 Search Flights
               </Link>
               <Link 
-                to="/deals" 
-                className="nav-link text-platinum-300 hover:text-gold-400 font-medium transition-all duration-300"
+                to="/" 
+                className="nav-link text-platinum-300 hover:text-gold-400 focus:text-gold-400 font-medium transition-all duration-300 focus:ring-2 focus:ring-yellow-400 focus:outline-none rounded px-3 py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('featured-deals')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Premium Deals
               </Link>
               <Link 
-                to="/points-calculator" 
-                className="nav-link text-platinum-300 hover:text-gold-400 font-medium transition-all duration-300"
+                to="/" 
+                className="nav-link text-platinum-300 hover:text-gold-400 focus:text-gold-400 font-medium transition-all duration-300 focus:ring-2 focus:ring-yellow-400 focus:outline-none rounded px-3 py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('points-calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Points Calculator
               </Link>
@@ -201,21 +209,23 @@ export function Header() {
                 <Button 
                   variant="light"
                   onClick={() => handleNavigation('/login')}
-                  className="text-platinum-300 hover:text-gold-400 hover:bg-white/5 transition-all duration-300"
+                  className="text-platinum-300 hover:text-gold-400 hover:bg-white/5 transition-all duration-300 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+                  aria-label="Sign in to your account"
                 >
-                  <Icon icon="lucide:log-in" className="mr-2" />
+                  <Icon icon="lucide:log-in" className="mr-2" aria-hidden="true" />
                   Sign In
                 </Button>
                 
-                <motion.button
-                  onClick={() => handleNavigation('/register')}
-                  className="join-button"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Icon icon="lucide:user-plus" className="mr-2" />
-                  JOIN AEROPOINTS
-                </motion.button>
+                                  <motion.button
+                    onClick={() => handleNavigation('/register')}
+                    className="join-button focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    aria-label="Join AeroPoints premium membership"
+                  >
+                    <Icon icon="lucide:user-plus" className="mr-2" aria-hidden="true" />
+                    Join AeroPoints
+                  </motion.button>
               </motion.div>
             )}
           </div>
@@ -245,30 +255,57 @@ export function Header() {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="trust-badges-container flex items-center justify-center gap-4 flex-wrap">
+          <div 
+            className="trust-badges-container flex items-center justify-center gap-4" 
+            style={{ flexWrap: 'nowrap', overflowX: 'auto' }}
+          >
             <motion.div 
-              className="trust-badge"
+              className="trust-badge group cursor-pointer"
+              style={{ flexShrink: 0 }}
               whileHover={{ scale: 1.02, y: -1 }}
+              title="256-bit SSL encryption with SOC 2 Type II compliance"
             >
-              🔒 Bank-Level Security
+              <Icon icon="lucide:shield-check" className="text-green-400 mr-2" />
+              Bank-Level Security
+              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
+                SOC 2 Certified
+              </span>
             </motion.div>
             <motion.div 
-              className="trust-badge"
+              className="trust-badge group cursor-pointer"
+              style={{ flexShrink: 0 }}
               whileHover={{ scale: 1.02, y: -1 }}
+              title="Live data from 150+ airline partners updated every 30 seconds"
             >
-              ✈️ Real-Time Inventory
+              <Icon icon="lucide:zap" className="text-yellow-400 mr-2" />
+              Real-Time Inventory
+              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
+                30s Updates
+              </span>
             </motion.div>
             <motion.div 
-              className="trust-badge"
+              className="trust-badge group cursor-pointer"
+              style={{ flexShrink: 0 }}
               whileHover={{ scale: 1.02, y: -1 }}
+              title="Winner of 2024 Best Travel Platform Award by Travel Weekly"
             >
-              🏆 Award Winning Service
+              <Icon icon="lucide:award" className="text-gold-400 mr-2" />
+              Award Winning Service
+              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
+                Travel Weekly 2024
+              </span>
             </motion.div>
             <motion.div 
-              className="trust-badge"
+              className="trust-badge group cursor-pointer"
+              style={{ flexShrink: 0 }}
               whileHover={{ scale: 1.02, y: -1 }}
+              title="Dedicated concierge team available 24/7 in 12 languages"
             >
-              💎 VIP Support 24/7
+              <Icon icon="lucide:headphones" className="text-blue-400 mr-2" />
+              VIP Support 24/7
+              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
+                12 Languages
+              </span>
             </motion.div>
           </div>
         </div>

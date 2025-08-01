@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody, Input, Button, Select, SelectItem, Chip, Divider, Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { DateRangePicker, DatePicker } from "@heroui/react";
-import { parseDate, getLocalTimeZone } from "@internationalized/date";
 import { motion, AnimatePresence } from "framer-motion";
-import type { RangeValue } from "@react-types/shared";
-import type { DateValue } from "@react-types/datepicker";
+import { DatePicker, DateRangePicker, DateRange } from "./calendar";
 import apiService, { FlightSearchParams, Flight } from "../services/api";
 import { AirportAutocomplete } from "./AirportAutocomplete";
 
@@ -147,9 +144,9 @@ export function UltraPremiumSearchForm({ onSearchResults, onSearchStart, onSearc
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   
   // Date range state
-  const [dateRange, setDateRange] = useState<RangeValue<DateValue>>({
-    start: parseDate(new Date().toISOString().split('T')[0]),
-    end: parseDate(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+  const [dateRange, setDateRange] = useState<DateRange>({
+    start: new Date(),
+    end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
   });
 
   // Advanced filter state
@@ -419,14 +416,18 @@ export function UltraPremiumSearchForm({ onSearchResults, onSearchStart, onSearc
                         setDateRange({ start: date, end: date });
                       }
                     }}
-                    minValue={parseDate(new Date().toISOString().split('T')[0])}
+                    label=""
+                    placeholder="Select departure date"
+                    minDate={new Date()}
                     className="premium-date-picker"
                   />
                 ) : (
                   <DateRangePicker
                     value={dateRange}
                     onChange={setDateRange}
-                    minValue={parseDate(new Date().toISOString().split('T')[0])}
+                    label=""
+                    placeholder="Select departure and return dates"
+                    minDate={new Date()}
                     className="premium-date-picker"
                   />
                 )}

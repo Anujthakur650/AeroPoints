@@ -18,6 +18,18 @@ from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 import traceback
 import httpx
+from dotenv import load_dotenv
+
+# Load environment variables from parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env_path = os.path.join(parent_dir, '.env')
+if os.path.exists(env_path):
+    load_dotenv(env_path)
+    print(f"Loaded environment variables from {env_path}")
+else:
+    # Try loading from current directory
+    load_dotenv()
+    print("Loaded environment variables from current directory")
 
 # Fix the relative import
 from award_flight_api import award_flight_api
@@ -249,8 +261,30 @@ async def serve_flights(
         )
 
 # Helper function to fetch flights directly from seats.aero API
+async def fetch_trip_details(availability_id, api_key):
+    """Fetch detailed trip information for a given availability ID"""
+    try:
+        url = f'https://seats.aero/partnerapi/trips/{availability_id}'
+        headers = {
+            'Partner-Authorization': api_key,
+            'Accept': 'application/json'
+        }
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url, headers=headers, timeout=30.0)
+            
+            if response.status_code != 200:
+                logger.error(f'Trip details API request failed: {response.status_code}')
+                return []
+            
+            trip_data = response.json()
+            return trip_data.get('data', [])
+    except Exception as e:
+        logger.error(f'Error fetching trip details: {str(e)}')
+        return []
+
 async def fetch_from_seats_aero(origin, destination, date, cabin_class=None):
-    """Fetch flights directly from seats.aero API"""
+    """Fetch flights directly from seats.aero API with trip details"""
     try:
         # Get API key from environment
         api_key = os.getenv('SEATS_AERO_API_KEY')
@@ -303,77 +337,126 @@ async def fetch_from_seats_aero(origin, destination, date, cabin_class=None):
             
             logger.info(f'Found {len(flights_data)} flights in seats.aero API response')
             
-            # Map the seats.aero response to our Flight structure
-            mapped_flights = []
+            # Now fetch trip details for each availability ID
+            all_trip_details = []
             for flight in flights_data:
-                try:
-                    # Extract basic flight information
-                    flight_id = flight.get('ID', f'{origin}-{destination}-{len(mapped_flights)}')
+                availability_id = flight.get('ID')
+                if availability_id:
                     source = flight.get('Source', 'unknown')
+                    airline_name = airline_map.get(source.lower(), source)
+                    logger.info(f'Fetching trip details for availability ID: {availability_id} ({airline_name})')
+                    trip_details = await fetch_trip_details(availability_id, api_key)
                     
-                    # Map airline name from source code
-                    airline_map = {
-                        'united': 'United Airlines',
-                        'delta': 'Delta Air Lines',
-                        'american': 'American Airlines',
-                        'aeroplan': 'Air Canada',
-                        'alaska': 'Alaska Airlines',
-                        'british': 'British Airways',
-                        'flyingblue': 'Air France-KLM',
-                        'iberia': 'Iberia',
-                        'virginatlantic': 'Virgin Atlantic',
-                        'emirates': 'Emirates',
-                        'etihad': 'Etihad Airways'
-                    }
-                    airline = airline_map.get(source.lower(), source)
+                    # Add basic flight info to each trip detail
+                    for trip in trip_details:
+                        trip['availability_data'] = flight
+                    all_trip_details.extend(trip_details)
                     
-                    # Extract cabin-specific price information
-                    cabin_indicator = {
-                        'economy': 'Y',
-                        'premium-economy': 'W',
-                        'business': 'J', 
-                        'first': 'F'
-                    }.get(cabin_class.lower() if cabin_class else 'economy', 'Y')
-                    
-                    available = flight.get(f'{cabin_indicator}Available', False)
-                    
-                    # Skip unavailable flights for the selected cabin
-                    if not available:
+                    logger.info(f'Found {len(trip_details)} trip options for {availability_id}')
+            
+            logger.info(f'Fetched {len(all_trip_details)} total trip details')
+            
+            # Map the trip details to our Flight structure
+            mapped_flights = []
+            airline_map = {
+                'united': 'United Airlines',
+                'delta': 'Delta Air Lines',
+                'american': 'American Airlines',
+                'aeroplan': 'Air Canada',
+                'alaska': 'Alaska Airlines',
+                'british': 'British Airways',
+                'flyingblue': 'Air France-KLM',
+                'iberia': 'Iberia',
+                'virginatlantic': 'Virgin Atlantic',
+                'emirates': 'Emirates',
+                'etihad': 'Etihad Airways',
+                'qatar': 'Qatar Airways',
+                'qantas': 'Qantas',
+                'jetblue': 'JetBlue',
+                'smiles': 'GOL (Smiles)',
+                'turkish': 'Turkish Airlines',
+                'singapore': 'Singapore Airlines',
+                'cathay': 'Cathay Pacific',
+                'ana': 'ANA',
+                'jal': 'Japan Airlines',
+                'klm': 'KLM',
+                'airfrance': 'Air France',
+                'lufthansa': 'Lufthansa',
+                'swiss': 'Swiss',
+                'austrian': 'Austrian Airlines',
+                'finnair': 'Finnair',
+                'tap': 'TAP Air Portugal',
+                'avianca': 'Avianca',
+                'aeromexico': 'Aeromexico',
+                'velocity': 'Virgin Australia'
+            }
+            
+            for trip in all_trip_details:
+                try:
+                    # Skip if cabin doesn't match requested
+                    if cabin_class and trip.get('Cabin', '').lower() != cabin_class.lower():
                         continue
-                        
-                    points = flight.get(f'{cabin_indicator}MileageCost', 0)
-                    taxes = (flight.get(f'{cabin_indicator}TotalTaxes', 0) or 0) / 100  # Convert cents to dollars
-                    seats = flight.get(f'{cabin_indicator}RemainingSeats', 1)
                     
-                    # Flight details
-                    flight_number = flight.get('FlightNumber', f'{airline[:2]}{100 + len(mapped_flights)}')
-                    route = flight.get('Route', {})
+                    availability_data = trip.get('availability_data', {})
+                    source = availability_data.get('Source', 'unknown')
                     
-                    # Get origin/destination from route if available
-                    origin_code = route.get('OriginAirport', origin)
-                    dest_code = route.get('DestinationAirport', destination)
+                    # Format duration from minutes to hours and minutes
+                    duration_minutes = trip.get('TotalDuration', 0)
+                    hours = duration_minutes // 60
+                    minutes = duration_minutes % 60
+                    duration_str = f"{hours}h {minutes}m" if duration_minutes > 0 else "N/A"
+                    
+                    # Parse segments for layover information
+                    segments = trip.get('AvailabilitySegments', [])
+                    layovers = []
+                    if len(segments) > 1:
+                        for i in range(len(segments) - 1):
+                            current_arrival = segments[i].get('ArrivesAt', '')
+                            next_departure = segments[i + 1].get('DepartsAt', '')
+                            layover_duration = 'N/A'
+                            
+                            # Calculate layover duration if times are available
+                            if current_arrival and next_departure:
+                                try:
+                                    arr_time = datetime.fromisoformat(current_arrival.replace('Z', '+00:00'))
+                                    dep_time = datetime.fromisoformat(next_departure.replace('Z', '+00:00'))
+                                    duration_delta = dep_time - arr_time
+                                    hours = int(duration_delta.total_seconds() // 3600)
+                                    minutes = int((duration_delta.total_seconds() % 3600) // 60)
+                                    layover_duration = f"{hours}h {minutes}m"
+                                except Exception as e:
+                                    logger.debug(f"Error calculating layover duration: {e}")
+                            
+                            layovers.append({
+                                'airport': segments[i].get('DestinationAirport', ''),
+                                'duration': layover_duration
+                            })
                     
                     # Format the flight for our API
                     mapped_flight = {
-                        'id': flight_id,
-                        'airline': airline,
-                        'flightNumber': flight_number,
-                        'origin': origin_code,
-                        'destination': dest_code,
-                        'departureTime': '10:00 AM',  # Placeholder times
-                        'arrivalTime': '12:00 PM',    # seats.aero basic API doesn't provide times
-                        'duration': '2h 0m',          # Placeholder duration
-                        'cabinClass': cabin_class or 'economy',
-                        'points': points,
-                        'cash': taxes,
-                        'seatsAvailable': seats,
+                        'id': trip.get('ID', ''),
+                        'airline': airline_map.get(source.lower(), trip.get('Carriers', source)),
+                        'flightNumber': trip.get('FlightNumbers', ''),
+                        'origin': trip.get('OriginAirport', origin),
+                        'destination': trip.get('DestinationAirport', destination),
+                        'departureTime': trip.get('DepartsAt', ''),
+                        'arrivalTime': trip.get('ArrivesAt', ''),
+                        'duration': duration_str,
+                        'durationMinutes': duration_minutes,
+                        'cabinClass': trip.get('Cabin', cabin_class or 'economy'),
+                        'points': trip.get('MileageCost', 0),
+                        'cash': trip.get('TotalTaxes', 0) / 100 if trip.get('TotalTaxes') else 0,
+                        'seatsAvailable': trip.get('RemainingSeats', 1),
                         'realTimeData': True,
                         'lastUpdated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        'layovers': []
+                        'layovers': layovers,
+                        'stops': trip.get('Stops', 0) or len(segments) - 1 if segments else 0,
+                        'aircraft': trip.get('Aircraft', []),
+                        'segments': segments
                     }
                     mapped_flights.append(mapped_flight)
                 except Exception as mapping_error:
-                    logger.error(f'Error mapping flight: {str(mapping_error)}')
+                    logger.error(f'Error mapping trip: {str(mapping_error)}')
                     continue
                     
             logger.info(f'Successfully mapped {len(mapped_flights)} flights from seats.aero API')
