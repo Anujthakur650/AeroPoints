@@ -92,3 +92,6 @@ tunnel-monitor.sh
 
 # ngrok
 .ngrok2/ 
+# Cache files
+data/cache/
+*.cache
