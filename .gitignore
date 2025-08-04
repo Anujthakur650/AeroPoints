@@ -95,3 +95,20 @@ tunnel-monitor.sh
 # Cache files
 data/cache/
 *.cache
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+backend/db/
+backend/users.db
+users.db
+
+# Log files
+backend/logs/
+logs/
+*.log
+
+# Runtime files
+*.pid
+*.lock
