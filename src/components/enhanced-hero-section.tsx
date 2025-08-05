@@ -116,82 +116,59 @@ export function EnhancedHeroSection() {
         ))}
       </div>
 
-      {/* Main Content - Restructured to prevent overlap */}
-      <motion.div 
+      {/* Main Content */}
+      <motion.div
         style={{ opacity }}
-        className="relative z-20 min-h-screen flex flex-col justify-between px-4 py-20"
+        className="relative z-20 min-h-screen flex flex-col justify-center items-center px-4 text-center"
       >
-        {/* Hero Content Section */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-7xl mx-auto text-center">
-            {/* Enhanced Trust Indicators with Better Glassmorphism */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="trust-badges-container-enhanced justify-center mb-12"
-            >
-              <motion.div 
+        <div className="w-full max-w-5xl">
+          {/* Enhanced Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-wrap justify-center gap-4 md:gap-6 mb-10"
+          >
+            {[
+              { icon: 'lucide:award', text: 'Exclusive Partner Network' },
+              { icon: 'lucide:headphones', text: 'Concierge Service' },
+              { icon: 'lucide:shield-check', text: 'Secure & Trusted' }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
                 className="trust-badge-enhanced"
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05, y: -3 }}
                 transition={{ duration: 0.3 }}
               >
-                <Icon icon="lucide:award" className="text-gold-400 mr-3" />
-                Exclusive Partner Network
+                <Icon icon={item.icon} className="text-gold-400 mr-3 text-xl" />
+                {item.text}
               </motion.div>
-              <motion.div 
-                className="trust-badge-enhanced"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Icon icon="lucide:headphones" className="text-gold-400 mr-3" />
-                Concierge Service
-              </motion.div>
-              <motion.div 
-                className="trust-badge-enhanced"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Icon icon="lucide:shield-check" className="text-gold-400 mr-3" />
-                Secure & Trusted
-              </motion.div>
-            </motion.div>
+            ))}
+          </motion.div>
 
-            {/* Enhanced Luxury Script Accent */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="luxury-tagline-enhanced mb-6"
-            >
-              Maximize Every Point
-            </motion.div>
+          {/* Luxury Script Accent */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="luxury-tagline-enhanced mb-4"
+          >
+            Maximize Every Point
+          </motion.div>
 
-            {/* Enhanced Main Headline - Focus on Bespoke Travel Experiences */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hero-main-title-enhanced mb-8"
-            >
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="inline-block"
-              >
-                Bespoke Travel
-              </motion.span>
-              <br />
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-block text-gradient-luxury-enhanced"
-              >
-                Experiences
-              </motion.span>
-            </motion.h1>
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hero-main-title-enhanced mb-6"
+          >
+            Bespoke Travel
+            <br />
+            <span className="text-gradient-luxury-enhanced">
+              Experiences
+            </span>
+          </motion.h1>
 
             {/* Enhanced Description */}
             <motion.p
@@ -230,7 +207,6 @@ export function EnhancedHeroSection() {
                 Watch Experience
               </motion.button>
             </motion.div>
-          </div>
         </div>
 
         {/* Enhanced Premium Stats Section - Now in proper flow */}

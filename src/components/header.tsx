@@ -248,65 +248,33 @@ export function Header() {
       </div>
 
       {/* Trust Indicators Bar */}
-      <motion.div 
-        className="border-t border-white/5 py-2"
+      <motion.div
+        className="border-t border-white/5 py-3"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <div className="max-w-7xl mx-auto px-4">
-          <div 
-            className="trust-badges-container flex items-center justify-center gap-4" 
-            style={{ flexWrap: 'nowrap', overflowX: 'auto' }}
-          >
-            <motion.div 
-              className="trust-badge group cursor-pointer"
-              style={{ flexShrink: 0 }}
-              whileHover={{ scale: 1.02, y: -1 }}
-              title="256-bit SSL encryption with SOC 2 Type II compliance"
-            >
-              <Icon icon="lucide:shield-check" className="text-green-400 mr-2" />
-              Bank-Level Security
-              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
-                SOC 2 Certified
-              </span>
-            </motion.div>
-            <motion.div 
-              className="trust-badge group cursor-pointer"
-              style={{ flexShrink: 0 }}
-              whileHover={{ scale: 1.02, y: -1 }}
-              title="Live data from 150+ airline partners updated every 30 seconds"
-            >
-              <Icon icon="lucide:zap" className="text-yellow-400 mr-2" />
-              Real-Time Inventory
-              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
-                30s Updates
-              </span>
-            </motion.div>
-            <motion.div 
-              className="trust-badge group cursor-pointer"
-              style={{ flexShrink: 0 }}
-              whileHover={{ scale: 1.02, y: -1 }}
-              title="Winner of 2024 Best Travel Platform Award by Travel Weekly"
-            >
-              <Icon icon="lucide:award" className="text-gold-400 mr-2" />
-              Award Winning Service
-              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
-                Travel Weekly 2024
-              </span>
-            </motion.div>
-            <motion.div 
-              className="trust-badge group cursor-pointer"
-              style={{ flexShrink: 0 }}
-              whileHover={{ scale: 1.02, y: -1 }}
-              title="Dedicated concierge team available 24/7 in 12 languages"
-            >
-              <Icon icon="lucide:headphones" className="text-blue-400 mr-2" />
-              VIP Support 24/7
-              <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
-                12 Languages
-              </span>
-            </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between overflow-x-auto trust-badges-container-header">
+            {[
+              { icon: 'lucide:shield-check', text: 'Bank-Level Security', subtext: 'SOC 2 Certified', color: 'text-green-400', title: '256-bit SSL encryption with SOC 2 Type II compliance' },
+              { icon: 'lucide:zap', text: 'Real-Time Inventory', subtext: '30s Updates', color: 'text-yellow-400', title: 'Live data from 150+ airline partners updated every 30 seconds' },
+              { icon: 'lucide:award', text: 'Award Winning Service', subtext: 'Travel Weekly 2024', color: 'text-gold-400', title: 'Winner of 2024 Best Travel Platform Award by Travel Weekly' },
+              { icon: 'lucide:headphones', text: 'VIP Support 24/7', subtext: '12 Languages', color: 'text-blue-400', title: 'Dedicated concierge team available 24/7 in 12 languages' }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="trust-badge group cursor-pointer flex-shrink-0"
+                whileHover={{ scale: 1.03, y: -2 }}
+                title={item.title}
+              >
+                <Icon icon={item.icon} className={`${item.color} mr-2 text-lg`} />
+                <span className="font-semibold text-sm">{item.text}</span>
+                <span className="ml-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity">
+                  {item.subtext}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
